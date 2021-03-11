@@ -14,61 +14,73 @@ DROP TABLE IF EXISTS keywords CASCADE;
 DROP TABLE IF EXISTS jobs_keywords CASCADE;
 DROP TABLE IF EXISTS templates CASCADE;
 
-CREATE TABLE languages (
-  id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL
-);
+-- CREATE TABLE languages (
+--   id SERIAL PRIMARY KEY NOT NULL,
+--   name VARCHAR(255) NOT NULL
+-- );
 
-CREATE TABLE frameworks (
-  id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL
-);
+-- CREATE TABLE frameworks (
+--   id SERIAL PRIMARY KEY NOT NULL,
+--   name VARCHAR(255) NOT NULL
+-- );
 
-CREATE TABLE databases (
-  id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL
-);
+-- CREATE TABLE databases (
+--   id SERIAL PRIMARY KEY NOT NULL,
+--   name VARCHAR(255) NOT NULL
+-- );
 
-CREATE TABLE testing (
+-- CREATE TABLE testing (
+--   id SERIAL PRIMARY KEY NOT NULL,
+--   name VARCHAR(255) NOT NULL
+-- );
+
+CREATE TABLE hard_skills (
   id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL
+  name VARCHAR(255) NOT NULL,
+  type  VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE user_hard_skills (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  javascript  BOOLEAN  DEFAULT 'f',
-  ruby BOOLEAN DEFAULT 'f',
-  c++ BOOLEAN DEFAULT 'f',
-  c# BOOLEAN DEFAULT 'f',
-  html BOOLEAN DEFAULT 'f',
-  css BOOLEAN DEFAULT 'f',
-  java BOOLEAN DEFAULT 'f',
-  python BOOLEAN DEFAULT 'f',
-  typescript BOOLEAN DEFAULT 'f',
-  express BOOLEAN DEFAULT 'f',
-  node.js BOOLEAN DEFAULT 'f',
-  django BOOLEAN DEFAULT 'f',
-  rails BOOLEAN DEFAULT 'f',
-  axios BOOLEAN DEFAULT 'f',
-  react BOOLEAN DEFAULT 'f',
-  angular BOOLEAN DEFAULT 'f',
-  vue BOOLEAN DEFAULT 'f',
-  jquery BOOLEAN DEFAULT 'f',
-  wordpress BOOLEAN DEFAULT 'f',
-  jest BOOLEAN DEFAULT 'f',
-  cypress BOOLEAN DEFAULT 'f',
-  storybook BOOLEAN DEFAULT 'f',
-  rspec BOOLEAN DEFAULT 'f',
-  mocha BOOLEAN DEFAULT 'f',
-  capbara BOOLEAN DEFAULT 'f',
-  poltergeist BOOLEAN DEFAULT 'f',
-  mysql BOOLEAN DEFAULT 'f',
-  postgressql BOOLEAN DEFAULT 'f',
-  microsql BOOLEAN DEFAULT 'f',
-  sqlite BOOLEAN DEFAULT 'f',
-  mongodb BOOLEAN DEFAULT 'f'
-);
+  hard_skills_id INTEGER REFERENCES hard_skills(id) ON DELETE CASCADE 
+)
+
+-- CREATE TABLE user_hard_skills (
+--   id SERIAL PRIMARY KEY NOT NULL,
+--   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+--   javascript  BOOLEAN  DEFAULT 'f',
+--   ruby BOOLEAN DEFAULT 'f',
+--   c++ BOOLEAN DEFAULT 'f',
+--   c# BOOLEAN DEFAULT 'f',
+--   html BOOLEAN DEFAULT 'f',
+--   css BOOLEAN DEFAULT 'f',
+--   java BOOLEAN DEFAULT 'f',
+--   python BOOLEAN DEFAULT 'f',
+--   typescript BOOLEAN DEFAULT 'f',
+--   express BOOLEAN DEFAULT 'f',
+--   node.js BOOLEAN DEFAULT 'f',
+--   django BOOLEAN DEFAULT 'f',
+--   rails BOOLEAN DEFAULT 'f',
+--   axios BOOLEAN DEFAULT 'f',
+--   react BOOLEAN DEFAULT 'f',
+--   angular BOOLEAN DEFAULT 'f',
+--   vue BOOLEAN DEFAULT 'f',
+--   jquery BOOLEAN DEFAULT 'f',
+--   wordpress BOOLEAN DEFAULT 'f',
+--   jest BOOLEAN DEFAULT 'f',
+--   cypress BOOLEAN DEFAULT 'f',
+--   storybook BOOLEAN DEFAULT 'f',
+--   rspec BOOLEAN DEFAULT 'f',
+--   mocha BOOLEAN DEFAULT 'f',
+--   capbara BOOLEAN DEFAULT 'f',
+--   poltergeist BOOLEAN DEFAULT 'f',
+--   mysql BOOLEAN DEFAULT 'f',
+--   postgressql BOOLEAN DEFAULT 'f',
+--   microsql BOOLEAN DEFAULT 'f',
+--   sqlite BOOLEAN DEFAULT 'f',
+--   mongodb BOOLEAN DEFAULT 'f'
+-- );
 
 CREATE TABLE soft_skills (
   id SERIAL PRIMARY KEY NOT NULL,
