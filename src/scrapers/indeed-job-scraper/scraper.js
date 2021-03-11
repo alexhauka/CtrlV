@@ -13,7 +13,7 @@ function scraper(indeedJobURL) {
     //loading response data into a Cheerio instance
     const $ = cheerio.load(html);
 
-    //selecting the elements with the data
+    //select the specific DOM elements of Indeed's job postings
     const scrapedata = $('.jobsearch-jobDescriptionText').html()
 
     //outputting the scraped data
