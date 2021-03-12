@@ -14,7 +14,7 @@
     "react-scripts": "4.0.3",
     "retext": "^7.0.1",
     "retext-keywords": "^6.0.0",
-    "retext-pos": "^3.0.0",
+    "retext-pos": "^3.0.0", 
     "web-vitals": "^1.1.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",

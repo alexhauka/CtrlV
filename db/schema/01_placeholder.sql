@@ -35,7 +35,7 @@ DROP TABLE IF EXISTS templates CASCADE;
 -- );
 
 CREATE TABLE hard_skills (
-  id SERIAL PRIMARY KEY NOT NULL,
+  id SERIAL PRIMARY KEY NOT NULL, 
   name VARCHAR(255) NOT NULL,
   type  VARCHAR(255) NOT NULL
 );
@@ -90,18 +90,7 @@ CREATE TABLE soft_skills (
 CREATE TABLE  user_soft_skills (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  communication BOOLEAN DEFAULT 'f',
-  teamwork BOOLEAN DEFAULT 'f',
-  adaptability BOOLEAN DEFAULT 'f',
-  problemSolving BOOLEAN DEFAULT 'f',
-  creativity BOOLEAN DEFAULT 'f',
-  workEthic BOOLEAN DEFAULT 'f',
-  interpersonalSkills BOOLEAN DEFAULT 'f',
-  timeManagement BOOLEAN DEFAULT 'f',
-  leadership BOOLEAN DEFAULT 'f',
-  attentionToDetail BOOLEAN DEFAULT 'f',
-  scum BOOLEAN DEFAULT 'f',
-  agile BOOLEAN DEFAULT 'f'
+  soft_skills_id INTEGER REFERENCES soft_skills(id) ON DELETE CASCADE
 )
 
 CREATE TABLE  resumes (
@@ -121,7 +110,7 @@ CREATE TABLE  work_experiences (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   job_title VARCHAR(max) NOT NULL,
   job_description VARCHAR(max) NOT NULL, 
-  job_start_date DATE NOT NULL, --DATE - format YYYY-MM-DD
+  job_start_date DATE NOT NULL,
   job_end_date DATE NOT NULL
 )
 
@@ -131,8 +120,8 @@ CREATE TABLE  users (
   last_name VARCHAR(50) NOT NULL,
   email VARCHAR(50) NOT NULL,
   password VARCHAR(50) NOT NULL,
-  github VARCHAR(50) NOT NULL,
-  linkedin VARCHAR(50) NOT NULL,
+  github VARCHAR(50),
+  linkedin VARCHAR(50),
   address VARCHAR(50) NOT NULL,
   phone_number VARCHAR(50) NOT NULL,
 )
@@ -161,7 +150,7 @@ CREATE TABLE  keywords (
 
 CREATE TABLE  job_keywords (
   id SERIAL PRIMARY KEY NOT NULL,
-  job_posting_id INTEGER REFERENCES  job_postings(id) ON DELETE CASCADE, 
+  job_posting_id INTEGER REFERENCES job_postings(id) ON DELETE CASCADE, 
   keyword_1 VARCHAR(50) NOT NULL,
   keyword_2 VARCHAR(50) NOT NULL,
   keyword_3 VARCHAR(50) NOT NULL,
@@ -175,7 +164,7 @@ CREATE TABLE  job_keywords (
 )
 
 CREATE TABLE  templates (
-  id SERIAL PRIMARY KEY NOT NULL,
+  id SERIAL PRIMARY KEY NOT NULL
 )
 
 
