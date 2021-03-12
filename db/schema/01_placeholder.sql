@@ -90,7 +90,7 @@ CREATE TABLE soft_skills (
 CREATE TABLE  user_soft_skills (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  soft_skills_id INTEGER REFERENCES soft_skills(id) ON DELETE CASCADE
+  soft_skills_id INTEGER REFERENCES soft_skills(id) ON DELETE CASCADE 
 )
 
 CREATE TABLE  resumes (
@@ -99,8 +99,8 @@ CREATE TABLE  resumes (
   job_posting_id INTEGER REFERENCES job_postings(id) ON DELETE CASCADE,
   template_id INTEGER REFERENCES  templates(id) ON DELETE CASCADE,
   body_color VARCHAR(255) NOT NULL DEFAULT "White",
-  font_1 VARCHAR(255) NOT NULL DEFAULT "time new roman",
-  font_2 VARCHAR(255) NOT NULL DEFAULT "comic sans",
+  font_1 VARCHAR(255) NOT NULL DEFAULT "Times New Roman",
+  font_2 VARCHAR(255) NOT NULL DEFAULT "Helvetica",
   date_created TIMESTAMP NOT NULL,
   date_updated TIMESTAMP NOT NULL
 )
@@ -123,7 +123,7 @@ CREATE TABLE  users (
   github VARCHAR(50),
   linkedin VARCHAR(50),
   address VARCHAR(50) NOT NULL,
-  phone_number VARCHAR(50) NOT NULL,
+  phone_number VARCHAR(50) NOT NULL
 )
 
 CREATE TABLE  projects (
@@ -141,7 +141,7 @@ CREATE TABLE  job_postings (
   url VARCHAR(50) NOT NULL,
   title VARCHAR(50) NOT NULL,
   location VARCHAR(50) NOT NULL,
-  description TEXT NOT NULL,
+  description TEXT NOT NULL
 )
 
 CREATE TABLE  keywords (
