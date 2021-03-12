@@ -90,18 +90,7 @@ CREATE TABLE soft_skills (
 CREATE TABLE  user_soft_skills (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  communication BOOLEAN DEFAULT 'f',
-  teamwork BOOLEAN DEFAULT 'f',
-  adaptability BOOLEAN DEFAULT 'f',
-  problemSolving BOOLEAN DEFAULT 'f',
-  creativity BOOLEAN DEFAULT 'f',
-  workEthic BOOLEAN DEFAULT 'f',
-  interpersonalSkills BOOLEAN DEFAULT 'f',
-  timeManagement BOOLEAN DEFAULT 'f',
-  leadership BOOLEAN DEFAULT 'f',
-  attentionToDetail BOOLEAN DEFAULT 'f',
-  scum BOOLEAN DEFAULT 'f',
-  agile BOOLEAN DEFAULT 'f'
+  soft_skills_id INTEGER REFERENCES soft_skills(id) ON DELETE CASCADE 
 )
 
 CREATE TABLE  resumes (
@@ -110,8 +99,8 @@ CREATE TABLE  resumes (
   job_posting_id INTEGER REFERENCES job_postings(id) ON DELETE CASCADE,
   template_id INTEGER REFERENCES  templates(id) ON DELETE CASCADE,
   body_color VARCHAR(255) NOT NULL DEFAULT "White",
-  font_1 VARCHAR(255) NOT NULL DEFAULT "time new roman",
-  font_2 VARCHAR(255) NOT NULL DEFAULT "comic sans",
+  font_1 VARCHAR(255) NOT NULL DEFAULT "Times New Roman",
+  font_2 VARCHAR(255) NOT NULL DEFAULT "Helvetica",
   date_created TIMESTAMP NOT NULL,
   date_updated TIMESTAMP NOT NULL
 )
@@ -121,7 +110,7 @@ CREATE TABLE  work_experiences (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   job_title VARCHAR(max) NOT NULL,
   job_description VARCHAR(max) NOT NULL, 
-  job_start_date DATE NOT NULL, --DATE - format YYYY-MM-DD
+  job_start_date DATE NOT NULL,
   job_end_date DATE NOT NULL
 )
 
@@ -134,7 +123,7 @@ CREATE TABLE  users (
   github VARCHAR(50) NOT NULL,
   linkedin VARCHAR(50) NOT NULL,
   address VARCHAR(50) NOT NULL,
-  phone_number VARCHAR(50) NOT NULL,
+  phone_number VARCHAR(50) NOT NULL
 )
 
 CREATE TABLE  projects (
@@ -152,7 +141,7 @@ CREATE TABLE  job_postings (
   url VARCHAR(50) NOT NULL,
   title VARCHAR(50) NOT NULL,
   location VARCHAR(50) NOT NULL,
-  description TEXT NOT NULL,
+  description TEXT NOT NULL
 )
 
 CREATE TABLE  keywords (
@@ -175,7 +164,7 @@ CREATE TABLE  job_keywords (
 )
 
 CREATE TABLE  templates (
-  id SERIAL PRIMARY KEY NOT NULL,
+  id SERIAL PRIMARY KEY NOT NULL
 )
 
 
