@@ -7,7 +7,7 @@ const {
 
 // get /users
 router.get('/', (req, res) => {
-
+  
   console.log('get route')
   getUsers()
   .then((users) => {

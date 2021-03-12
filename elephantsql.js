@@ -12,16 +12,16 @@ const conString = process.env.DB_URL;
 const client = new pg.Client(conString);
 
 
-// client.connect(() => {
-//   console.log('connected to database')
+client.connect(() => {
+  console.log('connected to database')
   
-// });
+});
 
 
 // client.connect(function(err) {
-  // if(err) {
-  //   return console.error('could not connect to postgres', err);
-  // }
+//   if(err) {
+//     return console.error('could not connect to postgres', err);
+//   }
 //   client.query('SELECT * FROM soft_skills', function(err, result) {
 //     if(err) {
 //       return console.error('error running query', err);
