@@ -1,38 +1,62 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import './App.css';
+import React from 'react';
+import { makeStyles } from '@material-ui/core'
+// import axios from 'axios';
+// import './App.css';
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      message: 'Click the button to load data!'
-    }
+import Resume from './components/Resume'
+import Sidebar from './components/Sidebar'
+import SignUp from './components/Signup';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    minHeight: '50vh',
+    backgroundColor: '#f8f8ff',
+    padding: '10%'
+  },
+  content: {
+    // Container,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    alignContent: 'center'
+  },
+  controlpanel: {
+    
+  },
+  resume: {
+    justify: 'center'
   }
+}));
 
-  fetchData = () => {
-    axios.get('/api/data') // You can simply make your requests to "/api/whatever you want"
-    .then((response) => {
-      // handle success
-      console.log(response.data) // The entire response from the Rails API
+export default function App() {
+  const classes = useStyles();
+  return(
 
-      console.log(response.data.message) // Just the message
-      this.setState({
-        message: response.data.message
-      });
-    }) 
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <h1>{ this.state.message }</h1>
-        <button onClick={this.fetchData} >
-          Fetch Data
-        </button>        
+    <div className={classes.root}>
+      <Sidebar />
+      <SignUp />
+      <div className={classes.resume}>
+        {/* <Resume /> */}
       </div>
-    );
-  }
+    </div>
+
+  );
 }
 
-export default App;
+
+
+
+// example for getting api routes:
+
+// fetchData = () => {
+//   axios.get('/api/data') // You can simply make your requests to "/api/whatever you want"
+//   .then((response) => {
+//     // handle success
+//     console.log(response.data) // The entire response from the Rails API
+
+//     console.log(response.data.message) // Just the message
+//     this.setState({
+//       message: response.data.message
+//     });
+//   }) 
+// }
