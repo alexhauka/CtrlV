@@ -9,6 +9,7 @@ import { useApplicationData } from './hooks/useApplicationData';
 import Resume from './components/Resume'
 import Sidebar from './components/Sidebar'
 import SignUp from './components/SignUp';
+import Home from "./components/Home"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,7 +43,7 @@ export default function App() {
     <Router>
       <Sidebar />
       <Switch> 
-        <Route path="/" exact />
+        <Route path="/" exact component={Home} />
         <Route 
           path="/signup" 
           component={() => <SignUp registerUser={registerUser} />} 

@@ -1,7 +1,6 @@
 import React from 'react'; 
 import { CssBaseline, Grid, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'; 
-import Header from "./Header"
 import LeftSection from "./Left-Section"
 import RightSection from "./Right-Section"
 
@@ -15,11 +14,10 @@ const useStyles = makeStyles((theme) => ({
 }))  
 
  
-export default function Application(props) {
+export default function Home(props) {
   const classes = useStyles(); 
   return (
     <div className={classes.root}>
-      <Header /> 
       <CssBaseline />
       <Grid 
         container

@@ -18,22 +18,23 @@ const data = [
   { language: 'Storybok', value: 1 },
 ];
 
-export default class Demo extends React.PureComponent {
-  constructor(props) {
-    super(props);
+export default function BarChart() {
+  
+  // constructor(props) {
+  //   super(props);
 
-    this.state = {
-      data,
-    };
-  }
+  //   this.state = {
+  //     data,
+  //   };
+  // }
 
-  render() {
-    const { data: chartData } = this.state;
+  // render() {
+    // const { data: Data } = this.state;
 
     return (
       <Paper>
         <Chart
-          data={chartData}
+          data={data}
         >
           <ArgumentAxis />
           <ValueAxis max={7} />
@@ -46,5 +47,5 @@ export default class Demo extends React.PureComponent {
         </Chart>
       </Paper>
     );
-  }
+  
 }

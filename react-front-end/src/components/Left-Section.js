@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, AppBar, Toolbar, IconButton, Typography, Grid, TextField } from '@material-ui/core';
 import ListIcon from '@material-ui/icons/List';
 import { makeStyles } from '@material-ui/core/styles'; 
-import PieChart from './PieChart';
+import BarChart from './BarChart';
 const useStyles = makeStyles((theme) => ({
   root: {
     // backgroundColor: "Grey",
@@ -39,7 +39,7 @@ export default function LeftSection(){
         <li><Typography>Python</Typography></li>
         </ol>
       </div>
-      <PieChart></PieChart>
+      <BarChart></BarChart>
     </div>
   )
 }
