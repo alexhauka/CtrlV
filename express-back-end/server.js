@@ -14,11 +14,11 @@ const signupRoutes = require('./routes/signup');
 const templatesRoutes = require('./routes/templates');
 const usersRoutes  = require('./routes/users');
 
-App.use('/login', loginRoutes);
-App.use('/logout', logoutRoutes);
-App.use('/signup', signupRoutes);
-App.use('/templates', templatesRoutes);
-App.use('/users', usersRoutes);
+App.use('/api/login', loginRoutes);
+App.use('/api/logout', logoutRoutes);
+App.use('/api/signup', signupRoutes);
+App.use('/api/templates', templatesRoutes);
+App.use('/api/users', usersRoutes);
 
 // Sample GET route
 App.get('/api/data', (req, res) => res.json({

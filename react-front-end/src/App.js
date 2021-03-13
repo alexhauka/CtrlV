@@ -4,9 +4,11 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 // import axios from 'axios';
 // import './App.css';
 
+import { useApplicationData } from './hooks/useApplicationData'; 
+
 import Resume from './components/Resume'
 import Sidebar from './components/Sidebar'
-import SignUp from './components/Signup';
+import SignUp from './components/SignUp';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,13 +32,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function App() {
+  const {
+    state,
+    registerUser
+  } = useApplicationData(); 
+
   const classes = useStyles();
   return(
     <Router>
       <Sidebar />
       <Switch> 
         <Route path="/" exact />
-        <Route path="/signup" component={SignUp} /> 
+        <Route 
+          path="/signup" 
+          component={() => <SignUp registerUser={registerUser} />} 
+        /> 
         <Route path="/resume" component={Resume} /> 
       </Switch>
     </Router>

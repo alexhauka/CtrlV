@@ -2,7 +2,7 @@ const express = require('express');
 const router  = express.Router();
 
 const {
-  getUsers, getUserByID, getUserHardSkills, getUserSoftSkills
+  getUsers, getUserByID, addUser, getUserHardSkills, getUserSoftSkills
 } = require('../lib/user-queries');
 
 // get /users
@@ -14,8 +14,15 @@ router.get('/', (req, res) => {
 });
 
 // post /users 
-router.post('/', (req, res) => {
-    
+router.put('/', (req, res) => {
+  addUser(req.body.registerInfo)
+  .then(user => {
+    res.send(user);
+  })
+  .catch(e => {
+    console.error(e); 
+    res.send(e);
+  });
 });
 
 // get users/id

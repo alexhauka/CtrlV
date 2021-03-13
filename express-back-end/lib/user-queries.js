@@ -19,6 +19,17 @@ const getUserByID = (id) => {
   });
 }
 
+// adds a new user 
+const addUser = (userInfo) => {
+  return client.query(`
+    INSERT INTO USERS (first_name, last_name, email, password, github, linkedin, address, phone_number)
+    VALUES ($1, $2, $3, $4, null, null, 'Vancouver, BC', '604-123-4567');
+  `, [userInfo.firstName, userInfo.lastName, userInfo.email, userInfo.password])
+  .then((response) => {
+    return response.rows; 
+  });
+}
+
 // queries all hard skills from a particular user
 const getUserHardSkills = (id) => {
   return client.query(`
@@ -47,6 +58,7 @@ const getUserSoftSkills = (id) => {
 module.exports = {
     getUsers,
     getUserByID,
+    addUser,
     getUserHardSkills,
     getUserSoftSkills
 }
