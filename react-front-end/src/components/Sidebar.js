@@ -2,8 +2,10 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
+import Grid from '@material-ui/core/Grid'; 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -16,6 +18,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import {Link} from 'react-router-dom';
+
 
 const drawerWidth = 240;
 
@@ -39,7 +43,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: drawerWidth,
   },
   title: {
-    flexGrow: 1,
+    margin: 10,
+    color: '#fff',
+    textDecoration: 'none'
   },
   secondTitle: {
     color: '#a9a9a9'
@@ -77,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginRight: 0,
-  },
+  }
 }));
 
 export default function Sidebar() {
@@ -103,9 +109,32 @@ export default function Sidebar() {
         })}
       >
         <Toolbar>
+          <Grid 
+            container 
+            direction="row"
+            justify="space-between"
+            alignItems="center"
+          >
+
+          <div>
+
+          <Grid
+            container
+            direction="row"
+            justify="space-between"
+            alignItems="center"
+          >
           <h1 noWrap className={classes.title}>
             C<span className={classes.secondTitle}>(trl)</span>V
           </h1>
+          <Typography variant="h6">
+            <Link variant="primary" className={classes.title} to="/signup">sign up</Link>
+          </Typography>
+          
+          </Grid>
+          </div>
+        
+          <div>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -115,6 +144,8 @@ export default function Sidebar() {
           >
             <MenuIcon />
           </IconButton>
+          </div>
+          </Grid>
         </Toolbar>
       </AppBar>
       <main

@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 // import axios from 'axios';
 // import './App.css';
 
@@ -31,19 +32,25 @@ const useStyles = makeStyles((theme) => ({
 export default function App() {
   const classes = useStyles();
   return(
-
-    <div className={classes.root}>
+    <Router>
       <Sidebar />
-      <SignUp />
-      <div className={classes.resume}>
-        {/* <Resume /> */}
-      </div>
-    </div>
-
+      <Switch> 
+        <Route path="/" exact />
+        <Route path="/signup" component={SignUp} /> 
+        <Route path="/resume" component={Resume} /> 
+      </Switch>
+    </Router>
   );
 }
 
 
+{/* <div className={classes.root}>
+  <Sidebar />
+  <SignUp />
+  <div className={classes.resume}>
+    {/* <Resume /> */}
+  {/* </div>
+</div> */} 
 
 
 // example for getting api routes:

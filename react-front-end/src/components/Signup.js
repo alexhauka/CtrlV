@@ -111,10 +111,10 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                name="password"
+                name="password_confirmation"
                 label="Confirm Password"
                 type="password"
-                id="password"
+                id="password_confirmation"
                 autoComplete="current-password"
               />
             </Grid>
