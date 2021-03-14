@@ -12,6 +12,7 @@ import SignUp from './components/SignUp';
 import Home from "./components/Home"
 import SkillCheck from './components/SkillCheck';
 import WorkExperience from './components/WorkExperience';
+import Github from './components/Github';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,6 +57,7 @@ export default function App() {
         component={() => <SkillCheck hardskills={state.hardskills} />} 
         />
         <Route path="/work" component={WorkExperience} />
+        <Route path="/github" component={Github} />
       </Switch>
     </Router>
   );
