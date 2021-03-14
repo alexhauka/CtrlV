@@ -1,12 +1,12 @@
 const express = require('express'); 
-const router = require.Router();
+const router = express.Router();
 
 const {
     getAllSoftSkills
   } = require('../lib/softSkills-queries');
 
 router.get('/', (req, res) => {
-    getAllSoftSkills
+    getAllSoftSkills()
     .then((skills) => {
         res.json(skills)
     }); 

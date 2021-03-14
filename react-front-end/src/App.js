@@ -46,11 +46,14 @@ export default function App() {
       <Switch> 
         <Route path="/" exact component={Home} />
         <Route 
-          path="/signup" 
-          component={() => <SignUp registerUser={registerUser} />} 
+        path="/signup" 
+        component={() => <SignUp registerUser={registerUser} />} 
         /> 
         <Route path="/resume" component={Resume} /> 
-        <Route path="/profile" component={SkillCheck} />
+        <Route 
+        path="/skills" 
+        component={() => <SkillCheck hardskills={state.hardskills} />} 
+        />
       </Switch>
     </Router>
   );
