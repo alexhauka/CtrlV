@@ -42,7 +42,7 @@ export default function BarChart() {
             valueField="value"
             argumentField="language"
           />
-          <Title text="Keywords for this Posting:" />
+          <Title text="Keyword Scores for this Posting:" />
           <Animation />
         </Chart>
       </Paper>

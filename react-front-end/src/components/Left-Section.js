@@ -5,15 +5,32 @@ import { makeStyles } from '@material-ui/core/styles';
 import BarChart from './BarChart';
 const useStyles = makeStyles((theme) => ({
   root: {
-    // backgroundColor: "Grey",
-    flexGrow: 1,
-    textAlign: "center"
-  },
-  title: {
-    textAlign: "center"
+    display: 'flex',
+    flexDirection: 'column',
+    justify: "space-evenly",
+    textAlign: "center",
+    backgroundColor: "#3f51b5"
+    
   },
   submit: {
     marginTop: 10
+  },
+  myList: {
+    listStyle: "none",
+    textAlign:"Center"
+  },
+  form: {
+    width: "80%",
+    margin: "auto",
+    marginTop: "20%"
+    
+  },
+  title: {
+    marginTop: "20%"
+  },
+
+  chart: {
+    marginTop: "20%"
   }
 }))
 
@@ -21,25 +38,24 @@ export default function LeftSection(){
   const classes = useStyles()
   return (
     <div className={classes.root}>
-      <h1 className={classes.title}>Left Section</h1>
-      <form className={classes.root} noValidate autoComplete="off">
-        <TextField id="standard-basic" label="Standard" />
+      <form className={classes.form} noValidate autoComplete="off">
+        <TextField variant="outlined" id="standard-basic" label="URL" fullWidth= 'true'/>
         <br/>
         <Button className={classes.submit} variant="contained" color="primary">Submit</Button>
       </form>
       <div className={classes.title}>
-        <Typography>
-          Keywords
-        </Typography>
-        <ol>
-        <li><Typography>Javascript</Typography></li>
-        <li><Typography>CSS</Typography></li>
-        <li><Typography>React</Typography></li>
-        <li><Typography>Storybook</Typography></li> 
-        <li><Typography>Python</Typography></li>
-        </ol>
-      </div>
+        <Typography variant="h3">Keywords</Typography>
+        <br/>
+        <Typography variant="h5" >Javascript</Typography>
+        <Typography variant="h5">CSS</Typography>
+        <Typography variant="h5">React</Typography>
+        <Typography variant="h5">Storybook</Typography>
+        <Typography variant="h5">Python</Typography>
+        
+      </div >
+      <div className={classes.chart}>
       <BarChart></BarChart>
+      </div>
     </div>
   )
 }

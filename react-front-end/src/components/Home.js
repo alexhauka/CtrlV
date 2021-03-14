@@ -10,6 +10,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'white',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
+  },
+  left: {
+    flexGrow: 2,
+  },
+  right: {
+   flexGrow: 3,
+   maxWidth:"75%"
   }
 }))  
 
@@ -22,12 +29,16 @@ export default function Home(props) {
       <Grid 
         container
         direction="row"
-        justify="space-around"
-        alignItems="center"
+        justify="space-between"
+        // alignItems="center"
         >
+        <div className={classes.left}>
         <LeftSection/>
+        </div>  
         <Divider orientation="vertical" flexItem />
-        <RightSection/>
+        <div className={classes.right}>
+        <RightSection />
+        </div>
       </Grid>
     </div>
   )

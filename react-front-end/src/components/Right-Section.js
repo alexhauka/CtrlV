@@ -1,14 +1,16 @@
 import React from 'react'; 
-import { Grid, TextField, Checkbox, FormGroup, FormControlLabel, FormControl, FormLabel, Divider } from '@material-ui/core';
+import { Grid, TextField, Checkbox, FormGroup, FormControlLabel, FormControl, FormLabel, Divider, Typography } from '@material-ui/core';
 import ListIcon from '@material-ui/icons/List';
-import { makeStyles } from '@material-ui/core/styles'; 
+import { makeStyles, responsiveFontSizes } from '@material-ui/core/styles'; 
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 2,
+    maxWidth: '75%',
+    // maxHeight: '900px',
     textAlign: "center",
-    padding: 10
-    
+    padding: 10,
+    marginLeft: "10%",
+    flexShrink: 1,
   },
   info: {
     height: 200,
@@ -51,19 +53,27 @@ const useStyles = makeStyles((theme) => ({
     border: "solid grey 1px",
     borderRadius: 20,
     marginBottom: 10,
-    backgroundColor: '#e8e8e8'
+    backgroundColor: '#e8e8e8',
+    position: "relative"
   },
 
   skillSet: {
+    maxWidth: "40%",
+    maxHeight: 300,
     border: "solid grey 1px",
     borderRadius: 20,
     padding: 25,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    position: "relative",
   },
 
   skillRow: {
-    marginRight: 10
-  }
+    marginRight: 10,
+  },
+
+  skill: {
+    fontSize: "24px"
+  } 
 
 }))
 
@@ -374,246 +384,9 @@ export default function RightSection() {
         <h1>Skills</h1>
         <Grid
           container
-          direction="row"
           justify="space-around"
         >
-          <div className={classes.skillSet}>
-              <FormControl component="fieldset">
-                <FormLabel component="legend">Languages</FormLabel>
-                  <FormGroup aria-label="position" row>
-            <Grid container direction="row">
-              <div className={classes.skillRow}>
-              <Grid container direction="column">
-                  <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="JavaScript"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="Ruby"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="C++"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="C#"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="HTML"
-                      labelPlacement="start"
-                    />
-                </Grid>
-                </div>
-                <Divider dark orientation="vertical" flexItem />
-                <div>
-                <Grid container direction="column">
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="CSS"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="Java"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="Python"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="TypeScript"
-                      labelPlacement="start"
-                    />
-                </Grid>
-                </div>
-              </Grid>
-            
-                  </FormGroup>
-              </FormControl>
-          </div>
-          <div className={classes.skillSet}>
-              <FormControl component="fieldset">
-                <FormLabel component="legend">Testing & Databases</FormLabel>
-                  <FormGroup aria-label="position" row>
-            <Grid container direction="row">
-              <div className={classes.skillRow}>
-              <Grid container direction="column">
-                  <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="Jest"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="Cypress"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="Storybook"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="Rspec"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="Mocha/Chai"
-                      labelPlacement="start"
-                    />
-                </Grid>
-                </div>
-                <Divider orientation="vertical" flexItem />
-                <div className={classes.skillRow}>
-                <Grid container direction="column">
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="Capybara"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="Poltergeist"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="MySQL"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="PostGresSQL"
-                      labelPlacement="start"
-                    />
-                </Grid>
-                </div>
-                <Divider orientation="vertical" flexItem />
-                <div>
-                <Grid container direction="column">
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="MicroSoft SQL"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="SQ Lite"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="MongoDB"
-                      labelPlacement="start"
-                    />
-                </Grid>
-                </div>
-              </Grid>
-            
-                  </FormGroup>
-              </FormControl>
-          </div>
-          <div className={classes.skillSet}>
-              <FormControl component="fieldset">
-                <FormLabel component="legend">FrameWorks</FormLabel>
-                  <FormGroup aria-label="position" row>
-            <Grid container direction="row">
-              <div className={classes.skillRow}>
-              <Grid container direction="column">
-                  <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="Express"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="Node.js"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="Django"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="Rails"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="Axios"
-                      labelPlacement="start"
-                    />
-                </Grid>
-                </div>
-                <Divider orientation="vertical" flexItem />
-                <div>
-                <Grid container direction="column">
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="React"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="Angular"
-                      labelPlacement="start"
-                    />
-                    <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="Vue"
-                      labelPlacement="start"
-                    />
-                </Grid>
-                </div>
-              </Grid>
-            
-                  </FormGroup>
-              </FormControl>
-          </div>
-          
+          <Typography>Populate users Skills</Typography>
         </Grid>
         </section>
       </div>

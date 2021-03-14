@@ -10,6 +10,7 @@ import Resume from './components/Resume'
 import Sidebar from './components/Sidebar'
 import SignUp from './components/SignUp';
 import Home from "./components/Home"
+import SkillCheck from './components/SkillCheck';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,6 +50,7 @@ export default function App() {
           component={() => <SignUp registerUser={registerUser} />} 
         /> 
         <Route path="/resume" component={Resume} /> 
+        <Route path="/profile" component={SkillCheck} />
       </Switch>
     </Router>
   );

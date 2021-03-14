@@ -26,9 +26,17 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    fontFamily: 'Ubuntu, sans-serif;'
+    fontFamily: 'Ubuntu, sans-serif;',
+    backgroundColor: "white"
+  },
+  logo: {
+    fontSize: '50px',
+    color: 'white',
+    textDecoration: 'none',
   },
   appBar: {
+    height: '7.5%',
+    justifyContent: 'center',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -43,9 +51,11 @@ const useStyles = makeStyles((theme) => ({
     marginRight: drawerWidth,
   },
   title: {
-    margin: 10,
+    margin: 15,
+    marginRight: 30,
     color: '#fff',
-    textDecoration: 'none'
+    textDecoration: 'none',
+    fontSize: '30px'
   },
   secondTitle: {
     color: '#a9a9a9'
@@ -57,6 +67,9 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     flexShrink: 0,
   },
+  // drawerIcon: {
+  //   transform: 'scale(1.8)'
+  // },
   drawerPaper: {
     width: drawerWidth,
   },
@@ -108,7 +121,7 @@ export default function Sidebar() {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar>
+        <Toolbar className={classes.nav}>
           <Grid 
             container 
             direction="row"
@@ -125,7 +138,7 @@ export default function Sidebar() {
             alignItems="center"
           >
           <h1 noWrap className={classes.title}>
-            C<span className={classes.secondTitle}>(trl)</span>V
+            <Link variant="primary" className={classes.logo} to="/" >C<span className={classes.secondTitle}>(trl)</span>V</Link>
           </h1>
           <Typography variant="h6">
             <Link variant="primary" className={classes.title} to="/signup">sign up</Link>
@@ -139,6 +152,7 @@ export default function Sidebar() {
             color="inherit"
             aria-label="open drawer"
             edge="end"
+            // fontSize='large'
             onClick={handleDrawerOpen}
             className={clsx(open && classes.hide)}
           >
