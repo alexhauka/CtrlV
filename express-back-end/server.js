@@ -13,12 +13,16 @@ const logoutRoutes = require('./routes/logout');
 const signupRoutes = require('./routes/signup');
 const templatesRoutes = require('./routes/templates');
 const usersRoutes  = require('./routes/users');
+const hardSkillsRoutes = require('./routes/hardSkills');
+const softSkillsRoutes = require('./routes/softSkills');
 
 App.use('/api/login', loginRoutes);
 App.use('/api/logout', logoutRoutes);
 App.use('/api/signup', signupRoutes);
 App.use('/api/templates', templatesRoutes);
 App.use('/api/users', usersRoutes);
+App.use('/api/hardSkills',hardSkillsRoutes);
+App.use('/api/softSkills', softSkillsRoutes); 
 
 // Sample GET route
 App.get('/api/data', (req, res) => res.json({

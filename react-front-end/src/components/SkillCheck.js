@@ -50,6 +50,8 @@ const data = [
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "white",
+    paddingTop: 30,
+    height: "100%"
     // justify: 'space-around'
   },
   skills: {

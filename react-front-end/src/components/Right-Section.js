@@ -9,8 +9,10 @@ const useStyles = makeStyles((theme) => ({
     // maxHeight: '900px',
     textAlign: "center",
     padding: 10,
+    paddingTop: "5%",
     marginLeft: "10%",
     flexShrink: 1,
+    
   },
   info: {
     height: 200,

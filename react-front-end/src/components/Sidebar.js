@@ -16,12 +16,16 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import {Link} from 'react-router-dom';
 
 
 const drawerWidth = 240;
+function ListItemLink(props) {
+  return <ListItem button component="a" {...props}/>;
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     height: '7.5%',
     justifyContent: 'center',
+    boxShadow: 'none',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -83,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    // padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -96,6 +101,10 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginRight: 0,
+  }, 
+  sideTitle: {
+    textAlign: "center",
+    textDecoration: "underline"
   }
 }));
 
@@ -184,10 +193,19 @@ export default function Sidebar() {
           </IconButton>
         </div>
         <Divider />
+        <Typography className={classes.sideTitle}>My Profile</Typography>
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          <ListItemLink href="/skills">
+            <ListItemIcon><InboxIcon/></ListItemIcon>
+            <ListItemText primary="My Skills" />
+          </ListItemLink>
+          <ListItemLink href="/work">
+            <ListItemIcon><InboxIcon/></ListItemIcon>
+            <ListItemText primary="Work Experience" />
+          </ListItemLink>
+          {['Send email', 'Drafts'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemIcon >{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}

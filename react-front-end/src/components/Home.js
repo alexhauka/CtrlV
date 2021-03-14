@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
   },
   right: {
    flexGrow: 3,
-   maxWidth:"75%"
+   maxWidth:"75%",
+   boxShadow:'9px 19px 20px 0px black inset'
   }
 }))  
 
@@ -35,7 +36,7 @@ export default function Home(props) {
         <div className={classes.left}>
         <LeftSection/>
         </div>  
-        <Divider orientation="vertical" flexItem />
+        {/* <Divider orientation="vertical" flexItem /> */}
         <div className={classes.right}>
         <RightSection />
         </div>
