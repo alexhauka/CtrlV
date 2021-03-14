@@ -14,7 +14,11 @@ const signupRoutes = require('./routes/signup');
 const templatesRoutes = require('./routes/templates');
 const usersRoutes  = require('./routes/users');
 const hardSkillsRoutes = require('./routes/hardSkills');
+<<<<<<< HEAD
 const softSkillsRoutes = require('./routes/softSkills');
+=======
+const softSkillsRoutes = require('./routes/softSkills'); 
+>>>>>>> feature/loading-raw-hard-skills
 
 App.use('/api/login', loginRoutes);
 App.use('/api/logout', logoutRoutes);

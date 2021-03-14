@@ -8,44 +8,6 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Typography } from '@material-ui/core';
 
-const hardSkills = ['javascript', 'ruby', 'c++', 'c#', 'html', 'css', 'java', 'python', 'typescript', 'express', 'express.js', 'node.js', 'django', 'rails', 'axios', 'react', 'angular', 'vue', 'jquery', 'wordpress', 'jest', 'cypress', 'storybook', 'rspec', 'mocha', 'chai', 'capybara', 'poltergeist', 'mysql', 'postgresql', 'microsql', 'sqlite', 'mongodb']
-
-const data = [
-  {name: 'javascript' ,type: 'language'},
-  {name: 'ruby' ,type: 'language'},
-  {name: 'c++' ,type: 'language'},
-  {name: 'c#' ,type: 'language'},
-  {name: 'html' ,type: 'language'},
-  {name: 'css' ,type: 'language'},
-  {name: 'java' ,type: 'language'},
-  {name: 'python' ,type: 'language'},
-  {name: 'typescript' ,type: 'language'},
-  {name: 'express' ,type: 'framework'},
-  {name: 'express.js' ,type: 'framework'},
-  {name: 'node.js' ,type: 'framework'},
-  {name: 'django' ,type: 'framework'},
-  {name: 'rails' ,type: 'framework'},
-  {name: 'axios' ,type: 'framework'},
-  {name: 'react' ,type: 'framework'},
-  {name: 'vue' ,type: 'framework'},
-  {name: 'jquery' ,type: 'framework'},
-  {name: 'wordpress' ,type: 'framework'},
-  {name: 'jest' ,type: 'testing'},
-  {name: 'cypress' ,type: 'testing'},
-  {name: 'storybook' ,type: 'testing'},
-  {name: 'rspec' ,type: 'testing'},
-  {name: 'mocha' ,type: 'testing'},
-  {name: 'chai' ,type: 'testing'},
-  {name: 'capybara' ,type: 'testing'},
-  {name: 'poltergeist' ,type: 'testing'},
-  {name: 'mysql' ,type: 'database'},
-  {name: 'postgresql' ,type: 'database'},
-  {name: 'microsql' ,type: 'database'},
-  {name: 'sqlite' ,type: 'database'},
-  {name: 'mongodb' ,type: 'database'}
-]
-
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -79,7 +41,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function SkillCheck() {
+export default function SkillCheck(props) {
+  const data = props.hardskills;
+  console.log(data);
   const classes = useStyles();
   const [state, setState] = React.useState({
     gilad: false,

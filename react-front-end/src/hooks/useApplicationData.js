@@ -1,8 +1,8 @@
-import { useReducer } from 'react'; 
+import { useEffect, useReducer } from 'react'; 
 
 import { 
   reducer,
-  SET_USER
+  SET_SKILLS,
 } from '../reducers/application'; 
 
 const axios = require('axios').default
@@ -10,8 +10,20 @@ const axios = require('axios').default
 export function useApplicationData() {
 
   const [state, dispatch] = useReducer(reducer, {
-    isLoggedin: false
+    isLoggedin: false,
+    hardskills: []
   }); 
+
+  useEffect(() => {
+    Promise.all([
+      axios.get('/api/hardSkills')
+    ]).then((all) => {
+      dispatch({
+        type: SET_SKILLS,
+        hardskills: all[0].data
+      })
+    })
+  }, [])
 
 
   function registerUser(registerInfo) {
