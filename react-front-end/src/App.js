@@ -10,6 +10,8 @@ import Resume from './components/Resume'
 import Sidebar from './components/Sidebar'
 import SignUp from './components/SignUp';
 import Home from "./components/Home"
+import SkillCheck from './components/SkillCheck';
+import WorkExperience from './components/WorkExperience';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,10 +47,15 @@ export default function App() {
       <Switch> 
         <Route path="/" exact component={Home} />
         <Route 
-          path="/signup" 
-          component={() => <SignUp registerUser={registerUser} />} 
+        path="/signup" 
+        component={() => <SignUp registerUser={registerUser} />} 
         /> 
         <Route path="/resume" component={Resume} /> 
+        <Route 
+        path="/skills" 
+        component={() => <SkillCheck hardskills={state.hardskills} />} 
+        />
+        <Route path="/work" component={WorkExperience} />
       </Switch>
     </Router>
   );

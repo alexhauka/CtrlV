@@ -16,19 +16,32 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import {Link} from 'react-router-dom';
 
 
 const drawerWidth = 240;
+function ListItemLink(props) {
+  return <ListItem button component="a" {...props}/>;
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    fontFamily: 'Ubuntu, sans-serif;'
+    fontFamily: 'Ubuntu, sans-serif;',
+    backgroundColor: "white"
+  },
+  logo: {
+    fontSize: '50px',
+    color: 'white',
+    textDecoration: 'none',
   },
   appBar: {
+    height: '7.5%',
+    justifyContent: 'center',
+    boxShadow: 'none',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -43,9 +56,11 @@ const useStyles = makeStyles((theme) => ({
     marginRight: drawerWidth,
   },
   title: {
-    margin: 10,
+    margin: 15,
+    marginRight: 30,
     color: '#fff',
-    textDecoration: 'none'
+    textDecoration: 'none',
+    fontSize: '30px'
   },
   secondTitle: {
     color: '#a9a9a9'
@@ -57,6 +72,9 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     flexShrink: 0,
   },
+  // drawerIcon: {
+  //   transform: 'scale(1.8)'
+  // },
   drawerPaper: {
     width: drawerWidth,
   },
@@ -70,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    // padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -83,6 +101,10 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginRight: 0,
+  }, 
+  sideTitle: {
+    textAlign: "center",
+    textDecoration: "underline"
   }
 }));
 
@@ -108,7 +130,7 @@ export default function Sidebar() {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar>
+        <Toolbar className={classes.nav}>
           <Grid 
             container 
             direction="row"
@@ -125,7 +147,7 @@ export default function Sidebar() {
             alignItems="center"
           >
           <h1 noWrap className={classes.title}>
-            C<span className={classes.secondTitle}>(trl)</span>V
+            <Link variant="primary" className={classes.logo} to="/" >C<span className={classes.secondTitle}>(trl)</span>V</Link>
           </h1>
           <Typography variant="h6">
             <Link variant="primary" className={classes.title} to="/signup">sign up</Link>
@@ -139,6 +161,7 @@ export default function Sidebar() {
             color="inherit"
             aria-label="open drawer"
             edge="end"
+            // fontSize='large'
             onClick={handleDrawerOpen}
             className={clsx(open && classes.hide)}
           >
@@ -170,10 +193,19 @@ export default function Sidebar() {
           </IconButton>
         </div>
         <Divider />
+        <Typography className={classes.sideTitle}>My Profile</Typography>
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          <ListItemLink href="/skills">
+            <ListItemIcon><InboxIcon/></ListItemIcon>
+            <ListItemText primary="My Skills" />
+          </ListItemLink>
+          <ListItemLink href="/work">
+            <ListItemIcon><InboxIcon/></ListItemIcon>
+            <ListItemText primary="Work Experience" />
+          </ListItemLink>
+          {['Send email', 'Drafts'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemIcon >{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
