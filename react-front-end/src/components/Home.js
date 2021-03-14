@@ -12,11 +12,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover'
   },
   left: {
-    flexGrow: 2,
+    width: "35%"
   },
   right: {
-   flexGrow: 3,
-   maxWidth:"75%",
+   width: "65%",
    boxShadow:'9px 19px 20px 0px black inset'
   }
 }))  

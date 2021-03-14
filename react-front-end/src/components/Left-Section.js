@@ -1,5 +1,5 @@
 import React from 'react'; 
-import { Button, AppBar, Toolbar, IconButton, Typography, Grid, TextField } from '@material-ui/core';
+import { Button, AppBar, Toolbar, IconButton, Typography, Grid, TextField, Grow } from '@material-ui/core';
 import ListIcon from '@material-ui/icons/List';
 import { makeStyles } from '@material-ui/core/styles'; 
 import PieChart from './PieChart';
@@ -11,8 +11,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     backgroundColor: "#3f51b5",
     height: "100%",
-    boxShadowLeft: ""
-    
   },
   submit: {
     marginTop: 10,
@@ -45,27 +43,38 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function LeftSection(){
+  const [showKeywords, setShowKeywords] = React.useState(false)
   const classes = useStyles()
+  const onClick = () => {
+    if (showKeywords === true){
+      setShowKeywords(false)
+    } else {
+      setShowKeywords(true)
+    }
+  }
+  const Keywords = () => (
+    <div>
+    <Typography variant="h3">Keywords</Typography>
+    <br/>
+    <Typography variant="h5" >Javascript</Typography>
+    <Typography variant="h5">CSS</Typography>
+    <Typography variant="h5">React</Typography>
+    <Typography variant="h5">Storybook</Typography>
+    <Typography variant="h5">Python</Typography>
+    <div className={classes.chart}>
+      <PieChart></PieChart>
+      </div>
+  </div >
+  )
+
   return (
     <div className={classes.root}>
       <form className={classes.form} noValidate autoComplete="off">
         <TextField className={classes.title} variant="filled" id="standard-basic" label="URL" fullWidth= 'true' color="none"/>
         <br/>
-        <Button className={classes.submit} variant="outlined" color="default" size="large">Submit</Button>
+        <Button className={classes.submit} variant="outlined" color="default" size="large" onClick={onClick}>Submit</Button>
       </form>
-      <div>
-        <Typography variant="h3">Keywords</Typography>
-        <br/>
-        <Typography variant="h5" >Javascript</Typography>
-        <Typography variant="h5">CSS</Typography>
-        <Typography variant="h5">React</Typography>
-        <Typography variant="h5">Storybook</Typography>
-        <Typography variant="h5">Python</Typography>
-        
-      </div >
-      <div className={classes.chart}>
-      <PieChart></PieChart>
-      </div>
+      {showKeywords ? <Keywords /> : null}
     </div>
   )
 }
