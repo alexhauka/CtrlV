@@ -9,6 +9,7 @@ import { useApplicationData } from './hooks/useApplicationData';
 import Resume from './components/Resume'
 import Sidebar from './components/Sidebar'
 import SignUp from './components/SignUp';
+import Login from './components/Login';
 import Home from "./components/Home"
 import SkillCheck from './components/SkillCheck';
 import WorkExperience from './components/WorkExperience';
@@ -38,19 +39,24 @@ const useStyles = makeStyles((theme) => ({
 export default function App() {
   const {
     state,
-    registerUser
+    registerUser,
+    loginUser
   } = useApplicationData(); 
 
   const classes = useStyles();
   return(
     <Router>
-      <Sidebar />
+      <Sidebar user={state.user}/>
       <Switch> 
         <Route path="/" exact component={Home} />
         <Route 
         path="/signup" 
         component={() => <SignUp registerUser={registerUser} />} 
         /> 
+        <Route 
+        path="/login"
+        component={() => <Login loginUser={loginUser} />} 
+        />
         <Route path="/resume" component={Resume} /> 
         <Route 
         path="/skills" 
