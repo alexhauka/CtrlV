@@ -10,7 +10,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        J. I. A. Productions
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -22,17 +22,21 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    // minHeight: '100vh',
+    position: 'fixed',
+    bottom: 0,
+    width: '100%',
+    opacity: '1'
   },
   main: {
     marginTop: theme.spacing(8),
     marginBottom: theme.spacing(2),
   },
   footer: {
+    display: 'flex',
+    alignItems: 'flex-start',
     padding: theme.spacing(3, 2),
     marginTop: 'auto',
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
+    background: 'linear-gradient(225deg, #3f51b5 20%, #FF8E53 90%)',
   },
 }));
 
@@ -42,10 +46,9 @@ export default function Footer() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-
       <footer className={classes.footer}>
         <Container maxWidth="sm">
-          <Typography variant="body1">My sticky footer can be found here.</Typography>
+          <Typography variant="body1">C(trl)V</Typography>
           <Copyright />
         </Container>
       </footer>
