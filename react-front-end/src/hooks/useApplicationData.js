@@ -13,19 +13,22 @@ export function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, {
     isLoggedin: false,
     hardskills: [],
+    userHardSkills: [],
     user: {}
   }); 
 
   useEffect(() => {
     Promise.all([
-      axios.get('/api/hardSkills'),
-      axios.get(`/api/users/1`)
+      axios.get(`/api/hardSkills`),
+      axios.get(`/api/users/2`),
+      axios.get(`/api/users/2/hard_skills`)
     ])
     .then((all) => {
       dispatch({
         type: SET_APPLICATION_DATA,
         hardskills: all[0].data,
-        user: all[1].data
+        user: all[1].data,
+        userHardSkills: all[2].data,
       })
       
     })
