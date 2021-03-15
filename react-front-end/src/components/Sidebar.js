@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     fontFamily: 'Ubuntu, sans-serif;',
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
   logo: {
     fontSize: '50px',
@@ -203,7 +203,11 @@ export default function Sidebar() {
             <ListItemIcon><InboxIcon/></ListItemIcon>
             <ListItemText primary="Work Experience" />
           </ListItemLink>
-          {['Send email', 'Drafts'].map((text, index) => (
+          <ListItemLink href="/github">
+            <ListItemIcon><InboxIcon/></ListItemIcon>
+            <ListItemText primary="Github" />
+          </ListItemLink>
+          {['Drafts'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon >{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
