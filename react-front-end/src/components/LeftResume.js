@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     justify: "space-evenly",
     height: "100%",
-    background: 'linear-gradient(225deg, #3f51b5 30%, #FF8E53 90%)'
+    background: 'linear-gradient(190deg, #3f51b5 30%, #7bc8f6 90%)'
   },
   ResumeButtons: {
     display: 'flex',
