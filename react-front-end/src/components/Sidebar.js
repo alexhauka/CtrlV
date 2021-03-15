@@ -39,9 +39,9 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
   },
   appBar: {
-    height: '7.5%',
+    height: '7.5em',
     justifyContent: 'center',
-    boxShadow: 'none',
+    // boxShadow: 'none',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -67,14 +67,12 @@ const useStyles = makeStyles((theme) => ({
   },
   hide: {
     display: 'none',
+    // transform: 'scale(1.8)'
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
   },
-  // drawerIcon: {
-  //   transform: 'scale(1.8)'
-  // },
   drawerPaper: {
     width: drawerWidth,
   },
@@ -108,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Sidebar() {
+export default function Sidebar(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -149,10 +147,16 @@ export default function Sidebar() {
           <h1 noWrap className={classes.title}>
             <Link variant="primary" className={classes.logo} to="/" >C<span className={classes.secondTitle}>(trl)</span>V</Link>
           </h1>
+          <h1> {props.user.first_name} </h1>
           <Typography variant="h6">
             <Link variant="primary" className={classes.title} to="/signup">sign up</Link>
           </Typography>
-          
+          <Typography variant="h6">
+            <Link variant="primary" className={classes.title} to="/login">login</Link>
+          </Typography>
+          <Typography variant="h6">
+            <Link variant="primary" className={classes.title} to="/logout">logout</Link>
+          </Typography>
           </Grid>
           </div>
         
