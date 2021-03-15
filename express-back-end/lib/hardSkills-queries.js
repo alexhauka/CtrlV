@@ -9,6 +9,19 @@ const getAllHardSkills = () => {
     });
   };
 
+  // insert user hardskills
+const addUserHardSkills = (userSkills) => {
+  return client.query(`
+  
+  INSERT INTO user_hard_skills (user_id, hard_skills_id)
+  JOIN hard_skills ON 
+  VALUES ($1, $2);`, [userSkills.user_id, userSkills.hard_skills_id])
+  .then((response) => {
+    return response.rows
+  });
+}
+
 module.exports = {
-    getAllHardSkills    
+    getAllHardSkills,
+    addUserHardSkills  
 }

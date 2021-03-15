@@ -30,6 +30,7 @@ router.get('/:id', (req, res) => {
   getUserByID(req.params.id)
   .then((users) => {
     res.json(users)
+    console.log('successfully got to user page')
   })
 });
 

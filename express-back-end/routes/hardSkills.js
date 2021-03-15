@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const {
-    getAllHardSkills
+    getAllHardSkills,
+    addUserHardSkills
   } = require('../lib/hardSkills-queries');
 
 router.get('/', (req, res) => {
@@ -11,5 +12,9 @@ router.get('/', (req, res) => {
         res.json(skills)
     });
 });
+
+router.put('/', (req, res) => {
+  // addUserHardSkills(req.body.userSkills)
+})
 
 module.exports = router
