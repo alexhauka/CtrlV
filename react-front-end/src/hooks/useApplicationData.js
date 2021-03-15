@@ -3,6 +3,7 @@ import { useEffect, useReducer } from 'react';
 import { 
   reducer,
   SET_SKILLS,
+  SET_APPLICATION_DATA
 } from '../reducers/application'; 
 
 const axios = require('axios').default
@@ -11,19 +12,31 @@ export function useApplicationData() {
 
   const [state, dispatch] = useReducer(reducer, {
     isLoggedin: false,
-    hardskills: []
+    hardskills: [],
+    userHardSkills: [],
+    user: {}
   }); 
 
   useEffect(() => {
     Promise.all([
-      axios.get('/api/hardSkills')
-    ]).then((all) => {
+      axios.get(`/api/hardSkills`),
+      axios.get(`/api/users/2`),
+      axios.get(`/api/users/2/hard_skills`)
+    ])
+    .then((all) => {
       dispatch({
-        type: SET_SKILLS,
-        hardskills: all[0].data
+        type: SET_APPLICATION_DATA,
+        hardskills: all[0].data,
+        user: all[1].data,
+        userHardSkills: all[2].data,
       })
+      
     })
   }, [])
+    
+
+
+
 
 
   function registerUser(registerInfo) {
@@ -35,10 +48,21 @@ export function useApplicationData() {
     })
   };
 
+  function loginUser(userInfo) {
+    console.log("hey there");
+    console.log(userInfo);
+    return axios.post(`/api/login`, { userInfo })
+    .then(() => {
+      console.log('logged in successfully!!')
+    })
+  }
+
 
 
   return {
     state,
-    registerUser
+    registerUser,
+    loginUser
   }
-};
+
+}

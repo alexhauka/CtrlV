@@ -9,10 +9,12 @@ import { useApplicationData } from './hooks/useApplicationData';
 import Resume from './components/Resume'
 import Sidebar from './components/Sidebar'
 import SignUp from './components/SignUp';
+import Login from './components/Login';
 import Home from "./components/Home"
 import SkillCheck from './components/SkillCheck';
 import WorkExperience from './components/WorkExperience';
 import Github from './components/Github';
+import Footer from './components/Footer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,27 +40,33 @@ const useStyles = makeStyles((theme) => ({
 export default function App() {
   const {
     state,
-    registerUser
+    registerUser,
+    loginUser
   } = useApplicationData(); 
 
   const classes = useStyles();
   return(
     <Router>
-      <Sidebar />
+      <Sidebar user={state.user}/>
       <Switch> 
         <Route path="/" exact component={Home} />
         <Route 
         path="/signup" 
         component={() => <SignUp registerUser={registerUser} />} 
         /> 
+        <Route 
+        path="/login"
+        component={() => <Login loginUser={loginUser} />} 
+        />
         <Route path="/resume" component={Resume} /> 
         <Route 
         path="/skills" 
-        component={() => <SkillCheck hardskills={state.hardskills} />} 
+        component={() => <SkillCheck hardskills={state.hardskills} userHardSkills={state.userHardSkills} />} 
         />
         <Route path="/work" component={WorkExperience} />
         <Route path="/github" component={Github} />
       </Switch>
+      <Footer />
     </Router>
   );
 }

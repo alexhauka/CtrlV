@@ -21,7 +21,7 @@ const data = [
 ];
 const useStyles = makeStyles((theme) => ({
   chart: {
-    backgroundColor: "#3f51b5",
+    backgroundColor: "transparent",
     boxShadow: "none"
   }
 }))

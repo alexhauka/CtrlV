@@ -39,9 +39,10 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
   },
   appBar: {
-    height: '7.5%',
+    height: '7.5em',
     justifyContent: 'center',
-    boxShadow: 'none',
+    background: 'linear-gradient(45deg, #3f51b5 30%, #FF8E53 90%)',
+    // boxShadow: 'none',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -67,14 +68,12 @@ const useStyles = makeStyles((theme) => ({
   },
   hide: {
     display: 'none',
+    // transform: 'scale(1.8)'
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
   },
-  // drawerIcon: {
-  //   transform: 'scale(1.8)'
-  // },
   drawerPaper: {
     width: drawerWidth,
   },
@@ -108,7 +107,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Sidebar() {
+export default function Sidebar(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -149,10 +148,16 @@ export default function Sidebar() {
           <h1 noWrap className={classes.title}>
             <Link variant="primary" className={classes.logo} to="/" >C<span className={classes.secondTitle}>(trl)</span>V</Link>
           </h1>
+          <h1> {props.user.first_name} </h1>
           <Typography variant="h6">
             <Link variant="primary" className={classes.title} to="/signup">sign up</Link>
           </Typography>
-          
+          <Typography variant="h6">
+            <Link variant="primary" className={classes.title} to="/login">login</Link>
+          </Typography>
+          <Typography variant="h6">
+            <Link variant="primary" className={classes.title} to="/logout">logout</Link>
+          </Typography>
           </Grid>
           </div>
         
@@ -207,6 +212,7 @@ export default function Sidebar() {
             <ListItemIcon><InboxIcon/></ListItemIcon>
             <ListItemText primary="Github" />
           </ListItemLink>
+
           {['Drafts'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon >{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
@@ -215,8 +221,12 @@ export default function Sidebar() {
           ))}
         </List>
         <Divider />
+        <ListItemLink href="/resume">
+            <ListItemIcon><InboxIcon/></ListItemIcon>
+            <ListItemText primary="Resume" />
+          </ListItemLink>
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          {['Trash', 'Spam'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />

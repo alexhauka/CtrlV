@@ -19,6 +19,15 @@ const getUserByID = (id) => {
   });
 }
 
+const getUserByEmail = (email) => {
+  return client.query(`
+    SELECT * FROM users WHERE email = $1;
+  `, [email])
+  .then((response) => {
+    return response.rows[0];
+  })
+}
+
 // adds a new user 
 const addUser = (userInfo) => {
   return client.query(`
@@ -58,6 +67,7 @@ const getUserSoftSkills = (id) => {
 module.exports = {
     getUsers,
     getUserByID,
+    getUserByEmail,
     addUser,
     getUserHardSkills,
     getUserSoftSkills

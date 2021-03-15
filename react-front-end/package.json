@@ -10,10 +10,12 @@
     "@material-ui/icons": "^4.11.2",
     "axios": "^0.18.1",
     "clsx": "^1.1.1",
+    "material-ui-color": "^0.4.11",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "styled-components": "^5.2.1"
   },
   "scripts": {
     "start": "react-scripts start",

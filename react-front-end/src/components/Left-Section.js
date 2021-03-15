@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     backgroundColor: "#3f51b5",
     height: "100%",
+    background: 'linear-gradient(225deg, #3f51b5 30%, #FF8E53 90%)'
   }
 }))
 
