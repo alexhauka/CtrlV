@@ -6,7 +6,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
-import { Typography } from '@material-ui/core';
+import { Typography, Button } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,7 +37,16 @@ const useStyles = makeStyles((theme) => ({
 
   heading: {
     textAlign: 'center',
-    textDecoration: 'underline'
+    textDecoration: 'underline',
+  },
+
+  submit: {
+    color: "white",
+    size: "large",
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
+  },
+  button: {
+    textAlign: "center"
   }
 }));
 
@@ -50,6 +59,17 @@ export default function SkillCheck(props) {
     jason: false,
     antoine: false,
   });
+
+  // function save(event) {
+  //   event.preventDefault();
+  //   console.log("saving skills");
+  //   const userSkills = {
+  //     user_id,
+  //     hard_skills_id,
+
+  //   }
+  //   console.log(userSkills)
+  // }
   
   
   const languagesList = data.map(s => {
@@ -122,29 +142,10 @@ export default function SkillCheck(props) {
             {frameworksList}
           </div>
       </section>
+      <div className={classes.button}>
+      <Button className={classes.submit} variant="outlined" color="default" size="large" >Submit
+      </Button>
+      </div>
     </div>
   );
 }
-
-
-
-
-
-{/* <FormControl component="fieldset" className={classes.formControl}>
-<FormLabel component="legend">Databases and testing</FormLabel>
-<FormGroup>
-  <FormControlLabel
-    control={<Checkbox checked={gilad} onChange={handleChange} name="gilad" />}
-    label="Gilad Gray"
-  />
-  <FormControlLabel
-    control={<Checkbox checked={jason} onChange={handleChange} name="jason" />}
-    label="Jason Killian"
-  />
-  <FormControlLabel
-    control={<Checkbox checked={antoine} onChange={handleChange} name="antoine" />}
-    label="Antoine Llorca"
-  />
-</FormGroup>
-<FormHelperText>-Hank Hill</FormHelperText>
-</FormControl> */}

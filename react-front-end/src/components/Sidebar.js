@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     height: '7.5em',
     justifyContent: 'center',
+    background: 'linear-gradient(45deg, #3f51b5 30%, #FF8E53 90%)',
     // boxShadow: 'none',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
@@ -211,6 +212,7 @@ export default function Sidebar(props) {
             <ListItemIcon><InboxIcon/></ListItemIcon>
             <ListItemText primary="Github" />
           </ListItemLink>
+
           {['Drafts'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon >{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>

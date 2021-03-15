@@ -7,7 +7,7 @@ import PieChart from './PieChart';
 
 const useStyles = makeStyles((theme) => ({
   chart: {
-    backgroundColor: "blue",
+    // backgroundColor: "blue",
     opactiy: 0.2,
     marginTop: "10%",
   }
