@@ -63,6 +63,16 @@ const getUserSoftSkills = (id) => {
     });
 }
 
+  const getUserWorkExperience = (id) => {
+    return client.query(`
+    SELECT work_experiences.* FROM work_experiences
+    WHERE user_id = $1
+    `, [id])
+    .then((response) => {
+      return response.rows
+    })
+  }
+
 
 module.exports = {
     getUsers,
@@ -70,5 +80,6 @@ module.exports = {
     getUserByEmail,
     addUser,
     getUserHardSkills,
-    getUserSoftSkills
+    getUserSoftSkills,
+    getUserWorkExperience
 }

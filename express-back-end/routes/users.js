@@ -2,7 +2,7 @@ const express = require('express');
 const router  = express.Router();
 
 const {
-  getUsers, getUserByID, addUser, getUserHardSkills, getUserSoftSkills
+  getUsers, getUserByID, addUser, getUserHardSkills, getUserSoftSkills, getUserWorkExperience
 } = require('../lib/user-queries');
 
 // get /users
@@ -30,7 +30,7 @@ router.get('/:id', (req, res) => {
   getUserByID(req.params.id)
   .then((users) => {
     res.json(users)
-    console.log('successfully got to user page')
+    // console.log('successfully got to user page')
   })
 });
 
@@ -74,6 +74,18 @@ router.post('/:id/soft_skills', (req, res) => {
 router.delete('/:id/soft_skills', (req, res) => {
 
 });
+
+router.get('/:id/work_experience', (req, res) => {
+  getUserWorkExperience(req.params.id)
+  .then((users) => {
+    res.json(users)
+  })
+})
+
+router.post('/:id/work_experience', (req, res) => {
+  
+})
+
 
 // get users/id/resumes
 router.get('/:id/resumes', (req, res) => {
