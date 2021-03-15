@@ -4,10 +4,10 @@ export const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
 
 
 export function reducer(state, action) {
-  const { hardskills, user } = action;
+  const { hardskills, userHardSkills, user } = action;
   switch(action.type) {
     case SET_APPLICATION_DATA: { 
-      return { ...state, hardskills, user };
+      return { ...state, hardskills, userHardSkills, user };
     }
     default: throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
   }

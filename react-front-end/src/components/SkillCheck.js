@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -52,33 +52,54 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SkillCheck(props) {
   const data = props.hardskills;
-  console.log(data);
-  const classes = useStyles();
-  const [state, setState] = React.useState({
-    gilad: false,
-    jason: false,
-    antoine: false,
-  });
+  const userData = props.userHardSkills
+  console.log(userData)
 
-  // function save(event) {
-  //   event.preventDefault();
-  //   console.log("saving skills");
-  //   const userSkills = {
-  //     user_id,
-  //     hard_skills_id,
+  const markedUserSkills = {}
 
-  //   }
-  //   console.log(userSkills)
-  // }
+  for (const marked of userData) {
+    markedUserSkills[marked.name] = true; 
+  }
   
+  const classes = useStyles();
+  const [checkedSkills, setCheckedState] = useState({...markedUserSkills});
+  const [userSkills, setUserSkills] = useState([...userData]); 
+  
+
+  const handleChange = (event) => {
+    setCheckedState({... checkedSkills, [event.target.name] : event.target.checked })
+    if (event.target.checked) {
+      addSkill(event.target.name, event.target.value);
+    } else {
+      removeSkill(event.target.name); 
+    }
+  }
+
+  function addSkill(name, type) {
+    setUserSkills([...userSkills, { name: name, type: type }]); 
+  }
+
+  function removeSkill(name) {
+    const skills = userSkills;
+    const skill = skills.find(s => s.name === name);
+    const index = skills.indexOf(skill); 
+    skills.splice(index, 1);
+    setUserSkills(skills);
+  }
   
   const languagesList = data.map(s => {
     if (s.type === 'language') {
       return(
         <>
         <FormControlLabel
-          control={<Checkbox name={s.name} />}
-          label={s.name}
+          control={<Checkbox 
+            checked={checkedSkills[s.name]}
+            onChange={handleChange}
+            name={s.name}
+            value={s.type} 
+            />}
+            label={s.name}
+            key={s.id}
         />
         <br/>
         </>
@@ -91,8 +112,14 @@ export default function SkillCheck(props) {
         return (
           <>
           <FormControlLabel
-            control={<Checkbox name={s.name} />}
-          label={s.name}
+            control={<Checkbox
+              checked={checkedSkills[s.name]}
+              onChange={handleChange} 
+              name={s.name} 
+              value={s.type}
+              />}
+              label={s.name}
+              key={s.id}
           />
           <br/>
           </>
@@ -105,22 +132,37 @@ export default function SkillCheck(props) {
         return (
           <>
           <FormControlLabel
-          control={<Checkbox name={s.name} />}
-          label={s.name}
+          control={<Checkbox 
+            checked={checkedSkills[s.name]}
+            onChange={handleChange}
+            name={s.name} 
+            value={s.type}
+            />}
+            label={s.name}
+            key={s.id}
           />
           <br/>
           </>
         )
       }
     })
-  
-  
-  
-    const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
 
-  const { gilad, jason, antoine } = state;
+     // function save(event) {
+  //   event.preventDefault();
+  //   console.log("saving skills");
+  //   const userSkills = {
+  //     user_id,
+  //     hard_skills_id,
+
+  //   }
+  //   console.log(userSkills)
+  // }
+  
+  
+  
+   
+
+  // const { gilad, jason, antoine } = state;
   // const error = [gilad, jason, antoine].filter((v) => v).length !== 2;
 
   return (

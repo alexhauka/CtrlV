@@ -60,7 +60,7 @@ export default function App() {
         <Route path="/resume" component={Resume} /> 
         <Route 
         path="/skills" 
-        component={() => <SkillCheck hardskills={state.hardskills} />} 
+        component={() => <SkillCheck hardskills={state.hardskills} userHardSkills={state.userHardSkills} />} 
         />
         <Route path="/work" component={WorkExperience} />
         <Route path="/github" component={Github} />
