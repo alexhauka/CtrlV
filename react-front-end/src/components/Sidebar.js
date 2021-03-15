@@ -221,8 +221,12 @@ export default function Sidebar(props) {
           ))}
         </List>
         <Divider />
+        <ListItemLink href="/resume">
+            <ListItemIcon><InboxIcon/></ListItemIcon>
+            <ListItemText primary="Resume" />
+          </ListItemLink>
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          {['Trash', 'Spam'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />

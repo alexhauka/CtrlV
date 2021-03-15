@@ -1,42 +1,46 @@
-import React from 'react';
-import { makeStyles, Container } from '@material-ui/core'
+import React, { useState } from 'react';
+import { makeStyles, Grid } from '@material-ui/core'
+
+import RightResume from './RightResume';
+import LeftResume from './LeftResume';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    fontFamily: 'Ubuntu, sans-serif;',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-    height: '50vh'
+    // marginTop: '5em'
   },
-  body: {
-   backgroundColor: '#fff',
-   height: '900px',
-   width: '670px',
-   paddingTop: '10%',
-   borderColor: 'black',
-   borderStyle: 'dotted'
+  
+  left: {
+    width: "35%"
   },
-  mainTitle: {
-    fontSize: '3rem'
-  },
-  secondTitle: {
-    color: '#a9a9a9'
+  right: {
+   width: "65%",
+   boxShadow:'19px 20px 20px 0px #00000059 inset'
   }
+
+
 }));
 
 export default function Resume() {
+
+  const [color, setColor] = useState()
+
   const classes = useStyles();
   return (
-    <div >
-      <Container fixed className={classes.body}>
-      <div className={classes.root}>
-        <h1 className={classes.mainTitle}>
-          Welcome to C<span className={classes.secondTitle}>(trl)</span>V
-        </h1>
+    <div className={classes.root}>
+    <Grid 
+      container
+      direction='row'
+      justify='space-between'
+    >
+      <div className={classes.left}>
+      <LeftResume />
       </div>
-      </Container>
+
+      <div className={classes.right}>
+      <RightResume />
+      </div>
+    </Grid>
     </div>
   );
 }
