@@ -63,9 +63,9 @@ export default function App() {
         path="/skills" 
         component={() => <SkillCheck hardskills={state.hardskills} userHardSkills={state.userHardSkills} />} 
         />
-        <Route path="/work" component={WorkExperience} />
+        <Route path="/work" component={() => <WorkExperience workExperience={state.userWorkExperience}/>} />
         <Route path="/github" component={Github} />
-        <Route path="/basicInfo" component={BasicInfo} />
+        <Route path="/basicInfo" component={() => <BasicInfo user={state.user}/>} />
       </Switch>
       <Footer />
     </Router>

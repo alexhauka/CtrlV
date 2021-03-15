@@ -86,6 +86,7 @@ export default function SkillCheck(props) {
   
   const languagesList = data.map(s => {
     if (s.type === 'language') {
+      
       return(
         <>
         <FormControlLabel

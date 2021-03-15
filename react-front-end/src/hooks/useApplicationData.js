@@ -14,14 +14,16 @@ export function useApplicationData() {
     isLoggedin: false,
     hardskills: [],
     userHardSkills: [],
-    user: {}
+    user: {},
+    userWorkExperience: {}
   }); 
 
   useEffect(() => {
     Promise.all([
       axios.get(`/api/hardSkills`),
       axios.get(`/api/users/2`),
-      axios.get(`/api/users/2/hard_skills`)
+      axios.get(`/api/users/2/hard_skills`),
+      axios.get(`/api/users/2/work_experience`)
     ])
     .then((all) => {
       dispatch({
@@ -29,8 +31,9 @@ export function useApplicationData() {
         hardskills: all[0].data,
         user: all[1].data,
         userHardSkills: all[2].data,
+        userWorkExperience: all[3].data
       })
-      
+      console.log(all[3].data)
     })
   }, [])
     

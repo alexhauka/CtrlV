@@ -19,19 +19,21 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-export default function BasicInfo() {  
+export default function BasicInfo(props) {  
+  const data = props.user
   const classes = useStyles(); 
+  console.log(data)
   return (
     <div className={classes.root}>
       <Typography variant="h3">My Basic Info</Typography>
       <div>
         <form noValidate autoComplete="off">
           <div className={classes.fields}>
-            <TextField id="standard-basic" label="First Name" />
-            <TextField id="standard-basic" label="Last Name" />
-            <TextField id="standard-basic" label="email" />
-            <TextField id="standard-basic" label="address" />
-            <TextField id="standard-basic" label="Phone" /> 
+            <TextField id="first_name" label="First Name" value={data.first_name} />
+            <TextField id="last_name" label="Last Name" value={data.last_name} />
+            <TextField id="email" label="email" value={data.email}/>
+            <TextField id="address" label="address" value={data.address}/>
+            <TextField id="phone_number" label="Phone" value={data.phone_number}/> 
           </div>
       </form>
       </div>

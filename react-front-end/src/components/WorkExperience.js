@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button } from '@material-ui/core';
-
+import Jobs from "./Jobs"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,64 +33,44 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-export default function WorkExperience() {
-
-const [count, setCount] = React.useState(1)
+export default function WorkExperience(props) {
+  const data = props.workExperience;
   
-  const classes = useStyles(); 
-  const numOfJobs = function(input){
-    for(let i = 0; i < input; i++){
+  const [count, setCount] = React.useState(0); 
+
+
+
+  const numOfJobs = Object.keys(data).map(key => {
       return (
-        <form noValidate autoComplete="off">
-        <div className={classes.job}>
-          <div className={classes.fields}>
-          <TextField id="standard-basic" label="Job Title" />
-          <TextField id="standard-basic" label="Company Name" />
-          <TextField
-            id="date"
-            label="Start Date"
-            type="date"
-            defaultValue=""
-            // className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-          <TextField
-            id="date"
-            label="End Date"
-            type="date"
-            defaultValue=""
-            // className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-          </div>
-          <div className={classes.description}>
-            <TextField
-              id="outlined-multiline-static"
-              label="Job Description"
-              multiline
-              rows={6}
-              placeholder="Tell us about this position..."
-              fullWidth="true"
-              variant="outlined"
-            />
-          </div>
-        </div>
-      </form>
-      )
-    }
-  }
-  
-  const myJobs = numOfJobs(count)
+        <Jobs
+        key={data[key].id}
+        title={data[key].job_title}
+        start_date={""}
+        end_date={""}
+        description={data[key].job_description}
+        />
+        )
+    });
 
+    const addJobs = function(input){
+      for (let i = 0; i < input; i++){
+        return(
+          <Jobs/>
+        )
+      }
+    }
+    const moreJobs = addJobs(count)
+  // const [count, setCount] = React.useState('')
+  const classes = useStyles(); 
   return (
     <div className={classes.root}>
-       {Array(count).fill(myJobs)}
+      {numOfJobs}
+      {/* This line is going to need to be looked at when we start uploading to the DB */}
+      {Array(count).fill(moreJobs)} 
     <div className={classes.add}>
-    <Button variant="contained" color="primary" onClick={() => setCount(count + 1)}>
+    <Button variant="contained" color="primary" onClick={() => {
+      setCount(count + 1)
+      }}>
         Add Another Job
     </Button>
       </div>
