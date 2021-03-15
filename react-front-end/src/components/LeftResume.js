@@ -1,20 +1,15 @@
-import React, { useState } from 'react'; 
-
-import Keywords from './Keywords';
-import FontStyles from './FontStyles';
+import React from 'react'; 
 
 import { makeStyles } from '@material-ui/core/styles'; 
 import TemplateButtons from './TemplateButtons';
 import FontButtons from './FontButtons';
 import ColorButtons from './ColorButtons';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
     justify: "space-evenly",
-    // textAlign: "center",
-    // backgroundColor: "#3f51b5",
     height: "100%",
     background: 'linear-gradient(225deg, #3f51b5 30%, #FF8E53 90%)'
   },
@@ -24,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     justify: "space-between",
     width: "80%",
-    // maxHeight: "20%",
     marginTop: "5em",
     margin: "auto"
   }

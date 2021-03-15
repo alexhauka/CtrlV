@@ -1,5 +1,5 @@
 import React from 'react'; 
-import { CssBaseline, Grid, Divider } from '@material-ui/core';
+import { CssBaseline, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'; 
 import LeftSection from "./Left-Section"
 import RightSection from "./Right-Section"
@@ -30,12 +30,10 @@ export default function Home(props) {
         container
         direction="row"
         justify="space-between"
-        // alignItems="center"
         >
         <div className={classes.left}>
         <LeftSection/>
         </div>  
-        {/* <Divider orientation="vertical" flexItem /> */}
         <div className={classes.right}>
         <RightSection />
         </div>

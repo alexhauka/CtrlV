@@ -212,13 +212,10 @@ export default function Sidebar(props) {
             <ListItemIcon><InboxIcon/></ListItemIcon>
             <ListItemText primary="Github" />
           </ListItemLink>
-
-          {['Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon >{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItemLink href="/basicInfo">
+            <ListItemIcon><InboxIcon/></ListItemIcon>
+            <ListItemText primary="Basic Info" />
+          </ListItemLink>
         </List>
         <Divider />
         <ListItemLink href="/resume">

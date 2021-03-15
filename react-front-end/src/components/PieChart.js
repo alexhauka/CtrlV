@@ -19,7 +19,7 @@ const data = [
   { country: 'India', area: 2 },
   { country: 'Others', area: 55 },
 ];
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   chart: {
     backgroundColor: "transparent",
     boxShadow: "none"
@@ -31,17 +31,12 @@ export default function PieChart(){
   const classes = useStyles()
     return (
       <Paper className={classes.chart}>
-        <Chart
-          data={data}
-          
-        >
+        <Chart data={data}>
           <PieSeries
             valueField="area"
             argumentField="country"
           />
-          <Title
-            text="Keyword Scores for this Posting:"
-          />
+          <Title text="Keyword Scores for this Posting:" />
           <Animation />
         </Chart>
       </Paper>

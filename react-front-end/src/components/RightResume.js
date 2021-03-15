@@ -1,10 +1,8 @@
 import React from 'react'; 
-import { Grid, TextField, Checkbox, FormGroup, FormControlLabel, FormControl, FormLabel, Divider, Typography } from '@material-ui/core';
-import ListIcon from '@material-ui/icons/List';
-import { makeStyles, responsiveFontSizes } from '@material-ui/core/styles'; 
+import { makeStyles } from '@material-ui/core/styles'; 
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     maxWidth: '75%',
     minHeight: "100vw",

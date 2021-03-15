@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import FormLabel from '@material-ui/core/FormLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Typography, Button } from '@material-ui/core';
 
@@ -67,7 +64,7 @@ export default function SkillCheck(props) {
   
 
   const handleChange = (event) => {
-    setCheckedState({... checkedSkills, [event.target.name] : event.target.checked })
+    setCheckedState({...checkedSkills, [event.target.name] : event.target.checked })
     if (event.target.checked) {
       addSkill(event.target.name, event.target.value);
     } else {
