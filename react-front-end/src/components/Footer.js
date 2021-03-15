@@ -22,8 +22,11 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    position: 'fixed',
-    bottom: 0,
+    position: 'absolute',
+    zIndex: 1,
+    // bottom: 0,
+    boxShadow: '1px 20px 10px 20px #00000059',
+    
     width: '100%',
     opacity: '1'
   },
@@ -36,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'flex-start',
     padding: theme.spacing(3, 2),
     marginTop: 'auto',
-    background: 'linear-gradient(225deg, #3f51b5 20%, #FF8E53 90%)',
+    background: 'linear-gradient(45deg, #7bc8f6 35%, #FF8E53 90%)',
   },
 }));
 
