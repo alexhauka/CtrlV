@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import { Typography, Button } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
+import { Typography, Button, Snackbar, Checkbox, FormControlLabel, FormLabel } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -47,10 +46,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props}/>;
+}
+
 export default function SkillCheck(props) {
   const data = props.hardskills;
   const userData = props.userHardSkills
-  console.log(userData)
 
   const markedUserSkills = {}
 
@@ -59,115 +61,132 @@ export default function SkillCheck(props) {
   }
   
   const classes = useStyles();
-  const [checkedSkills, setCheckedState] = useState({...markedUserSkills});
-  const [userSkills, setUserSkills] = useState([...userData]); 
+  const [checkedSkills, setCheckedState] = useState(markedUserSkills || "");
+  const [complete, setComplete] = useState(false); 
+  const [message, setMessage] = useState("");
+  const [open, setOpen] = useState(false); 
   
 
   const handleChange = (event) => {
     setCheckedState({...checkedSkills, [event.target.name] : event.target.checked })
     if (event.target.checked) {
-      addSkill(event.target.name, event.target.value);
+      addSkill(event.target.id, event.target.name, event.target.value);
     } else {
-      removeSkill(event.target.name); 
+      removeSkill(event.target.id, event.target.name, event.target.value); 
     }
   }
 
-  function addSkill(name, type) {
-    setUserSkills([...userSkills, { name: name, type: type }]); 
+  function addSkill(id, name, type) {
+    props.addUserHardSkill({ id: id, name: name, type: type })
+    .then(() => {
+      setMessage("Added Successfully!");
+      setOpen(true); 
+    }); 
   }
 
-  function removeSkill(name) {
-    const skills = userSkills;
-    const skill = skills.find(s => s.name === name);
-    const index = skills.indexOf(skill); 
-    skills.splice(index, 1);
-    setUserSkills(skills);
+  function removeSkill(id, name, type) {
+    props.removeUserHardSkill({ id: id, name: name, type: type })
+    .then(() => {
+      setMessage("Deleted Successfully!");
+      setOpen(true);
+    });
   }
   
   const languagesList = data.map(s => {
     if (s.type === 'language') {
       
       return(
-        <>
+        <React.Fragment key={s.id}>
         <FormControlLabel
           control={<Checkbox 
             checked={checkedSkills[s.name]}
             onChange={handleChange}
             name={s.name}
             value={s.type} 
+            id={s.id.toString()}
             />}
-            label={s.name}
-            key={s.id}
+          label={s.name}      
         />
         <br/>
-        </>
+        </React.Fragment>
       )
     }
+    return null;
   })
     
-    const frameworksList = data.map(s => {
-      if (s.type ==='framework') {
-        return (
-          <>
-          <FormControlLabel
-            control={<Checkbox
-              checked={checkedSkills[s.name]}
-              onChange={handleChange} 
-              name={s.name} 
-              value={s.type}
-              />}
-              label={s.name}
-              key={s.id}
-          />
-          <br/>
-          </>
-        )
-      }
-    })
-
-    const testingList = data.map(s => {
-      if (s.type === 'testing' || s.type === 'database'){
-        return (
-          <>
-          <FormControlLabel
-          control={<Checkbox 
+  const frameworksList = data.map(s => {
+    if (s.type ==='framework') {
+      return (
+        <React.Fragment key={s.id}>
+        <FormControlLabel
+          control={<Checkbox
             checked={checkedSkills[s.name]}
-            onChange={handleChange}
+            onChange={handleChange} 
             name={s.name} 
             value={s.type}
+            id={s.id.toString()}
             />}
-            label={s.name}
-            key={s.id}
-          />
-          <br/>
-          </>
-        )
-      }
-    })
+          label={s.name}
+        />
+        <br/>
+        </React.Fragment>
+      )
+    }
+    return null;
+  })
 
-     // function save(event) {
-  //   event.preventDefault();
-  //   console.log("saving skills");
-  //   const userSkills = {
-  //     user_id,
-  //     hard_skills_id,
+  const testingList = data.map(s => {
+    if (s.type === 'testing' || s.type === 'database'){
+      return (
+        <React.Fragment key={s.id}>
+        <FormControlLabel
+        control={<Checkbox 
+          checked={checkedSkills[s.name]}
+          onChange={handleChange}
+          name={s.name} 
+          value={s.type}
+          id={s.id.toString()}
+          />}
+        label={s.name}
+        />
+        <br/>
+        </React.Fragment>
+      )
+    }
+    return null;
+  })
 
-  //   }
-  //   console.log(userSkills)
-  // }
-  
-  
-  
-   
+  function save() {
+    setComplete(true); 
+  }
 
-  // const { gilad, jason, antoine } = state;
-  // const error = [gilad, jason, antoine].filter((v) => v).length !== 2;
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false); 
+  };
+
+  if (complete) {
+    return <Redirect to="/" />
+  }
+  
 
   return (
     <div className={classes.root}>
       <div className={classes.heading}>
         <Typography variant="h3">My Skills</Typography>
       </div>
+      <Snackbar 
+        open={open}
+        autoHideDuration={1000}
+        onClose={handleClose}
+        anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+      >
+        <Alert onClose={handleClose} severity="success">
+          <h1>{message}</h1>
+        </Alert>
+      </Snackbar>
       <section className={classes.skills}>
           <div className={classes.skillSet}>
             <FormLabel component="legend">Languages</FormLabel>
@@ -183,7 +202,13 @@ export default function SkillCheck(props) {
           </div>
       </section>
       <div className={classes.button}>
-      <Button className={classes.submit} variant="outlined" color="default" size="large" >Submit
+      <Button 
+      className={classes.submit} 
+      variant="outlined" 
+      color="default" 
+      size="large" 
+      onClick={save}
+      >Save
       </Button>
       </div>
     </div>

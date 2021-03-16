@@ -1,8 +1,13 @@
 const express = require('express');
+const { addUserHardSkills } = require('../lib/hardSkills-queries');
 const router  = express.Router();
 
 const {
+<<<<<<< HEAD
   getUsers, getUserByID, addUser, getUserHardSkills, getUserSoftSkills, getUserWorkExperience
+=======
+  getUsers, getUserByID, addUser, getUserHardSkills, getUserSoftSkills, addUserHardSkill, removeUserHardSkill
+>>>>>>> feature/update-raw-hard-skills
 } = require('../lib/user-queries');
 
 // get /users
@@ -30,9 +35,13 @@ router.get('/:id', (req, res) => {
   getUserByID(req.params.id)
   .then((users) => {
     res.json(users)
+<<<<<<< HEAD
     // console.log('successfully got to user page')
+=======
+>>>>>>> feature/update-raw-hard-skills
   })
 });
+
 
 // post users/id
 router.post('/:id', (req, res) => {
@@ -42,19 +51,33 @@ router.post('/:id', (req, res) => {
 // get users/:id/hard_skills
 router.get('/:id/hard_skills', (req, res) => {
   getUserHardSkills(req.params.id)
-  .then((users) => {
-    res.json(users)
+  .then((data) => {
+    res.json(data);
   })
 });
 
 // post users/:id/hard_skills
-router.post('/:id/hard_skills', (req, res) => {
-
+router.put('/:id/hard_skills', (req, res) => {
+  addUserHardSkill(req.params.id, req.body.skill.id)
+  .then((data) => {
+    res.send(data);
+  })
+  .catch(e => {
+    console.error(e);
+    res.send(e);
+  })
 });
 
 // delete users/:id/hard_skills
 router.delete('/:id/hard_skills', (req, res) => {
-
+  removeUserHardSkill(req.params.id, req.body.skill.id)
+  .then((data) => {
+    res.send(data);
+  })
+  .catch(e => {
+    console.error(e);
+    res.send(e);
+  })
 });
 
 // get users/id/soft_skills

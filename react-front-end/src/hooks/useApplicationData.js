@@ -2,7 +2,6 @@ import { useEffect, useReducer } from 'react';
 
 import { 
   reducer,
-  SET_SKILLS,
   SET_APPLICATION_DATA
 } from '../reducers/application'; 
 
@@ -37,11 +36,6 @@ export function useApplicationData() {
     })
   }, [])
     
-
-
-
-
-
   function registerUser(registerInfo) {
     console.log("here")
     console.log(registerInfo);
@@ -58,14 +52,32 @@ export function useApplicationData() {
     .then(() => {
       console.log('logged in successfully!!')
     })
+  };
+
+  function addUserHardSkill(skill) {
+    return axios.put(`/api/users/2/hard_skills`, { skill })
+    .then(() => {
+      console.log("add successful"); 
+    })
   }
 
 
+  function removeUserHardSkill(skill) {
+    return axios.delete(`/api/users/2/hard_skills`, 
+    { data: {
+      skill: skill
+    }})
+    .then(() => {
+      console.log("delete successful");
+    })
+  }
 
   return {
     state,
     registerUser,
-    loginUser
+    loginUser,
+    addUserHardSkill,
+    removeUserHardSkill
   }
 
 }

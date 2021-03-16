@@ -42,7 +42,9 @@ export default function App() {
   const {
     state,
     registerUser,
-    loginUser
+    loginUser,
+    addUserHardSkill,
+    removeUserHardSkill
   } = useApplicationData(); 
 
   return(
@@ -61,7 +63,12 @@ export default function App() {
         <Route path="/resume" component={Resume} /> 
         <Route 
         path="/skills" 
-        component={() => <SkillCheck hardskills={state.hardskills} userHardSkills={state.userHardSkills} />} 
+        component={() => <SkillCheck 
+          hardskills={state.hardskills} 
+          userHardSkills={state.userHardSkills} 
+          addUserHardSkill={addUserHardSkill}
+          removeUserHardSkill={removeUserHardSkill}
+          />} 
         />
         <Route path="/work" component={() => <WorkExperience workExperience={state.userWorkExperience}/>} />
         <Route path="/github" component={Github} />
