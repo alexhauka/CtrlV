@@ -4,11 +4,7 @@ export const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
 
 
 export function reducer(state, action) {
-<<<<<<< HEAD
   const { hardskills, userHardSkills, user, userWorkExperience } = action;
-=======
-  const { hardskills, userHardSkills, user} = action;
->>>>>>> feature/update-raw-hard-skills
   switch(action.type) {
     case SET_APPLICATION_DATA: { 
       return { ...state, hardskills, userHardSkills, user, userWorkExperience };
