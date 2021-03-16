@@ -35,18 +35,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function WorkExperience(props) {
   const data = props.workExperience;
-  
+  console.log("In work experience", data[0])
   const [count, setCount] = React.useState(0); 
 
 
 
   const numOfJobs = Object.keys(data).map(key => {
+      console.log("data[key].id:", data[key].id)
       return (
         <Jobs
-        key={data[key].id}
+        id={data[key].id}
         title={data[key].job_title}
         start_date={""}
         end_date={""}
+        updateWork={props.updateWork}
         description={data[key].job_description}
         />
         )
@@ -55,7 +57,13 @@ export default function WorkExperience(props) {
     const addJobs = function(input){
       for (let i = 0; i < input; i++){
         return(
-          <Jobs/>
+          <Jobs 
+          key={''}
+          title=''
+          start_date={""}
+          end_date={""}
+          updateWork={props.updateWork}
+          description=''/>
         )
       }
     }
