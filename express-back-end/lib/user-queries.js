@@ -52,6 +52,25 @@ const updateUserInfo = (id, userInfo) => {
   });
 }
 
+const addUserWorkExperience = (id, workInfo) => {
+  console.log("In my query", workInfo); 
+  if (workInfo.id !== undefined){
+    return client.query(`
+    UPDATE work_experiences
+    SET job_title = $1, job_description = $2
+    WHERE id = $3; 
+    `, [workInfo.title, workInfo.description, workInfo.id])
+  } else {
+    return client.query(`
+    INSERT INTO work_experiences (user_id, job_title, job_description, job_start_date, job_end_date)
+    VALUES ($1, $2, $3, $4, $5);
+    `, [id, workInfo.title, workInfo.description, '2019-06-12', '2020-01-18'])
+    .then((response) => {
+      return response.rows
+    })
+  }
+}
+
 // queries all hard skills from a particular user
 const getUserHardSkills = (id) => {
   return client.query(`
@@ -122,5 +141,6 @@ module.exports = {
     getUserSoftSkills,
     getUserWorkExperience,
     addUserHardSkill,
-    removeUserHardSkill
+    removeUserHardSkill,
+    addUserWorkExperience
 }

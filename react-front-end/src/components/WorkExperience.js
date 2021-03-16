@@ -37,7 +37,7 @@ export default function WorkExperience(props) {
   const data = props.workExperience;
   console.log("In work experience", data[0])
   const [count, setCount] = React.useState(0); 
-
+    
 
 
   const numOfJobs = Object.keys(data).map(key => {

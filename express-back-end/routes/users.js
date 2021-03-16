@@ -2,7 +2,7 @@ const express = require('express');
 const router  = express.Router();
 
 const {
-  getUsers, getUserByID, addUser, updateUserInfo, getUserHardSkills, getUserSoftSkills, getUserWorkExperience, addUserHardSkill, removeUserHardSkill
+  getUsers, getUserByID, addUser, updateUserInfo, getUserHardSkills, getUserSoftSkills, getUserWorkExperience, addUserHardSkill, removeUserHardSkill, addUserWorkExperience
 } = require('../lib/user-queries');
 
 // get /users
@@ -104,7 +104,14 @@ router.get('/:id/work_experience', (req, res) => {
 })
 
 router.post('/:id/work_experience', (req, res) => {
-  
+  addUserWorkExperience(req.params.id, req.body.workInfo)
+  // .then((data) => {
+  //   res.send(data);
+  // })
+  // .catch(e => {
+  //   console.error(e);
+  //   res.send(e);
+  // })
 })
 
 
