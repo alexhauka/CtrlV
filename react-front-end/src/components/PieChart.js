@@ -9,16 +9,16 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { Animation } from '@devexpress/dx-react-chart';
 
-const data = [
-  { country: 'Russia', area: 12 },
-  { country: 'Canada', area: 7 },
-  { country: 'USA', area: 7 },
-  { country: 'China', area: 7 },
-  { country: 'Brazil', area: 6 },
-  { country: 'Australia', area: 5 },
-  { country: 'India', area: 2 },
-  { country: 'Others', area: 55 },
-];
+// const data = [
+//   { country: 'Russia', area: 12 },
+//   { country: 'Canada', area: 7 },
+//   { country: 'USA', area: 7 },
+//   { country: 'China', area: 7 },
+//   { country: 'Brazil', area: 6 },
+//   { country: 'Australia', area: 5 },
+//   { country: 'India', area: 2 },
+//   { country: 'Others', area: 55 },
+// ];
 const useStyles = makeStyles(() => ({
   chart: {
     backgroundColor: "transparent",
@@ -26,15 +26,25 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-export default function PieChart(){
+export default function PieChart(props){
+
+  const data = props.keywords
+
+  let newData = [];
+
+  Object.keys(data).map(key => (
+    newData.push({name: key, score: data[key]})
+  ))
+
+
 
   const classes = useStyles()
     return (
       <Paper className={classes.chart}>
-        <Chart data={data}>
+        <Chart data={newData}>
           <PieSeries
-            valueField="area"
-            argumentField="country"
+            valueField="score"
+            argumentField="name"
           />
           <Title text="Keyword Scores for this Posting:" />
           <Animation />

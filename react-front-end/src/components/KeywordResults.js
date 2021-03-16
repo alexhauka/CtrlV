@@ -5,6 +5,8 @@ import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'; 
 import PieChart from './PieChart';
 
+import KeywordResultsItem from './KeywordResultsItem'
+
 const useStyles = makeStyles((theme) => ({
   chart: {
     opactiy: 0.2,
@@ -12,20 +14,26 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function KeywordResults() {
+export default function KeywordResults(props) {
   const classes = useStyles()
+  const keywords = props.filterResults
+  // console.log(keywords)
+  const keywordList = Object.keys(keywords).map(keyword => (
+    <KeywordResultsItem
+      keyword={keyword}
+      score={keywords[keyword]}
+    />
+
+  ))
+
 
   return (
     <div>
-      <Typography variant="h3">Keywords</Typography>
+      <Typography variant="h3">Keyword Scores</Typography>
       <br/>
-      <Typography variant="h5" >Javascript</Typography>
-      <Typography variant="h5">CSS</Typography>
-      <Typography variant="h5">React</Typography>
-      <Typography variant="h5">Storybook</Typography>
-      <Typography variant="h5">Python</Typography>
+      {keywordList}
       <div className={classes.chart}>
-        <PieChart></PieChart>
+        <PieChart keywords={keywords}></PieChart>
       </div>
     </div>
   )

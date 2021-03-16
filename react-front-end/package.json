@@ -9,12 +9,17 @@
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "axios": "^0.18.1",
+    "cheerio": "^1.0.0-rc.5",
     "clsx": "^1.1.1",
     "material-ui-color": "^0.4.11",
+    "nlcst-to-string": "^2.0.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.2.0",
     "react-scripts": "2.1.8",
+    "retext": "^7.0.1",
+    "retext-keywords": "^6.0.0",
+    "retext-pos": "^3.0.0",
     "styled-components": "^5.2.1"
   },
   "scripts": {
