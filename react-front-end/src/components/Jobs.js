@@ -42,7 +42,6 @@ export default function Jobs(props) {
     start_date,
     end_date
   })
-  console.log("IN JOBS", jobInfo)
   function save(event){
     event.preventDefault()
     props.updateWork(jobInfo)

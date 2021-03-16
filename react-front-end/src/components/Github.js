@@ -123,7 +123,7 @@ const [count, setCount] = React.useState(1)
       </div>
       }
       {manual && 
-      <div>
+      <div> 
         {Array(count).fill(myJobs)}
         <Button variant="contained" color="primary" onClick={() => setCount(count + 1)}>
           Add Another Project

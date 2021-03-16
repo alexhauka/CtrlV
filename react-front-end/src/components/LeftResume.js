@@ -1,9 +1,11 @@
-import React from 'react'; 
-
+import React, { useState } from 'react'; 
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles'; 
 import TemplateButtons from './TemplateButtons';
 import FontButtons from './FontButtons';
-import ColorButtons from './ColorButtons';
+// import ColorButtons from './ColorButtons';
+import { ColorPicker } from 'material-ui-color';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -21,20 +23,78 @@ const useStyles = makeStyles(() => ({
     width: "80%",
     marginTop: "5em",
     margin: "auto"
+  },
+
+  FontButtons: {
+    // display: 'flex',
+    // '& > *': {
+    //   margin: theme.spacing(1),
+    // },
   }
 }))
 
 export default function LeftResume() {
+  const [color, setColor] = useState("#fff")
   const classes = useStyles()
   return (
     <div className={classes.root}>
       <div className={classes.ResumeButtons}>
         <h1>choose your template:</h1>
-        <TemplateButtons />
+        <div className={classes.root}>
+      <ButtonGroup
+        orientation="vertical"
+        color="primary"
+        aria-label="vertical outlined primary button group"
+      >
+      </ButtonGroup>
+      <ButtonGroup
+        orientation="vertical"
+        color="primary"
+        aria-label="vertical contained primary button group"
+        variant="contained"
+      >
+        <Button>Template One</Button>
+        <Button>Template Two</Button>
+        <Button>Template Three</Button>
+      </ButtonGroup>
+      <ButtonGroup
+        orientation="vertical"
+        color="primary"
+        aria-label="vertical contained primary button group"
+        variant="text"
+      >
+      </ButtonGroup>
+    </div>
         <h1>choose your font:</h1>
-        <FontButtons />
+        <div className={classes.FontButtons}>
+      <ButtonGroup
+        orientation="vertical"
+        color="primary"
+        aria-label="vertical outlined primary button group"
+      >
+      </ButtonGroup>
+      <ButtonGroup
+        orientation="vertical"
+        color="primary"
+        aria-label="vertical contained primary button group"
+        variant="contained"
+      >
+        <Button>Font One</Button>
+        <Button>Font Two</Button>
+        <Button>Font Three</Button>
+      </ButtonGroup>
+      <ButtonGroup
+        orientation="vertical"
+        color="primary"
+        aria-label="vertical contained primary button group"
+        variant="text"
+      >
+      </ButtonGroup>
+    </div>
         <h1>COLORRRRS</h1>
-        <ColorButtons />
+          <div>
+            <ColorPicker defaultValue={color} onChange={(event) => setColor(event.target.value)} />
+          </div>
       </div>
       <div>
       </div>

@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
 export default function RightSection() {
   const classes = useStyles()
   return (
-    <div className={classes.root}>
+    <div className={classes.rightRoot}>
       <h1>Right Side</h1>
     </div>
   );
