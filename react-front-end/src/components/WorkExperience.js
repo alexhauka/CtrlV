@@ -55,7 +55,11 @@ export default function WorkExperience(props) {
     const addJobs = function(input){
       for (let i = 0; i < input; i++){
         return(
-          <Jobs/>
+          <Jobs 
+          title=''
+          start_date={""}
+          end_date={""}
+          description=''/>
         )
       }
     }

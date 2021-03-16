@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button } from '@material-ui/core';
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: "white",
     paddingTop: 30,
@@ -34,17 +34,33 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function Jobs(props) {
-  const classes = useStyles(); 
+  const {title, description} = props
+  const [jobInfo, setJobInfo] = useState({
+    title,
+    description
+  })
 
+  const classes = useStyles(); 
     return (
       <form key={props.key} noValidate autoComplete="off">
         <div className={classes.job}>
         <div className={classes.fields}>
-        <TextField id="standard-basic" label="Job Title" value={props.title} />
-        <TextField id="standard-basic" label="Company Name" />
+        <TextField 
+          id="title" 
+          name='title' 
+          label="Job Title"
+
+          value={jobInfo.title} 
+        />
+        <TextField 
+          id="company_name" 
+          name='company_name' 
+          label="Company Name" 
+        />
         <TextField
           id="date"
           label="Start Date"
+          name="start_date"
           type="date"
           defaultValue=''
           // className={classes.textField}
@@ -55,6 +71,7 @@ export default function Jobs(props) {
         <TextField
           id="date"
           label="End Date"
+          name="end_date"
           type="date"
           defaultValue=''
           // className={classes.textField}
@@ -67,9 +84,10 @@ export default function Jobs(props) {
           <TextField
             id="outlined-multiline-static"
             label="Job Description"
+            name='description'
             multiline
             rows={6}
-            value={props.description}
+            value={jobInfo.description}
             placeholder="Tell us about this position..."
             fullWidth={true}
             variant="outlined"
