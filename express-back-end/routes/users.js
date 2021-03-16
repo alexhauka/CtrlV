@@ -1,13 +1,8 @@
 const express = require('express');
-const { addUserHardSkills } = require('../lib/hardSkills-queries');
 const router  = express.Router();
 
 const {
-<<<<<<< HEAD
-  getUsers, getUserByID, addUser, getUserHardSkills, getUserSoftSkills, getUserWorkExperience
-=======
-  getUsers, getUserByID, addUser, getUserHardSkills, getUserSoftSkills, addUserHardSkill, removeUserHardSkill
->>>>>>> feature/update-raw-hard-skills
+  getUsers, getUserByID, addUser, getUserHardSkills, getUserSoftSkills, getUserWorkExperience, addUserHardSkill, removeUserHardSkill
 } = require('../lib/user-queries');
 
 // get /users
@@ -35,10 +30,6 @@ router.get('/:id', (req, res) => {
   getUserByID(req.params.id)
   .then((users) => {
     res.json(users)
-<<<<<<< HEAD
-    // console.log('successfully got to user page')
-=======
->>>>>>> feature/update-raw-hard-skills
   })
 });
 
