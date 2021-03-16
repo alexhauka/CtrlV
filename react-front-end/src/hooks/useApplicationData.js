@@ -2,7 +2,8 @@ import { useEffect, useReducer } from 'react';
 
 import { 
   reducer,
-  SET_APPLICATION_DATA
+  SET_APPLICATION_DATA,
+  SET_UPDATED_USER
 } from '../reducers/application'; 
 
 const axios = require('axios').default
@@ -54,6 +55,18 @@ export function useApplicationData() {
     })
   };
 
+  function updateUser(userInfo) {
+    // console.log("update user here", userInfo);
+    return axios.put(`/api/users/${state.user.id}`, {userInfo})
+    .then(() => {
+      // console.log('updated successful');
+      dispatch({
+        type: SET_UPDATED_USER,
+        userInfo
+      })
+    })
+  }
+
   function addUserHardSkill(skill) {
     return axios.put(`/api/users/2/hard_skills`, { skill })
     .then(() => {
@@ -76,6 +89,7 @@ export function useApplicationData() {
     state,
     registerUser,
     loginUser,
+    updateUser,
     addUserHardSkill,
     removeUserHardSkill
   }

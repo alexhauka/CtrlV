@@ -43,6 +43,7 @@ export default function App() {
     state,
     registerUser,
     loginUser,
+    updateUser,
     addUserHardSkill,
     removeUserHardSkill
   } = useApplicationData(); 
@@ -72,7 +73,7 @@ export default function App() {
         />
         <Route path="/work" component={() => <WorkExperience workExperience={state.userWorkExperience}/>} />
         <Route path="/github" component={Github} />
-        <Route path="/basicInfo" component={() => <BasicInfo user={state.user}/>} />
+        <Route path="/basicInfo" component={() => <BasicInfo user={state.user} updateUser={updateUser} />} />
       </Switch>
       <Footer />
     </Router>

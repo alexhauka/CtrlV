@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, TextField} from '@material-ui/core';
+import { Typography, TextField, Button} from '@material-ui/core';
+import { SelectionState } from '@devexpress/dx-react-chart';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -16,27 +17,83 @@ const useStyles = makeStyles(() => ({
     marginBottom: 20,
     width: "60%",
     height: "auto"
+  },
+  submit: {
+    color: "white",
+    size: "large",
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
   }
 }))
 
 export default function BasicInfo(props) {  
-  const data = props.user
+  const { first_name, last_name, email, address, phone_number } = props.user
+  const [userInfo, setUserInfo] = useState({
+    first_name,
+    last_name,
+    email,
+    address,
+    phone_number
+  })
   const classes = useStyles(); 
-  console.log(data)
+
+  function save(){
+    props.updateUser(userInfo);
+  }
+
+  function handleChange(event) {
+    setUserInfo({...userInfo, [event.target.name]: event.target.value})
+  }
+
   return (
     <div className={classes.root}>
       <Typography variant="h3">My Basic Info</Typography>
       <div>
         <form noValidate autoComplete="off">
           <div className={classes.fields}>
-            <TextField id="first_name" label="First Name" value={data.first_name} />
-            <TextField id="last_name" label="Last Name" value={data.last_name} />
-            <TextField id="email" label="email" value={data.email}/>
-            <TextField id="address" label="address" value={data.address}/>
-            <TextField id="phone_number" label="Phone" value={data.phone_number}/> 
+            <TextField 
+              id="first_name" 
+              label="First Name" 
+              name="first_name"
+              value={userInfo.first_name}
+              onChange={handleChange}
+               />
+            <TextField 
+              id="last_name" 
+              label="Last Name" 
+              name="last_name"
+              value={userInfo.last_name} 
+              onChange={handleChange}
+              />
+            <TextField 
+              id="email" 
+              label="Email" 
+              name="email"
+              value={userInfo.email}
+              onChange={handleChange}
+              />
+            <TextField 
+              id="address" 
+              label="Address" 
+              name="address"
+              value={userInfo.address}
+              onChange={handleChange}
+              />
+            <TextField 
+              id="phone_number" 
+              label="Phone" 
+              name="phone_number"
+              value={userInfo.phone_number}
+              onChange={handleChange}
+              /> 
           </div>
       </form>
       </div>
+      <Button 
+      className={classes.submit}
+      onClick={save}
+      >
+        Save
+      </Button>
     </div>
   )
 }

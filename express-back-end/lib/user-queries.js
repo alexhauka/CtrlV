@@ -39,12 +39,25 @@ const addUser = (userInfo) => {
   });
 }
 
+const updateUserInfo = (id, userInfo) => {
+  console.log(userInfo);
+  const {first_name, last_name, email, address, phone_number } = userInfo; 
+  return client.query(`
+  UPDATE users
+  SET first_name = $1, last_name = $2, email = $3, address = $4, phone_number = $5
+  WHERE id = $6;
+  `, [first_name, last_name, email, address, phone_number, id])
+  .then((response) => {
+    return response.rows[0]; 
+  });
+}
+
 // queries all hard skills from a particular user
 const getUserHardSkills = (id) => {
   return client.query(`
     SELECT hard_skills.* FROM hard_skills 
     JOIN user_hard_skills ON hard_skills.id = hard_skills_id
-    WHERE user_id = $1
+    WHERE user_id = $1;
     `, [id])
     .then((response)=> {
       return response.rows;
@@ -90,7 +103,7 @@ const getUserSoftSkills = (id) => {
   const getUserWorkExperience = (id) => {
     return client.query(`
     SELECT work_experiences.* FROM work_experiences
-    WHERE user_id = $1
+    WHERE user_id = $1;
     `, [id])
     .then((response) => {
       return response.rows
@@ -104,6 +117,7 @@ module.exports = {
     getUserByID,
     getUserByEmail,
     addUser,
+    updateUserInfo,
     getUserHardSkills,
     getUserSoftSkills,
     getUserWorkExperience,
