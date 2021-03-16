@@ -105,7 +105,7 @@ const [username, setUsername] = React.useState('alexhauka');
   const myJobs = numOfProjects(count)
 
 
-  // fetches github api data based off given username
+  // fetches github api data from username and returns project objects
   const getProjects = async () => {
     const macroURL = `https://api.github.com/search/repositories?q=user:${username}`
     
