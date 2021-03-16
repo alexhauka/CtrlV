@@ -57,14 +57,14 @@ const addUserWorkExperience = (id, workInfo) => {
   if (workInfo.id !== undefined){
     return client.query(`
     UPDATE work_experiences
-    SET job_title = $1, job_description = $2
-    WHERE id = $3; 
-    `, [workInfo.title, workInfo.description, workInfo.id])
+    SET job_title = $1, job_description = $2, job_start_date = $3, job_end_date = $4
+    WHERE id = $5; 
+    `, [workInfo.title, workInfo.description, workInfo.start_date, workInfo.end_date, workInfo.id])
   } else {
     return client.query(`
     INSERT INTO work_experiences (user_id, job_title, job_description, job_start_date, job_end_date)
     VALUES ($1, $2, $3, $4, $5);
-    `, [id, workInfo.title, workInfo.description, '2019-06-12', '2020-01-18'])
+    `, [id, workInfo.title, workInfo.description, workInfo.start_date, workInfo.end_date])
     .then((response) => {
       return response.rows
     })
