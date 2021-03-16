@@ -34,14 +34,17 @@ const useStyles = makeStyles(() => ({
 
 
 export default function Jobs(props) {
-  const {title, description, id} = props
+  const {title, description, id, start_date, end_date} = props
   const [jobInfo, setJobInfo] = useState({
     title,
     description,
-    id
+    id,
+    start_date,
+    end_date
   })
   console.log("IN JOBS", jobInfo)
-  function save(){
+  function save(event){
+    event.preventDefault()
     props.updateWork(jobInfo)
   }
   
@@ -71,7 +74,8 @@ export default function Jobs(props) {
           label="Start Date"
           name="start_date"
           type="date"
-          defaultValue=''
+          defaultValue={jobInfo.start_date}
+          onChange={handleChange}
           // className={classes.textField}
           InputLabelProps={{
             shrink: true,
@@ -82,7 +86,8 @@ export default function Jobs(props) {
           label="End Date"
           name="end_date"
           type="date"
-          defaultValue=''
+          defaultValue={jobInfo.end_date}
+          onChange={handleChange}
           // className={classes.textField}
           InputLabelProps={{
             shrink: true,
