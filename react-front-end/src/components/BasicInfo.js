@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, TextField, Button} from '@material-ui/core';
-import { SelectionState } from '@devexpress/dx-react-chart';
+
+// import { SelectionState } from '@devexpress/dx-react-chart';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -34,14 +36,21 @@ export default function BasicInfo(props) {
     address,
     phone_number
   })
+  const [complete, setComplete] = useState(false);
+
   const classes = useStyles(); 
 
   function save(){
-    props.updateUser(userInfo);
+    props.updateUser(userInfo)
+    setComplete(true);
   }
 
   function handleChange(event) {
     setUserInfo({...userInfo, [event.target.name]: event.target.value})
+  }
+
+  if (complete) {
+    return <Redirect to="/"/>
   }
 
   return (
