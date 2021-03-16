@@ -55,6 +55,7 @@ export default function Github() {
 
 const [manual, setManual] = React.useState(false)
 const [count, setCount] = React.useState(1)
+const [username, setUsername] = React.useState('alexhauka');
   
   const classes = useStyles(); 
   const numOfProjects = function(input){
@@ -103,12 +104,69 @@ const [count, setCount] = React.useState(1)
   
   const myJobs = numOfProjects(count)
 
+
+  // fetches github api data based off given username
+  const getProjects = async () => {
+    const macroURL = `https://api.github.com/search/repositories?q=user:${username}`
+    
+    const macroResponse = await fetch(macroURL)
+    const macroResults = await macroResponse.json()
+
+    
+
+    let projectData = {};
+          
+    // loops through top 4 repos (ordered by star count desc.)
+    for (const project in macroResults.items) {
+      
+      // grabs the individual repo's top level info via deconstruction
+      let { name, updated_at, description, stargazers_count } = macroResults.items[project]
+
+      // filters by stars
+      if (stargazers_count > 0) {
+        console.log(macroResults.items[project])
+        
+        
+        // fetch the languages for a given repo
+        const languages = await fetch(`https://api.github.com/repos/${username}/${name}/languages`)
+  
+        const languageResults = await languages.json()
+  
+        // make object of relevant data
+        projectData[name] = {
+          description,
+          updated_at,
+          stargazers_count,
+          languages: languageResults
+        }
+      }
+      
+    }
+    console.log(projectData);
+    return projectData;
+  }
+
   return (
     <div className={classes.root}>
       <div className={classes.top}>
         <Typography variant="h3">Enter your Github username</Typography>
         <br />
-        <TextField variant="filled" id="standard-basic" label="Github Username" />
+        <TextField
+        className={classes.divide}
+        variant="filled"
+        id="standard-basic"
+        label="Github Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        />
+        <br />
+        <Button
+        variant="contained"
+        color="primary"
+        onClick={getProjects}
+        >
+        Authorize Github Access
+        </ Button >
         <br/>
       </div>
       <div className={classes.root}>
