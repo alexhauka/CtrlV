@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
-import KeywordResults from './KeywordResults';
+import React, { useState, useEffect } from 'react';
 
+import KeywordResults from './KeywordResults';
 import { Button, TextField} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'; 
 
+const { keywordFilter } = require('../scrapers/scraper')
+
+const axios = require('axios').default
 
 const useStyles = makeStyles((theme) => ({
   submit: {
@@ -27,24 +30,60 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Keywords() {
+  const [url, setUrl] = useState('')
   const [showKeywords, setShowKeywords] = useState(false)
+  const [filterResults, setFilterResults] = useState({})
   const classes = useStyles()
-  const onClick = () => {
+
+  async function fetchJob() {
+    const response = await axios.post('/api/scraper', {
+      url: url
+    })
+    console.log(response.data);
+    return response.data;
+  }
+ 
+  useEffect(() => {
+
+    
+
+  }, [])
+  
+  const onClick = async () => {
+    console.log('clicked submit url')
+    const scrapeResults = await fetchJob()
+    const dataForFilter = scrapeResults.replace(/[(/:!?),]/g, ' ').toLowerCase().split(' ')
+    const results = keywordFilter(dataForFilter)
+    // console.log(results)
+    setFilterResults({
+      ...results
+    })
+    console.log(filterResults)
     if (showKeywords === true){
       setShowKeywords(false)
     } else {
       setShowKeywords(true)
     }
+    
+    
   };
 
   return (
     <div>
       <form className={classes.form} noValidate autoComplete="off">
-      <TextField className={classes.title} variant="filled" id="standard-basic" label="URL" fullWidth= 'true' color="none"/>
+      <TextField
+      className={classes.title}
+      variant="filled"
+      value={url}
+      onChange={(e) => setUrl(e.target.value)}
+      id="standard-basic"
+      label="URL"
+      fullWidth= 'true'
+      color="none"/>
       <br/>
       <Button className={classes.submit} variant="outlined" color="default" size="large" onClick={onClick}>Submit</Button>
       </form>
-      {showKeywords ? <KeywordResults /> : null }
+      {showKeywords ? <KeywordResults filterResults={filterResults} /> : null }
     </div >
   )
 }
