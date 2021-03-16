@@ -34,22 +34,31 @@ const useStyles = makeStyles(() => ({
 
 
 export default function Jobs(props) {
-  const {title, description} = props
+  const {title, description, id} = props
   const [jobInfo, setJobInfo] = useState({
     title,
-    description
+    description,
+    id
   })
+  console.log("IN JOBS", jobInfo)
+  function save(){
+    props.updateWork(jobInfo)
+  }
+  
+  function handleChange(event) {
+    setJobInfo({...jobInfo, [event.target.name]: event.target.value})
+  }
 
   const classes = useStyles(); 
     return (
-      <form key={props.key} noValidate autoComplete="off">
+      <form key={jobInfo.id} noValidate autoComplete="off">
         <div className={classes.job}>
         <div className={classes.fields}>
         <TextField 
           id="title" 
           name='title' 
           label="Job Title"
-
+          onChange={handleChange}
           value={jobInfo.title} 
         />
         <TextField 
@@ -88,11 +97,18 @@ export default function Jobs(props) {
             multiline
             rows={6}
             value={jobInfo.description}
+            onChange={handleChange}
             placeholder="Tell us about this position..."
             fullWidth={true}
             variant="outlined"
           />
         </div>
+        <Button 
+      className={classes.submit}
+      onClick={save}
+      >
+        Save
+      </Button>
       </div>
     </form>
     )

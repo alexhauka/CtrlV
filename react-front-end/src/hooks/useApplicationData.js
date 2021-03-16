@@ -3,7 +3,8 @@ import { useEffect, useReducer } from 'react';
 import { 
   reducer,
   SET_APPLICATION_DATA,
-  SET_UPDATED_USER
+  SET_UPDATED_USER,
+  SET_UPDATED_WORK
 } from '../reducers/application'; 
 
 const axios = require('axios').default
@@ -67,6 +68,18 @@ export function useApplicationData() {
     })
   }
 
+  function updateWork(workInfo) {
+    console.log("In UAD:", workInfo)
+    return axios.post(`/api/users/${state.user.id}/work_experience`, { workInfo })
+    .then(() => {
+      dispatch({
+        type: SET_UPDATED_WORK,
+        workInfo
+      })
+    })
+    .catch((error) => error)
+  }
+
   function addUserHardSkill(skill) {
     return axios.put(`/api/users/2/hard_skills`, { skill })
     .then(() => {
@@ -91,7 +104,8 @@ export function useApplicationData() {
     loginUser,
     updateUser,
     addUserHardSkill,
-    removeUserHardSkill
+    removeUserHardSkill,
+    updateWork
   }
 
 }
