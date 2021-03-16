@@ -51,17 +51,42 @@ const getUserHardSkills = (id) => {
     });
 }
 
+// clears all the hardskills from a particular user
+const removeUserHardSkill = (id, skillID) => {
+  return client.query(`
+  DELETE FROM user_hard_skills 
+  WHERE user_id = $1 AND hard_skills_id = $2;
+  `, [id, skillID])
+  .then((response) => {
+    return response.rows; 
+  })
+}
+
+// updates the user hard skills
+const addUserHardSkill = (id, skillID) => {
+  return client.query(`
+  INSERT INTO user_hard_skills (user_id, hard_skills_id)
+  VALUES ($1, $2);
+  `, [id, skillID])
+  .then((response) => {
+    return response.rows;
+  })
+}
+
+
+
 // queries all soft skills from a particular user
 const getUserSoftSkills = (id) => {
   return client.query(`
     SELECT soft_skills.* FROM soft_skills 
     JOIN user_soft_skills ON soft_skills.id = soft_skills_id
-    WHERE user_id = $1
+    WHERE user_id = $1;
     `, [id])
     .then((response)=> {
       return response.rows;
     });
 }
+
 
 
 module.exports = {
@@ -70,5 +95,7 @@ module.exports = {
     getUserByEmail,
     addUser,
     getUserHardSkills,
-    getUserSoftSkills
+    getUserSoftSkills,
+    addUserHardSkill,
+    removeUserHardSkill
 }
