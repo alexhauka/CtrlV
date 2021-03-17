@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -19,12 +20,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import {Link} from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
 
 const drawerWidth = 240;
 function ListItemLink(props) {
-  return <ListItem button component="a" {...props}/>;
+  return <ListItem button component={() => <Link to={props.href}>{props.children}</Link>} {...props} />;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -148,16 +149,19 @@ export default function Sidebar(props) {
           <h1 noWrap className={classes.title}>
             <Link variant="primary" className={classes.logo} to="/" >C<span className={classes.secondTitle}>(trl)</span>V</Link>
           </h1>
-          <h1> {props.user.first_name} </h1>
+          {props.user && <h1> {props.user.first_name} {props.user.last_name}</h1> } 
+          {props.user === null && 
           <Typography variant="h6">
             <Link variant="primary" className={classes.title} to="/signup">sign up</Link>
-          </Typography>
+          </Typography>}
+          {props.user === null && 
           <Typography variant="h6">
             <Link variant="primary" className={classes.title} to="/login">login</Link>
-          </Typography>
-          <Typography variant="h6">
-            <Link variant="primary" className={classes.title} to="/logout">logout</Link>
-          </Typography>
+          </Typography>}
+          {props.user && 
+          <Button className={classes.title} onClick={props.logout}>
+            logout
+          </Button>}
           </Grid>
           </div>
         

@@ -2,9 +2,9 @@ const express = require('express');
 const router  = express.Router();
 
 
-router.get('/', (req, res) => {
-  req.session = null
-  res.redirect('/')
+router.post('/', (req, res) => {
+  req.session.user_id = null;
+  res.status(200).send()
 });
 
 module.exports = router;

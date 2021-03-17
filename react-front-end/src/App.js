@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // import { makeStyles } from '@material-ui/core'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-// import axios from 'axios';
+import {BrowserRouter as Router, Switch, Route, Redirect, useHistory} from 'react-router-dom'
+import axios from 'axios';
 // import './App.css';
 
 import { useApplicationData } from './hooks/useApplicationData'; 
@@ -16,6 +16,7 @@ import WorkExperience from './components/WorkExperience';
 import Github from './components/Github';
 import Footer from './components/Footer';
 import BasicInfo from './components/BasicInfo';
+import Axios from 'axios';
 
 // const useStyles = makeStyles((theme) => ({
 //   root: {
@@ -38,32 +39,66 @@ import BasicInfo from './components/BasicInfo';
 //   }
 // }));
 
+
+
 export default function App() {
   const {
     state,
     registerUser,
     loginUser,
+    logoutUser,
     updateUser,
     addUserHardSkill,
     removeUserHardSkill,
-    updateWork
+    updateWork,
+    checkUser
   } = useApplicationData(); 
+  const history = useHistory()
+
+  useEffect(() => {
+    checkUser()
+    .then((success) => {
+      history.push("/")
+    })
+    .catch((error) => {
+      history.push("/login")
+    })
+  },[checkUser]);
+
+
+  const handleLogout = () => {
+    logoutUser()
+    .then(() => {
+      history.push("/login")
+    })
+  }
+
+  const ProtectedRoute = (props) => {
+    if (state.isLoggingIn) {
+      return null 
+    } 
+    if (state.user) {
+      return <Route {...props} /> 
+    }
+    return <Redirect to="/login" /> 
+  }
 
   return(
-    <Router>
-      <Sidebar user={state.user}/>
+    <>
+      <Sidebar user={state.user} logout={handleLogout} />
       <Switch> 
-        <Route path="/" exact component={Home} />
+        <ProtectedRoute path="/" exact component={Home} />
         <Route 
         path="/signup" 
         component={() => <SignUp registerUser={registerUser} />} 
         /> 
         <Route 
         path="/login"
-        component={() => <Login loginUser={loginUser} />} 
+        component={(props) => <Login loginUser={loginUser} isLoggingIn={state.isLoggingIn} user={state.user} {...props} />} 
         />
-        <Route path="/resume" component={Resume} /> 
-        <Route 
+
+        <ProtectedRoute path="/resume" component={Resume} /> 
+        <ProtectedRoute 
         path="/skills" 
         component={() => <SkillCheck 
           hardskills={state.hardskills} 
@@ -72,12 +107,12 @@ export default function App() {
           removeUserHardSkill={removeUserHardSkill}
           />} 
         />
-        <Route path="/work" component={() => <WorkExperience workExperience={state.userWorkExperience} updateWork={updateWork} />} />
-        <Route path="/github" component={Github} />
-        <Route path="/basicInfo" component={() => <BasicInfo user={state.user} updateUser={updateUser} />} />
+        <ProtectedRoute path="/work" component={() => <WorkExperience workExperience={state.userWorkExperience} updateWork={updateWork} />} />
+        <ProtectedRoute path="/github" component={Github} />
+        <ProtectedRoute path="/basicInfo" component={() => <BasicInfo user={state.user} updateUser={updateUser} />} />
       </Switch>
       <Footer />
-    </Router>
+    </>
   );
 }
 

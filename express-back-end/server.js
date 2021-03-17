@@ -13,6 +13,8 @@ App.use(cookieSession({
   keys: ['key1', 'key2']
 }))
 
+const { getUserByID } = require('./lib/user-queries');
+
 const loginRoutes = require('./routes/login');
 const logoutRoutes = require('./routes/logout');
 const signupRoutes = require('./routes/signup');
@@ -33,12 +35,33 @@ App.use('/api/softSkills', softSkillsRoutes);
 App.use('/api/scraper', scraperRoutes);
 App.use('/api/projects', projectsRoutes)
 
+// checks the user 
+App.use('/api/authcheck',(req, res) => {
+  if (req.session.user_id) {
+    getUserByID(req.session.user_id)
+    .then((user) => {
+      res.json({
+        id: user.id,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
+        github: user.github,
+        linkedin: user.linkedin,
+        address: user.address,
+        phone_number: user.phone_number
+      }); 
+    })
+    return
+  }
+  return res.status(403).send();
+})
+
 // Sample GET route
 App.get('/api/data', (req, res) => res.json({
   message: "Seems to work!",
 }));
 
-App.listen(PORT, () => {
+App.listen(PORT, () => { 
   // eslint-disable-next-line no-console
   console.log(`Express seems to be listening on port ${PORT} so that's pretty good 👍`);
 });
