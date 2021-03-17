@@ -1,6 +1,9 @@
-// const [username, setUsername] = React.useState('alexhauka');
+import React from 'react';
+import { Button } from '@material-ui/core';
+import axios from 'axios';
 
-const getProjects = async (username) => {
+
+const uploadProjects = async (username) => {
   const macroURL = `https://api.github.com/search/repositories?q=user:${username}`
   
   // macro being the top level info for projects
@@ -29,14 +32,15 @@ const getProjects = async (username) => {
       for (const language in languageResults) {
         sum += languageResults[language]
       }
-      // console.log(sum)
+
       const firstLang = Object.keys(languageResults)[0]
       const secondLang = Object.keys(languageResults)[1]
 
       // to generate language percentages:
       // console.log(languageResults[firstLang], languageResults[secondLang])
 
-      // for entry into database
+      // for entry into database:
+
       // STILL NEED TO HOOK UP USER_ID DYNAMICALLY,
       // CURRENTLY HARD SET TO '2' IN QUERY
       projectData = {
@@ -49,17 +53,24 @@ const getProjects = async (username) => {
         description,
         last_updated: updated_at
       }
-      console.log(projectData)
+      // console.log(projectData)
 
       // UNCOMMENT TO ALLOW DATABASE ENTRY OF PROJECTS:
-      // axios.post('/api/projects', { projectData })
+      axios.post('/api/projects', { projectData })
       
     }
     
   }
-  // console.log(projectData);
 
-  // puts each project into database (under user_id 2 for now!!)
+
+
+
+    
+
+}
+
+
+
 export default function GetGithub(props){
 
 
@@ -68,12 +79,13 @@ export default function GetGithub(props){
 
 
   return (
-    <Button></Button>
+    <Button
+    variant="contained"
+    color="primary"
+    onClick={() => uploadProjects(props.username)}
+    >
+      Autogenerate Projects
+    </Button>
   )
-}
-
-
-    
-
 }
 
