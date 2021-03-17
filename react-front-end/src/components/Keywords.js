@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Keywords() {
+export default function Keywords(props) {
   const [url, setUrl] = useState('')
   const [showKeywords, setShowKeywords] = useState(false)
   const [filterResults, setFilterResults] = useState({})
@@ -43,11 +43,11 @@ export default function Keywords() {
     return response.data;
   }
  
-  useEffect(() => {
+  // useEffect(() => {
 
     
 
-  }, [])
+  // }, [])
   
   const onClick = async () => {
     console.log('clicked submit url')
@@ -59,14 +59,19 @@ export default function Keywords() {
       ...results
     })
     console.log(filterResults)
+    toggleKeywords()
+    
+    
+  };
+
+  const toggleKeywords = () => {
     if (showKeywords === true){
       setShowKeywords(false)
     } else {
       setShowKeywords(true)
     }
-    
-    
-  };
+
+  }
 
   return (
     <div>
@@ -83,7 +88,8 @@ export default function Keywords() {
       <br/>
       <Button className={classes.submit} variant="outlined" color="default" size="large" onClick={onClick}>Submit</Button>
       </form>
-      {showKeywords ? <KeywordResults filterResults={filterResults} /> : null }
+      <Button className={classes.submit} variant="outlined" color="default" size="large" onClick={toggleKeywords}>Toggle Keywords</Button>
+      {showKeywords ? <KeywordResults state={props.state} filterResults={filterResults} /> : null }
     </div >
   )
 }
