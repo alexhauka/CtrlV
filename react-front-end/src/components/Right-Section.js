@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
+import { data } from 'retext';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -88,6 +89,7 @@ export default function RightSection(props) {
   const classes = useStyles()
   //For edit menu
   const [anchorEl, setAnchorEl] = React.useState(null);
+  
   const open = Boolean(anchorEl);
 
   const [project1, setProject1] = React.useState(userProjects[0])
@@ -95,8 +97,11 @@ export default function RightSection(props) {
   const [project3, setProject3] = React.useState(userProjects[2])
 
   // console.log("PROJECT1", projects.project1)
-  const handleClick = (event) => {
+  const handleClick = (event, index) => {
     // console.log("In handle", event)
+    // const tempAnchor = anchorEl
+    // tempAnchor[index] = event.currentTarget; 
+    // setAnchorEl(tempAnchor)
     console.log("Event:", event.currentTarget.id)
     setAnchorEl(event.currentTarget);
   };
@@ -104,6 +109,7 @@ export default function RightSection(props) {
   const handleClose = (project) => {
     
     console.log(anchorEl)
+    
     console.log("Props", project) // can get the name of the project to change to
     if (anchorEl.id === 'btn1'){
       console.log("in 1")
@@ -117,24 +123,26 @@ export default function RightSection(props) {
       console.log("in 3")
       setProject3(project)
     }
-    setAnchorEl(null);
+    setAnchorEl();
   };
   // const projects = props.props.userProjects
-  const projectsMenu1 = userProjects.map(i => {
+  const projectsMenu = userProjects.map(i => {
     return (
       <MenuItem  onClick={() => {handleClose(i)}} >{i.title}</MenuItem>
     )
   })
-  const projectsMenu2 = userProjects.map(i => {
-    return (
-      <MenuItem  onClick={() => {handleClose(i)}}>{i.title}</MenuItem>
-    )
-  })
-  const projectsMenu3 = userProjects.map(i => {
-    return (
-      <MenuItem  onClick={() => {handleClose(i)}}>{i.title}</MenuItem>
-    )
-  })
+  // const projectsMenu2 = userProjects.map(i => {
+  //   return (
+  //     <MenuItem  onClick={() => {handleClose(i)}}>{i.title}</MenuItem>
+  //   )
+  // })
+  // const projectsMenu3 = userProjects.map(i => {
+  //   return (
+  //     <MenuItem  onClick={() => {handleClose(i)}}>{i.title}</MenuItem>
+  //   )
+  // })
+
+
   // end of Edit menu
 
 
@@ -231,14 +239,14 @@ export default function RightSection(props) {
           Choose Another Project
         </Button>
         <Menu
-          id="1"
+          // id={row.id}
           anchorEl={anchorEl}
           keepMounted
           open={open}
-          // onClose={() => handleClose(1)}
+          onClose={() => handleClose()}
           TransitionComponent={Fade}
         >
-          {projectsMenu1}
+          {projectsMenu}
         </Menu>
           <TextField
             id="p1T"
@@ -281,14 +289,14 @@ export default function RightSection(props) {
           Choose Another Project
         </Button>
         <Menu
-          id="2"
+          // id={row.id}
           anchorEl={anchorEl}
           keepMounted
           open={open}
-          // onClose={() => {handleClose(2)}}
+          onClose={() => handleClose()}
           TransitionComponent={Fade}
         >
-          {projectsMenu2}
+          {projectsMenu}
         </Menu>
           <TextField
             id="p2T"
@@ -327,18 +335,18 @@ export default function RightSection(props) {
         direction="column"
         justify="space-around"
         >
-        <Button id='btn3' variant="contained" color="primary" aria-controls="fade-menu3" aria-haspopup="true" onClick={handleClick}>
+        <Button id='btn3' variant="contained" color="primary" aria-haspopup="true" aria-controls="fade-menu3" onClick={handleClick}>
           Choose Another Project
         </Button>
         <Menu
-          id="3"
+          // id={row.id}
           anchorEl={anchorEl}
           keepMounted
           open={open}
-          // onClose={() => {handleClose(3)}}
+          onClose={() => handleClose()}
           TransitionComponent={Fade}
         >
-          {projectsMenu3}
+          {projectsMenu}
           </Menu>
           <TextField
             id="p3T"
