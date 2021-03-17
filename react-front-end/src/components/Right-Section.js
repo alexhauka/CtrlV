@@ -1,10 +1,14 @@
 import React from 'react'; 
 import { Grid, TextField, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'; 
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles(() => ({
   root: {
-    maxWidth: '75%',
+    maxWidth: '85%',
     textAlign: "center",
     padding: 10,
     paddingTop: "5%",
@@ -80,24 +84,81 @@ const useStyles = makeStyles(() => ({
 }))
 
 export default function RightSection(props) {
+  const { user, userHardSkills, userProjects, userWorkExperience } = props.props
   const classes = useStyles()
+  //For edit menu
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const [project1, setProject1] = React.useState(userProjects[0])
+  const [project2, setProject2] = React.useState(userProjects[1])
+  const [project3, setProject3] = React.useState(userProjects[2])
+
+  // console.log("PROJECT1", projects.project1)
+  const handleClick = (event) => {
+    // console.log("In handle", event)
+    console.log("Event:", event.currentTarget.id)
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = (project) => {
+    
+    console.log(anchorEl)
+    console.log("Props", project) // can get the name of the project to change to
+    if (anchorEl.id === 'btn1'){
+      console.log("in 1")
+      setProject1(project)
+    } 
+    else if (anchorEl.id === 'btn2'){
+      console.log("in 2")
+      setProject2(project)
+    }
+    else if (anchorEl.id === 'btn3'){
+      console.log("in 3")
+      setProject3(project)
+    }
+    setAnchorEl(null);
+  };
+  // const projects = props.props.userProjects
+  const projectsMenu1 = userProjects.map(i => {
+    return (
+      <MenuItem  onClick={() => {handleClose(i)}} >{i.title}</MenuItem>
+    )
+  })
+  const projectsMenu2 = userProjects.map(i => {
+    return (
+      <MenuItem  onClick={() => {handleClose(i)}}>{i.title}</MenuItem>
+    )
+  })
+  const projectsMenu3 = userProjects.map(i => {
+    return (
+      <MenuItem  onClick={() => {handleClose(i)}}>{i.title}</MenuItem>
+    )
+  })
+  // end of Edit menu
+
+
+
+
+
+
+
+
+
 
   console.log('IN right side:', props)
-  const user = props.props.user
+  // const user = props.props.user
   const userName = `${user.first_name} ${user.last_name}`
-  const projects = props.props.userProjects
-  // This is where we are generating projects. Currently hardcoded
-  const project1 = projects[0]
-  const project2 = projects[3]
-  const project3 = projects[5]
   
-  const work = props.props.userWorkExperience
+  // This is where we are generating projects. Currently hardcoded
 
-  const work1 = work[0]
-  const work2 = work[1]
-  const work3 = work[2]
+  
 
-  const hardSkills = props.props.userHardSkills
+  const work1 = userWorkExperience[0]
+  const work2 = userWorkExperience[1]
+  const work3 = userWorkExperience[2]
+
+  const hardSkills = userHardSkills
   
 
   const languagesList = hardSkills.map(s => {
@@ -162,13 +223,27 @@ export default function RightSection(props) {
         <div className={classes.singleProject}>
         <Grid 
         container
+        // id='1'
         direction="column"
         justify="space-around"
+        > 
+        <Button id='btn1' variant="contained" color="primary" aria-controls="fade-menu1" aria-haspopup="true" onClick={handleClick}>
+          Choose Another Project
+        </Button>
+        <Menu
+          id="1"
+          anchorEl={anchorEl}
+          keepMounted
+          open={open}
+          // onClose={() => handleClose(1)}
+          TransitionComponent={Fade}
         >
+          {projectsMenu1}
+        </Menu>
           <TextField
-            id="outlined-read-only-input"
+            id="p1T"
             label="Title"
-            defaultValue={project1 ? project1.title: ''}
+            value={project1 ? project1.title: ''}
             InputProps={{
               readOnly: true,
             }}
@@ -176,9 +251,9 @@ export default function RightSection(props) {
           />
           <br/>
           <TextField
-            id="outlined-read-only-input"
+            id="p1PL"
             label="Language"
-            defaultValue={project1 ? project1.primary_language: ''}
+            value={project1 ? project1.primary_language: ''}
             InputProps={{
               readOnly: true,
             }}
@@ -186,11 +261,11 @@ export default function RightSection(props) {
           />
           <br/>
           <TextField
-            id="outlined-multiline-static"
+            id="P1D"
             label="Description"
             multiline
             rows={4}
-            defaultValue={project1 ? project1.description: ''}
+            value={project1 ? project1.description: ''}
             variant="outlined"
           />
         </Grid>
@@ -202,10 +277,23 @@ export default function RightSection(props) {
         direction="column"
         justify="space-around"
         >
+        <Button id='btn2' variant="contained" color="primary" aria-controls="fade-menu2" aria-haspopup="true" onClick={handleClick}>
+          Choose Another Project
+        </Button>
+        <Menu
+          id="2"
+          anchorEl={anchorEl}
+          keepMounted
+          open={open}
+          // onClose={() => {handleClose(2)}}
+          TransitionComponent={Fade}
+        >
+          {projectsMenu2}
+        </Menu>
           <TextField
-            id="outlined-read-only-input"
+            id="p2T"
             label="Title"
-            defaultValue={project2 ? project2.title: ''}
+            value={project2 ? project2.title: ''}
             InputProps={{
               readOnly: true,
             }}
@@ -213,9 +301,9 @@ export default function RightSection(props) {
           />
           <br/>
           <TextField
-            id="outlined-read-only-input"
+            id="P2PL"
             label="Language"
-            defaultValue={project2 ? project2.primary_language: ''}
+            value={project2 ? project2.primary_language: ''}
             InputProps={{
               readOnly: true,
             }}
@@ -223,11 +311,11 @@ export default function RightSection(props) {
           />
           <br/>
           <TextField
-            id="outlined-multiline-static"
+            id="p2D"
             label="Description"
             multiline
             rows={4}
-            defaultValue={project2 ? project2.description: ''}
+            value={project2 ? project2.description: ''}
             variant="outlined"
           />
         </Grid>
@@ -239,10 +327,23 @@ export default function RightSection(props) {
         direction="column"
         justify="space-around"
         >
+        <Button id='btn3' variant="contained" color="primary" aria-controls="fade-menu3" aria-haspopup="true" onClick={handleClick}>
+          Choose Another Project
+        </Button>
+        <Menu
+          id="3"
+          anchorEl={anchorEl}
+          keepMounted
+          open={open}
+          // onClose={() => {handleClose(3)}}
+          TransitionComponent={Fade}
+        >
+          {projectsMenu3}
+          </Menu>
           <TextField
-            id="outlined-read-only-input"
+            id="p3T"
             label="Title"
-            defaultValue={project3 ? project3.title: ''}
+            value={project3 ? project3.title: ''}
             InputProps={{
               readOnly: true,
             }}
@@ -250,9 +351,9 @@ export default function RightSection(props) {
           />
           <br/>
           <TextField
-            id="outlined-read-only-input"
+            id="P3PL"
             label="Language"
-            defaultValue={project3 ? project3.primary_language: ''}
+            value={project3 ? project3.primary_language: ''}
             InputProps={{
               readOnly: true,
             }}
@@ -260,11 +361,11 @@ export default function RightSection(props) {
           />
           <br/>
           <TextField
-            id="outlined-multiline-static"
+            id="P3D"
             label="Description"
             multiline
             rows={4}
-            defaultValue={project3 ? project3.description: ''}
+            value={project3 ? project3.description: ''}
             variant="outlined"
           />  
         </Grid>
