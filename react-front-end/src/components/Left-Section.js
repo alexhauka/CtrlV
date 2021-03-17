@@ -22,13 +22,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function LeftSection(){
+export default function LeftSection(props){
   const [mode, setMode] = useState(KEYWORDS);
   const classes = useStyles()
 
   return (
     <div className={classes.root}>
-      {mode === KEYWORDS && <Keywords />}
+      {mode === KEYWORDS && <Keywords state={props.state}/>}
       {mode === FONTSTYLES && <FontStyles />}
     </div>
   )

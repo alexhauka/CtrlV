@@ -83,7 +83,7 @@ const keywordFilter = (jobText) => {
       let key = pair[0];
       countedObject[key] = pair[1]
     }
-    console.log("Counted Object: ", countedObject);
+    // console.log("Counted Object: ", countedObject);
   
     const options = {
       maximum: 30
