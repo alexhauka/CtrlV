@@ -32,7 +32,7 @@ export default function Home(props) {
         justify="space-between"
         >
         <div className={classes.left}>
-        <LeftSection/>
+        <LeftSection state={props.props}/>
         </div>  
         <div className={classes.right}>
         <RightSection props={props.props} />

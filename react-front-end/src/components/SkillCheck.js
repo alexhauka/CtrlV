@@ -54,25 +54,32 @@ export default function SkillCheck(props) {
   const data = props.hardskills;
   const userData = props.userHardSkills
 
+  const defaultSkills = {} 
+  for (const skill of data) {
+    defaultSkills[skill.name] = false; 
+  }
   const markedUserSkills = {}
-
   for (const marked of userData) {
     markedUserSkills[marked.name] = true; 
   }
+  const currentUserSkills = {
+    ...defaultSkills,
+    ...markedUserSkills
+  };
   
   const classes = useStyles();
-  const [checkedSkills, setCheckedState] = useState(markedUserSkills || "");
+  const [checkedSkills, setCheckedState] = useState(currentUserSkills);
   const [complete, setComplete] = useState(false); 
   const [message, setMessage] = useState("");
   const [open, setOpen] = useState(false); 
   
 
   const handleChange = (event) => {
-    setCheckedState({...checkedSkills, [event.target.name] : event.target.checked })
+    setCheckedState({...checkedSkills, [event.target.value] : event.target.checked })
     if (event.target.checked) {
-      addSkill(event.target.id, event.target.name, event.target.value);
+      addSkill(event.target.id, event.target.name, event.target.dataset.type);
     } else {
-      removeSkill(event.target.id, event.target.name, event.target.value); 
+      removeSkill(event.target.id, event.target.name, event.target.dataset.type); 
     }
   }
 
@@ -102,8 +109,11 @@ export default function SkillCheck(props) {
             checked={checkedSkills[s.name]}
             onChange={handleChange}
             name={s.name}
-            value={s.type} 
+            value={s.name} 
             id={s.id.toString()}
+            inputProps={{
+              'data-type': s.type
+            }}
             />}
           label={s.name}      
         />
@@ -123,8 +133,11 @@ export default function SkillCheck(props) {
             checked={checkedSkills[s.name]}
             onChange={handleChange} 
             name={s.name} 
-            value={s.type}
+            value={s.name}
             id={s.id.toString()}
+            inputProps={{
+              'data-type': s.type
+            }}
             />}
           label={s.name}
         />
@@ -144,8 +157,11 @@ export default function SkillCheck(props) {
           checked={checkedSkills[s.name]}
           onChange={handleChange}
           name={s.name} 
-          value={s.type}
+          value={s.name}
           id={s.id.toString()}
+          inputProps={{
+            'data-type': s.type
+          }}
           />}
         label={s.name}
         />

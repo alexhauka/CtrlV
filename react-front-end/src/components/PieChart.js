@@ -3,6 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import {
   Chart,
   PieSeries,
+  Legend,
   Title,
 } from '@devexpress/dx-react-chart-material-ui';
 import { makeStyles } from '@material-ui/core/styles';
@@ -21,8 +22,19 @@ import { Animation } from '@devexpress/dx-react-chart';
 // ];
 const useStyles = makeStyles(() => ({
   chart: {
+    // display: 'flex',
+    // flexDirection: 'column',
+    // alignItems: 'center',
     backgroundColor: "transparent",
     boxShadow: "none"
+  },
+  legend: {
+    display: 'flex',
+    alignSelf: 'center'
+    // marginTop: 20
+  },
+  pie: {
+
   }
 }))
 
@@ -42,11 +54,17 @@ export default function PieChart(props){
     return (
       <Paper className={classes.chart}>
         <Chart data={newData}>
-          <PieSeries
+
+          <PieSeries classname={classes.pie}
+          innerRadius='.25'
+          outerRadius='.75'
             valueField="score"
             argumentField="name"
           />
-          <Title text="Keyword Scores for this Posting:" />
+          <Legend className={classes.legend}
+            position="left"
+          />
+          <Title text="Keywords Breakdown:" />
           <Animation />
         </Chart>
       </Paper>
