@@ -52,6 +52,24 @@ const updateUserInfo = (id, userInfo) => {
   });
 }
 
+updateUserProject = (id, projectInfo) => {
+  if (projectInfo.id !== undefined){
+    return client.query(`
+    UPDATE projects
+    SET title= $1, primary_language = $2, primary_language_percent = $3, secondary_language = $4, secondary_language_percent = $5, description = $6, last_updated = $7, url = $8
+    WHERE id = $9
+    `, [projectInfo.title, projectInfo.primary_language, projectInfo.primary_language_percent, projectInfo.secondary_language, projectInfo.secondary_language_percent, projectInfo.description, projectInfo.last_updated, projectInfo.url, projectInfo.id])
+  } else {
+    return client.query(`
+    INSERT INTO projects (user_id, title, primary_language, description, last_updated, primary_language_percent, secondary_language, secondary_language_percent, url)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+    `, [id, projectInfo.title, projectInfo.primary_language, projectInfo.description, projectInfo.last_updated, projectInfo.primary_language_percent, projectInfo.secondary_language, projectInfo.secondary_language_percent, projectInfo.url])
+    .then((response) => {
+      return response.rows
+    })
+  }
+}
+
 const addUserWorkExperience = (id, workInfo) => {
   console.log("In my query", workInfo); 
   if (workInfo.id !== undefined){
@@ -129,6 +147,16 @@ const getUserSoftSkills = (id) => {
     })
   }
 
+  const getUserProjects = (id) => {
+    return client.query(`
+    SELECT projects.* FROM projects
+    WHERE user_id = $1;
+    `, [id])
+    .then((response) => {
+      return response.rows
+    })
+  }
+
 
 
 module.exports = {
@@ -142,5 +170,6 @@ module.exports = {
     getUserWorkExperience,
     addUserHardSkill,
     removeUserHardSkill,
-    addUserWorkExperience
+    addUserWorkExperience,
+    getUserProjects
 }

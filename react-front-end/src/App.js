@@ -51,7 +51,8 @@ export default function App() {
     addUserHardSkill,
     removeUserHardSkill,
     updateWork,
-    checkUser
+    checkUser,
+    updateProject
   } = useApplicationData(); 
   const history = useHistory()
 
@@ -108,8 +109,12 @@ export default function App() {
           />} 
         />
         <ProtectedRoute path="/work" component={() => <WorkExperience workExperience={state.userWorkExperience} updateWork={updateWork} />} />
-        <ProtectedRoute path="/github" component={Github} />
+        <ProtectedRoute  path="/github" component={() => <Github
+        projects={state.userProjects} updateProject={updateProject}/>}/>
         <ProtectedRoute path="/basicInfo" component={() => <BasicInfo user={state.user} updateUser={updateUser} />} />
+        <ProtectedRoute path="/work" component={() => <WorkExperience workExperience={state.userWorkExperience} updateWork={updateWork} />}/>
+        <ProtectedRoute path="/basicInfo" component={() => <BasicInfo user={state.user} updateUser={updateUser} />} />
+        {/* <Route path="/basicInfo" component={() => <BasicInfo user={state.user} updateUser={updateUser} />} /> */}
       </Switch>
       <Footer />
     </>

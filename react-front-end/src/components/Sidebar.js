@@ -146,7 +146,7 @@ export default function Sidebar(props) {
             justify="space-between"
             alignItems="center"
           >
-          <h1 noWrap className={classes.title}>
+          <h1 nowrap='true' className={classes.title}>
             <Link variant="primary" className={classes.logo} to="/" >C<span className={classes.secondTitle}>(trl)</span>V</Link>
           </h1>
           {props.user && <h1> {props.user.first_name} {props.user.last_name}</h1> } 

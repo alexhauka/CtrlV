@@ -2,7 +2,7 @@ const express = require('express');
 const router  = express.Router();
 
 const {
-  getUsers, getUserByID, addUser, updateUserInfo, getUserHardSkills, getUserSoftSkills, getUserWorkExperience, addUserHardSkill, removeUserHardSkill, addUserWorkExperience
+  getUsers, getUserByID, addUser, updateUserInfo, getUserHardSkills, getUserSoftSkills, getUserWorkExperience, addUserHardSkill, removeUserHardSkill, addUserWorkExperience, getUserProjects
 } = require('../lib/user-queries');
 
 // get /users
@@ -95,6 +95,25 @@ router.post('/:id/soft_skills', (req, res) => {
 router.delete('/:id/soft_skills', (req, res) => {
 
 });
+
+router.get('/:id/projects', (req, res) => {
+  getUserProjects(req.params.id)
+  .then((users) => {
+    res.json(users)
+  })
+});
+
+router.post('/:id/projects', (req, res) => {
+  console.log("I'm in my Routes!", req.body.projectInfo)
+  updateUserProject(req.params.id ,req.body.projectInfo)
+  //   .then((data) => {
+  //   res.send(data);
+  // })
+  // .catch(e => {
+  //   console.error(e);
+  //   res.send(e);
+  // })
+}); 
 
 router.get('/:id/work_experience', (req, res) => {
   getUserWorkExperience(req.params.id)

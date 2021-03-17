@@ -6,7 +6,8 @@ import {
   SET_UPDATED_USER,
   SET_UPDATED_WORK,
   SET_USER,
-  RESET_APPLICATION_DATA
+  RESET_APPLICATION_DATA,
+  SET_UPDATED_PROJECT
 } from '../reducers/application'; 
 
 const axios = require('axios').default
@@ -18,7 +19,10 @@ export function useApplicationData() {
     hardskills: [],
     userHardSkills: [],
     user: null,
-    userWorkExperience: {}
+    userWorkExperience: {},
+    // user: {},
+    // userWorkExperience: {},
+    userProjects: []
   }); 
 
   const user_id = state.user && state.user.id
@@ -29,16 +33,28 @@ export function useApplicationData() {
      } 
     Promise.all([
       axios.get(`/api/hardSkills`),
+      axios.get(`/api/users/${user_id}`),
       axios.get(`/api/users/${user_id}/hard_skills`),
-      axios.get(`/api/users/${user_id}/work_experience`)
+      axios.get(`/api/users/${user_id}/work_experience`),
+      // axios.get(`/api/users/2/hard_skills`),
+      // axios.get(`/api/users/2/work_experience`),
+      axios.get(`/api/users/2/projects`),
+
     ])
     .then((all) => {
       dispatch({
         type: SET_APPLICATION_DATA,
         hardskills: all[0].data,
-        userHardSkills: all[1].data,
-        userWorkExperience: all[2].data
+        user: all[1].data,
+        userHardSkills: all[2].data,
+        userWorkExperience: all[3].data,
+        userProjects: all[4].data
       })
+        // userHardSkills: all[2].data,
+        // userWorkExperience: all[3].data,
+        
+      // })
+      console.log("UAD State", all[4].data)
     })
   }, [user_id])
     
@@ -112,6 +128,16 @@ export function useApplicationData() {
     })
   }
 
+  function updateProject(projectInfo){
+    return axios.post(`/api/users/${state.user.id}/projects`, {projectInfo})
+    .then(() => {
+      dispatch({
+        type: SET_UPDATED_PROJECT,
+        projectInfo
+      })
+    })
+  }
+
   function updateWork(workInfo) {
     console.log("In UAD:", workInfo)
     return axios.post(`/api/users/${user_id}/work_experience`, { workInfo })
@@ -151,7 +177,8 @@ export function useApplicationData() {
     addUserHardSkill,
     removeUserHardSkill,
     updateWork,
-    checkUser: useCallback(checkUser,[dispatch])
+    checkUser: useCallback(checkUser,[dispatch]),
+    updateProject
   }
 
 }
