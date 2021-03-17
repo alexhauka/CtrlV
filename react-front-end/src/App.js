@@ -57,10 +57,11 @@ export default function App() {
   const history = useHistory()
 
   useEffect(() => {
+    // checkUser()
+    // .then((success) => {
+    //   // history.push("/")
+    // })
     checkUser()
-    .then((success) => {
-      history.push("/")
-    })
     .catch((error) => {
       history.push("/login")
     })

@@ -168,13 +168,14 @@ export default function Sidebar(props) {
           </h1>
           {props.user && <h1> {props.user.first_name} {props.user.last_name}</h1> } 
           {props.user === null && 
-          <Typography variant="h6">
-            <Link variant="primary" className={classes.title} to="/signup">sign up</Link>
-          </Typography>}
-          {props.user === null && 
-          <Typography variant="h6">
-            <Link variant="primary" className={classes.title} to="/login">login</Link>
-          </Typography>}
+          <>
+            <Typography variant="h6">
+              <Link variant="primary" className={classes.title} to="/signup">sign up</Link>
+            </Typography> 
+            <Typography variant="h6">
+              <Link variant="primary" className={classes.title} to="/login">login</Link>
+            </Typography>
+          </>}
           {props.user && 
           <Button className={classes.title} onClick={props.logout}>
             logout
@@ -183,6 +184,7 @@ export default function Sidebar(props) {
           </div>
         
           <div>
+          {props.user && 
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -192,7 +194,7 @@ export default function Sidebar(props) {
             className={clsx(open && classes.hide)}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton>}
           </div>
           </Grid>
         </Toolbar>
