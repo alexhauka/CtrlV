@@ -25,7 +25,17 @@ import { Button } from '@material-ui/core';
 
 const drawerWidth = 240;
 function ListItemLink(props) {
-  return <ListItem button component={() => <Link to={props.href}>{props.children}</Link>} {...props} />;
+  return <ListItem button component={() => 
+                          <Link style={{
+                            display: 'flex',
+                            padding: '10px',
+                            textDecoration: 'none',
+                            color: 'black',
+                            lineHeight: 1.43,
+                            
+
+                          }} to={props.href}>{props.children}</Link>} {...props} />;
+  // return <ListItem button component="a" to={props.href} {...props}/>;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -105,6 +115,13 @@ const useStyles = makeStyles((theme) => ({
   sideTitle: {
     textAlign: "center",
     textDecoration: "underline"
+  },
+  sideListItem: {
+    display: 'flex',
+    // height: '40px',
+  },
+  sideListText: {
+    marginLeft: "5px"
   }
 }));
 
@@ -204,27 +221,27 @@ export default function Sidebar(props) {
         <Divider />
         <Typography className={classes.sideTitle}>My Profile</Typography>
         <List>
-          <ListItemLink href="/skills">
-            <ListItemIcon><InboxIcon/></ListItemIcon>
-            <ListItemText primary="My Skills" />
+          <ListItemLink className={classes.sideListItem} href="/skills">
+            <ListItemIcon style={{paddingLeft: '5px'}}><InboxIcon/></ListItemIcon>
+            <ListItemText className={classes.sideListText} primary="My Skills" />
           </ListItemLink>
           <ListItemLink href="/work">
-            <ListItemIcon><InboxIcon/></ListItemIcon>
-            <ListItemText primary="Work Experience" />
+            <ListItemIcon style={{paddingLeft: '5px'}}><InboxIcon/></ListItemIcon>
+            <ListItemText className={classes.sideListText} primary="Work Experience" />
           </ListItemLink>
           <ListItemLink href="/github">
-            <ListItemIcon><InboxIcon/></ListItemIcon>
-            <ListItemText primary="Github" />
+            <ListItemIcon style={{paddingLeft: '5px'}}><InboxIcon/></ListItemIcon>
+            <ListItemText className={classes.sideListText} primary="Github" />
           </ListItemLink>
           <ListItemLink href="/basicInfo">
-            <ListItemIcon><InboxIcon/></ListItemIcon>
-            <ListItemText primary="Basic Info" />
+            <ListItemIcon style={{paddingLeft: '5px'}}><InboxIcon/></ListItemIcon>
+            <ListItemText className={classes.sideListText} primary="Basic Info" />
           </ListItemLink>
         </List>
         <Divider />
         <ListItemLink href="/resume">
-            <ListItemIcon><InboxIcon/></ListItemIcon>
-            <ListItemText primary="Resume" />
+            <ListItemIcon style={{paddingLeft: '5px'}}><InboxIcon/></ListItemIcon>
+            <ListItemText className={classes.sideListText} primary="Resume" />
           </ListItemLink>
         <List>
           {['Trash', 'Spam'].map((text, index) => (
