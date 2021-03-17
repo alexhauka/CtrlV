@@ -35,7 +35,7 @@ export default function Home(props) {
         <LeftSection/>
         </div>  
         <div className={classes.right}>
-        <RightSection />
+        <RightSection props={props.props} />
         </div>
       </Grid>
     </div>

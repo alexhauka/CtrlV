@@ -68,17 +68,65 @@ const useStyles = makeStyles(() => ({
   },
 
   skillRow: {
-    marginRight: 10,
+    marginBottom: "15px",
+    textDecoration: 'underline'
   },
 
   skill: {
     fontSize: "24px"
   } 
 
+
 }))
 
-export default function RightSection() {
+export default function RightSection(props) {
   const classes = useStyles()
+
+  console.log('IN right side:', props)
+  const user = props.props.user
+  const userName = `${user.first_name} ${user.last_name}`
+  const projects = props.props.userProjects
+  // This is where we are generating projects. Currently hardcoded
+  const project1 = projects[0]
+  const project2 = projects[3]
+  const project3 = projects[5]
+  
+  const work = props.props.userWorkExperience
+
+  const work1 = work[0]
+  const work2 = work[1]
+  const work3 = work[2]
+
+  const hardSkills = props.props.userHardSkills
+  
+
+  const languagesList = hardSkills.map(s => {
+    if (s.type === 'language') {
+      return(
+       <Typography>{s.name}</Typography>
+      )
+    }
+    return null;
+  })
+
+  const frameworksList = hardSkills.map(s => {
+  if (s.type ==='framework') {
+    return (
+      <Typography>{s.name}</Typography>
+    )
+  }
+  return null;
+})
+ const testingList = hardSkills.map(s => {
+    if (s.type === 'testing' || s.type === 'database'){
+      return ( 
+        <Typography>{s.name}</Typography>
+      )
+    }
+    return null;
+  })
+
+
   return (
     <div className={classes.root}>
       <div>
@@ -89,9 +137,9 @@ export default function RightSection() {
             direction="row"
             justify="space-around"
           >
-          <TextField required id="standard-required" label="Name" defaultValue="Jake Hein" />
-          <TextField required id="standard-required" label="Github" defaultValue="jhein1892" />
-          <TextField required id="standard-required" label="Email" defaultValue="jacobhein1892@gmail.com" />
+          <TextField required id="standard-required" label="Name" defaultValue={userName} />
+          <TextField required id="standard-required" label="Github" defaultValue={user.github} />
+          <TextField required id="standard-required" label="Email" defaultValue={user.email} />
           </Grid>
           <br/>
           <Grid
@@ -99,9 +147,9 @@ export default function RightSection() {
             direction="row"
             justify="space-around"
           >
-          <TextField required id="standard-required" label="Linkedin" defaultValue="jhein1892" />
-          <TextField required id="standard-required" label="Phone" defaultValue="604-996-2767" />
-          <TextField required id="standard-required" label="Address" defaultValue="Salmon Arm, BC" />
+          <TextField required id="standard-required" label="Linkedin" defaultValue={user.linkedin} />
+          <TextField required id="standard-required" label="Phone" defaultValue={user.phone_number} />
+          <TextField required id="standard-required" label="Address" defaultValue={user.address} />
           </Grid>
         </section>
       </div>
@@ -120,7 +168,7 @@ export default function RightSection() {
           <TextField
             id="outlined-read-only-input"
             label="Title"
-            defaultValue="Scheduler"
+            defaultValue={project1 ? project1.title: ''}
             InputProps={{
               readOnly: true,
             }}
@@ -130,7 +178,7 @@ export default function RightSection() {
           <TextField
             id="outlined-read-only-input"
             label="Language"
-            defaultValue="Javascript"
+            defaultValue={project1 ? project1.primary_language: ''}
             InputProps={{
               readOnly: true,
             }}
@@ -142,7 +190,7 @@ export default function RightSection() {
             label="Description"
             multiline
             rows={4}
-            defaultValue="Description of Scheduler..."
+            defaultValue={project1 ? project1.description: ''}
             variant="outlined"
           />
         </Grid>
@@ -157,7 +205,7 @@ export default function RightSection() {
           <TextField
             id="outlined-read-only-input"
             label="Title"
-            defaultValue="Jungle"
+            defaultValue={project2 ? project2.title: ''}
             InputProps={{
               readOnly: true,
             }}
@@ -167,7 +215,7 @@ export default function RightSection() {
           <TextField
             id="outlined-read-only-input"
             label="Language"
-            defaultValue="Ruby"
+            defaultValue={project2 ? project2.primary_language: ''}
             InputProps={{
               readOnly: true,
             }}
@@ -179,7 +227,7 @@ export default function RightSection() {
             label="Description"
             multiline
             rows={4}
-            defaultValue="Description of Jungle"
+            defaultValue={project2 ? project2.description: ''}
             variant="outlined"
           />
         </Grid>
@@ -194,7 +242,7 @@ export default function RightSection() {
           <TextField
             id="outlined-read-only-input"
             label="Title"
-            defaultValue="ToDos"
+            defaultValue={project3 ? project3.title: ''}
             InputProps={{
               readOnly: true,
             }}
@@ -204,7 +252,7 @@ export default function RightSection() {
           <TextField
             id="outlined-read-only-input"
             label="Language"
-            defaultValue="Javascript"
+            defaultValue={project3 ? project3.primary_language: ''}
             InputProps={{
               readOnly: true,
             }}
@@ -216,7 +264,7 @@ export default function RightSection() {
             label="Description"
             multiline
             rows={4}
-            defaultValue="Description of Midterm Project"
+            defaultValue={project3 ? project3.description: ''}
             variant="outlined"
           />  
         </Grid>
@@ -239,7 +287,7 @@ export default function RightSection() {
           <TextField
             id="outlined-read-only-input"
             label="Title"
-            defaultValue="Stripper"
+            defaultValue={work1 ? work1.job_title : ''}
             InputProps={{
               readOnly: false,
             }}
@@ -250,7 +298,7 @@ export default function RightSection() {
             id="date"
             label="Start Date"
             type="date"
-            defaultValue="2010-06-13"
+            defaultValue={work1 ? work1.job_start_date.slice(0,10) : ''}
             className={classes.textField}
             InputLabelProps={{
               shrink: true,
@@ -261,7 +309,7 @@ export default function RightSection() {
             id="date"
             label="End Date"
             type="date"
-            defaultValue="2013-05-24"
+            defaultValue={work1 ? work1.job_end_date.slice(0,10) : ''}
             className={classes.textField}
             InputLabelProps={{
               shrink: true,
@@ -273,7 +321,7 @@ export default function RightSection() {
             label="Description"
             multiline
             rows={4}
-            defaultValue="Took my Clothes off for money"
+            defaultValue={work1 ? work1.job_description : ''}
             variant="outlined"
           />
         </Grid>
@@ -288,7 +336,7 @@ export default function RightSection() {
           <TextField
             id="outlined-read-only-input"
             label="Title"
-            defaultValue="Hooker"
+            defaultValue={work2 ? work2.job_title : ''}
             InputProps={{
               readOnly: false,
             }}
@@ -299,7 +347,7 @@ export default function RightSection() {
             id="date"
             label="Start Date"
             type="date"
-            defaultValue="2012-03-14"
+            defaultValue={work2 ? work2.job_start_date.slice(0,10) : ''}
             className={classes.textField}
             InputLabelProps={{
               shrink: true,
@@ -310,7 +358,7 @@ export default function RightSection() {
             id="date"
             label="End Date"
             type="date"
-            defaultValue="2019-12-24"
+            defaultValue={work2 ? work2.job_end_date.slice(0,10) : ''}
             className={classes.textField}
             InputLabelProps={{
               shrink: true,
@@ -322,7 +370,7 @@ export default function RightSection() {
             label="Description"
             multiline
             rows={4}
-            defaultValue="Had sex for money"
+            defaultValue={work2 ? work2.job_description : ''}
             variant="outlined"
           />
         </Grid>
@@ -337,7 +385,7 @@ export default function RightSection() {
           <TextField
             id="outlined-read-only-input"
             label="Title"
-            defaultValue="Office Administrator"
+            defaultValue={work3 ? work3.job_title : ''}
             InputProps={{
               readOnly: false,
             }}
@@ -348,7 +396,7 @@ export default function RightSection() {
             id="date"
             label="Start Date"
             type="date"
-            defaultValue="2020-01-03"
+            defaultValue={work3 ? work3.job_start_date.slice(0,10) : ''}
             className={classes.textField}
             InputLabelProps={{
               shrink: true,
@@ -359,7 +407,7 @@ export default function RightSection() {
             id="date"
             label="End Date"
             type="date"
-            defaultValue=""
+            defaultValue={work3 ? work3.job_end_date.slice(0,10) : ''}
             className={classes.textField}
             InputLabelProps={{
               shrink: true,
@@ -371,7 +419,7 @@ export default function RightSection() {
             label="Description"
             multiline
             rows={4}
-            defaultValue="Administered office stuff"
+            defaultValue={work3 ? work3.job_description : ''}
             variant="outlined"
           />  
         </Grid>
@@ -384,9 +432,21 @@ export default function RightSection() {
         <h1>Skills</h1>
         <Grid
           container
-          justify="space-around"
+          justify="space-evenly"
+          direction="row"
         >
-          <Typography>Populate users Skills</Typography>
+          <div >
+          <Typography className={classes.skillRow} variant="h5">Languages</Typography>
+           {languagesList} 
+          </div>
+          <div>
+          <Typography className={classes.skillRow} variant="h5">Testing and Databases</Typography>
+           {testingList} 
+          </div>
+          <div>
+          <Typography className={classes.skillRow} variant="h5">Frameworks</Typography>
+           {frameworksList} 
+          </div>
         </Grid>
         </section>
       </div>

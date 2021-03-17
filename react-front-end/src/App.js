@@ -88,7 +88,7 @@ export default function App() {
     <>
       <Sidebar user={state.user} logout={handleLogout} />
       <Switch> 
-        <ProtectedRoute path="/" exact component={Home} />
+        <ProtectedRoute path="/" exact component={() => <Home props={state}/>} />
         <Route 
         path="/signup" 
         component={() => <SignUp registerUser={registerUser} />} 
