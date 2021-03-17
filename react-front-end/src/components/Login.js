@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -55,19 +56,23 @@ export default function SignIn(props) {
   function reset() {
     setEmail("");
     setPassword(""); 
-
   }
 
-  
   function save(event) {
     event.preventDefault();
     const userInfo = {
       email,
       password
     }
-    props.loginUser(userInfo);
-    reset();
-    console.log("cookie:", document.cookie)
+    props.loginUser(userInfo)
+    .then(() => {
+      reset();
+      props.history.push("/"); 
+    });
+  }
+
+  if (props.isLoggingIn === false && props.user) {
+    return <Redirect to="/"/>
   }
 
   return (
