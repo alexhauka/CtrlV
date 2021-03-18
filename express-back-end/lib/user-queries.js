@@ -88,18 +88,38 @@ const addUserWorkExperience = (id, workInfo) => {
   if (workInfo.id !== undefined){
     return client.query(`
     UPDATE work_experiences
-    SET job_title = $1, job_description = $2, job_start_date = $3, job_end_date = $4
-    WHERE id = $5; 
-    `, [workInfo.title, workInfo.description, workInfo.start_date, workInfo.end_date, workInfo.id])
+    SET job_title = $1, job_description = $2, job_start_date = $3, job_end_date = $4, company_name = $5
+    WHERE id = $6
+    RETURNING *; 
+    `, [workInfo.job_title, workInfo.job_description, workInfo.job_start_date, workInfo.job_end_date, workInfo.company_name, workInfo.id])
+    .then((response) => {
+      console.log("response after UPDATE", response.rows[0]); 
+      return response.rows[0];
+    });
   } else {
     return client.query(`
-    INSERT INTO work_experiences (user_id, job_title, job_description, job_start_date, job_end_date)
-    VALUES ($1, $2, $3, $4, $5);
-    `, [id, workInfo.title, workInfo.description, workInfo.start_date, workInfo.end_date])
+    INSERT INTO work_experiences (user_id, job_title, job_description, job_start_date, job_end_date, company_name)
+    VALUES ($1, $2, $3, $4, $5, $6)
+    RETURNING *;
+    `, [id, workInfo.job_title, workInfo.job_description, workInfo.job_start_date, workInfo.job_end_date, workInfo.company_name])
     .then((response) => {
-      return response.rows
+      console.log("response after insert", response.rows[0]);
+      return response.rows[0];
     })
   }
+}
+
+const deleteUserWorkExperience = (id, workInfo) => {
+  console.log("In query", workInfo);
+  return client.query(`
+  DELETE FROM work_experiences 
+  WHERE user_id = $1 AND id = $2
+  RETURNING *;
+  `, [id, workInfo.id])
+  .then((response) => {
+    console.log("response after delete", response.rows[0]);
+    return response.rows[0];
+  })
 }
 
 // queries all hard skills from a particular user
@@ -185,6 +205,7 @@ module.exports = {
     addUserHardSkill,
     removeUserHardSkill,
     addUserWorkExperience,
+    deleteUserWorkExperience,
     getUserProjects,
     updateUserProject
 }

@@ -4,6 +4,8 @@ import {
   reducer,
   SET_APPLICATION_DATA,
   SET_UPDATED_USER,
+  SET_WORK,
+  DELETE_WORK,
   SET_UPDATED_WORK,
   SET_USER,
   RESET_APPLICATION_DATA,
@@ -163,13 +165,35 @@ export function useApplicationData() {
   function updateWork(workInfo) {
     console.log("In UAD:", workInfo)
     return axios.post(`/api/users/${user_id}/work_experience`, { workInfo })
-    .then(() => {
-      dispatch({
-        type: SET_UPDATED_WORK,
-        workInfo
-      })
+    .then((response) => {
+      // console.log('response', response.data)
+      if (workInfo.id) {
+        dispatch({
+          type: SET_UPDATED_WORK,
+          workInfo
+        })
+      } else {
+        dispatch({
+          type: SET_WORK,
+          workInfo: response.data
+        })
+      }
     })
     .catch((error) => error)
+  }
+
+  function deleteWork(workInfo) {
+    console.log("useApplicationData", workInfo);
+    return axios.delete(`/api/users/${user_id}/work_experience`, 
+    { data: {
+      workInfo
+    } })
+    .then((response) => {
+      dispatch({
+        type: DELETE_WORK,
+        workInfo: response.data
+      })
+    }); 
   }
 
   function addUserHardSkill(skill) {
@@ -200,6 +224,7 @@ export function useApplicationData() {
     addUserHardSkill,
     removeUserHardSkill,
     updateWork,
+    deleteWork,
     checkUser: useCallback(checkUser,[dispatch]),
     addGithubProjects,
     updateProject

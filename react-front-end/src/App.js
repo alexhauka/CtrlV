@@ -52,6 +52,7 @@ export default function App() {
     addUserHardSkill,
     removeUserHardSkill,
     updateWork,
+    deleteWork,
     checkUser,
     addGithubProjects,
     updateProject
@@ -111,7 +112,7 @@ export default function App() {
           removeUserHardSkill={removeUserHardSkill}
           />} 
         />
-        <ProtectedRoute path="/work" component={() => <WorkExperience workExperience={state.userWorkExperience} updateWork={updateWork} />} />
+        <ProtectedRoute path="/work" component={() => <WorkExperience workExperience={state.userWorkExperience} updateWork={updateWork} deleteWork={deleteWork} />} />
         <ProtectedRoute  path="/github" component={() => <Github
         user={state.user}
         projects={state.userProjects}
