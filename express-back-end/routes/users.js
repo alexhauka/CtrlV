@@ -15,8 +15,10 @@ const {
   addUserWorkExperience,
   deleteUserWorkExperience, 
   getUserProjects, 
-  updateUserProject
+  updateUserProject,
 } = require('../lib/user-queries');
+
+const { addUserResume, updateUserResume } = require("../lib/resume-queries")
 
 // get /users
 router.get('/', (req, res) => {
@@ -183,7 +185,12 @@ router.get('/:id/resumes/:resumeid', (req, res) => {
 
 // post users/id/resumes/resumeid
 router.post('/:id/resumes/:resumeid', (req, res) => {
-    
+    addUserResume(req.body)
+  console.log("posting a resume route:", req.body.id);
+  // if (req.body.id === undefined){
+  // } else {
+  //   updateUserResume(req.body)
+  // }
 }); 
 
 // delete users/id/resumes/resumeid
