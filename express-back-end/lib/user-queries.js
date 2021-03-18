@@ -52,7 +52,18 @@ const updateUserInfo = (id, userInfo) => {
   });
 }
 
-updateUserProject = (id, projectInfo) => {
+const updateUserGithub = (id, github) => {
+  return client.query(`
+  UPDATE users
+  SET github = $1 
+  WHERE id = $2
+  `, [github, id])
+  .then((response) => {
+    return response.rows[0]; 
+  });
+}
+
+const updateUserProject = (id, projectInfo) => {
   if (projectInfo.id !== undefined){
     return client.query(`
     UPDATE projects
@@ -165,11 +176,13 @@ module.exports = {
     getUserByEmail,
     addUser,
     updateUserInfo,
+    updateUserGithub,
     getUserHardSkills,
     getUserSoftSkills,
     getUserWorkExperience,
     addUserHardSkill,
     removeUserHardSkill,
     addUserWorkExperience,
-    getUserProjects
+    getUserProjects,
+    updateUserProject
 }
