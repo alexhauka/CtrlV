@@ -7,6 +7,7 @@ import {
   SET_UPDATED_WORK,
   SET_USER,
   RESET_APPLICATION_DATA,
+  SET_PROJECTS,
   SET_UPDATED_PROJECT
 } from '../reducers/application'; 
 
@@ -38,7 +39,7 @@ export function useApplicationData() {
       axios.get(`/api/users/${user_id}/work_experience`),
       // axios.get(`/api/users/2/hard_skills`),
       // axios.get(`/api/users/2/work_experience`),
-      axios.get(`/api/users/2/projects`),
+      axios.get(`/api/users/${user_id}/projects`),
 
     ])
     .then((all) => {
@@ -128,10 +129,30 @@ export function useApplicationData() {
     })
   }
 
-  function updateProject(projectInfo){
-    return axios.post(`/api/users/${state.user.id}/projects`, {projectInfo})
+  function updateUserGithub(github) {
+    return axios.put(`/api/users/${user_id}`, {github})
     .then(() => {
       dispatch({
+        type: SET_UPDATED_USER,
+        userInfo: { github }
+      })
+    })
+  }
+
+  function addGithubProjects(project, id) {
+    return axios.post(`/api/projects`, { project, id })
+    .then(() => {
+      dispatch({
+        type: SET_PROJECTS,
+        project
+      })
+    })
+  }
+
+  function updateProject(projectInfo){
+    return axios.post(`/api/users/${user_id}/projects`, {projectInfo})
+    .then(() => {
+      dispatch ({
         type: SET_UPDATED_PROJECT,
         projectInfo
       })
@@ -175,10 +196,12 @@ export function useApplicationData() {
     loginUser,
     logoutUser, 
     updateUser,
+    updateUserGithub, 
     addUserHardSkill,
     removeUserHardSkill,
     updateWork,
     checkUser: useCallback(checkUser,[dispatch]),
+    addGithubProjects,
     updateProject
   }
 

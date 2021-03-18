@@ -2,7 +2,7 @@ const express = require('express');
 const router  = express.Router();
 
 const {
-  getUsers, getUserByID, addUser, updateUserInfo, getUserHardSkills, getUserSoftSkills, getUserWorkExperience, addUserHardSkill, removeUserHardSkill, addUserWorkExperience, getUserProjects
+  getUsers, getUserByID, addUser, updateUserInfo, updateUserGithub, getUserHardSkills, getUserSoftSkills, getUserWorkExperience, addUserHardSkill, removeUserHardSkill, addUserWorkExperience, getUserProjects, updateUserProject
 } = require('../lib/user-queries');
 
 // get /users
@@ -36,7 +36,17 @@ router.get('/:id', (req, res) => {
 
 // post users/id
 router.put('/:id', (req, res) => {
-  updateUserInfo(req.params.id, req.body.userInfo)
+  if (req.body.github) {
+    return updateUserGithub(req.params.id, req.body.github)
+    .then((user) => {
+      res.send(user)
+    })
+    .catch(e => {
+      console.error(e);
+      res.send(e);
+    })
+  }
+  return updateUserInfo(req.params.id, req.body.userInfo)
   .then((user) => {
     res.send(user)
   })

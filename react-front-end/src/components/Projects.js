@@ -64,9 +64,11 @@ export default function Projects(props) {
     description,
     last_updated
   })
+
   function handleSave(event){
     event.preventDefault();
-    updateProject(projectInfo);
+    console.log(projectInfo);
+    updateProject(projectInfo)
   }
 
   function handleChange(event) {

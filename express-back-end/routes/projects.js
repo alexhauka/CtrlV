@@ -17,8 +17,9 @@ router.get('/', (req, res) => {
 
 // post api/projects
 router.post('/', (req, res) => {
-  addProject(req.body.projectData)
+  addProject(req.body.project, req.body.id)
   .then((project) => {
+    console.log(project);
     res.send(project)
   })
   .catch(e => {
