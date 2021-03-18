@@ -40,16 +40,18 @@ const useStyles = makeStyles(() => ({
     maxWidth: '8.5in',
     minWidth: '8.5in',
     maxHeight: '11in',
-    minHeight: "11in",
+    minHeight: '11in',
     //For text 
-    padding: 10,
-    paddingTop: "5%",
+    // padding: 10,
+    // paddingTop: "5%",
     backgroundColor:{},
+    marginBottom: "10%",
+    // marginTop: "15%",
     marginLeft: "10%",
-    marginTop: 50,
+    marginTop: 70,
     flexShrink: 1,
-    border: "solid 1px black"
-    
+    boxShadow:'0px 0px 20px 10px #00000059',
+    borderBottom: "solid 1px black" 
   }
 
 
@@ -61,6 +63,7 @@ export default function Resume(props) {
   const { basicInfo, projects, skills, work_experience } = data
   
   const [color, setColor] = useState('#fff')
+  const [borderColor, setBorderColor] = useState('#000000')
   const [font, setFont] = useState('Shippori Mincho B1')
   function handleChangeColor(event) {
     setColor({color: event.hex})
@@ -145,9 +148,25 @@ export default function Resume(props) {
       </div>
           <h1>COLORRRRS</h1>
             <div>
+              <Typography
+              variant="subtitle1"
+              >
+                Background Color
+              </Typography>
               <ColorPicker name="color" defaultValue={"#fff"} value={color} onChange={(event)=> {
                 console.log(event.css.backgroundColor)
                 setColor(event.css.backgroundColor);
+                }} />
+            </div>
+            <div>
+              <Typography
+              variant="subtitle1"
+              >
+                Border Color
+              </Typography>
+              <ColorPicker name="color" defaultValue={"#fff"} value={borderColor} onChange={(event)=> {
+                console.log(event.css.backgroundColor)
+                setBorderColor(event.css.backgroundColor);
                 }} />
             </div>
         </div>
@@ -157,8 +176,8 @@ export default function Resume(props) {
         </div>
 
         <div className={classes.right}>
-        <div className={classes.rightRoot} style={{backgroundColor: color}}>
-          <TemplateOne data={data} font={font} color={color} />
+        <div className={classes.rightRoot}>
+          <TemplateOne data={data} font={font} color={color} borderColor={borderColor} />
           {/* <h1>Right Side</h1>
           <Typography
           variant="h2"
