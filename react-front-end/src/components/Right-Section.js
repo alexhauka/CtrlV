@@ -54,7 +54,7 @@ const useStyles = makeStyles(() => ({
     backgroundColor: '#e8e8e8'
   },
   skills: {
-    height: 400,
+    height: 250,
     border: "solid grey 1px",
     borderRadius: 20,
     marginBottom: 10,
@@ -91,10 +91,61 @@ export default function RightSection(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   
   const open = Boolean(anchorEl);
+  
+  let userName = `${user.first_name} ${user.last_name}`;
+  let userAddress = user.address;
+  let userEmail = user.email;
+  let userGithub = user.github;
+  let userPhone = user.phone_number;
+  let userLinkedin = user.linkedin
+  const [basicInfo, setBasicInfo] = React.useState({
+    userName,
+    userAddress,
+    userEmail,
+    userGithub,
+    userPhone,
+    userLinkedin
+  })
+  console.log("user basic info: ", basicInfo)
+  console.log("Work3: ", work3)
+
+  
+
+  function handleBasicInfoChange(event) {
+    setBasicInfo({
+      ...basicInfo,
+      [event.target.name]: event.target.value
+    })
+  }
+  // function handleChange(event) {
+  //   setJobInfo({
+  //     ...jobInfo,
+  //     [event.target.name]: event.target.value
+  //   })
+  // }
 
   const [project1, setProject1] = React.useState(userProjects[0])
   const [project2, setProject2] = React.useState(userProjects[1])
   const [project3, setProject3] = React.useState(userProjects[2])
+  const [work1, setwork1] = React.useState(userWorkExperience[0])
+  const [work2, setwork2] = React.useState(userWorkExperience[1])
+  const [work3, setwork3] = React.useState(userWorkExperience[2])
+  // const [workExperience, setWorkExperience] = React.useState({
+  //   work1: userWorkExperience[0],
+  //   work2: userWorkExperience[1],
+  //   work3: userWorkExperience[2]
+  // })
+  
+  function handleChangeWork1(event){
+    setwork1({...work1, [event.target.name]: event.target.value})
+  }
+  function handleChangeWork2(event){
+    setwork2({...work2, [event.target.name]: event.target.value})
+  }
+  function handleChangeWork3(event){
+    setwork3({...work3, [event.target.name]: event.target.value})
+  }
+  console.log("Work1: ", work1)
 
   // console.log("PROJECT1", projects.project1)
   const handleClick = (event, index) => {
@@ -105,6 +156,16 @@ export default function RightSection(props) {
     console.log("Event:", event.currentTarget.id)
     setAnchorEl(event.currentTarget);
   };
+
+  const save = function(){
+    let output = {
+      basicInfo: user,
+      projects: [project1, project2, project3],
+      work_experience: [work1, work2, work3],
+      skills: userHardSkills
+    }
+  }
+
 
   const handleClose = (project) => {
     
@@ -156,15 +217,9 @@ export default function RightSection(props) {
 
   console.log('IN right side:', props)
   // const user = props.props.user
-  const userName = `${user.first_name} ${user.last_name}`
+  
   
   // This is where we are generating projects. Currently hardcoded
-
-  
-
-  const work1 = userWorkExperience[0]
-  const work2 = userWorkExperience[1]
-  const work3 = userWorkExperience[2]
 
   const hardSkills = userHardSkills
   
@@ -206,9 +261,9 @@ export default function RightSection(props) {
             direction="row"
             justify="space-around"
           >
-          <TextField required id="standard-required" label="Name" defaultValue={userName} />
-          <TextField required id="standard-required" label="Github" defaultValue={user.github} />
-          <TextField required id="standard-required" label="Email" defaultValue={user.email} />
+          <TextField required id="standard-required" label="Name" name='userName'  defaultValue={basicInfo.userName}  onChange={handleBasicInfoChange}/>
+          <TextField required id="standard-required" label="Github" name='userGithub' defaultValue={basicInfo.userGithub} onChange={handleBasicInfoChange}/>
+          <TextField required id="standard-required" label="Email" name="email" defaultValue={basicInfo.userEmail} onChange={handleBasicInfoChange} name="userEmail"/>
           </Grid>
           <br/>
           <Grid
@@ -216,10 +271,33 @@ export default function RightSection(props) {
             direction="row"
             justify="space-around"
           >
-          <TextField required id="standard-required" label="Linkedin" defaultValue={user.linkedin} />
-          <TextField required id="standard-required" label="Phone" defaultValue={user.phone_number} />
-          <TextField required id="standard-required" label="Address" defaultValue={user.address} />
+          <TextField required id="standard-required" label="Linkedin"  name='linkedin'defaultValue={basicInfo.userLinkedin} />
+          <TextField required id="standard-required" label="Phone" name='userPhone' defaultValue={basicInfo.userPhone} />
+          <TextField required id="standard-required" label="Address" name='userAddress' defaultValue={basicInfo.userAddress} />
           </Grid>
+        </section>
+      </div>
+      <div>
+        <section className={classes.skills}>
+        <h1>Skills</h1>
+        <Grid
+          container
+          justify="space-evenly"
+          direction="row"
+        >
+          <div >
+          <Typography className={classes.skillRow} variant="h5">Languages</Typography>
+           {languagesList} 
+          </div>
+          <div>
+          <Typography className={classes.skillRow} variant="h5">Testing and Databases</Typography>
+           {testingList} 
+          </div>
+          <div>
+          <Typography className={classes.skillRow} variant="h5">Frameworks</Typography>
+           {frameworksList} 
+          </div>
+        </Grid>
         </section>
       </div>
       <div>
@@ -396,6 +474,7 @@ export default function RightSection(props) {
           <TextField
             id="outlined-read-only-input"
             label="Title"
+            name="job_title"
             defaultValue={work1 ? work1.job_title : ''}
             InputProps={{
               readOnly: false,
@@ -406,7 +485,9 @@ export default function RightSection(props) {
           <TextField
             id="date"
             label="Start Date"
+            name="job_start_date"
             type="date"
+            onChange={handleChangeWork1}
             defaultValue={work1 ? work1.job_start_date.slice(0,10) : ''}
             className={classes.textField}
             InputLabelProps={{
@@ -417,7 +498,9 @@ export default function RightSection(props) {
           <TextField
             id="date"
             label="End Date"
+            name="job_end_date"
             type="date"
+            onChange={handleChangeWork1}
             defaultValue={work1 ? work1.job_end_date.slice(0,10) : ''}
             className={classes.textField}
             InputLabelProps={{
@@ -428,6 +511,8 @@ export default function RightSection(props) {
           <TextField
             id="outlined-multiline-static"
             label="Description"
+            name="job_description"
+            onChange={handleChangeWork1}
             multiline
             rows={4}
             defaultValue={work1 ? work1.job_description : ''}
@@ -445,6 +530,8 @@ export default function RightSection(props) {
           <TextField
             id="outlined-read-only-input"
             label="Title"
+            name="job_title"
+            onChange={handleChangeWork2}
             defaultValue={work2 ? work2.job_title : ''}
             InputProps={{
               readOnly: false,
@@ -455,7 +542,9 @@ export default function RightSection(props) {
           <TextField
             id="date"
             label="Start Date"
+            name="job_start_date"
             type="date"
+            onChange={handleChangeWork2}
             defaultValue={work2 ? work2.job_start_date.slice(0,10) : ''}
             className={classes.textField}
             InputLabelProps={{
@@ -466,7 +555,9 @@ export default function RightSection(props) {
           <TextField
             id="date"
             label="End Date"
+            name='job_end_date'
             type="date"
+            onChange={handleChangeWork2}
             defaultValue={work2 ? work2.job_end_date.slice(0,10) : ''}
             className={classes.textField}
             InputLabelProps={{
@@ -477,6 +568,8 @@ export default function RightSection(props) {
           <TextField
             id="outlined-multiline-static"
             label="Description"
+            name='job_description'
+            onChange={handleChangeWork2}
             multiline
             rows={4}
             defaultValue={work2 ? work2.job_description : ''}
@@ -494,6 +587,8 @@ export default function RightSection(props) {
           <TextField
             id="outlined-read-only-input"
             label="Title"
+            name='job_title'
+            onChange={handleChangeWork3}
             defaultValue={work3 ? work3.job_title : ''}
             InputProps={{
               readOnly: false,
@@ -504,7 +599,9 @@ export default function RightSection(props) {
           <TextField
             id="date"
             label="Start Date"
+            name="job_start_date"
             type="date"
+            onChange={handleChangeWork3}
             defaultValue={work3 ? work3.job_start_date.slice(0,10) : ''}
             className={classes.textField}
             InputLabelProps={{
@@ -515,7 +612,9 @@ export default function RightSection(props) {
           <TextField
             id="date"
             label="End Date"
+            name="job_end_date"
             type="date"
+            onChange={handleChangeWork3}
             defaultValue={work3 ? work3.job_end_date.slice(0,10) : ''}
             className={classes.textField}
             InputLabelProps={{
@@ -526,6 +625,8 @@ export default function RightSection(props) {
           <TextField
             id="outlined-multiline-static"
             label="Description"
+            name="job_description"
+            onChange={handleChangeWork3}
             multiline
             rows={4}
             defaultValue={work3 ? work3.job_description : ''}
@@ -536,30 +637,8 @@ export default function RightSection(props) {
         </Grid>
         </section>
       </div>
-      <div>
-        <section className={classes.skills}>
-        <h1>Skills</h1>
-        <Grid
-          container
-          justify="space-evenly"
-          direction="row"
-        >
-          <div >
-          <Typography className={classes.skillRow} variant="h5">Languages</Typography>
-           {languagesList} 
-          </div>
-          <div>
-          <Typography className={classes.skillRow} variant="h5">Testing and Databases</Typography>
-           {testingList} 
-          </div>
-          <div>
-          <Typography className={classes.skillRow} variant="h5">Frameworks</Typography>
-           {frameworksList} 
-          </div>
-        </Grid>
-        </section>
-      </div>
-      
+
+      <Button type='submit' >Confirm & Save</Button>
     </div>
   );
 }
