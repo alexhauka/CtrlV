@@ -2,70 +2,63 @@ import React from 'react';
 import { makeStyles, Grid, Typography, Container  } from '@material-ui/core'
 
 const useStyles = makeStyles(() => ({
-//   root: {
+  root: {},
+  head: {
+    display:'flex',
+    direction: 'row',
+    height: "20%"
+  },
+  contact: {
+    display:'flex',
+    direction:'column',
 
-//   },
-//   rootLeft: {
-//     display: 'flex',
-//     flexDirection: 'column',
-//     justify: "space-evenly",
-//     height: "100%",
-//     background: 'linear-gradient(190deg, #3f51b5 30%, #7bc8f6 90%)'
-//   },
-  
-//   left: {
-//     width: "35%",
-//   },
-//   ResumeButtons: {
-//     display: 'flex',
-//     flexDirection: 'column',
-//     justifyContent: 'center',
-//     justify: "space-between",
-//     width: "80%",
-//     marginTop: "5em",
-//     margin: "auto"
-//   },
-//   right: {
-//    width: "65%",
-//    boxShadow:'19px 20px 20px 0px #00000059 inset'
-//   },
-//   rightRoot: {
-//     maxWidth: '75%',
-//     minHeight: "100vw",
-//     textAlign: "center",
-//     //For text 
-//     padding: 10,
-//     paddingTop: "5%",
-//     backgroundColor:{},
-//     marginLeft: "10%",
-//     marginTop: 50,
-//     flexShrink: 1,
-//     border: "solid 1px black"
-    
-//   }
-
-
+  }
 }));
 
+// userAddress: "Calgary, AB"
+// userEmail: "jacobhein1892@gmail.com"
+// userGithub: null
+// userLinkedin: null
+// userName: "Jake Hein"
+// userPhone: "604-123-4567"
 
 export default function TemplateOne(props) {
+  const { basicInfo, projects, skills, work_experience } = props.data
   const classes = useStyles();
   console.log(props.data)
   console.log(props.font)
   // console.log(props.)
   // const {} = props.data
   // const {} = props.font
-  
+
   return(
 
     <Container style={{backgroundColor: props.color}}>
-      
+      <div className={classes.head}>
       <Typography
           variant="h2"
           style={{fontFamily: props.font}}
       >{props.data.basicInfo.userName}
       </Typography>
-      
+      <div className={classes.contact}>
+        {basicInfo.userAddress}
+        {basicInfo.userEmail}
+        {basicInfo.userGithub}
+        {basicInfo.userPhone}
+      </div>
+      </div>
+      <section name="skills">
+
+      </section>
+      <section name="basic_info">
+
+      </section>
+      <section name="projects">
+
+      </section>
+      <section name="work_experience">
+
+      </section>
     </Container> 
 
   )

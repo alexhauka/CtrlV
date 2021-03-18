@@ -37,9 +37,10 @@ const useStyles = makeStyles(() => ({
    boxShadow:'19px 20px 20px 0px #00000059 inset'
   },
   rightRoot: {
-    maxWidth: '75%',
-    minHeight: "100vw",
-    textAlign: "center",
+    maxWidth: '8.5in',
+    minWidth: '8.5in',
+    maxHeight: '11in',
+    minHeight: "11in",
     //For text 
     padding: 10,
     paddingTop: "5%",
