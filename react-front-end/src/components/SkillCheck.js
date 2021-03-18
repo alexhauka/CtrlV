@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import MuiAlert from '@material-ui/lab/Alert';
@@ -50,10 +50,15 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props}/>;
 }
 
+
 export default function SkillCheck(props) {
   const data = props.hardskills;
   const userData = props.userHardSkills
 
+  useEffect(() => {
+    console.log("component mounted")
+  }, []);
+  
   const defaultSkills = {} 
   for (const skill of data) {
     defaultSkills[skill.name] = false; 
@@ -84,16 +89,20 @@ export default function SkillCheck(props) {
   }
 
   function addSkill(id, name, type) {
-    props.addUserHardSkill({ id: id, name: name, type: type })
+    console.log({id: Number(id), name: name, type: type});
+    props.addUserHardSkill({ id: Number(id), name: name, type: type })
     .then(() => {
+      console.log("added message"); 
       setMessage("Added Successfully!");
       setOpen(true); 
     }); 
   }
 
   function removeSkill(id, name, type) {
-    props.removeUserHardSkill({ id: id, name: name, type: type })
+    console.log({id: Number(id), name: name, type: type});
+    props.removeUserHardSkill({ id: Number(id), name: name, type: type })
     .then(() => {
+      console.log("deleted message");
       setMessage("Deleted Successfully!");
       setOpen(true);
     });

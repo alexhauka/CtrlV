@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, TextField, Button } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -51,7 +50,7 @@ const useStyles = makeStyles(() => ({
 
 
 export default function Projects(props) {
-  const {title, primary_language, primary_language_percent, secondary_language,secondary_language_percent, description, last_updated, updateProject, id, url  } = props
+  const {title, primary_language, primary_language_percent, secondary_language,secondary_language_percent, description, last_updated, id, url } = props
 
   const [projectInfo, setProjectInfo] = useState({
     title,
@@ -68,13 +67,17 @@ export default function Projects(props) {
   function handleSave(event){
     event.preventDefault();
     console.log(projectInfo);
-    updateProject(projectInfo)
+    props.updateProject(projectInfo)
   }
 
-  function handleChange(event) {
-    
+  function handleDelete(event) {
+    event.preventDefault();
+    console.log("handleDelete", projectInfo);
+    props.deleteProject(projectInfo)
+  }
+
+  function handleChange(event) {  
     setProjectInfo({...projectInfo, [event.target.name]: event.target.value});
-    
   }
   
   const classes = useStyles(); 
@@ -82,10 +85,9 @@ export default function Projects(props) {
     <form onSubmit={handleSave} noValidate autoComplete="off">
     <div className={classes.project}>
       <div className={classes.fields}>
-        <TextField  name="title" id="projectTitle" label="Project Title" defaultValue={title} onChange={handleChange} />
+        <TextField  name="title" label="Project Title" defaultValue={title} onChange={handleChange} />
         <div>
         <TextField
-        id="lastUpdated"
         name='last_updated'
         label="Last Modified"
         type="date"
@@ -97,20 +99,19 @@ export default function Projects(props) {
         }}
         />
         <br/>
-        <TextField name="url" id="standard-basic" label="Project URL" defaultValue={url} onChange={handleChange} />
+        <TextField name="url" label="Project URL" defaultValue={url} onChange={handleChange} />
         </div>
         < div className={classes.lang}>
-          <TextField name="primary_language" id="standard-basic" label="Primary" defaultValue={primary_language} onChange={handleChange} />
-          <TextField  className={classes.percent} name="primary_language_percent" id="standard-basic" label="%" defaultValue={primary_language_percent} onChange={handleChange} />
+          <TextField name="primary_language" label="Primary" defaultValue={primary_language} onChange={handleChange} />
+          <TextField  className={classes.percent} name="primary_language_percent" label="%" defaultValue={primary_language_percent} onChange={handleChange} />
         </div>
         < div className={classes.lang}>
-          <TextField id="standard-basic" label="Secondary" name="secondary_language" defaultValue={secondary_language} onChange={handleChange} />
-          <TextField className={classes.percent} name="secondary_language_percent" id="standard-basic" label="%" defaultValue={secondary_language_percent} onChange={handleChange}/>
+          <TextField label="Secondary" name="secondary_language" defaultValue={secondary_language} onChange={handleChange} />
+          <TextField className={classes.percent} name="secondary_language_percent" label="%" defaultValue={secondary_language_percent} onChange={handleChange}/>
         </div>
       </div>
       <div className={classes.description}>
         <TextField
-          id="outlined-multiline-static"
           name="description"
           label="Project description"
           multiline
@@ -128,6 +129,11 @@ export default function Projects(props) {
       >
         Save
       </Button>
+      {props.title && <Button
+      className={classes.submit}
+      onClick={handleDelete}>
+        Delete
+      </Button>}
     </div>          
   </form>
   )

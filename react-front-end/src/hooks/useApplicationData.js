@@ -10,7 +10,10 @@ import {
   SET_USER,
   RESET_APPLICATION_DATA,
   SET_PROJECTS,
-  SET_UPDATED_PROJECT
+  DELETE_PROJECT, 
+  SET_UPDATED_PROJECT,
+  SET_SKILL,
+  DELETE_SKILL
 } from '../reducers/application'; 
 
 const axios = require('axios').default
@@ -23,8 +26,6 @@ export function useApplicationData() {
     userHardSkills: [],
     user: null,
     userWorkExperience: {},
-    // user: {},
-    // userWorkExperience: {},
     userProjects: []
   }); 
 
@@ -39,10 +40,7 @@ export function useApplicationData() {
       axios.get(`/api/users/${user_id}`),
       axios.get(`/api/users/${user_id}/hard_skills`),
       axios.get(`/api/users/${user_id}/work_experience`),
-      // axios.get(`/api/users/2/hard_skills`),
-      // axios.get(`/api/users/2/work_experience`),
-      axios.get(`/api/users/${user_id}/projects`),
-
+      axios.get(`/api/users/${user_id}/projects`)
     ])
     .then((all) => {
       dispatch({
@@ -53,11 +51,6 @@ export function useApplicationData() {
         userWorkExperience: all[3].data,
         userProjects: all[4].data
       })
-        // userHardSkills: all[2].data,
-        // userWorkExperience: all[3].data,
-        
-      // })
-      console.log("UAD State", all[4].data)
     })
   }, [user_id])
     
@@ -143,23 +136,47 @@ export function useApplicationData() {
 
   function addGithubProjects(project, id) {
     return axios.post(`/api/projects`, { project, id })
-    .then(() => {
+    .then((response) => {
+      console.log("response", response.data)
       dispatch({
         type: SET_PROJECTS,
-        project
+        projectInfo: response.data
       })
     })
   }
 
   function updateProject(projectInfo){
     return axios.post(`/api/users/${user_id}/projects`, {projectInfo})
-    .then(() => {
-      dispatch ({
-        type: SET_UPDATED_PROJECT,
-        projectInfo
-      })
+    .then((response) => {
+      console.log("response", response.data)
+      if (projectInfo.id) {
+        dispatch ({
+          type: SET_UPDATED_PROJECT,
+          projectInfo
+        })
+      } else {
+        dispatch ({
+          type: SET_PROJECTS,
+          projectInfo: response.data
+        })
+      }
     })
     .catch((error) => error)
+  }
+
+  function deleteProject(projectInfo) {
+    console.log("useApplicationData", projectInfo); 
+    return axios.delete(`/api/users/${user_id}/projects`, 
+    { data: {
+      projectInfo
+    }})
+    .then((response) => {
+      console.log("response", response.data)
+      dispatch({
+        type: DELETE_PROJECT,
+        projectInfo: response.data
+      })
+    });
   }
 
   function updateWork(workInfo) {
@@ -187,7 +204,7 @@ export function useApplicationData() {
     return axios.delete(`/api/users/${user_id}/work_experience`, 
     { data: {
       workInfo
-    } })
+    }})
     .then((response) => {
       dispatch({
         type: DELETE_WORK,
@@ -200,6 +217,10 @@ export function useApplicationData() {
     return axios.put(`/api/users/${user_id}/hard_skills`, { skill })
     .then(() => {
       console.log("add successful"); 
+      dispatch({
+        type: SET_SKILL, 
+        skill 
+      })
     })
   }
 
@@ -207,10 +228,14 @@ export function useApplicationData() {
   function removeUserHardSkill(skill) {
     return axios.delete(`/api/users/${user_id}/hard_skills`, 
     { data: {
-      skill: skill
+      skill
     }})
     .then(() => {
       console.log("delete successful");
+      dispatch({
+        type: DELETE_SKILL,
+        skill 
+      })
     })
   }
 
@@ -227,7 +252,8 @@ export function useApplicationData() {
     deleteWork,
     checkUser: useCallback(checkUser,[dispatch]),
     addGithubProjects,
-    updateProject
+    updateProject,
+    deleteProject
   }
 
 }
