@@ -69,18 +69,37 @@ const updateUserProject = (id, projectInfo) => {
     UPDATE projects
     SET title= $1, primary_language = $2, primary_language_percent = $3, secondary_language = $4, secondary_language_percent = $5, description = $6, last_updated = $7, url = $8
     WHERE id = $9
+    RETURNING *;
     `, [projectInfo.title, projectInfo.primary_language, projectInfo.primary_language_percent, projectInfo.secondary_language, projectInfo.secondary_language_percent, projectInfo.description, projectInfo.last_updated, projectInfo.url, projectInfo.id])
+    .then((response) => {
+      console.log("response after update", response.rows[0])
+      return response.rows[0];
+    })
     
   } else {
     return client.query(`
     INSERT INTO projects (user_id, title, primary_language, description, last_updated, primary_language_percent, secondary_language, secondary_language_percent, url)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+    RETURNING *;
     `, [id, projectInfo.title, projectInfo.primary_language, projectInfo.description, projectInfo.last_updated, projectInfo.primary_language_percent, projectInfo.secondary_language, projectInfo.secondary_language_percent, projectInfo.url])
     .then((response) => {
-      console.log("in res.rows",response)
-      return response.rows
+      console.log("response after insert", response.rows[0])
+      return response.rows[0];
     })
   }
+}
+
+const deleteUserProject = (id, projectInfo) => {
+  console.log("In query", projectInfo)
+  return client.query(`
+  DELETE FROM projects
+  WHERE user_id = $1 AND id = $2
+  RETURNING *;
+  `, [id, projectInfo.id])
+  .then((response) => {
+    console.log("response after delete", response.rows[0]);
+    return response.rows[0];
+  })
 }
 
 const addUserWorkExperience = (id, workInfo) => {
@@ -207,5 +226,6 @@ module.exports = {
     addUserWorkExperience,
     deleteUserWorkExperience,
     getUserProjects,
-    updateUserProject
+    updateUserProject,
+    deleteUserProject
 }

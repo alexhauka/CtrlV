@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   addProject(req.body.project, req.body.id)
   .then((project) => {
-    console.log(project);
+    console.log("data", project);
     res.send(project)
   })
   .catch(e => {

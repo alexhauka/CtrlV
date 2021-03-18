@@ -63,22 +63,19 @@ export default function Jobs(props) {
       <form key={jobInfo.id} noValidate autoComplete="off">
         <div className={classes.job}>
         <div className={classes.fields}>
-        <TextField 
-          id="title" 
+        <TextField  
           name='job_title' 
           label="Job Title"
           onChange={handleChange}
           value={jobInfo.job_title} 
         />
         <TextField 
-          id="company_name" 
           name='company_name' 
           label="Company Name" 
           onChange={handleChange}
           value={jobInfo.company_name}
         />
         <TextField
-          id="start_date"
           label="Start Date"
           name="job_start_date"
           type="date"
@@ -90,7 +87,6 @@ export default function Jobs(props) {
           }}
         />
         <TextField
-          id="end_date"
           label="End Date"
           name="job_end_date"
           type="date"
@@ -104,7 +100,6 @@ export default function Jobs(props) {
         </div>
         <div className={classes.description}>
           <TextField
-            id="description"
             label="Job Description"
             name='job_description'
             multiline

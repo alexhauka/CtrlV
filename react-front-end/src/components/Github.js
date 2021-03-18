@@ -68,7 +68,7 @@ const [username, setUsername] = React.useState('');
       const last_updated = i.last_updated.slice(0,10);
       return (
         <Projects 
-          
+          key={i.id}
           id={i.id}
           title={i.title}
           primary_language={i.primary_language}
@@ -79,6 +79,7 @@ const [username, setUsername] = React.useState('');
           description={i.description}
           url={i.url}
           updateProject={props.updateProject}
+          deleteProject={props.deleteProject}
         />
       )
     })

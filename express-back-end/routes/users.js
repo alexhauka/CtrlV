@@ -16,6 +16,7 @@ const {
   deleteUserWorkExperience, 
   getUserProjects, 
   updateUserProject,
+  deleteUserProject
 } = require('../lib/user-queries');
 
 const { addUserResume, updateUserResume } = require("../lib/resume-queries")
@@ -131,14 +132,29 @@ router.get('/:id/projects', (req, res) => {
 router.post('/:id/projects', (req, res) => {
   console.log("I'm in my Routes!", req.body.projectInfo)
   updateUserProject(req.params.id ,req.body.projectInfo)
-  //   .then((data) => {
-  //   res.send(data);
-  // })
-  // .catch(e => {
-  //   console.error(e);
-  //   res.send(e);
-  // })
+  .then((data) => {
+    console.log("data", data)
+    res.send(data);
+  })
+  .catch(e => {
+    console.error(e);
+    res.send(e);
+  })
 }); 
+
+router.delete('/:id/projects', (req, res) => {
+  console.log("here in axios call", req.body.projectInfo)
+  deleteUserProject(req.params.id, req.body.projectInfo)
+  .then((data) => {
+    console.log("data", data)
+    res.send(data);
+  })
+  .catch(e => {
+    console.error(e);
+    res.send(e);
+  });
+})
+
 
 router.get('/:id/work_experience', (req, res) => {
   getUserWorkExperience(req.params.id)
