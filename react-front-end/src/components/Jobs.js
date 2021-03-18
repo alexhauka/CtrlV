@@ -34,17 +34,24 @@ const useStyles = makeStyles(() => ({
 
 
 export default function Jobs(props) {
-  const {title, description, id, start_date, end_date} = props
+  const {title, description, id, start_date, end_date, company_name} = props
   const [jobInfo, setJobInfo] = useState({
-    title,
-    description,
-    id,
-    start_date,
-    end_date
+    job_title: title,
+    company_name: company_name,
+    job_description: description,
+    id: id,
+    job_start_date: start_date,
+    job_end_date: end_date
   })
   function save(event){
     event.preventDefault()
     props.updateWork(jobInfo)
+  }
+
+  function onDelete(event) {
+    event.preventDefault()
+    console.log("onDelete", jobInfo);
+    props.deleteWork(jobInfo);
   }
   
   function handleChange(event) {
@@ -58,22 +65,24 @@ export default function Jobs(props) {
         <div className={classes.fields}>
         <TextField 
           id="title" 
-          name='title' 
+          name='job_title' 
           label="Job Title"
           onChange={handleChange}
-          value={jobInfo.title} 
+          value={jobInfo.job_title} 
         />
         <TextField 
           id="company_name" 
           name='company_name' 
           label="Company Name" 
+          onChange={handleChange}
+          value={jobInfo.company_name}
         />
         <TextField
-          id="date"
+          id="start_date"
           label="Start Date"
-          name="start_date"
+          name="job_start_date"
           type="date"
-          defaultValue={jobInfo.start_date}
+          value={jobInfo.job_start_date}
           onChange={handleChange}
           // className={classes.textField}
           InputLabelProps={{
@@ -81,11 +90,11 @@ export default function Jobs(props) {
           }}
         />
         <TextField
-          id="date"
+          id="end_date"
           label="End Date"
-          name="end_date"
+          name="job_end_date"
           type="date"
-          defaultValue={jobInfo.end_date}
+          value={jobInfo.job_end_date}
           onChange={handleChange}
           // className={classes.textField}
           InputLabelProps={{
@@ -95,12 +104,12 @@ export default function Jobs(props) {
         </div>
         <div className={classes.description}>
           <TextField
-            id="outlined-multiline-static"
+            id="description"
             label="Job Description"
-            name='description'
+            name='job_description'
             multiline
             rows={6}
-            value={jobInfo.description}
+            value={jobInfo.job_description}
             onChange={handleChange}
             placeholder="Tell us about this position..."
             fullWidth={true}
@@ -113,6 +122,11 @@ export default function Jobs(props) {
       >
         Save
       </Button>
+      {props.title && props.description && <Button
+      className={classes.submit}
+      onClick={onDelete}>
+        Delete
+      </Button>}
       </div>
     </form>
     )

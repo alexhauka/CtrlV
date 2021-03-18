@@ -41,20 +41,25 @@ export default function WorkExperience(props) {
 
 
   const numOfJobs = Object.keys(data).map(key => {
+      // this line will fail if the input date is null 
       const start_date = data[key].job_start_date.slice(0,10);
       const end_date = data[key].job_end_date.slice(0,10);
       console.log("Start Date", start_date)
       return (
         <Jobs
+        key={data[key].id}
         id={data[key].id}
         title={data[key].job_title}
+        company_name={data[key].company_name}
         start_date={start_date}
         end_date={end_date}
         updateWork={props.updateWork}
+        deleteWork={props.deleteWork}
         description={data[key].job_description}
         />
         )
     });
+  
 
     const addJobs = function(input){
       for (let i = 0; i < input; i++){
@@ -62,6 +67,7 @@ export default function WorkExperience(props) {
           <Jobs 
           key={''}
           title=''
+          company_name={""}
           start_date={""}
           end_date={""}
           updateWork={props.updateWork}
