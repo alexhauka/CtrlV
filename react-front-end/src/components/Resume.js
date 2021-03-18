@@ -176,14 +176,9 @@ export default function Resume(props) {
         </div>
 
         <div className={classes.right}>
-<<<<<<< HEAD
         <div className={classes.rightRoot} style={{backgroundColor: color}}>
           {/* <TemplateOne data={data} font={font} color={color} /> */}
           <TemplateTwo data={data} font={font} color={color}/>
-=======
-        <div className={classes.rightRoot}>
-          <TemplateOne data={data} font={font} color={color} borderColor={borderColor} />
->>>>>>> master
           {/* <h1>Right Side</h1>
           <Typography
           variant="h2"
