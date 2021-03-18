@@ -96,7 +96,7 @@ export default function TemplateOne(props) {
   const languagesList = hardSkills.map(s => {
     if (s.type === 'language') {
       return(
-       <Typography variant="body2">{s.name}</Typography>
+       <Typography variant="body2" style={{fontFamily: props.bodyFont}}>{s.name}</Typography>
       )
     }
     return null;
@@ -104,7 +104,7 @@ export default function TemplateOne(props) {
   const frameworksList = hardSkills.map(s => {
   if (s.type ==='framework') {
     return (
-      <Typography variant="body2">{s.name}</Typography>
+      <Typography variant="body2" style={{fontFamily: props.bodyFont}}>{s.name}</Typography>
     )
   }
   return null;
@@ -112,7 +112,7 @@ export default function TemplateOne(props) {
   const testingList = hardSkills.map(s => {
     if (s.type === 'testing' || s.type === 'database'){
       return ( 
-        <Typography variant="body2">{s.name}</Typography>
+        <Typography variant="body2" style={{fontFamily: props.bodyFont}}>{s.name}</Typography>
       )
     }
     return null;
@@ -128,11 +128,11 @@ export default function TemplateOne(props) {
         </a>
         </div>
         <br />
-        <Typography variant="body2">
+        <Typography variant="body2" style={{fontFamily: props.bodyFont}}>
         {i.primary_language}/{i.secondary_language}
         </Typography>
         <br />
-        <Typography variant="body2">
+        <Typography variant="body2" style={{fontFamily: props.bodyFont}}>
         {i.description}
         </Typography>
       </div>
@@ -152,11 +152,11 @@ export default function TemplateOne(props) {
         {i.job_title}
         </Typography>
         <br />
-        <Typography variant="body2">
+        <Typography variant="body2" style={{fontFamily: props.bodyFont}}>
         {startMonth}/{startYear} - {endMonth}/{endYear}
         </Typography>
         <br/>
-        <Typography variant="body2">
+        <Typography variant="body2" style={{fontFamily: props.bodyFont}}>
         {i.job_description}
         </Typography>
       </div>
@@ -178,7 +178,7 @@ export default function TemplateOne(props) {
             {props.data.basicInfo.userName}
           </Typography>
         </div>
-        <div className={classes.contact}>
+        <div className={classes.contact} style={{fontFamily: props.bodyFont}}>
           Address: {basicInfo.userAddress}
           <br />
           Email: {basicInfo.userEmail}

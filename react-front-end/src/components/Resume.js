@@ -8,6 +8,24 @@ import LeftResume from './LeftResume';
 import TemplateOne from './TemplateOne';
 
 
+//*******  FONT STYLES  *******
+// font-family: 'Comfortaa', cursive;
+// font-family: 'Cormorant Garamond', serif;
+// font-family: 'Dancing Script', cursive;
+// font-family: 'Fascinate', cursive;
+// font-family: 'Holtwood One SC', serif;
+// font-family: 'Josefin Slab', serif;
+// font-family: 'Lato', sans-serif;
+// font-family: 'League Script', cursive;
+// font-family: 'Monoton', cursive;
+// font-family: 'Montserrat', sans-serif;
+// font-family: 'Nanum Pen Script', cursive;
+// font-family: 'Open Sans', sans-serif;
+// font-family: 'Press Start 2P', cursive;
+// font-family: 'Redressed', cursive;
+// font-family: 'Shippori Mincho B1', serif;
+ 
+
 const useStyles = makeStyles(() => ({
   root: {
 
@@ -64,7 +82,9 @@ export default function Resume(props) {
   
   const [color, setColor] = useState('#fff')
   const [borderColor, setBorderColor] = useState('#000000')
+
   const [font, setFont] = useState('Shippori Mincho B1')
+  const [bodyFont, setBodyFont] = useState('Shippori Mincho B1')
   function handleChangeColor(event) {
     setColor({color: event.hex})
   }
@@ -104,15 +124,47 @@ export default function Resume(props) {
           variant="text"
         >
         </ButtonGroup>
-      </div>
+        </div>
           <h1>choose your font:</h1>
           <div className={classes.FontButtons}>
-        <ButtonGroup
-          orientation="vertical"
-          color="primary"
-          aria-label="vertical outlined primary button group"
+            <div>
+              <Typography
+                variant="subtitle1"
+              >
+                Heading Font: 
+              </Typography>
+              <ButtonGroup
+                orientation="vertical"
+                color="primary"
+                aria-label="vertical outlined primary button group"
+                variant="contained"
+              >
+                <Button 
+                  onClick={() => {
+                    setFont('Fascinate')
+                }}>
+                  Font One: Fascinate
+                </Button>
+                <Button
+                  onClick={() => {
+                    setFont('Redressed')
+                  }}
+                >
+                  Font Two: Redressed
+                </Button>
+                <Button
+                  onClick={() => {
+                    setFont('Shippori Mincho B1')
+                  }}
+                >Font Three: Shippori Mincho B1 </Button>
+              </ButtonGroup>
+            </div>
+        <div>
+        <Typography
+        variant="subtitle1"
         >
-        </ButtonGroup>
+          Body Font:
+        </Typography>
         <ButtonGroup
           orientation="vertical"
           color="primary"
@@ -121,23 +173,24 @@ export default function Resume(props) {
         >
           <Button 
             onClick={() => {
-              setFont('Fascinate')
+              setBodyFont('Fascinate')
             }}>
               Font One: Fascinate
             </Button>
           <Button
             onClick={() => {
-              setFont('Redressed')
+              setBodyFont('Redressed')
             }}
           >
             Font Two: Redressed
           </Button>
           <Button
             onClick={() => {
-              setFont('Shippori Mincho B1')
+              setBodyFont('Shippori Mincho B1')
             }}
           >Font Three: Shippori Mincho B1 </Button>
         </ButtonGroup>
+        </div>
         <ButtonGroup
           orientation="vertical"
           color="primary"
@@ -177,7 +230,7 @@ export default function Resume(props) {
 
         <div className={classes.right}>
         <div className={classes.rightRoot}>
-          <TemplateOne data={data} font={font} color={color} borderColor={borderColor} />
+          <TemplateOne data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} />
           {/* <h1>Right Side</h1>
           <Typography
           variant="h2"
