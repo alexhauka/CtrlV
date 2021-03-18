@@ -1,11 +1,17 @@
 import React from 'react'; 
 import { Grid, TextField, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles'; 
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
 import { data } from 'retext';
+
+
+// function SubmitButton(props) {
+//   return 
+// }
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -97,7 +103,7 @@ export default function RightSection(props) {
   let userEmail = user.email;
   let userGithub = user.github;
   let userPhone = user.phone_number;
-  let userLinkedin = user.linkedin
+  let userLinkedin = user.linkedin;
   const [basicInfo, setBasicInfo] = React.useState({
     userName,
     userAddress,
@@ -107,7 +113,6 @@ export default function RightSection(props) {
     userLinkedin
   })
   console.log("user basic info: ", basicInfo)
-  console.log("Work3: ", work3)
 
   
 
@@ -117,12 +122,7 @@ export default function RightSection(props) {
       [event.target.name]: event.target.value
     })
   }
-  // function handleChange(event) {
-  //   setJobInfo({
-  //     ...jobInfo,
-  //     [event.target.name]: event.target.value
-  //   })
-  // }
+
 
   const [project1, setProject1] = React.useState(userProjects[0])
   const [project2, setProject2] = React.useState(userProjects[1])
@@ -130,11 +130,7 @@ export default function RightSection(props) {
   const [work1, setwork1] = React.useState(userWorkExperience[0])
   const [work2, setwork2] = React.useState(userWorkExperience[1])
   const [work3, setwork3] = React.useState(userWorkExperience[2])
-  // const [workExperience, setWorkExperience] = React.useState({
-  //   work1: userWorkExperience[0],
-  //   work2: userWorkExperience[1],
-  //   work3: userWorkExperience[2]
-  // })
+
   
   function handleChangeWork1(event){
     setwork1({...work1, [event.target.name]: event.target.value})
@@ -146,26 +142,24 @@ export default function RightSection(props) {
     setwork3({...work3, [event.target.name]: event.target.value})
   }
   console.log("Work1: ", work1)
+  console.log("Work3: ", work3)
 
-  // console.log("PROJECT1", projects.project1)
   const handleClick = (event, index) => {
-    // console.log("In handle", event)
-    // const tempAnchor = anchorEl
-    // tempAnchor[index] = event.currentTarget; 
-    // setAnchorEl(tempAnchor)
     console.log("Event:", event.currentTarget.id)
     setAnchorEl(event.currentTarget);
   };
 
   const save = function(){
-    let output = {
-      basicInfo: user,
-      projects: [project1, project2, project3],
-      work_experience: [work1, work2, work3],
-      skills: userHardSkills
-    }
-  }
 
+
+    console.log("This is my output", output)
+  }
+  let output = {
+    basicInfo: basicInfo,
+    projects: [project1, project2, project3],
+    work_experience: [work1, work2, work3],
+    skills: userHardSkills
+  }
 
   const handleClose = (project) => {
     
@@ -271,9 +265,9 @@ export default function RightSection(props) {
             direction="row"
             justify="space-around"
           >
-          <TextField required id="standard-required" label="Linkedin"  name='linkedin'defaultValue={basicInfo.userLinkedin} />
-          <TextField required id="standard-required" label="Phone" name='userPhone' defaultValue={basicInfo.userPhone} />
-          <TextField required id="standard-required" label="Address" name='userAddress' defaultValue={basicInfo.userAddress} />
+          <TextField required id="standard-required" label="Linkedin"  name='userLinkedin' defaultValue={basicInfo.userLinkedin}  onChange={handleBasicInfoChange} />
+          <TextField required id="standard-required" label="Phone" name='userPhone' defaultValue={basicInfo.userPhone}  onChange={handleBasicInfoChange} />
+          <TextField required id="standard-required" label="Address" name='userAddress' defaultValue={basicInfo.userAddress} onChange={handleBasicInfoChange}/>
           </Grid>
         </section>
       </div>
@@ -637,8 +631,13 @@ export default function RightSection(props) {
         </Grid>
         </section>
       </div>
-
-      <Button type='submit' >Confirm & Save</Button>
+      <Link to={{
+        pathname: '/resume',
+        state: {
+          output
+        }
+      }}>Save and Confirm</Link>
+      {/* <Button component={() => <Link  />}>How about this one?</Button> */}
     </div>
   );
 }

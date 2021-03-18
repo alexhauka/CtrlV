@@ -5,6 +5,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import RightResume from './RightResume';
 import { ColorPicker } from 'material-ui-color';
 import LeftResume from './LeftResume';
+import TemplateOne from './TemplateOne';
 
 
 const useStyles = makeStyles(() => ({
@@ -53,8 +54,11 @@ const useStyles = makeStyles(() => ({
 
 }));
 
-export default function Resume() {
+export default function Resume(props) {
 
+  let data = props.location.state.output
+  const { basicInfo, projects, skills, work_experience } = data
+  
   const [color, setColor] = useState('#fff')
   const [font, setFont] = useState('Shippori Mincho B1')
   function handleChangeColor(event) {
@@ -63,7 +67,7 @@ export default function Resume() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Grid 
+      <Grid
         container
         direction='row'
         justify='space-between'
@@ -153,11 +157,12 @@ export default function Resume() {
 
         <div className={classes.right}>
         <div className={classes.rightRoot} style={{backgroundColor: color}}>
-          <h1>Right Side</h1>
+          <TemplateOne data={data} font={font} color={color} />
+          {/* <h1>Right Side</h1>
           <Typography
           variant="h2"
           style={{fontFamily: font}}
-          >Hello!</Typography>
+          >Hello!</Typography> */}
         </div>
         </div>
       </Grid>

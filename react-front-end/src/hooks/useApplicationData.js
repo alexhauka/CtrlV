@@ -136,6 +136,7 @@ export function useApplicationData() {
         projectInfo
       })
     })
+    .catch((error) => error)
   }
 
   function updateWork(workInfo) {
