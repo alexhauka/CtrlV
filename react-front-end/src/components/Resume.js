@@ -79,6 +79,8 @@ export default function Resume(props) {
   let data = props.location.state.output
   const { basicInfo, projects, skills, work_experience } = data
 
+  const [template, setTemplate] = useState(1)
+
   const [color, setColor] = useState('#fff')
   const [borderColor, setBorderColor] = useState('#000000')
 
@@ -96,83 +98,6 @@ export default function Resume(props) {
         justify='space-between'
       >
         <div className={classes.left}>
-<<<<<<< HEAD
-          <div className={classes.rootLeft}>
-            <div className={classes.ResumeButtons}>
-              <h1>choose your template:</h1>
-              <div className={classes.root}>
-                <ButtonGroup
-                  orientation="vertical"
-                  color="primary"
-                  aria-label="vertical outlined primary button group"
-                >
-                </ButtonGroup>
-                <ButtonGroup
-                  orientation="vertical"
-                  color="primary"
-                  aria-label="vertical contained primary button group"
-                  variant="contained"
-                >
-                  <Button>Template One</Button>
-                  <Button>Template Two</Button>
-                  <Button>Template Three</Button>
-                </ButtonGroup>
-                <ButtonGroup
-                  orientation="vertical"
-                  color="primary"
-                  aria-label="vertical contained primary button group"
-                  variant="text"
-                >
-                </ButtonGroup>
-              </div>
-              <h1>choose your font:</h1>
-              <div className={classes.FontButtons}>
-                <ButtonGroup
-                  orientation="vertical"
-                  color="primary"
-                  aria-label="vertical outlined primary button group"
-                >
-                </ButtonGroup>
-                <ButtonGroup
-                  orientation="vertical"
-                  color="primary"
-                  aria-label="vertical contained primary button group"
-                  variant="contained"
-                >
-                  <Button
-                    onClick={() => {
-                      setFont('Fascinate')
-                    }}>
-                    Font One: Fascinate
-            </Button>
-                  <Button
-                    onClick={() => {
-                      setFont('Redressed')
-                    }}
-                  >
-                    Font Two: Redressed
-          </Button>
-                  <Button
-                    onClick={() => {
-                      setFont('Shippori Mincho B1')
-                    }}
-                  >Font Three: Shippori Mincho B1 </Button>
-                </ButtonGroup>
-                <ButtonGroup
-                  orientation="vertical"
-                  color="primary"
-                  aria-label="vertical contained primary button group"
-                  variant="text"
-                >
-                </ButtonGroup>
-              </div>
-              <h1>COLORRRRS</h1>
-              <div>
-                <Typography
-                  variant="subtitle1"
-                >
-                  Background Color
-=======
         <div className={classes.rootLeft}>
         <div className={classes.ResumeButtons}>
           <h1>choose your template:</h1>
@@ -189,9 +114,9 @@ export default function Resume(props) {
           aria-label="vertical contained primary button group"
           variant="contained"
         >
-          <Button>Template One</Button>
-          <Button>Template Two</Button>
-          <Button>Template Three</Button>
+          <Button onClick={() => setTemplate(1)} >Template One</Button>
+          <Button onClick={() => setTemplate(2)}>Template Two</Button>
+          <Button >Template Three</Button>
         </ButtonGroup>
         <ButtonGroup
           orientation="vertical"
@@ -281,7 +206,6 @@ export default function Resume(props) {
               variant="subtitle1"
               >
                 Background Color
->>>>>>> b2a3dd75283da21532d9068a0689cbe76aab9ece
               </Typography>
                 <ColorPicker name="color" defaultValue={"#fff"} value={color} onChange={(event) => {
                   console.log(event.css.backgroundColor)
@@ -306,20 +230,12 @@ export default function Resume(props) {
         </div>
 
         <div className={classes.right}>
-<<<<<<< HEAD
-          <div className={classes.rightRoot} style={{ backgroundColor: color }}>
-            {/* <TemplateOne data={data} font={font} color={color} /> */}
-            <TemplateTwo data={data} font={font} color={color} />
-            {/* <h1>Right Side</h1>
-=======
         <div className={classes.rightRoot}>
-          <TemplateOne data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} />
-          {/* <h1>Right Side</h1>
->>>>>>> b2a3dd75283da21532d9068a0689cbe76aab9ece
-          <Typography
-          variant="h2"
-          style={{fontFamily: font}}
-          >Hello!</Typography> */}
+          {template === 1 &&
+            <TemplateOne data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} />
+          }{template === 2 &&
+            <TemplateTwo data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} />
+          } 
           </div>
         </div>
       </Grid>
