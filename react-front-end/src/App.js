@@ -117,7 +117,7 @@ export default function App() {
         >
           <Resume />
         </ProtectedRoute> 
-
+        {/* <ProtectedRoute path="/resume" component={Resume} /> */}
         <ProtectedRoute 
           path="/skills" 
           isLoggingIn={state.isLoggingIn}
