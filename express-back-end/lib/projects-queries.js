@@ -1,13 +1,14 @@
 const client = require('../elephantsql')
 
-const addProject = (project) => {
+const addProject = (project, id) => {
   return client.query(`
     INSERT INTO projects 
     (user_id, title, url, primary_language, primary_language_percent, secondary_language, secondary_language_percent, description, last_updated)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);
-  `, [2, project.title, project.url, project.primary_language, project.primary_language_percent, project.secondary_language, project.secondary_language_percent, project.description, project.last_updated])
+  `, [id, project.title, project.url, project.primary_language, project.primary_language_percent, project.secondary_language, project.secondary_language_percent, project.description, project.last_updated])
   .then((response) => {
-    return response.rows;
+    console.log("query response", response);
+    return response.rows[0];
   })
 }
 

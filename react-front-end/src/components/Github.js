@@ -54,11 +54,10 @@ const useStyles = makeStyles(() => ({
 
 
 export default function Github(props) {
-
 const [count, setCount] = React.useState(0)
 console.log("IN GITHUB", props)
 // // default state is my github for testing:
-const [username, setUsername] = React.useState('alexhauka');
+const [username, setUsername] = React.useState('');
   
   const classes = useStyles(); 
 
@@ -117,7 +116,11 @@ const [username, setUsername] = React.useState('alexhauka');
         onChange={(e) => setUsername(e.target.value)}
         />
         <br />
-        <GetGithub username={username}/>
+        <GetGithub 
+        username={username} 
+        user={props.user} 
+        updateGithub={props.updateGithub}
+        addProject={props.addProject}/>
 
         {numOfProjects}
         {Array(count).fill(moreProjects)}
