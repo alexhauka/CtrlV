@@ -6,7 +6,7 @@ import RightResume from './RightResume';
 import { ColorPicker } from 'material-ui-color';
 import LeftResume from './LeftResume';
 import TemplateOne from './TemplateOne';
-
+import TemplateTwo from './TemplateTwo';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -158,7 +158,8 @@ export default function Resume(props) {
 
         <div className={classes.right}>
         <div className={classes.rightRoot} style={{backgroundColor: color}}>
-          <TemplateOne data={data} font={font} color={color} />
+          {/* <TemplateOne data={data} font={font} color={color} /> */}
+          <TemplateTwo data={data} font={font} color={color}/>
           {/* <h1>Right Side</h1>
           <Typography
           variant="h2"
