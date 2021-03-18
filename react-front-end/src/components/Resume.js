@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { makeStyles, Grid, Typography } from '@material-ui/core'
+import axios from 'axios';
+import { makeStyles, Grid, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import RightResume from './RightResume';
@@ -108,6 +110,31 @@ export default function Resume(props) {
   function handleChangeColor(event) {
     setColor({ color: event.hex })
   }
+  
+  
+function saveResume(resumeObject) {
+
+  console.log("This is the resume Object: ", resumeObject);
+  // console.log('user id: ', projects[0].user_id)
+  axios.post('/api/users/:id/resumes/:resumeid', { resumeObject })
+
+}
+
+const resume = {
+  template_id: template,
+  user_id: projects[0].user_id, 
+  background_color: color,
+  border_color: borderColor,
+  head_font: font,
+  body_font: bodyFont, 
+  project_1: projects[0],
+  project_2: projects[1],
+  project_3: projects[2],
+  work_1: work_experience[0],
+  work_2: work_experience[1],
+  work_3: work_experience[2],
+}
+  
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -483,8 +510,33 @@ export default function Resume(props) {
             <TemplateTwo data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} />
           } 
           </div>
+          <Button onClick={() => saveResume(resume)}>Save and Confirm</Button>
         </div>
       </Grid>
     </div>
   );
 }
+
+
+
+
+
+// POST ROUTE: users/:id/resumes/:resumeid
+
+// resumes table:
+/*
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  template_id INTEGER REFERENCES  templates(id) ON DELETE CASCADE,
+  background_color VARCHAR(255) NOT NULL DEFAULT 'white',
+  border_color VARCHAR(255) NOT NULL DEFAULT 'black',
+  head_font VARCHAR(255),
+  body_font VARCHAR(255),
+  date_uploaded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  project_1 INTEGER REFERENCES projects(id),
+  project_2 INTEGER REFERENCES projects(id),
+  project_3 INTEGER REFERENCES projects(id),
+  work_1 INTEGER REFERENCES work_experiences(id),
+  work_2 INTEGER REFERENCES work_experiences(id),
+  work_3 INTEGER REFERENCES work_experiences(id)
+
+*/

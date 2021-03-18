@@ -250,7 +250,7 @@ export default function TemplateOne(props) {
           variant="h6"
           style={{fontFamily: props.font}}
         >
-          My Projects
+          My Jobs
         </Typography>
       <div className={classes.jobs}>
       {myJobs}
