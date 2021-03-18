@@ -18,7 +18,10 @@ const useStyles = makeStyles(() => ({
   },
   outerHead: {
     display: 'flex',
+    margin: '1em',
+    padding: '1em',
     justifyContent: 'space-between'
+    
   },
   innerHeadLeft: {
     display: 'flex',
@@ -329,7 +332,7 @@ export default function TemplateTwo(props) {
           </div>
 
           <div className={classes.innerSkills}>
-          <span style={{fontWeight: 'bolder'}}>Testing</span>
+          <span style={{fontWeight: 'bolder'}}>Databases & Testing</span>
             <br/>
             {testingList}
           </div>
