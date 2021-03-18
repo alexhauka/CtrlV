@@ -2,7 +2,20 @@ const express = require('express');
 const router  = express.Router();
 
 const {
-  getUsers, getUserByID, addUser, updateUserInfo, updateUserGithub, getUserHardSkills, getUserSoftSkills, getUserWorkExperience, addUserHardSkill, removeUserHardSkill, addUserWorkExperience, getUserProjects, updateUserProject
+  getUsers, 
+  getUserByID, 
+  addUser, 
+  updateUserInfo, 
+  updateUserGithub, 
+  getUserHardSkills, 
+  getUserSoftSkills, 
+  getUserWorkExperience, 
+  addUserHardSkill, 
+  removeUserHardSkill, 
+  addUserWorkExperience,
+  deleteUserWorkExperience, 
+  getUserProjects, 
+  updateUserProject
 } = require('../lib/user-queries');
 
 // get /users
@@ -134,13 +147,27 @@ router.get('/:id/work_experience', (req, res) => {
 
 router.post('/:id/work_experience', (req, res) => {
   addUserWorkExperience(req.params.id, req.body.workInfo)
-  // .then((data) => {
-  //   res.send(data);
-  // })
-  // .catch(e => {
-  //   console.error(e);
-  //   res.send(e);
-  // })
+  .then((data) => {
+    console.log("data", data)
+    res.send(data);
+  })
+  .catch(e => {
+    console.error(e);
+    res.send(e);
+  })
+})
+
+router.delete('/:id/work_experience', (req, res) => {
+  console.log('here in axios call', req.body.workInfo)
+  deleteUserWorkExperience(req.params.id, req.body.workInfo)
+  .then((data) => {
+    console.log("data", data)
+    res.send(data);
+  })
+  .catch(e => {
+    console.error(e);
+    res.send(e);
+  });
 })
 
 
