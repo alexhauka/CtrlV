@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -52,6 +53,7 @@ export default function SignUp(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const history = useHistory();
 
   const classes = useStyles();
 
@@ -75,8 +77,11 @@ export default function SignUp(props) {
       passwordConfirmation
     }
     console.log(registerInfo);
-    props.registerUser(registerInfo);
-    reset();
+    props.registerUser(registerInfo)
+    .then(() => {
+      reset();
+      history.push("/");
+    });
   }
 
   return (
