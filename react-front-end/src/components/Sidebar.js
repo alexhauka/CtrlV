@@ -42,11 +42,6 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Ubuntu, sans-serif;',
     backgroundColor: "white",
   },
-  logo: {
-    fontSize: '50px',
-    color: 'white',
-    textDecoration: 'none',
-  },
   appBar: {
     height: '7.5em',
     justifyContent: 'center',
@@ -75,52 +70,61 @@ const useStyles = makeStyles((theme) => ({
   secondTitle: {
     color: '#a9a9a9'
   },
-  hide: {
-    display: 'none',
-    // transform: 'scale(1.8)'
+  logo: {
+    fontSize: '50px',
+    color: 'white',
+    textDecoration: 'none',
   },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-start',
-  },
-  content: {
-    flexGrow: 1,
-    // padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginRight: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginRight: 0,
-  }, 
-  sideTitle: {
-    textAlign: "center",
-    textDecoration: "underline"
-  },
-  sideListItem: {
-    display: 'flex',
-    // height: '40px',
-  },
-  sideListText: {
-    marginLeft: "5px"
+  nav: {
+    display:'flex',
+    direction: 'column'
   }
+  // hide: {
+  //   display: 'none',
+  //   // transform: 'scale(1.8)'
+  // },
+  // drawer: {
+  //   width: drawerWidth,
+  //   flexShrink: 0,
+  // },
+  // drawerPaper: {
+  //   width: drawerWidth,
+  // },
+  // drawerHeader: {
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   padding: theme.spacing(0, 1),
+  //   // necessary for content to be below app bar
+  //   ...theme.mixins.toolbar,
+  //   justifyContent: 'flex-start',
+  // },
+  // content: {
+  //   flexGrow: 1,
+  //   // padding: theme.spacing(3),
+  //   transition: theme.transitions.create('margin', {
+  //     easing: theme.transitions.easing.sharp,
+  //     duration: theme.transitions.duration.leavingScreen,
+  //   }),
+  //   marginRight: -drawerWidth,
+  // },
+  // contentShift: {
+  //   transition: theme.transitions.create('margin', {
+  //     easing: theme.transitions.easing.easeOut,
+  //     duration: theme.transitions.duration.enteringScreen,
+  //   }),
+  //   marginRight: 0,
+  // }, 
+  // sideTitle: {
+  //   textAlign: "center",
+  //   textDecoration: "underline"
+  // },
+  // sideListItem: {
+  //   display: 'flex',
+  //   // height: '40px',
+  // },
+  // sideListText: {
+  //   marginLeft: "5px"
+  // }
 }));
 
 export default function Sidebar(props) {
@@ -128,13 +132,13 @@ export default function Sidebar(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+  // const handleDrawerOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  // const handleDrawerClose = () => {
+  //   setOpen(false);
+  // };
 
   return (
     <div className={classes.root}>
@@ -145,7 +149,7 @@ export default function Sidebar(props) {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar className={classes.nav}>
+        <Toolbar >
           <Grid 
             container 
             direction="row"
@@ -174,37 +178,55 @@ export default function Sidebar(props) {
               <Link variant="primary" className={classes.title} to="/login">login</Link>
             </Typography>
           </>}
-          {props.user && 
+          {props.user &&
+          <div className={classes.nav}>
           <Button className={classes.title} onClick={props.logout}>
             logout
-          </Button>}
+          </Button>
+          <Typography
+            component={() => <Link to='/skills'>My Skills</Link>}
+          />
+          <Typography
+            component={() => <Link to='/work'>Work Experience</Link>}
+          />
+          <Typography
+            component={() => <Link to='/github'>Gitub</Link>}
+          />
+          <Typography
+            component={() => <Link to='/basicInfo'>Contact Info</Link>}
+          />
+          <Typography
+            component={() => <Link to='/myresumes'>My Resumes</Link>}
+          />
+          </div> 
+          }
           </Grid>
           </div>
         
-          <div>
+          {/* <div>
           {props.user && 
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="end"
             // fontSize='large'
-            onClick={handleDrawerOpen}
-            className={clsx(open && classes.hide)}
+            // onClick={handleDrawerOpen}
+            // className={clsx(open && classes.hide)}
           >
             <MenuIcon />
           </IconButton>}
-          </div>
+          </div> */}
           </Grid>
         </Toolbar>
       </AppBar>
-      <main
+      {/* <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,
         })}
-      >
-        <div className={classes.drawerHeader} />
-      </main>
-      <Drawer
+      > */}
+        {/* <div className={classes.drawerHeader} />
+      </main> */}
+      {/* <Drawer
         className={classes.drawer}
         variant="persistent"
         anchor="right"
@@ -251,7 +273,7 @@ export default function Sidebar(props) {
             </ListItem>
           ))}
         </List>
-      </Drawer>
+      </Drawer> */}
     </div>
   );
 }
