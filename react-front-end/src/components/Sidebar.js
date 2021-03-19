@@ -239,9 +239,9 @@ export default function Sidebar(props) {
           </ListItemLink>
         </List>
         <Divider />
-        <ListItemLink href="/resume">
+        <ListItemLink href="/myresumes">
             <ListItemIcon style={{paddingLeft: '5px'}}><InboxIcon/></ListItemIcon>
-            <ListItemText className={classes.sideListText} primary="Resume" />
+            <ListItemText className={classes.sideListText} primary="My Resumes" />
           </ListItemLink>
         <List>
           {['Trash', 'Spam'].map((text, index) => (

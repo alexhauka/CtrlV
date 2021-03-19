@@ -26,7 +26,8 @@ export function useApplicationData() {
     userHardSkills: [],
     user: null,
     userWorkExperience: {},
-    userProjects: []
+    userProjects: [],
+    userResumes: []
   }); 
 
   const user_id = state.user && state.user.id
@@ -40,7 +41,8 @@ export function useApplicationData() {
       axios.get(`/api/users/${user_id}`),
       axios.get(`/api/users/${user_id}/hard_skills`),
       axios.get(`/api/users/${user_id}/work_experience`),
-      axios.get(`/api/users/${user_id}/projects`)
+      axios.get(`/api/users/${user_id}/projects`),
+      axios.get(`api/users/${user_id}/resumes`)
     ])
     .then((all) => {
       dispatch({
@@ -49,7 +51,8 @@ export function useApplicationData() {
         user: all[1].data,
         userHardSkills: all[2].data,
         userWorkExperience: all[3].data,
-        userProjects: all[4].data
+        userProjects: all[4].data,
+        userResumes: all[5].data
       })
     })
   }, [user_id])
@@ -107,7 +110,9 @@ export function useApplicationData() {
         hardskills: [],
         userHardSkills: [],
         user: null,
-        userWorkExperience: {}
+        userWorkExperience: {},
+        userProjects: [],
+        userResumes: []
       })
     })
   }

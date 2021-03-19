@@ -87,6 +87,7 @@ const useStyles = makeStyles(() => ({
 
 export default function TemplateOne(props) {
   const { basicInfo, projects, skills, work_experience } = props.data
+  console.log("This is templateONe props", props)
   const classes = useStyles();
 
   // style={{backgroundColor: props.color}}

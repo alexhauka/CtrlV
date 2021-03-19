@@ -13,6 +13,7 @@ export const SET_PROJECTS = "SET_PROJECTS";
 export const DELETE_PROJECT = "DELETE_PROJECT";
 export const SET_UPDATED_PROJECT = "SET_UPDATED_PROJECT";
 
+
 // export function reducer(state, action) {
 //   const { hardskills, userHardSkills, user, userInfo, userWorkExperience, updateWork } = action;
 //   switch(action.type) {
@@ -20,10 +21,10 @@ export const SET_UPDATED_PROJECT = "SET_UPDATED_PROJECT";
 //       return { ...state, hardskills, userHardSkills, userWorkExperience };
 
 export function reducer(state, action) {
-  const {isLoggingIn, hardskills, userHardSkills, skill, user, userInfo, userWorkExperience, workInfo, userProjects, projectInfo } = action;
+  const {isLoggingIn, hardskills, userHardSkills, skill, user, userInfo, userWorkExperience, workInfo, userProjects, projectInfo, userResumes } = action;
   switch(action.type) {
     case SET_APPLICATION_DATA: { 
-      return { ...state, hardskills, userHardSkills, user, userWorkExperience, userProjects };
+      return { ...state, hardskills, userHardSkills, user, userWorkExperience, userProjects, userResumes };
     }
     case SET_UPDATED_USER: {
       const user = {
@@ -62,7 +63,7 @@ export function reducer(state, action) {
       return {...state, user, isLoggingIn}
     }
     case RESET_APPLICATION_DATA: {
-      return {...state, isLoggingIn, hardskills, userHardSkills, user, userWorkExperience }
+      return {...state, isLoggingIn, hardskills, userHardSkills, user, userWorkExperience, userProjects, userResumes }
     }
     case SET_PROJECTS: {
       const userProjects = [
