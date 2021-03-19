@@ -32,17 +32,19 @@ const useStyles = makeStyles(() => ({
   },
 
   projects: {
-    height: 400,
+    height: 450,
     border: "solid grey 1px",
     borderRadius: 20,
     marginBottom: 10,
-    backgroundColor: '#e8e8e8'
+    backgroundColor: '#e8e8e8',
+
   },
   singleProject: {
     border: "solid grey 1px",
     borderRadius: 20,
     padding: 25,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    maxWidth: '33%'
   },
 
   singleWork : {
@@ -53,7 +55,7 @@ const useStyles = makeStyles(() => ({
   },
 
   work: {
-    height: 500,
+    height: 450,
     border: "solid grey 1px",
     borderRadius: 20,
     marginBottom: 10,
@@ -85,7 +87,11 @@ const useStyles = makeStyles(() => ({
 
   skill: {
     fontSize: "24px"
-  } 
+  },
+
+  projectButton: {
+    marginBottom: 10
+  }
 
 
 }))
@@ -308,8 +314,8 @@ export default function RightSection(props) {
         direction="column"
         justify="space-around"
         > 
-        <Button id='btn1' variant="contained" color="primary" aria-controls="fade-menu1" aria-haspopup="true" onClick={handleClick}>
-          Choose Another Project
+        <Button id='btn1' variant="contained" color="primary" aria-controls="fade-menu1" aria-haspopup="true" className={classes.projectButton} onClick={handleClick}>
+          Projects
         </Button>
         <Menu
           // id={row.id}
@@ -358,8 +364,8 @@ export default function RightSection(props) {
         direction="column"
         justify="space-around"
         >
-        <Button id='btn2' variant="contained" color="primary" aria-controls="fade-menu2" aria-haspopup="true" onClick={handleClick}>
-          Choose Another Project
+        <Button id='btn2' variant="contained" color="primary" aria-controls="fade-menu2" aria-haspopup="true" className={classes.projectButton} onClick={handleClick}>
+          Projects
         </Button>
         <Menu
           // id={row.id}
@@ -408,8 +414,8 @@ export default function RightSection(props) {
         direction="column"
         justify="space-around"
         >
-        <Button id='btn3' variant="contained" color="primary" aria-haspopup="true" aria-controls="fade-menu3" onClick={handleClick}>
-          Choose Another Project
+        <Button id='btn3' variant="contained" color="primary" aria-haspopup="true" aria-controls="fade-menu3" className={classes.projectButton} onClick={handleClick}>
+          Projects
         </Button>
         <Menu
           // id={row.id}
