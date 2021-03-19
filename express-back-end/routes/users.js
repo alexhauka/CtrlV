@@ -202,7 +202,7 @@ router.get('/:id/resumes/:resumeid', (req, res) => {
 // post users/id/resumes/resumeid
 router.post('/:id/resumes/:resumeid', (req, res) => {
     addUserResume(req.body)
-  console.log("posting a resume route:", req.body.id);
+  console.log("posting a resume route:", req.body);
   // if (req.body.id === undefined){
   // } else {
   //   updateUserResume(req.body)
