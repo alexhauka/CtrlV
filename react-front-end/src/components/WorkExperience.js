@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
+import { Button, Snackbar } from '@material-ui/core';
 import Jobs from "./Jobs"
 
 const useStyles = makeStyles((theme) => ({
@@ -32,12 +33,44 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props}/>;
+}
+
 
 export default function WorkExperience(props) {
   const data = props.workExperience;
   console.log("In work experience", data)
-  const [count, setCount] = React.useState(0); 
-    
+  const [count, setCount] = useState(0); 
+  const [message, setMessage] = useState("");
+  const [open, setOpen] = useState(false);
+
+
+  function saveWork(jobInfo) {
+    props.updateWork(jobInfo)
+    .then(() => {
+      console.log("added successfully"); 
+      setMessage("Saved Successfully"); 
+      setCount(0);
+      setOpen(true);
+    });
+  }
+
+  function deleteWork(jobInfo) {
+    props.deleteWork(jobInfo)
+    .then(() => {
+      console.log("deleted successfully");
+      setMessage("Deleted Sucessfully");
+      setOpen(true);
+    });
+  }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false); 
+  };
 
 
   const numOfJobs = Object.keys(data).map(key => {
@@ -53,8 +86,8 @@ export default function WorkExperience(props) {
         company_name={data[key].company_name}
         start_date={start_date}
         end_date={end_date}
-        updateWork={props.updateWork}
-        deleteWork={props.deleteWork}
+        updateWork={saveWork}
+        deleteWork={deleteWork}
         description={data[key].job_description}
         />
         )
@@ -70,7 +103,7 @@ export default function WorkExperience(props) {
           company_name={""}
           start_date={""}
           end_date={""}
-          updateWork={props.updateWork}
+          updateWork={saveWork}
           description=''/>
         )
       }
@@ -80,6 +113,16 @@ export default function WorkExperience(props) {
   const classes = useStyles(); 
   return (
     <div className={classes.root}>
+      <Snackbar 
+          open={open}
+          autoHideDuration={1000}
+          onClose={handleClose}
+          anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+        >
+        <Alert onClose={handleClose} severity="success">
+          <h1>{message}</h1>
+        </Alert>
+      </Snackbar>
       {numOfJobs}
       {/* This line is going to need to be looked at when we start uploading to the DB */}
       {Array(count).fill(moreJobs)} 

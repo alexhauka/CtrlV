@@ -1,5 +1,3 @@
-import SkillCheck from "../components/SkillCheck";
-
 export const SET_USER = "SET_USER"; 
 export const SET_UPDATED_USER = "SET_UPDATED_USER";
 export const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";

@@ -44,8 +44,20 @@ router.put('/', (req, res) => {
 // get users/id
 router.get('/:id', (req, res) => {
   getUserByID(req.params.id)
-  .then((users) => {
-    res.json(users)
+  .then((response) => {
+    console.log("axios request",response);
+    const user = {
+      id: response.id,
+      first_name: response.first_name,
+      last_name: response.last_name,
+      email: response.email,
+      github: response.github,
+      linkedin: response.linkedin,
+      address: response.address,
+      phone_number: response.phone_number
+    }
+    console.log("new json user", user)
+    res.json(user)
   })
 });
 
