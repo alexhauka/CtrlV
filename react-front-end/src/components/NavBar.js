@@ -26,7 +26,7 @@ root:{
   display:'flex',
   alignItems:'center',
   justifyContent:'space-between',
-  fontFamily: 'Ubuntu, sans-serif;',
+  fontFamily: 'Ubuntu',
   // backgroundImage: 'linear-gradient(45deg, rgba(63,81,181,1), rgba(63,81,181,.7), rgba(63,81,181,0))',
   position:'relative',
   boxShadow: '0px 0px 20px 10px #00000059',
@@ -35,6 +35,7 @@ root:{
   width:'-webkit-fill-available'
 }, 
 title: {
+  fontFamily: 'Ubuntu',
   margin: 15,
   marginLeft: 0,
   marginRight: 30,
@@ -44,10 +45,12 @@ title: {
   // fontSize: '30px'
 },
 secondTitle: {
-  color: '#a9a9a9'
+  color: '#a9a9a9',
+  fontFamily: 'Ubuntu',
 },
 logo: {
-  fontSize: '50px',
+  fontFamily: 'Ubuntu',
+  fontSize: '1.5em',
   color: 'white',
   textDecoration: 'none',
 },
