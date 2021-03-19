@@ -65,8 +65,8 @@ const getUserResumes = function(userID) {
     WHERE user_id = $1;
   `, [userID])
   .then((response) => {
-    console.log(response)
-    return response;
+    console.log(response.rows)
+    return response.rows;
   })
   .catch((e) => {
     console.error(e);
