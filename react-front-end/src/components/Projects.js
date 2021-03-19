@@ -66,13 +66,13 @@ export default function Projects(props) {
 
   function handleSave(event){
     event.preventDefault();
-    console.log(projectInfo);
+    // console.log(projectInfo);
     props.updateProject(projectInfo)
   }
 
   function handleDelete(event) {
     event.preventDefault();
-    console.log("handleDelete", projectInfo);
+    // console.log("handleDelete", projectInfo);
     props.deleteProject(projectInfo)
   }
 
