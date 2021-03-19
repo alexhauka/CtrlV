@@ -1,347 +1,381 @@
 import React from 'react';
-import { makeStyles, Typography, Divider, Paper, TextField  } from '@material-ui/core'
+import { makeStyles, Grid, Typography, Container, Divider}
+ from '@material-ui/core'
+ import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles(() => ({
+  root_true: {
+    maxHeight: '11in',
+    padding: 10,
+    paddingTop: "5%",
+    fontSize: "100%",
+  },
+  root_false:{
+    // maxHeight: '11in',
+    // padding: 10,
+    paddingTop: "2.5%",
+    fontSize: "100%",
+    lineHeight: .5,
+  },
+  head_true: {
+    display:'flex',
+    direction: 'row',
+  },
+  head_false: {
+    display:'flex',
+    direction: 'row',
+    // backgroundColor: 'brown',
+  },
+  contact_true: {
+    display:'flex',
+    direction:'column',
+    justifyContent:'space-between',
+    // backgroundColor:'red'
+  },
+  contact_false: {
+    display:'flex',
+    direction:'column',
+    justifyContent:'space-evenly',
+    marginBottom:'1em',
+    lineHeight: 1,
+    // backgroundColor:'orange',
+    fontSize: ".1rem"
+  },
+  name_true: {
+    flexGrow: 2,
+    // backgroundColor:'blue',
+    textAlign:'center',
+    marginBottom: "5px"
+  },
+  name_false: {
+    flexGrow: 2,
+    fontSize: ".2rem",
+    // backgroundColor:'blue',
+    textAlign:'center',
+    marginBottom: "5px"
+  },
+  title_true: {
+    
+  },
+  myName: {
+    // backgroundColor:'blue',
+    fontSize: "1.5rem"
+  },
+  title_false: {
+    // backgroundColor:'red',
+    fontSize: ".2rem"
+  },
+  skills: {
+    display:'flex',
+    direction: 'row',
+    justifyContent:'space-around'
+  },
 
-  header: {
-    // maxWidth: '8.5in',
-    // minWidth: '8.5in',
-    // maxHeight: '9.5in',
-    // minHeight: '9.5in',
-    position: 'relative',
-    // width: '58.13em',
-    height: '10em',
-    paddingLeft: '1em',
-    paddingRight: '1em',
-    backgroundColor: '#FFF8ED'
+  skillSet: {
+    textAlign:'center'
   },
-  outerHead: {
-    display: 'flex',
-    margin: '1em',
-    padding: '1em',
-    justifyContent: 'space-between'
-    
+
+  liveURL_true: {
+    // textDecoration: 'none',
+    color: "blue",
+    fontSize: '1.2em',
   },
-  innerHeadLeft: {
-    display: 'flex',
-    justifyItems: 'space-between'
+  liveURL_false: {
+    color: "blue",
+    fontSize: '1.2em',
+    // backgroundColor: 'green',
+    fontSize: ".2rem"
   },
-  innerHeadRight: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
-    marginTop: '1em',
-    marginRight: '1em'
-    
+  subtitle_true: {
+
   },
-  links: {
-    textDecoration: 'none',
-    color: 'grey',
-    fontWeight: 'bold'
+  subtitle_false:{
+    // backgroundColor: 'yellow',
+    fontSize: ".2rem"
   },
-  title: {
-    width: '100%'
+  body_true:{
+
   },
-  textfield:{
-    fontSize: 25,
-    fontFamily: 'Shippori Mincho B1'
+  body_false: {
+    // backgroundColor: 'pink',
+    fontSize: "5%",
+    lineHeight: 0.95
   },
-  body: {
-    display: 'flex',
-    flexDirection: 'column',
-    textAlign: 'justify'
+
+
+  projects: {
+    display:'flex',
+    direction: 'row',
+    justifyContent:'space-evenly',
   },
-  outerProjects: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-    minHeight: '20%',
-    maxHeight: '20%',
-    padding: '5%'
+
+  project: {
+    maxWidth:"30%",
+    minWidth:'30%',
+    overflowWrap: 'break-word',
+    textAlign: 'center',
+    // maxHeight:"30%"
   },
-  innerProjects: {
-    width: '30%',
-    height: '30%',
-    margin: '1em',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+  jobs: {
+    display:'flex',
+    direction: 'row',
+    justifyContent:'space-evenly',
+    maxHeight: "33%"
   },
-  outerWork: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-    minHeight: '20%',
-    maxHeight: '20%',
-    padding: '5%'
-    
+
+  job: {
+    maxWidth:"30%",
+    minWidth:'30%',
+    overflowWrap: 'break-word',
+    textAlign: 'center'
   },
-  innerWork: {
-    width: '30%',
-    height: '30%',
-    margin: '1em',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+  jobTitle: {
+    fontSize: '1.2em',
   },
-  outerSkills: {
-    display: 'flex',
-    
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-    minHeight: '20%',
-    maxHeight: '20%',
-    padding: '5%'
-    
+
+  divider: {
+    marginTop: 5,
+    marginBottom: 5
   },
-  innerSkills: {
-    width: '30%',
-    height: '30%',
-    margin: '1em',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+  border_true: {
+    borderTop: "solid 2px",
+    borderRight: 'none',
+    borderLeft: 'none',
+    padding: 5
+  },
+  border_false: {
+    borderTop: "solid 1px",
+    borderRight: 'none',
+    borderLeft: 'none',
+    padding: 5
   }
-
 
 }));
 
 
-export default function TemplateTwo(props) {
+
+export default function TemplateOne(props) {
+
+  const { basicInfo, projects, skills, work_experience } = props.data
+  console.log("This is templateONe props", props)
   const classes = useStyles();
-  console.log(props.data)
-  console.log(props.font)
+  const [active, setActive] = React.useState(props.active)
+  // style={{backgroundColor: props.color}}
+  // style={{borderColor: props.borderColor}}
 
-  const { userName, userEmail, userAddress, userPhone, userGithub, userLinkedin } = props.data.basicInfo
-
-  const hardSkills = props.data.skills
-
-
+  const hardSkills = skills
   const languagesList = hardSkills.map(s => {
     if (s.type === 'language') {
       return(
-       <Typography variant="body1" style={{
-          fontFamily: props.font,
-          fontSize: 'x-small'
-        }}>{s.name}</Typography>
+       <Typography 
+       className={ active ? classes.body_true : classes.body_false}
+       variant="body2" 
+       style={{fontFamily: props.bodyFont}}>
+       {s.name}
+       </Typography>
       )
     }
     return null;
   })
-
   const frameworksList = hardSkills.map(s => {
   if (s.type ==='framework') {
     return (
-      <Typography variant="body1" style={{fontFamily: props.font, fontSize: 'x-small'}}>{s.name}</Typography>
+      <Typography
+      className={ active ? classes.body_true : classes.body_false} 
+      variant="body2" 
+      style={{fontFamily: props.bodyFont}}>
+      {s.name}
+      </Typography>
     )
   }
   return null;
 })
- const testingList = hardSkills.map(s => {
+  const testingList = hardSkills.map(s => {
     if (s.type === 'testing' || s.type === 'database'){
       return ( 
-        <Typography variant="body1" style={{fontFamily: props.font, fontSize: 'x-small'}}>{s.name}</Typography>
+        <Typography
+        className={ active ? classes.body_true : classes.body_false} 
+        variant="body2" 
+        style={{fontFamily: props.bodyFont}}>
+        {s.name}
+        </Typography>
       )
     }
     return null;
   })
-  
-  return(
 
-    <Paper elevation={0} className={classes.header} square >
-      
-      <div className={classes.outerHead}>
-        <div classname={classes.innerHeadLeft}>
+  const testProject = projects[0]
+  console.log("This is test", work_experience)
+  const myProjects = projects.map(i => {
+    return (
+      <div className={classes.project} >
+        <div>
+        <a className={ active ? classes.liveURL_true : classes.liveURL_false }
+         style={{fontFamily: props.font}} 
+         href={`https://${i.url}`} 
+         target="__blank">
+           {i.title}
+        </a>
+        </div>
+        <br />
         <Typography
-          variant="h3"
-          style={{fontFamily: props.font}}
-        >{props.data.basicInfo.userName}
+        className={ active ? classes.subtitle_true : classes.subtitle_false }
+         variant="body2" 
+         style={{fontFamily: props.bodyFont}}>
+        {i.primary_language}/{i.secondary_language}
         </Typography>
         <br />
-        <TextField
-        className={classes.title}
-        
-        InputProps={{
-          disableUnderline: true,
-          fontFamily: props.font,
-          classes: {
-            input: classes.textfield            
-          },
-        }}
-        defaultValue='Full-Stack Web Developer'/>
+        <Typography
+        className={ active ? classes.body_true : classes.body_false} 
+        variant="body2" 
+        style={{fontFamily: props.bodyFont}}>
+        {i.description}
+        </Typography>
+      </div>
+    )
+  })
+
+  const myJobs = work_experience.map(i => {
+    const startYear = i.job_start_date.slice(0,4)
+    const startMonth = i.job_start_date.slice(5,7)
+    const endYear = i.job_start_date.slice(0,4)
+    const endMonth = i.job_start_date.slice(5,7)  
+    
+    return (
+      <div className={classes.job} >
+        <Typography variant="subtitle1"
+          className={ active? classes.title_true : classes.title_false }
+          style={{fontFamily: props.font}}>
+        {i.job_title}
+        </Typography>
+        <br />
+        <Typography 
+        className={ active ? classes.subtitle_true : classes.subtitle_false }
+        variant="body2" 
+        style={{fontFamily: props.bodyFont}}>
+        {startMonth}/{startYear} - {endMonth}/{endYear}
+        </Typography>
+        <br/>
+        <Typography
+        className={ active ? classes.body_true : classes.body_false}
+        variant="body2" 
+        style={{fontFamily: props.bodyFont}}>
+        {i.job_description}
+        </Typography>
+      </div>
+    )
+  })
+
+
+  
+
+  return(
+
+    <Container 
+      style={{backgroundColor: props.color}} 
+      className={ active? classes.root_true : classes.root_false }>
+      <div className={ active? classes.head_true : classes.head_false }>
+        <div className={ active? classes.name_true : classes.name_false }>
+          <Typography
+            className={ active? classes.name_true : classes.myName }
+              variant="h2"
+              style={{fontFamily: props.font}}
+          >
+            {props.data.basicInfo.userName}
+          </Typography>
         </div>
-        <div
-          className={classes.innerHeadRight}
+        <div className={ active? classes.contact_true : classes.contact_false }
+          style={{fontFamily: props.bodyFont}}>
+          Address: {basicInfo.userAddress}
+          <br />
+          Email: {basicInfo.userEmail}
+          <br />
+          Github: {basicInfo.userGithub}
+          <br />
+          Phone: {basicInfo.userPhone}
+        </div>
+      </div>
+      <br />
+      {/* <Divider className={classes.divider} /> */}
+
+      <section name="skills"
+       className={ active? classes.border_true : classes.border_false }
+       style={{borderColor: props.borderColor}} >
+        <Typography
+          className={ active? classes.name_true : classes.name_false }
+          variant="h6"
           style={{fontFamily: props.font}}
         >
-          <div>
-          <a className={classes.links} href={`mailto:${userEmail}`}>
-            {userEmail}
-          </a>
-          </div>
-          <div>
-          <a className={classes.links} href={`${userGithub}`}>
-            github
-          </a>
-          </div>
-          <div>
-          <a className={classes.links} href={`${userLinkedin}`}>
-            linkedIn
-          </a>
-          </div>
-          {userAddress}
-          {userPhone}
-        </div>
-      </div>
-      <br/>
-      <br />
-      <div className={classes.body} style={{backgroundColor: props.color, fontFamily: props.font, fontSize: 'x-small'}}>
-
-        
-
-        <div className={classes.outerProjects} style={{fontFamily: props.font, fontSize: 'x-small'}}>
-
-          <div className={classes.innerProjects}>
-            <div style={{fontWeight: 'bolder'}}>
-            {props.data.projects[0].title}
-            </div>
-            <div>
-              <a className={classes.links} href={`${props.data.projects[0].url}`}>
-                repository
-              </a>
-            </div>
-            <div>
-            Primary Languages: {props.data.projects[0].primary_language}, {props.data.projects[0].secondary_language}
-            </div>
-            <br/>
-            <div>
-            "{props.data.projects[0].description}"
-            </div>
-          </div>
-
-          <div className={classes.innerProjects}>
-            <div style={{fontWeight: 'bolder'}}>
-            {props.data.projects[1].title}
-            </div>
-            <div>
-            <a className={classes.links} href={`${props.data.projects[1].url}`}>
-            repository
-              </a>
-            </div>
-            <div>
-              Primary Languages: {props.data.projects[1].primary_language}, {props.data.projects[1].secondary_language}
-            </div>
-            <br/>
-            <div>
-            "{props.data.projects[1].description}"
-            </div>
-          </div>
-
-          <div className={classes.innerProjects}>
-            <div style={{fontWeight: 'bolder'}}>
-            {props.data.projects[2].title}
-            </div>
-            <div>
-            <a className={classes.links} href={`${props.data.projects[2].url}`}>
-            repository
-              </a>
-            </div>
-            <div>
-            Primary Languages: {props.data.projects[2].primary_language}, {props.data.projects[2].secondary_language}
-            </div>
-            <br/>
-            <div>
-            "{props.data.projects[2].description}"
-            </div>
-          </div>
-
-        </div>
-        <br />
-        <div className={classes.outerWork}>
-
-          <div className={classes.innerWork}>
-            <div>
-            <span style={{fontWeight: 'bolder'}}>{props.data.work_experience[0].job_title}</span>
-              
-            </div>
-            <div>
-              {props.data.work_experience[0].job_start_date.slice(0, 10)}
-            </div>
-            <div>
-              {props.data.work_experience[0].job_end_date.slice(0, 10)}
-            </div>
-            <div>
-              {props.data.work_experience[0].job_description}
-            </div>
-          </div>
-
-          <div className={classes.innerWork}>
-            <div>
-            <span style={{fontWeight: 'bolder'}}>{props.data.work_experience[1].job_title}</span>
-              
-            </div>
-            <div>
-              {props.data.work_experience[1].job_start_date.slice(0, 10)}
-            </div>
-            <div>
-              {props.data.work_experience[1].job_end_date.slice(0, 10)}
-            </div>
-            <div>
-              {props.data.work_experience[1].job_description}
-            </div>
-          </div>
-
-          <div className={classes.innerWork}>
-            <div>
-            <span style={{fontWeight: 'bolder'}}>{props.data.work_experience[2].job_title}</span>
-              
-            </div>
-            <div>
-              {props.data.work_experience[2].job_start_date.slice(0, 10)}
-            </div>
-            <div>
-              {props.data.work_experience[2].job_end_date.slice(0, 10)}
-            </div>
-            <div>
-              {props.data.work_experience[2].job_description}
-            </div>
-          </div>
-            
-        </div>
-
-        <div className={classes.outerSkills} style={{fontFamily: props.font}}>
-
-          <div className={classes.innerSkills}>
-            <span style={{fontWeight: 'bolder'}}>Languages</span>
-            <br/>
+          My Skills
+        </Typography>
+        <div className={classes.skills}>
+          <div className={classes.skillSet}>
+            <Typography
+            className={ active? classes.title_true : classes.title_false }
+              variant="subtitle1"
+              style={{fontFamily: props.font}}
+            >
+              Languages
+            </Typography>
             {languagesList}
           </div>
-
-          <div className={classes.innerSkills}>
-          <span style={{fontWeight: 'bolder'}}>Frameworks</span>
-            <br/>
-            {frameworksList}
-          </div>
-
-          <div className={classes.innerSkills}>
-          <span style={{fontWeight: 'bolder'}}>Databases & Testing</span>
-            <br/>
+          <div className={classes.skillSet}>
+            <Typography
+              className={ active? classes.title_true : classes.title_false }
+              variant="subtitle1"
+              style={{fontFamily: props.font}}
+            >
+              Testing & Databases
+            </Typography>
             {testingList}
           </div>
-
+          <div className={classes.skillSet}>
+            <Typography
+              className={ active? classes.title_true : classes.title_false }
+              variant="subtitle1"
+              style={{fontFamily: props.font}}
+            >
+              Frameworks
+            </Typography>
+            {frameworksList}
+          </div>
         </div>
-
+      </section>
+      <Divider className={classes.divider} />
+      <section name="projects" 
+      className={ active? classes.border_true : classes.border_false }
+      style={{borderColor: props.borderColor}} >
+        <Typography
+          className={ active? classes.name_true : classes.name_false }
+          variant="h6"
+          style={{fontFamily: props.font}}
+        >
+          My Projects
+        </Typography>
+      <div className={classes.projects}>
+      {myProjects}
+      </div> 
+      </section>
+      <Divider className={classes.divider} />
+      <section name="work_experience" 
+      className={ active? classes.border_true : classes.border_false }
+      style={{borderColor: props.borderColor}} >
+        <Typography
+          className={ active? classes.name_true : classes.name_false }
+          variant="h6"
+          style={{fontFamily: props.font}}
+        >
+          My Jobs
+        </Typography>
+      <div className={classes.jobs}>
+      {myJobs}
       </div>
-      
-    </Paper> 
+      </section>
+      <section name="basic_info">
+
+      </section>
+    </Container> 
 
   )
 }

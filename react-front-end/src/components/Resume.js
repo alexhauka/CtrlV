@@ -513,7 +513,7 @@ const resume = {
           {template === 1 &&
             <TemplateOne active={true} data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} />
           }{template === 2 &&
-            <TemplateTwo data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} />
+            <TemplateTwo active={true} data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} />
           } 
           </div>
           <Button onClick={() => saveResume(resume)}>Save and Confirm</Button>
