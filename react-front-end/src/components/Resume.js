@@ -96,8 +96,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function Resume(props) {
-
   let data = props.location.state.output
+  console.log('this is resume data',data)
   const { basicInfo, projects, skills, work_experience } = data
 
   const [template, setTemplate] = useState(1)

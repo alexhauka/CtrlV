@@ -19,7 +19,7 @@ const {
   deleteUserProject
 } = require('../lib/user-queries');
 
-const { addUserResume, updateUserResume } = require("../lib/resume-queries")
+const { addUserResume, updateUserResume, getUserResumes } = require("../lib/resume-queries")
 
 // get /users
 router.get('/', (req, res) => {
@@ -191,7 +191,10 @@ router.delete('/:id/work_experience', (req, res) => {
 
 // get users/id/resumes
 router.get('/:id/resumes', (req, res) => {
-
+  getUserResumes(req.params.id)
+  .then((resumes) => {
+    res.json(resumes)
+  })
 });
 
 // get users/id/resumes/resumeid

@@ -91,6 +91,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 export default function RightSection(props) {
+  console.log("In right", props)
   const { user, userHardSkills, userProjects, userWorkExperience } = props.props
   const classes = useStyles()
   //For edit menu
@@ -635,7 +636,7 @@ export default function RightSection(props) {
         pathname: '/resume',
         state: {
           output
-        }
+        },
       }}>Save and Confirm</Link>
       {/* <Button component={() => <Link  />}>How about this one?</Button> */}
     </div>

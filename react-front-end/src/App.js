@@ -16,6 +16,7 @@ import WorkExperience from './components/WorkExperience';
 import Github from './components/Github';
 import Footer from './components/Footer';
 import BasicInfo from './components/BasicInfo';
+import MyResumes from './components/MyResumes';
 
 
 // const useStyles = makeStyles((theme) => ({
@@ -116,7 +117,7 @@ export default function App() {
           user={state.user}
         >
         </ProtectedRoute> 
-
+        {/* <ProtectedRoute path="/resume" component={Resume} /> */}
         <ProtectedRoute 
           path="/skills" 
           isLoggingIn={state.isLoggingIn}
@@ -166,6 +167,14 @@ export default function App() {
             user={state.user}
             updateUser={updateUser}
           />
+        </ProtectedRoute>
+
+        <ProtectedRoute
+          isLoggingIn={state.isLoggingIn}
+          user={state.user}
+          path="/myresumes"
+        >
+          <MyResumes state={state} />
         </ProtectedRoute>
 
       </Switch>
