@@ -28,11 +28,12 @@ const useStyles = makeStyles(() => ({
 }))
 
 export default function BasicInfo(props) {  
-  const { first_name, last_name, email, address, phone_number } = props.user
+  const { first_name, last_name, email, linkedin, address, phone_number } = props.user
   const [userInfo, setUserInfo] = useState({
     first_name,
     last_name,
     email,
+    linkedin,
     address,
     phone_number
   })
@@ -78,6 +79,13 @@ export default function BasicInfo(props) {
               label="Email" 
               name="email"
               value={userInfo.email}
+              onChange={handleChange}
+              />
+            <TextField 
+              id="linkedin" 
+              label="Linkedin" 
+              name="linkedin"
+              value={userInfo.linkedin}
               onChange={handleChange}
               />
             <TextField 

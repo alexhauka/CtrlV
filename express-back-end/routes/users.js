@@ -32,7 +32,17 @@ router.get('/', (req, res) => {
 // post /users 
 router.put('/', (req, res) => {
   addUser(req.body.registerInfo)
-  .then(user => {
+  .then((response) => {
+    const user = {
+      id: response.id,
+      first_name: response.first_name,
+      last_name: response.last_name,
+      email: response.email,
+      github: response.github,
+      linkedin: response.linkedin,
+      address: response.address,
+      phone_number: response.phone_number
+    }
     res.send(user);
   })
   .catch(e => {

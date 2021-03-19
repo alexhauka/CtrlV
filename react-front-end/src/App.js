@@ -17,7 +17,7 @@ import Github from './components/Github';
 import Footer from './components/Footer';
 import BasicInfo from './components/BasicInfo';
 import MyResumes from './components/MyResumes';
-
+import NavBar from './components/NavBar'
 
 // const useStyles = makeStyles((theme) => ({
 //   root: {
@@ -94,7 +94,7 @@ export default function App() {
 
   return(
     <>
-      <Sidebar user={state.user} logout={handleLogout} />
+      <NavBar user={state.user} logout={handleLogout} />
       <Switch> 
         <ProtectedRoute 
         isLoggingIn={state.isLoggingIn}
