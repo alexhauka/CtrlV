@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button} from '@material-ui/core';
 
 
 const useStyles = makeStyles(() => ({
@@ -33,6 +33,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 
+
 export default function Jobs(props) {
   const {title, description, id, start_date, end_date, company_name} = props
   const [jobInfo, setJobInfo] = useState({
@@ -43,14 +44,15 @@ export default function Jobs(props) {
     job_start_date: start_date,
     job_end_date: end_date
   })
+
+
   function save(event){
-    event.preventDefault()
-    props.updateWork(jobInfo)
+    event.preventDefault();
+    props.updateWork(jobInfo);
   }
 
   function onDelete(event) {
-    event.preventDefault()
-    console.log("onDelete", jobInfo);
+    event.preventDefault();
     props.deleteWork(jobInfo);
   }
   
@@ -58,9 +60,11 @@ export default function Jobs(props) {
     setJobInfo({...jobInfo, [event.target.name]: event.target.value})
   }
 
+  
   const classes = useStyles(); 
     return (
       <form key={jobInfo.id} noValidate autoComplete="off">
+        
         <div className={classes.job}>
         <div className={classes.fields}>
         <TextField  
@@ -111,12 +115,12 @@ export default function Jobs(props) {
             variant="outlined"
           />
         </div>
-        <Button 
+      {!Object.values(jobInfo).includes(null) && <Button 
       className={classes.submit}
       onClick={save}
       >
         Save
-      </Button>
+      </Button>}
       {props.title && props.description && <Button
       className={classes.submit}
       onClick={onDelete}>

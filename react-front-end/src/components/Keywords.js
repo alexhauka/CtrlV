@@ -52,7 +52,10 @@ export default function Keywords(props) {
   const onClick = async () => {
     console.log('clicked submit url')
     const scrapeResults = await fetchJob()
-    const dataForFilter = scrapeResults.replace(/[(/:!?),]/g, ' ').toLowerCase().split(' ')
+    const dataForFilter = scrapeResults
+      .replace(/[(/:!?),]/g, ' ')
+      .toLowerCase()
+      .split(' ');
     const results = keywordFilter(dataForFilter)
     console.log("filter results", results)
     // console.log(results)
@@ -60,21 +63,27 @@ export default function Keywords(props) {
       ...results
     })
 
-    
-    toggleKeywords()
-    
-    
-    
-  };
-
-  const toggleKeywords = () => {
     if (showKeywords === true){
       setShowKeywords(false)
     } else {
       setShowKeywords(true)
     }
+    
+    // toggleKeywords()
+    
+    
+    
+  };
 
-  }
+  // const toggleKeywords = () => {
+  //   console.log("filter results", filterResults)
+  //   if (showKeywords === true){
+  //     setShowKeywords(false)
+  //   } else {
+  //     setShowKeywords(true)
+  //   }
+
+  // }
 
   return (
     <div>
@@ -91,7 +100,8 @@ export default function Keywords(props) {
       <br/>
       <Button className={classes.submit} variant="outlined" color="default" size="large" onClick={onClick}>Submit</Button>
       </form>
-      <Button className={classes.submit} variant="outlined" color="default" size="large" onClick={toggleKeywords}>Toggle Keywords</Button>
+      {url === '' ? 'Please Enter a Job Post URL Above' : null}
+      {/* <Button className={classes.submit} variant="outlined" color="default" size="large" onClick={toggleKeywords}>Toggle Keywords</Button> */}
       {showKeywords ? <KeywordResults state={props.state} filterResults={filterResults} /> : null }
     </div >
   )
