@@ -61,8 +61,13 @@ export function useApplicationData() {
     console.log("here")
     console.log(registerInfo);
     return axios.put(`/api/users`, { registerInfo })
-    .then(() => {
+    .then((response) => {
       console.log("registered successfully"); 
+      dispatch({
+        type: SET_USER,
+        user: response.data,
+        isLoggingIn: false
+      })
     })
   };
 

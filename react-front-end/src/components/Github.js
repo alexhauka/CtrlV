@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, TextField, Button } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
+import { Typography, TextField, Button, Snackbar } from '@material-ui/core';
 import Projects from "./Projects"; 
 
 import GetGithub from './GetGithub';
@@ -52,37 +53,78 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props}/>;
+}
 
 export default function Github(props) {
-const [count, setCount] = React.useState(0)
-console.log("IN GITHUB", props)
-// // default state is my github for testing:
-const [username, setUsername] = React.useState('');
+  const [count, setCount] = useState(0);
+  console.log("IN GITHUB", props)
+  // // default state is my github for testing:
+  const [username, setUsername] = useState('');
+  const [message, setMessage] = useState("");
+  const [open, setOpen] = useState(false);
   
   const classes = useStyles(); 
 
+  function saveProject(projectInfo) {
+    props.updateProject(projectInfo)
+    .then(() => {
+      console.log("added successfully"); 
+      setMessage("Saved Successfully"); 
+      setCount(0);
+      setOpen(true);
+    });
+  }
 
-    const data = props.projects
-    const numOfProjects = data.map(i => {
-      console.log("IN FOR LOOP:", i)
-      const last_updated = i.last_updated.slice(0,10);
-      return (
-        <Projects 
-          key={i.id}
-          id={i.id}
-          title={i.title}
-          primary_language={i.primary_language}
-          primary_language_percent={i.primary_language_percent}
-          secondary_language={i.secondary_language}
-          secondary_language_percent={i.secondary_language_percent}
-          last_updated={last_updated}
-          description={i.description}
-          url={i.url}
-          updateProject={props.updateProject}
-          deleteProject={props.deleteProject}
-        />
-      )
+  function deleteProject(projectInfo) {
+    props.deleteProject(projectInfo)
+    .then(() => {
+      console.log("deleted successfully");
+      setMessage("Deleted Sucessfully");
+      setOpen(true);
+    });
+  }
+
+  function generateProject(projectData, userID) {
+    props.addProject(projectData, userID)
+    .then(() => {
+      console.log("generate successfully");
+      setCount(0);
+      setMessage("Added Successfully");
+      setOpen(true);
     })
+  }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false); 
+  };
+
+
+  const data = props.projects
+  const numOfProjects = data.map(i => {
+    console.log("IN FOR LOOP:", i)
+    const last_updated = i.last_updated.slice(0,10);
+    return (
+      <Projects 
+        key={i.id}
+        id={i.id}
+        title={i.title}
+        primary_language={i.primary_language}
+        primary_language_percent={i.primary_language_percent}
+        secondary_language={i.secondary_language}
+        secondary_language_percent={i.secondary_language_percent}
+        last_updated={last_updated}
+        description={i.description}
+        url={i.url}
+        updateProject={saveProject}
+        deleteProject={deleteProject}
+      />
+    )
+  })
     
     const addProjects = function(input){
       for (let i = 0; i < input; i++){
@@ -95,7 +137,7 @@ const [username, setUsername] = React.useState('');
           secondary_language={''}
           secondary_language_percent={''}
           description={''}
-          updateProject={props.updateProject}
+          updateProject={saveProject}
         />
         )
       }
@@ -105,6 +147,16 @@ const [username, setUsername] = React.useState('');
 
   return (
     <div className={classes.root}>
+     <Snackbar 
+          open={open}
+          autoHideDuration={1000}
+          onClose={handleClose}
+          anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+        >
+        <Alert onClose={handleClose} severity="success">
+          <h1>{message}</h1>
+        </Alert>
+      </Snackbar>
       <div className={classes.top}>
         <Typography variant="h3">Enter your Github username</Typography>
         <br />
@@ -118,11 +170,11 @@ const [username, setUsername] = React.useState('');
         />
         <br />
         <GetGithub 
-        username={username} 
-        user={props.user} 
-        updateGithub={props.updateGithub}
-        addProject={props.addProject}/>
-
+          username={username} 
+          user={props.user} 
+          updateGithub={props.updateGithub}
+          addProject={generateProject}
+        />
         {numOfProjects}
         {Array(count).fill(moreProjects)}
       </div>

@@ -32,21 +32,22 @@ const getUserByEmail = (email) => {
 const addUser = (userInfo) => {
   return client.query(`
     INSERT INTO USERS (first_name, last_name, email, password, github, linkedin, address, phone_number)
-    VALUES ($1, $2, $3, $4, null, null, 'Vancouver, BC', '604-123-4567');
+    VALUES ($1, $2, $3, $4, null, null, null, null)
+    RETURNING *;
   `, [userInfo.firstName, userInfo.lastName, userInfo.email, userInfo.password])
   .then((response) => {
-    return response.rows; 
+    return response.rows[0]; 
   });
 }
 
 const updateUserInfo = (id, userInfo) => {
   console.log(userInfo);
-  const {first_name, last_name, email, address, phone_number } = userInfo; 
+  const {first_name, last_name, email, linkedin, address, phone_number } = userInfo; 
   return client.query(`
   UPDATE users
-  SET first_name = $1, last_name = $2, email = $3, address = $4, phone_number = $5
-  WHERE id = $6;
-  `, [first_name, last_name, email, address, phone_number, id])
+  SET first_name = $1, last_name = $2, email = $3, linkedin = $4, address = $5, phone_number = $6
+  WHERE id = $7;
+  `, [first_name, last_name, email, linkedin, address, phone_number, id])
   .then((response) => {
     return response.rows[0]; 
   });
