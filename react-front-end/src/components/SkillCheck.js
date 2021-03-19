@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import MuiAlert from '@material-ui/lab/Alert';
@@ -54,10 +54,6 @@ function Alert(props) {
 export default function SkillCheck(props) {
   const data = props.hardskills;
   const userData = props.userHardSkills
-
-  useEffect(() => {
-    console.log("component mounted")
-  }, []);
   
   const defaultSkills = {} 
   for (const skill of data) {
