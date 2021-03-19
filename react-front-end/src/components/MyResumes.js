@@ -28,41 +28,40 @@ export default function MyResumes(props) {
   
   const user = props.state.user
 
-  const resumeInfo = props.state.userResumes.rows
-
-  const resume_project_1_index = Object.keys(userProjects).findIndex(p => p.id === resumeInfo.project_1);
-  const resume_project_2_index = Object.keys(userProjects).findIndex(p => p.id === resumeInfo.project_2);
-  const resume_project_3_index = Object.keys(userProjects).findIndex(p => p.id === resumeInfo.project_3);
-
-  const resume_work_1_index = Object.keys(userWorkExperience).findIndex(w => w.id === resumeInfo.work_1);
-  const resume_work_2_index = Object.keys(userWorkExperience).findIndex(w => w.id === resumeInfo.work_2);
-  const resume_work_3_index = Object.keys(userWorkExperience).findIndex(w => w.id === resumeInfo.work_3);
-
-  const data = {
-    basicInfo: user,
-    
-    skills: userHardSkills, 
-    
-    projects: [userProjects[resume_project_1_index], userProjects [resume_project_2_index], userProjects[resume_project_3_index]],
-    
-    work_experience: [userWorkExperience[resume_work_1_index], userWorkExperience[resume_work_2_index], userWorkExperience[resume_work_3_index]]
+  const basicInfo = {
+    userName: `${user.first_name} ${user.last_name}`,
+    userEmail: user.email,
+    github: user.github,
+    userPhone: user.phone_number
   }
 
-   
+  console.log(basicInfo);
 
-
-  
-  // console.log("data.projects: ", data.projects);
-  // console.log("data.work_experince: ", data.work_experience); 
-
-  
+  const resumeInfo = props.state.userResumes
   
   const resumes = resumeInfo.map(i => {
 
-    
+    const resume_project_1_index = userProjects.findIndex(p => p.id === i.project_1);
+    const resume_project_2_index = userProjects.findIndex(p => p.id === i.project_2);
+    const resume_project_3_index = userProjects.findIndex(p => p.id === i.project_3);
+
+    const resume_work_1_index = userWorkExperience.findIndex(w => w.id === i.work_1);
+    const resume_work_2_index = userWorkExperience.findIndex(w => w.id === i.work_2);
+    const resume_work_3_index = userWorkExperience.findIndex(w => w.id === i.work_3);
+
+    const data = {
+      basicInfo: basicInfo,
+
+      skills: userHardSkills, 
+
+      projects: [userProjects[resume_project_1_index], userProjects [resume_project_2_index], userProjects[resume_project_3_index]],
+
+      work_experience: [userWorkExperience[resume_work_1_index], userWorkExperience[resume_work_2_index], userWorkExperience[resume_work_3_index]]
+    }
+
     if (i.template_id === 1) {
       return (
-        <div name='showcase' className={classes.resume}>
+        <div name='showcase' className={classes.resume} key={resumeInfo.id} >
           <TemplateOne data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
         </div>
       )

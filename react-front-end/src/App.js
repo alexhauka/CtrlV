@@ -89,6 +89,7 @@ export default function App() {
     })
   }
 
+  const data = state;
   
 
   return(
@@ -174,7 +175,7 @@ export default function App() {
           user={state.user}
           path="/myresumes"
         >
-          <MyResumes state={state} />
+          <MyResumes state={data} />
         </ProtectedRoute>
 
       </Switch>
