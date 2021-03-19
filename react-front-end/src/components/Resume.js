@@ -62,8 +62,13 @@ const useStyles = makeStyles(() => ({
     width: '100%',
   },
   Font: {
-    width: "33.3%"
+    width: "33.3%",
+      "&:hover": {
+        backgroundColor: "white",
+        color: "blue"
+      }
   },
+  selected: {},
   right: {
     width: "65%",
     boxShadow: '19px 20px 20px 0px #00000059 inset'
@@ -101,6 +106,7 @@ export default function Resume(props) {
   const { basicInfo, projects, skills, work_experience } = data
 
   const [template, setTemplate] = useState(1)
+
 
   const [color, setColor] = useState('#fff')
   const [borderColor, setBorderColor] = useState('#000000')
@@ -153,9 +159,9 @@ const resume = {
           aria-label="vertical contained primary button group"
           variant="contained"
         >
-          <Button onClick={() => setTemplate(1)} >Template One</Button>
-          <Button onClick={() => setTemplate(2)}>Template Two</Button>
-          <Button >Template Three</Button>
+          <Button className={classes.Font} onClick={() => setTemplate(1)} >Template One</Button>
+          <Button className={classes.Font} onClick={() => setTemplate(2)}>Template Two</Button>
+          <Button className={classes.Font} >Template Three</Button>
         </ButtonGroup>
         <ButtonGroup
           orientation="vertical"
@@ -505,7 +511,7 @@ const resume = {
         <div className={classes.right}>
         <div className={classes.rightRoot}>
           {template === 1 &&
-            <TemplateOne data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} />
+            <TemplateOne active={true} data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} />
           }{template === 2 &&
             <TemplateTwo data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} />
           } 
