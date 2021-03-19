@@ -59,8 +59,25 @@ const updateUserResume = function(resume) {
   })
 }
 
+const getUserResumes = function(userID) {
+  return client.query(`
+    SELECT * FROM resumes
+    WHERE user_id = $1;
+  `, [userID])
+  .then((response) => {
+    console.log(response)
+    return response;
+  })
+  .catch((e) => {
+    console.error(e);
+  })
+}
+
 
 /*
+
+  reference for database
+
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   template_id INTEGER REFERENCES  templates(id) ON DELETE CASCADE,
   background_color VARCHAR(255) NOT NULL DEFAULT 'white',
@@ -79,4 +96,4 @@ const updateUserResume = function(resume) {
 
 
 
-module.exports = { addUserResume, updateUserResume };
+module.exports = { addUserResume, updateUserResume, getUserResumes };
