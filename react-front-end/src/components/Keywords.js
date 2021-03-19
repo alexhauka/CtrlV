@@ -54,12 +54,15 @@ export default function Keywords(props) {
     const scrapeResults = await fetchJob()
     const dataForFilter = scrapeResults.replace(/[(/:!?),]/g, ' ').toLowerCase().split(' ')
     const results = keywordFilter(dataForFilter)
+    console.log("filter results", results)
     // console.log(results)
     setFilterResults({
       ...results
     })
-    console.log(filterResults)
+
+    
     toggleKeywords()
+    
     
     
   };
