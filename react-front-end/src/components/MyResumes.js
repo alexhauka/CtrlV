@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     width: "4in",
     boxShadow: '0px 0px 20px 10px #00000059',
     margin: '5%',
-    '&:active': {
+    '&:hover': {
       boxShadow: '0px 0px 20px 10px #823fb5'
     }
   },
