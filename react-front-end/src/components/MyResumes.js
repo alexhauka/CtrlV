@@ -4,19 +4,28 @@ import { Button } from '@material-ui/core';
 import TemplateOne from './TemplateOne';
 import TemplateTwo from './TemplateTwo';
 const useStyles = makeStyles((theme) => ({
-  root: {
-    
+  root: { 
+    marginTop: 30,
+    textAlign: 'center'
+  },
+  resumes: {
     display: 'flex',
     flexDirection: 'row',
-    flexWrap: 'wrap'
-
+    flexWrap: 'wrap',
+    justifyContent:'space-evenly'
   },
   resume: {
     height: "5.75in",
     width: "4in",
-    border: "solid black 1px",
-    margin: '5%'
-  }
+    boxShadow: '0px 0px 20px 10px #00000059',
+    margin: '5%',
+    '&:active': {
+      boxShadow: '0px 0px 20px 10px #823fb5'
+    }
+  },
+  
+
+
 }))
 
 export default function MyResumes(props) {
@@ -62,7 +71,7 @@ export default function MyResumes(props) {
     if (i.template_id === 1) {
       return (
         <div name='showcase' className={classes.resume} key={resumeInfo.id} >
-          <TemplateOne data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
+          <TemplateOne active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
         </div>
       )
 
@@ -77,8 +86,10 @@ export default function MyResumes(props) {
   })
     return (
       <div className={classes.root}>
-      <h1> My Resumes :)) </h1>
-      {resumes}
+        {/* <h1> My Resumes :)) </h1> */}
+        <div className={classes.resumes}>
+          {resumes}
+        </div>
       </div>
     )
 }
