@@ -192,7 +192,8 @@ const getUserSoftSkills = (id) => {
   const getUserWorkExperience = (id) => {
     return client.query(`
     SELECT work_experiences.* FROM work_experiences
-    WHERE user_id = $1;
+    WHERE user_id = $1
+    ORDER BY job_start_date DESC;
     `, [id])
     .then((response) => {
       return response.rows
