@@ -105,7 +105,7 @@ export default function Resume(props) {
   console.log('this is resume data',data)
   const { basicInfo, projects, skills, work_experience } = data
 
-  const [template, setTemplate] = useState(1)
+  const [template, setTemplate] = useState(2)
 
 
   const [color, setColor] = useState('#fff')
