@@ -101,6 +101,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function Resume(props) {
+  console.log(props);
   let data = props.location.state.output
   console.log('this is resume data',data)
   const { basicInfo, projects, skills, work_experience } = data
@@ -118,11 +119,16 @@ export default function Resume(props) {
   }
   
   
-function saveResume(resumeObject) {
+function saveResume() {
+  console.log("resume", resume);
 
-  console.log("This is the resume Object: ", resumeObject);
   // console.log('user id: ', projects[0].user_id)
-  axios.post('/api/users/:id/resumes/:resumeid', { resumeObject })
+  // axios.post('/api/resumes', { resumeObject })
+  props.addResume(resume)
+  .then(() => {
+    console.log("here after addResume");
+    props.history.push("/myresumes");
+  });
 
 }
 
@@ -516,7 +522,7 @@ const resume = {
             <TemplateTwo active={true} data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} />
           } 
           </div>
-          <Button onClick={() => saveResume(resume)}>Save and Confirm</Button>
+          <Button onClick={saveResume}>Save and Confirm</Button>
         </div>
       </Grid>
     </div>

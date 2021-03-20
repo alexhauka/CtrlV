@@ -10,6 +10,9 @@ export const RESET_APPLICATION_DATA = "RESET_APPLICATION_DATA";
 export const SET_PROJECTS = "SET_PROJECTS";
 export const DELETE_PROJECT = "DELETE_PROJECT";
 export const SET_UPDATED_PROJECT = "SET_UPDATED_PROJECT";
+export const SET_RESUME = "SET_RESUME"; 
+export const DELETE_RESUME = "DELETE_RESUME"; 
+
 
 
 // export function reducer(state, action) {
@@ -19,7 +22,7 @@ export const SET_UPDATED_PROJECT = "SET_UPDATED_PROJECT";
 //       return { ...state, hardskills, userHardSkills, userWorkExperience };
 
 export function reducer(state, action) {
-  const {isLoggingIn, hardskills, userHardSkills, skill, user, userInfo, userWorkExperience, workInfo, userProjects, projectInfo, userResumes } = action;
+  const {isLoggingIn, hardskills, userHardSkills, skill, user, userInfo, userWorkExperience, workInfo, userProjects, projectInfo, userResumes, resume } = action;
   switch(action.type) {
     case SET_APPLICATION_DATA: { 
       return { ...state, hardskills, userHardSkills, user, userWorkExperience, userProjects, userResumes };
@@ -105,6 +108,21 @@ export function reducer(state, action) {
       userHardSkills.splice(removeIndex, 1)
       console.log("DELETE_SKILL" , userHardSkills)
       return {...state, userHardSkills}
+    }
+    case SET_RESUME: {
+      const userResumes = [
+        ...state.userResumes,
+        resume
+      ]
+      return {...state, userResumes}; 
+    }
+    case DELETE_RESUME: {
+      const userResumes = [
+        ...state.userResumes
+      ]
+      const removeIndex = userResumes.findIndex(r => r.id === resume.id)
+      userResumes.splice(removeIndex, 1)
+      return {...state, userResumes}
     }
     default: throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
   }
