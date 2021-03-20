@@ -24,6 +24,12 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: '0px 0px 20px 10px #823fb5'
     }
   },
+  button: {
+    marginTop: '1.2em',
+    color: "white",
+    size: "large",
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
+  }
   
 
 
@@ -95,7 +101,7 @@ export default function MyResumes(props) {
             }
           }}> */}
             <TemplateOne active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
-            <Button href={`/resumes/${i.id}`}>Show</Button>
+            <Button className={classes.button} href={`/resumes/${i.id}`}>Show</Button>
           {/* </Link> */}
         </div>
       )
