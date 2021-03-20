@@ -16,7 +16,9 @@ const useStyles = makeStyles(() => ({
   root_false:{
     // maxHeight: '11in',
     // padding: 10,
-    paddingTop: "2.5%",
+    height: '100%',
+    padding: "0%",
+    // marginTop: "10px",
     fontSize: "100%",
     lineHeight: .5,
   },
@@ -33,17 +35,15 @@ const useStyles = makeStyles(() => ({
     display:'flex',
     textAlign:'right',
     marginRight: '10px',
-    marginTop: '15px',
+    marginTop: '50px',
     justifyContent:'space-between',
-    // backgroundColor:'red'
   },
   contact_false: {
     display:'flex',
-    direction:'column',
-    justifyContent:'space-evenly',
-    marginBottom:'1em',
-    lineHeight: 1,
-    // backgroundColor:'orange',
+    textAlign:'right',
+    marginRight: '10px',
+    marginTop: '15px',
+    justifyContent:'space-between',
     fontSize: ".1rem"
   },
   name_true: {
@@ -56,31 +56,34 @@ const useStyles = makeStyles(() => ({
   },
   name_false: {
     flexGrow: 2,
+    textAlign: 'left',
+    marginLeft: '15px',
+    marginBottom: "5px",
+    marginTop: '20px',
     textDecorationLine: 'underline',
     fontSize: ".2rem",
-    // backgroundColor:'blue',
-    textAlign:'center',
-    marginBottom: "5px"
   },
   userName_true: {
     flexGrow: 2,
     textAlign:'start',
-    marginBottom: "5px",
-    marginLeft: '5px'
+    margin: '10px'
   },
   userName_false: {
     flexGrow: 2,
-    fontSize: ".2rem",
     textAlign:'start',
     marginBottom: "5px",
-    marginLeft: '5px'
+    marginLeft: '5px',
+    fontSize: "1.5rem",
   },
   profession_true: {
     fontSize: 25,
+    width: "-webkit-fill-available",
     marginLeft: '10px'
   },
   profession_false: {
-    
+    fontSize: ".2rem",
+    width: "-webkit-fill-available",
+    marginLeft: '10px'
   },
   title_true: {
     
@@ -104,14 +107,6 @@ const useStyles = makeStyles(() => ({
   },
 
   skillSet: {
-    // display: 'flex',
-    // flexDirection: 'column',
-    // textAlign:'left',
-    // paddingRight: '20%',
-    // marginLeft: '20px',
-    // minWidth: 'fit-content',
-
-
     maxWidth:"30%",
     minWidth:'30%',
     marginRight: '20px',
@@ -130,18 +125,18 @@ const useStyles = makeStyles(() => ({
     fontSize: '1.2em',
   },
   liveURL_false: {
+    display: 'flex',
+    marginLeft: '30px',
     textDecoration: 'none',
+    textAlign: 'center',
     color: "black",
-    fontSize: '1.2em',
     fontWeight: 'bold',
-    // backgroundColor: 'green',
     fontSize: ".2rem"
   },
   subtitle_true: {
 
   },
   subtitle_false:{
-    // backgroundColor: 'yellow',
     fontSize: ".2rem"
   },
   skillsBody_true:{
@@ -150,46 +145,32 @@ const useStyles = makeStyles(() => ({
     marginLeft: '25px'
   },
   skillsBody_false: {
-    // backgroundColor: 'pink',
+    display: 'list-item',
+    listStylePosition: 'inside',
+    marginLeft: '25px',
     fontSize: "5%",
     lineHeight: 0.95
   },
 
-
   projects: {
     display:'flex',
-    // flexDirection: 'column',
     alignItems:'baseline',
     minWidth: 'fit-content',
     marginTop: '10px',
-    // marginRight: '50px',
     marginBottom: '5px'
   },
 
   project: {
-    // display:'flex',
-    // flexDirection: 'row',
     textAlign:'left',
-    // maxWidth:"30%",
-    // minWidth:'30%',
-    // overflowWrap: 'break-word',
-    // maxHeight:"30%"
     justifyContent:'flex-start',
     marginLeft: '20px',
-    // marginRight: '50px',
     paddingBottom: '20px',
     marginBottom: '5px'
   },
   projectsBody_true:{
-    // display: 'flex',
-    // flexDirection: 'column',
     textAlign:'left',
-    // paddingRight: '20%',
-    // marginLeft: '10px',
-    // minWidth: 'fit-content'
   },
   projectsBody_false: {
-    // backgroundColor: 'pink',
     textAlign:'left',
     fontSize: "5%",
     lineHeight: 0.95
@@ -213,6 +194,14 @@ const useStyles = makeStyles(() => ({
   jobTitle: {
     fontSize: '1.2em',
   },
+  body_true:{
+
+  },
+  body_false: {
+    width: "70%",
+    fontSize: "5%",
+    lineHeight: 0.95
+  },
 
   divider: {
     color: 'grey',
@@ -226,7 +215,7 @@ const useStyles = makeStyles(() => ({
   },
   border_false: {
 
-    padding: 5
+    // padding: 5
   }
 
 }));
@@ -366,12 +355,11 @@ export default function TemplateOne(props) {
               {props.data.basicInfo.userName}
             </Typography>
             <TextField
+              className={active ? classes.profession_true : classes.profession_false}
+              width="auto"
               InputProps={{
                 disableUnderline: true,
-                style: {fontFamily: props.font},          
-                classes: {
-                  input: classes.profession_true            
-                },
+                style: {fontFamily: props.font}
               }}
               defaultValue='Full-Stack Web Developer'
             />
