@@ -5,18 +5,38 @@ import { CssBaseline } from '@material-ui/core';
 import axios from 'axios';
 import TemplateOne from './TemplateOne';
 import TemplateTwo from './TemplateTwo';
+import { Button } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const useStyles = makeStyles(() => ({
-  root: {
+  root:{
     display: 'flex',
+    direction:'column',
     justifyContent: 'center',
+  },
+  page: {
     padding: '5em'
-
   },
   resume: {
+    margin:'auto',
     width: '8.5in',
     height: '11in',
     boxShadow: '0px 0px 20px 10px #00000059',
+  },
+  buttonTop: {
+    display:'flex',
+    justifyContent:'center'
+  },
+  button: {
+    marginTop: '1.2em',
+    color: "white",
+    size: "large",
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
   }
 }));
 
@@ -31,8 +51,26 @@ export default function ResumeLink(props) {
   const [workExperience, setWorkExperience] = useState([])
   const [projects, setProjects] = useState([]);
   // const [data, setData] = useState({});
-  const [loaded, setLoaded] = useState(false)
-  
+  const [loaded, setLoaded] = useState(false); 
+  const [clicked, setClicked] = useState(false); 
+  const [open, setOpen] = React.useState(false);
+  const [body, setBody] = React.useState('');
+  const [subject, setSubject] = React.useState('')
+  const handleClickOpen = (input) => {
+    console.log("Input", input)
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    console.log("Subject", subject)
+    console.log("body", body)
+  };
+
+  const contactMe = function(){
+    setClicked(true)
+  }
+
   const getInfo = async () => {
     const firstFetch = await fetch(`/api/resumes/${id}`)
     const resumeData = await firstFetch.json();
@@ -53,7 +91,6 @@ export default function ResumeLink(props) {
     }
   }
  
-
   useEffect(() => {
     const loadData = async () => {
       const Resumedata = await getInfo().then((response) => {
@@ -143,13 +180,73 @@ export default function ResumeLink(props) {
     const renderResume = myResume()
     return (
       
-        <div >
+        <div className={classes.root} >
           {/* <h1>Hello</h1> */}
 
           {loaded &&
-          <div className={classes.root}>
-            <CssBaseline />
-          {renderResume}
+          <div className={classes.page}>
+            <div >
+            {renderResume}
+            </div>
+            { !clicked &&
+              <div className={classes.buttonTop}>
+                <Button className={classes.button} onClick={handleClickOpen}>
+                  Contact Me
+                </Button>
+                <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                  <DialogTitle id="form-dialog-title">Send Email</DialogTitle>
+                  <DialogContent>
+                    <DialogContentText>
+                      I am very interested in all opportunities. If you could send me any additional information that you have on the opportunity, I would love to hear from you!
+                    </DialogContentText>
+                    <TextField
+                      // autoFocus
+                      margin="dense"
+                      id="name"
+                      variant='outlined'
+                      label="Subject"
+                      value={subject}
+                      defaultValue={`${basicInfo.userName}: Employment Opportunity`}
+                      onChange={(event) => {setSubject(event.target.value)}}
+                      type="text"
+                      fullWidth
+                    />
+                    <TextField
+                      style={{marginTop: 15}}
+                      autoFocus
+                      id="outlined-multiline-static"
+                      label="Info"
+                      multiline
+                      rows={4}
+                      value={body}
+                      onChange={(event) => {setBody(event.target.value)}}
+                      placeholder="Boy oh boy would we like you to work for us..."
+                      variant="outlined"
+                      fullWidth
+                    />
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                      Cancel
+                    </Button>
+                    <Button onClick={handleClose} href={`mailto:${basicInfo.userEmail}?subject=${subject} &body=${body}`} color="primary">
+                      Send
+                    </Button>
+                  </DialogActions>
+                </Dialog>
+              </div>
+              
+            }
+            {clicked &&
+              <div className={classes.buttonTop}>
+                <div >
+                  Subject
+                  body
+                  sendbutton
+                </div>
+              </div>
+            }
+
           </div>
           }
         </div>
