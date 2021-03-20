@@ -73,12 +73,12 @@ export default function MyResumes(props) {
 
     if (i.template_id === 1) {
       return (
-        
-        <div name='showcase' className={classes.resume} key={resumeInfo.id} >
-          <TemplateOne active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
-          <Button>Share</Button>
-          <Button>Edit</Button>
 
+        // <div name='showcase' className={classes.resume} key={resumeInfo.id} >
+        //   <TemplateOne active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
+        //   <Button>Share</Button>
+        //   <Button>Edit</Button>
+        // </div>
 
         <div name='showcase' className={classes.resume} key={i.id} >
           <Link to={{

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useParams } from 'react-router-dom'; 
 import axios from 'axios';
 
@@ -16,100 +16,151 @@ export default function ResumeLink(props) {
   const [skills, setSkills] = useState([])
   const [workExperience, setWorkExperience] = useState([])
   const [projects, setProjects] = useState([]);
-  const [data, setData] = useState({});
+  // const [data, setData] = useState({});
+  const [loaded, setLoaded] = useState(false)
   
+  const getInfo = async () => {
+    const firstFetch = await fetch(`/api/resumes/${id}`)
+    const resumeData = await firstFetch.json();
+    const secondFetch = await fetch(`/api/users/${resumeData.user_id}`)
+    const userData = await secondFetch.json();
+    const thirdFetch = await fetch(`/api/users/${resumeData.user_id}/hard_skills`)
+    const skillsData = await thirdFetch.json();
+    const fourthFetch = await fetch(`/api/users/${resumeData.user_id}/work_experience`)
+    const workData = await fourthFetch.json(); 
+    const fifthFetch = await fetch(`/api/users/${resumeData.user_id}/projects`)
+    const projectsData = await fifthFetch.json(); 
+    return {
+     user: userData,
+     skills: skillsData, 
+     workExperience: workData, 
+     projects: projectsData, 
+     data: resumeData
+    }
+  }
  
 
-  const resumeLink = useEffect(() => {
-    axios.get(`/api/resumes/${id}`)
-    .then((response) => {
-      console.log(response.data);
-      setResume(response.data)
-      // console.log(resume);
-       Promise.all([
-        axios.get(`/api/users/${response.data.user_id}`),
-        axios.get(`/api/users/${response.data.user_id}/hard_skills`),
-        axios.get(`/api/users/${response.data.user_id}/work_experience`),
-        axios.get(`/api/users/${response.data.user_id}/projects`) 
-      ])
-      .then((all) => {
-        console.log(all);
-        console.log(all[0].data);
-        setUser(all[0].data);
-        setSkills(all[1].data);
-        setWorkExperience(all[2].data);
-        setProjects(all[3].data);
+  useEffect(() => {
+    const loadData = async () => {
+      const Resumedata = await getInfo().then((response) => {
+        console.log(response)
+        setProjects(response.projects)
+        setWorkExperience(response.workExperience)
+        setSkills(response.skills)
+        setUser(response.user)
+        setResume(response.data)
+        setLoaded(true)
       })
-    })
-    .then(() => {
-      const basicInfo = {
-        userName: `${user.first_name} ${user.last_name}`,
-        userEmail: user.email,
-        github: user.github,
-        userPhone: user.phone_number
-      }
-    
-      const resume_project_1_index = projects.findIndex(p => p.id === resume.project_1);
-      const resume_project_2_index = projects.findIndex(p => p.id === resume.project_2);
-      const resume_project_3_index = projects.findIndex(p => p.id === resume.project_3);
-    
-      const resume_work_1_index = workExperience.findIndex(w => w.id === resume.work_1);
-      const resume_work_2_index = workExperience.findIndex(w => w.id === resume.work_2);
-      const resume_work_3_index = workExperience.findIndex(w => w.id === resume.work_3);
-    
-      const tempData = {
-        basicInfo: basicInfo,
-        skills: skills, 
-        projects: [projects[resume_project_1_index], projects[resume_project_2_index], projects[resume_project_3_index]],
-        work_experience: [workExperience[resume_work_1_index], workExperience[resume_work_2_index], workExperience[resume_work_3_index]]
-      }
-      setData(tempData); 
-      
-    })
+    };
+    loadData()
   }, []);
-          // return (
-            // <div>
-            //   {resume.template_id === 1 && 
-            //   <TemplateOne 
-            //     active={true}
-            //     data={data}
-            //     font={resume.head_font}
-            //     color={resume.background_color}
-            //     borderColor={resume.border_color}
-            //     bodyFont={resume.body_font}
-            //   />}
-            // </div>
-          // )
+  if(loaded){
+    console.log(resume)
+  }
+
+  const resume_project_1_index = projects.findIndex(p => p.id === resume.project_1);
+  const resume_project_2_index = projects.findIndex(p => p.id === resume.project_2);
+  const resume_project_3_index = projects.findIndex(p => p.id === resume.project_3);
+
+  const resume_work_1_index = workExperience.findIndex(w => w.id === resume.work_1);
+  const resume_work_2_index = workExperience.findIndex(w => w.id === resume.work_2);
+  const resume_work_3_index = workExperience.findIndex(w => w.id === resume.work_3);
+
+  const basicInfo = {
+      userName: `${user.first_name} ${user.last_name}`,
+      userAddress: user.address,
+      userEmail: user.email,
+      userGithub: user.github,
+      userPhone: user.phone_number
+      }
+
+  const data = {
+    basicInfo: basicInfo,
+    projects: [projects[resume_project_1_index], projects[resume_project_2_index], projects[resume_project_3_index]],
+    skills: skills, 
+    work_experience: [workExperience[resume_work_1_index], workExperience[resume_work_2_index], workExperience[resume_work_3_index]]
+  }
 
 
-  console.log(resume);
-  console.log(resume.user_id);
-  console.log("user", user);
-  console.log("skills", skills);
-  console.log("work experience", workExperience); 
-  console.log("projects", projects);
-  console.log(data);
+  // console.log(resume);
+  // console.log("User ID", resume.user_id);
+  // console.log("user", user);
+  // console.log("skills", skills);
+  // console.log("work experience", workExperience); 
+  // console.log("projects", projects);
 
   // const tempID = resume.template_id;
-
-  if (resume.template_id === 1) {
+  
+  const myResume = function() {  
     return (
-      <div>    
-        <TemplateOne 
+      <div>
+       <h1>My Resume</h1>
+       <div>    
+         <TemplateOne 
           active={true}
           data={data}
           font={resume.head_font}
           color={resume.background_color}
           borderColor={resume.border_color}
           bodyFont={resume.body_font}
-        />
+          />
      </div>
-    )
-  }
+     </div>
+    )}
+    const renderResume = myResume()
+    return (
+      
+        <div>
+          <h1>Hello</h1>
 
-  return (
-    <div>
-      {resumeLink}
-    </div>
-  )
+          {loaded &&
+          <div>
+          {renderResume}
+          </div>
+          }
+        </div>
+      
+    )
 }
+
+
+
+
+    // axios.get(`/api/resumes/${id}`)
+    // .then((response) => {
+    //   console.log(response.data);
+    //   setResume(response.data)
+    //   // console.log(resume);
+    //    Promise.all([
+    //     axios.get(`/api/users/${response.data.user_id}`),
+    //     axios.get(`/api/users/${response.data.user_id}/hard_skills`),
+    //     axios.get(`/api/users/${response.data.user_id}/work_experience`),
+    //     axios.get(`/api/users/${response.data.user_id}/projects`) 
+    //   ])
+    //   .then((all) => {
+    //     console.log("All",all);
+    //     console.log("All 1", all[0].data);
+    //     setUser(all[0].data);
+    //     setSkills(all[1].data);
+    //     setWorkExperience(all[2].data);
+    //     setProjects(all[3].data);
+    //   })
+    // })
+    // // .then(() => {
+    // //   const basicInfo = {
+    // //     userName: `${user.first_name} ${user.last_name}`,
+    // //     userEmail: user.email,
+    // //     github: user.github,
+    // //     userPhone: user.phone_number
+    // //   }
+    
+
+    
+    // //   const tempData = {
+    // //     basicInfo: basicInfo,
+    // //     skills: skills, 
+    // //     projects: [projects[resume_project_1_index], projects[resume_project_2_index], projects[resume_project_3_index]],
+    // //     work_experience: [workExperience[resume_work_1_index], workExperience[resume_work_2_index], workExperience[resume_work_3_index]]
+    // //   }
+    // //   setData(tempData); 
+    // // })
