@@ -53,8 +53,8 @@ export default function LeftResume() {
         aria-label="vertical contained primary button group"
         variant="contained"
       >
-        <Button>Template One</Button>
-        <Button>Template Two</Button>
+        <Button>Organized</Button>
+        <Button>Understated</Button>
         <Button>Template Three</Button>
       </ButtonGroup>
       <ButtonGroup
@@ -91,7 +91,7 @@ export default function LeftResume() {
       >
       </ButtonGroup>
     </div>
-        <h1>COLORRRRS</h1>
+        <h1>choose your colors:</h1>
           <div>
             <ColorPicker defaultValue={color} onChange={(event) => setColor(event.target.value)} />
           </div>

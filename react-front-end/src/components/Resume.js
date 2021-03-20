@@ -159,8 +159,8 @@ const resume = {
           aria-label="vertical contained primary button group"
           variant="contained"
         >
-          <Button className={classes.Font} onClick={() => setTemplate(1)} >Template One</Button>
-          <Button className={classes.Font} onClick={() => setTemplate(2)}>Template Two</Button>
+          <Button className={classes.Font} onClick={() => setTemplate(1)} >Organized</Button>
+          <Button className={classes.Font} onClick={() => setTemplate(2)}>Understated</Button>
           <Button className={classes.Font} >Template Three</Button>
         </ButtonGroup>
         <ButtonGroup
@@ -479,7 +479,7 @@ const resume = {
         </div>
 
       </div>
-          <h1>COLORRRRS</h1>
+          <h1>choose your colors:</h1>
             <div>
               <Typography
               variant="subtitle1"

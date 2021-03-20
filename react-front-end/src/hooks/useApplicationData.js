@@ -25,7 +25,7 @@ export function useApplicationData() {
     hardskills: [],
     userHardSkills: [],
     user: null,
-    userWorkExperience: {},
+    userWorkExperience: [],
     userProjects: [],
     userResumes: []
   }); 
@@ -115,7 +115,7 @@ export function useApplicationData() {
         hardskills: [],
         userHardSkills: [],
         user: null,
-        userWorkExperience: {},
+        userWorkExperience: [],
         userProjects: [],
         userResumes: []
       })
