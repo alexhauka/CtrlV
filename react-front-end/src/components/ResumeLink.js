@@ -123,11 +123,11 @@ export default function ResumeLink(props) {
        </div>
        </div>
       )}
-      else if (resume.template_id === 1) {
+      else if (resume.template_id === 2) {
         return(
         <div>
         <h1>My Resume</h1>
-        <div>    
+        <div className={classes.resume}>    
           <TemplateTwo 
            active={true}
            data={data}
