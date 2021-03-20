@@ -42,7 +42,6 @@ title: {
   paddingLeft: '3.5%',
   color: '#fff',
   textDecoration: 'none',
-  // fontSize: '30px'
 },
 secondTitle: {
   color: '#fff',
@@ -58,8 +57,6 @@ logo: {
   textShadow: '0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #0ff, 0 0 80px #0ff, 0 0 90px #0ff, 0 0 100px #0ff, 0 0 150px #0ff'
 },
 
-
-
 nav: {
   display:'flex',
   direction: 'column',
@@ -68,21 +65,26 @@ nav: {
 },
 navItem: {
   margin: 15,
-  // marginLeft: 0,
-  // marginRight: 30,
-  // paddingLeft: '3.5%',
   color: '#fff',
   textDecoration: 'none',
   fontSize: '1.3rem',
   alignSelf:'center',
-  // color:'transparent',
-  // backdropFilter: 'hue-rotate(180deg)',
   padding: 5,
   '&:hover': {
-    // background:'transparent',
-    // backdropFilter: 'hue-rotate(180deg)',
-    
-    // borderRadius: 20,
+    color:'#ffad61',
+    textShadow: '0px 0px 20px #fff, 0 0 0px #fff, 1px 0px 15px #0ff'
+    }
+},
+logout:{
+  margin: 15,
+  color: '#fff',
+  textDecoration: 'none',
+  fontSize: '1.3rem',
+  alignSelf:'center',
+  padding: 5,
+  '&:hover':{
+    color:'black',
+    textDecoration:'underline'
   }
 },
 divider: {
@@ -97,10 +99,24 @@ user: {
 },
 login: {
   width: '-webkit-fill-available',
+},
+activeNav: {
+  margin: 15,
+  color: '#00ffff5c',
+  textShadow: '0 0 5px #fff, 0 0 0px #fff, 0 0 20px #fff, 0 0 0px #0ff, 0 0 0px #0ff, 0 0 0px #0ff, 0 0 20px #0ff, 0 0 0px #0ff',
+  textDecoration: 'none',
+  fontSize: '1.3rem',
+  alignSelf:'center',
+  padding: 5,
 }
 }));
 
 export default function NavBar(props) {
+  const [active, setActive] = React.useState('home')
+  const name = function(event){
+    console.log("My target", active)
+  }
+
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -122,26 +138,41 @@ export default function NavBar(props) {
         {props.user &&
         <div className={classes.nav}>
           <Typography
-            component={() => <Link className={classes.navItem} to='/skills'>My Skills</Link>}
+            component={() => <Link className={active ==='skills'? classes.activeNav :classes.navItem} name='skills' onClick={(event)=> {
+              setActive(event.target.name);
+              name();
+            }} to='/skills'>My Skills</Link>}
           />
           <Typography
-            component={() => <Link className={classes.navItem} to='/work'>Work Experience</Link>}
+            component={() => <Link className={active ==='work'? classes.activeNav :classes.navItem} name='work' onClick={(event)=> {
+              setActive(event.target.name);
+              name();
+            }} to='/work'>Work Experience</Link>}
           />
           <Typography
-            component={() => <Link className={classes.navItem} to='/github'>Gitub</Link>}
+            component={() => <Link className={active ==='github'? classes.activeNav :classes.navItem} name='github' onClick={(event)=> {
+              setActive(event.target.name);
+              name();
+            }} to='/github'>Gitub</Link>}
           />
           <Typography
-            component={() => <Link className={classes.navItem} to='/basicInfo'>Contact Info</Link>}
+            component={() => <Link className={active ==='info'? classes.activeNav :classes.navItem} name='info' onClick={(event)=> {
+              setActive(event.target.name);
+              name();
+            }} to='/basicInfo'>Contact Info</Link>}
           />
           <Typography
-            component={() => <Link className={classes.navItem} to='/myresumes'>My Resumes</Link>}
+            component={() => <Link className={active ==='resumes'? classes.activeNav :classes.navItem} name='resumes' onClick={(event)=> {
+              setActive(event.target.name);
+              name();
+            }} to='/myresumes'>My Resumes</Link>}
             />
           <Divider className={classes.divider} orientation="vertical"/>
         </div>
         }
         {props.user && 
         <div>
-        <Button className={classes.navItem} onClick={props.logout}>
+        <Button className={classes.logout} onClick={props.logout}>
           logout
         </Button>
       </div>
