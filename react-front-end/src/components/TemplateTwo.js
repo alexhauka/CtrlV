@@ -7,8 +7,10 @@ import { makeStyles, TextField, Typography, Container, Divider}
 const useStyles = makeStyles(() => ({
   root_true: {
     maxHeight: '11in',
+    minHeight:'11in',
     padding: 0,
-    paddingTop: "5%",
+    marginTop:"5%",
+    // paddingTop: "5%",
     fontSize: "100%",
   },
   root_false:{
@@ -349,7 +351,7 @@ export default function TemplateOne(props) {
   return(
 
     <Container 
-      style={{backgroundColor: 'white'}} 
+      style={{background: props.color}} 
       className={ active? classes.root_true : classes.root_false }>
 
       <div style={{backgroundColor: 'white'}} >
@@ -387,11 +389,11 @@ export default function TemplateOne(props) {
         </div>
         <br />
 
+        <Divider className={classes.divider} style={{background: props.borderColor}}/>
       </div>
 
       <div style={{background: props.color}}>
 
-        <Divider className={classes.divider} style={{background: props.borderColor}}/>
 
         <section name="skills"
         className={ active? classes.border_true : classes.border_false }

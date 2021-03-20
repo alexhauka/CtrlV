@@ -72,6 +72,8 @@ export default function MyResumes(props) {
       return (
         <div name='showcase' className={classes.resume} key={resumeInfo.id} >
           <TemplateOne active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
+          <Button>Share</Button>
+          <Button>Edit</Button>
         </div>
       )
 
@@ -89,6 +91,7 @@ export default function MyResumes(props) {
         {/* <h1> My Resumes :)) </h1> */}
         <div className={classes.resumes}>
           {resumes}
+          
         </div>
       </div>
     )

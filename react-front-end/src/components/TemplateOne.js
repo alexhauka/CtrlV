@@ -7,6 +7,7 @@ import { makeStyles, Grid, Typography, Container, Divider}
 const useStyles = makeStyles(() => ({
   root_true: {
     maxHeight: '11in',
+    minHeight:'11in',
     padding: 10,
     paddingTop: "5%",
     fontSize: "100%",
