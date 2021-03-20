@@ -122,7 +122,10 @@ export default function NavBar(props) {
     <div className={classes.root}>
       <div className={classes.title}>
       <h1 nowrap='true' >
-        <Link variant="primary" className={classes.logo} to="/" >C<span className={classes.secondTitle}>(trl)</span>V</Link>
+        <Link variant="primary" className={classes.logo} name='home' onClick={(event)=> {
+              setActive(event.target.name);
+              name();
+            }} to="/" >C<span className={classes.secondTitle}>(trl)</span>V</Link>
       </h1>
       </div>
       {/* {props.user && <h1 className={classes.navItem}> {props.user.first_name} {props.user.last_name}</h1> } */}
