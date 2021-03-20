@@ -73,6 +73,21 @@ const getUserResumes = function(userID) {
   })
 }
 
+const getResume = function(resumeID) {
+  return client.query(`
+  SELECT * FROM resumes
+  WHERE id = $1;
+  `, [resumeID])
+  .then((response) => {
+    console.log(response.rows[0])
+    return response.rows[0];
+  })
+  .catch((e) => {
+    console.error(e);
+  })
+
+}
+
 
 /*
 
@@ -96,4 +111,4 @@ const getUserResumes = function(userID) {
 
 
 
-module.exports = { addUserResume, updateUserResume, getUserResumes };
+module.exports = { addUserResume, updateUserResume, getUserResumes, getResume };

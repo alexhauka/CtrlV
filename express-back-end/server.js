@@ -23,7 +23,8 @@ const usersRoutes  = require('./routes/users');
 const hardSkillsRoutes = require('./routes/hardSkills');
 const softSkillsRoutes = require('./routes/softSkills');
 const scraperRoutes = require('./routes/scraper');
-const projectsRoutes = require('./routes/projects')
+const projectsRoutes = require('./routes/projects');
+const resumesRoutes = require('./routes/resumes');
 
 App.use('/api/login', loginRoutes);
 App.use('/api/logout', logoutRoutes);
@@ -34,6 +35,7 @@ App.use('/api/hardSkills',hardSkillsRoutes);
 App.use('/api/softSkills', softSkillsRoutes); 
 App.use('/api/scraper', scraperRoutes);
 App.use('/api/projects', projectsRoutes)
+App.use('/api/resumes', resumesRoutes)
 
 // checks the user 
 App.use('/api/authcheck',(req, res) => {
