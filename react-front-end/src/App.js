@@ -67,7 +67,9 @@ export default function App() {
     checkUser,
     addGithubProjects,
     updateProject,
-    deleteProject
+    deleteProject,
+    addResume,
+    deleteResume
   } = useApplicationData(); 
   const history = useHistory()
 
@@ -116,7 +118,7 @@ export default function App() {
         <Route path='/resumes/:id' component={ResumeLink} />
 
         <ProtectedRoute 
-          path="/resume" component={Resume}
+          path="/resume" component={(props) => <Resume addResume={addResume} {...props} />}
           isLoggingIn={state.isLoggingIn}
           user={state.user}
         >
@@ -178,7 +180,7 @@ export default function App() {
           user={state.user}
           path="/myresumes"
         >
-          <MyResumes state={data} />
+          <MyResumes state={data} deleteResume={deleteResume} />
         </ProtectedRoute>
 
       </Switch>

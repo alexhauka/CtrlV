@@ -158,7 +158,7 @@ const useStyles = makeStyles(() => ({
 export default function TemplateOne(props) {
 
   const { basicInfo, projects, skills, work_experience } = props.data
-  console.log("This is templateONe props", props)
+  // console.log("This is templateONe props", props)
   const classes = useStyles();
   const [active, setActive] = React.useState(props.active)
   // style={{backgroundColor: props.color}}
@@ -206,7 +206,7 @@ export default function TemplateOne(props) {
   })
 
   const testProject = projects[0]
-  console.log("This is test", work_experience)
+  // console.log("This is test", work_experience)
   const myProjects = projects.map(i => {
     return (
       <div className={classes.project} >
@@ -271,7 +271,7 @@ export default function TemplateOne(props) {
   
 
   return(
-
+    
     <Container 
       style={{backgroundColor: props.color}} 
       className={ active? classes.root_true : classes.root_false }>

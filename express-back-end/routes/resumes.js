@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 
-const { getResume } = require('../lib/resume-queries')
+const { getResume, addUserResume } = require('../lib/resume-queries')
 
 // get api/resumes
 router.get('/:id', (req, res) => {
@@ -13,7 +13,16 @@ router.get('/:id', (req, res) => {
 
 // post api/resumes
 router.post('/', (req, res) => {
- 
+  console.log("in axios call", req.body.resumeObject);
+  addUserResume(req.body.resumeObject)
+  .then((data) => {
+    console.log("data", data); 
+    res.send(data);
+  })
+  .catch(e => {
+    console.error(e);
+    res.send(e);
+  })
 }); 
 
 

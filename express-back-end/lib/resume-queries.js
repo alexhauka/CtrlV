@@ -3,36 +3,45 @@ const client = require('../elephantsql');
 
 
 const addUserResume = function(resume) {
-
-  const resumeData = resume.resumeObject
-  // console.log(resumeData.work_2)
   return client.query(`
     INSERT INTO resumes (
       user_id, template_id, background_color, border_color, head_font, body_font, project_1, project_2, project_3, work_1, work_2, work_3
     )
     VALUES (
       $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12
-    );
-  `, [resumeData.user_id,
-    resumeData.template_id,
-    resumeData.background_color,
-    resumeData.border_color,
-    resumeData.head_font,
-    resumeData.body_font,
-    resumeData.project_1.id,
-    resumeData.project_2.id,
-    resumeData.project_3.id,
-    resumeData.work_1.id,
-    resumeData.work_2.id,
-    resumeData.work_3.id])
+    )
+    RETURNING *;
+  `, [resume.user_id,
+    resume.template_id,
+    resume.background_color,
+    resume.border_color,
+    resume.head_font,
+    resume.body_font,
+    resume.project_1.id,
+    resume.project_2.id,
+    resume.project_3.id,
+    resume.work_1.id,
+    resume.work_2.id,
+    resume.work_3.id])
   .then((response) => {
-    console.log(response.rows)
-    return response.rows;
+    console.log("response after insert", response.rows[0])
+    return response.rows[0];
   })
   .catch((e) => {
     console.error(e);
   })
+}
 
+const deleteUserResume = function(userID, resume) {
+  return client.query(`
+  DELETE FROM resumes
+  WHERE user_id = $1 AND id = $2
+  RETURNING *;
+  `, [userID, resume.id])
+  .then((response) => {
+    console.log("response after delete", response.rows[0]); 
+    return response.rows[0];
+  })
 }
 
 const updateUserResume = function(resume) {
@@ -111,4 +120,4 @@ const getResume = function(resumeID) {
 
 
 
-module.exports = { addUserResume, updateUserResume, getUserResumes, getResume };
+module.exports = { addUserResume, updateUserResume, getUserResumes, getResume, deleteUserResume };
