@@ -13,7 +13,9 @@ import {
   DELETE_PROJECT, 
   SET_UPDATED_PROJECT,
   SET_SKILL,
-  DELETE_SKILL
+  DELETE_SKILL,
+  SET_RESUME,
+  DELETE_RESUME
 } from '../reducers/application'; 
 
 const axios = require('axios').default
@@ -249,6 +251,31 @@ export function useApplicationData() {
     })
   }
 
+  function addResume(resumeObject) {
+    return axios.post(`/api/resumes`, { resumeObject })
+    .then((response) => {
+      console.log("add successful"); 
+      dispatch({
+        type: SET_RESUME,
+        resume: response.data
+      })
+    })
+  }
+
+  function deleteResume(resumeObject) {
+    return axios.delete(`api/users/${user_id}/resumes`, 
+    { data: {
+      resumeObject
+    }})
+    .then((response) => {
+      console.log("delete successful");
+      dispatch({
+        type: DELETE_RESUME,
+        resume: response.data
+      })
+    })
+  }
+
   return {
     state,
     registerUser,
@@ -263,7 +290,9 @@ export function useApplicationData() {
     checkUser: useCallback(checkUser,[dispatch]),
     addGithubProjects,
     updateProject,
-    deleteProject
+    deleteProject,
+    addResume,
+    deleteResume
   }
 
 }

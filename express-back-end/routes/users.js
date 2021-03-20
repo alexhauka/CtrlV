@@ -19,7 +19,7 @@ const {
   deleteUserProject
 } = require('../lib/user-queries');
 
-const { addUserResume, updateUserResume, getUserResumes } = require("../lib/resume-queries")
+const { addUserResume, updateUserResume, getUserResumes, deleteUserResume } = require("../lib/resume-queries")
 
 // get /users
 router.get('/', (req, res) => {
@@ -221,22 +221,45 @@ router.get('/:id/resumes', (req, res) => {
 
 // get users/id/resumes/resumeid
 router.get('/:id/resumes/:resumeid', (req, res) => {
+  console.log("here in axios call", req.body.projectInfo)
+  deleteUserProject(req.params.id, req.body.projectInfo)
+  .then((data) => {
+    console.log("data", data)
+    res.send(data);
+  })
+  .catch(e => {
+    console.error(e);
+    res.send(e);
+  });
     
 }); 
 
 // post users/id/resumes/resumeid
-router.post('/:id/resumes/:resumeid', (req, res) => {
-    addUserResume(req.body)
-  console.log("posting a resume route:", req.body);
-  // if (req.body.id === undefined){
-  // } else {
-  //   updateUserResume(req.body)
-  // }
-}); 
+// router.post('/:id/resumes', (req, res) => {
+//   console.log("in axios call", req.body.resumeObject);
+//   addUserResume(req.body.resumeObject)
+//   .then((data) => {
+//     console.log("data", response); 
+//     res.send(data);
+//   })
+//   .catch(e => {
+//     console.error(e);
+//     res.send(e);
+//   })
+// }); 
 
 // delete users/id/resumes/resumeid
-router.delete('/:id/resumes/:resumeid', (req, res) => {
-    
+router.delete('/:id/resumes', (req, res) => {
+  console.log("here in axios call", req.body.resumeObject)
+  deleteUserResume(req.params.id, req.body.resumeObject)
+  .then((data) => {
+    console.log("data", data)
+    res.send(data);
+  })
+  .catch(e => {
+    console.error(e);
+    res.send(e);
+  });
 }); 
 
 

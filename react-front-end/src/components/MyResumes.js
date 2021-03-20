@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
+import { Button, Snackbar } from '@material-ui/core';
 import TemplateOne from './TemplateOne';
 import TemplateTwo from './TemplateTwo';
+import MuiAlert from '@material-ui/lab/Alert';
 const useStyles = makeStyles((theme) => ({
   root: { 
     marginTop: 30,
@@ -30,13 +31,16 @@ const useStyles = makeStyles((theme) => ({
     size: "large",
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
   }
-  
-
-
 }))
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props}/>;
+}
+
 export default function MyResumes(props) {
-  console.log("My Resumes: ", props.state)
+  // console.log("My Resumes: ", props.state)
+  const [message, setMessage] = useState("");
+  const [open, setOpen] = useState(false); 
   const classes = useStyles();
   
   const { userProjects, userWorkExperience, userHardSkills } = props.state
@@ -51,11 +55,28 @@ export default function MyResumes(props) {
     userPhone: user.phone_number
   }
 
-  console.log(basicInfo);
+  // console.log(basicInfo);
 
   const resumeInfo = props.state.userResumes
 
   // console.log("resumeInfo[0] id", resumeInfo[0].id);
+
+  function onDelete(resumeObject) {
+    console.log("onDelete", resumeObject);
+    props.deleteResume(resumeObject)
+    .then(() => {
+      setMessage("Deleted Successfully!");
+      setOpen(true);
+    });
+  }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false); 
+  };
+
   
   const resumes = resumeInfo.map(i => {
 
@@ -100,8 +121,9 @@ export default function MyResumes(props) {
               bodyFont: i.body_font
             }
           }}> */}
-            <TemplateOne active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
+            <TemplateOne active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} value={i.id} /> 
             <Button className={classes.button} href={`/resumes/${i.id}`}>Show</Button>
+            <Button onClick={() => onDelete(i)} className={classes.button}>Delete</Button>
           {/* </Link> */}
         </div>
       )
@@ -110,7 +132,8 @@ export default function MyResumes(props) {
       return (
         <div name='showcase' className={classes.resume} key={i.id}>
           <TemplateTwo active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
-          <Button href={`/resumes/${i.id}`}>Show</Button>
+          <Button className={classes.button} href={`/resumes/${i.id}`}>Show</Button>
+          <Button onClick={() => onDelete(i)} className={classes.button}>Delete</Button>
 
         </div>
       )
@@ -120,6 +143,16 @@ export default function MyResumes(props) {
     return (
       <div className={classes.root}>
         {/* <h1> My Resumes :)) </h1> */}
+          <Snackbar 
+          open={open}
+          autoHideDuration={1000}
+          onClose={handleClose}
+          anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+        >
+          <Alert onClose={handleClose} severity="success">
+            <h1>{message}</h1>
+          </Alert>
+        </Snackbar>
         <div className={classes.resumes}>
           {resumes}
           
