@@ -102,8 +102,10 @@ export default function MyResumes(props) {
 
     } else if (i.template_id === 2) {
       return (
-        <div name='showcase' className={classes.resume}>
-          <h1>Resume</h1>
+        <div name='showcase' className={classes.resume} key={i.id}>
+          <TemplateTwo active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
+          <Button href={`/resumes/${i.id}`}>Show</Button>
+
         </div>
       )
 
