@@ -15,6 +15,7 @@ const useStyles = makeStyles(() => ({
   root_false:{
     // maxHeight: '11in',
     // padding: 10,
+    minHeight: '100%',
     paddingTop: "2.5%",
     fontSize: "100%",
     lineHeight: .5,

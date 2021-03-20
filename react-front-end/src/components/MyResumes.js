@@ -49,7 +49,7 @@ export default function MyResumes(props) {
 
   const resumeInfo = props.state.userResumes
 
-  console.log("resumeInfo[0] id", resumeInfo[0].id);
+  // console.log("resumeInfo[0] id", resumeInfo[0].id);
   
   const resumes = resumeInfo.map(i => {
 
@@ -81,7 +81,7 @@ export default function MyResumes(props) {
         // </div>
 
         <div name='showcase' className={classes.resume} key={i.id} >
-          <Link to={{
+          {/* <Link to={{
             pathname: `/resumes/${i.id}`,
             state: {
               id: i.id,
@@ -93,9 +93,10 @@ export default function MyResumes(props) {
               borderColor: i.border_color,
               bodyFont: i.body_font
             }
-          }}>
+          }}> */}
             <TemplateOne active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
-          </Link>
+            <Button href={`/resumes/${i.id}`}>Show</Button>
+          {/* </Link> */}
         </div>
       )
 
