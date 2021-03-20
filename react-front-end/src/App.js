@@ -6,7 +6,8 @@ import {Switch, Route, Redirect, useHistory} from 'react-router-dom'
 import { useApplicationData } from './hooks/useApplicationData'; 
 
 import ProtectedRoute from './components/ProtectedRoute'
-import Resume from './components/Resume'
+import Resume from './components/Resume';
+import ResumeLink from './components/ResumeLink';
 import Sidebar from './components/Sidebar'
 import SignUp from './components/SignUp';
 import Login from './components/Login';
@@ -111,6 +112,8 @@ export default function App() {
         path="/login"
         component={(props) => <Login loginUser={loginUser} isLoggingIn={state.isLoggingIn} user={state.user} {...props} />} 
         />
+
+        <Route path='/resumes/:id' component={ResumeLink} />
 
         <ProtectedRoute 
           path="/resume" component={Resume}

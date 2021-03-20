@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import TemplateOne from './TemplateOne';
@@ -47,6 +48,8 @@ export default function MyResumes(props) {
   console.log(basicInfo);
 
   const resumeInfo = props.state.userResumes
+
+  console.log("resumeInfo[0] id", resumeInfo[0].id);
   
   const resumes = resumeInfo.map(i => {
 
@@ -70,8 +73,22 @@ export default function MyResumes(props) {
 
     if (i.template_id === 1) {
       return (
-        <div name='showcase' className={classes.resume} key={resumeInfo.id} >
-          <TemplateOne active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
+        <div name='showcase' className={classes.resume} key={i.id} >
+          <Link to={{
+            pathname: `/resumes/${i.id}`,
+            state: {
+              id: i.id,
+              template_id: i.template_id,
+              active: true,
+              data: data,
+              font: i.head_font,
+              color: i.background_color,
+              borderColor: i.border_color,
+              bodyFont: i.body_font
+            }
+          }}>
+            <TemplateOne active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
+          </Link>
         </div>
       )
 
