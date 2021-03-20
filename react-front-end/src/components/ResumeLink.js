@@ -1,13 +1,27 @@
 import React, { useEffect, useState, Suspense } from 'react';
 import { useParams } from 'react-router-dom'; 
+import { makeStyles } from '@material-ui/core/styles';
+import { CssBaseline } from '@material-ui/core';
 import axios from 'axios';
-
 import TemplateOne from './TemplateOne';
 import TemplateTwo from './TemplateTwo';
 
+const useStyles = makeStyles(() => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: '5em'
 
+  },
+  resume: {
+    width: '8.5in',
+    height: '11in',
+    boxShadow: '0px 0px 20px 10px #00000059',
+  }
+}));
 
 export default function ResumeLink(props) {
+  const classes = useStyles();
   // let resumeData = props.location.state 
   // const {id, template_id, active, data, font, color, borderColor, bodyFont} = resumeData;
   let { id } = useParams();
@@ -92,29 +106,49 @@ export default function ResumeLink(props) {
   // const tempID = resume.template_id;
   
   const myResume = function() {  
-    return (
-      <div>
-       <h1>My Resume</h1>
-       <div>    
-         <TemplateOne 
-          active={true}
-          data={data}
-          font={resume.head_font}
-          color={resume.background_color}
-          borderColor={resume.border_color}
-          bodyFont={resume.body_font}
-          />
-     </div>
-     </div>
-    )}
+    console.log("template Id:", resume.template_id)
+    if (resume.template_id === 1){
+      return (
+        <div>
+         {/* <h1>My Resume</h1> */}
+         <div className={classes.resume}>    
+           <TemplateOne 
+            active={true}
+            data={data}
+            font={resume.head_font}
+            color={resume.background_color}
+            borderColor={resume.border_color}
+            bodyFont={resume.body_font}
+            />
+       </div>
+       </div>
+      )}
+      else if (resume.template_id === 1) {
+        return(
+        <div>
+        <h1>My Resume</h1>
+        <div>    
+          <TemplateTwo 
+           active={true}
+           data={data}
+           font={resume.head_font}
+           color={resume.background_color}
+           borderColor={resume.border_color}
+           bodyFont={resume.body_font}
+           />
+      </div>
+      </div>
+      )}
+    }
     const renderResume = myResume()
     return (
       
-        <div>
-          <h1>Hello</h1>
+        <div >
+          {/* <h1>Hello</h1> */}
 
           {loaded &&
-          <div>
+          <div className={classes.root}>
+            <CssBaseline />
           {renderResume}
           </div>
           }
