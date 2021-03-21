@@ -11,6 +11,7 @@ const useStyles = makeStyles(() => ({
     padding: 0,
     lineHeight: .4,
     marginTop:"5%",
+    overflow:'hidden',
     // paddingTop: "5%",
     fontSize: "100%",
   },

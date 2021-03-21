@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
     minHeight:'11in',
     padding: 10,
     lineHeight: .3,
-    
+    overflow:'hidden',
     fontSize: "100%",
   },
   root_false:{
