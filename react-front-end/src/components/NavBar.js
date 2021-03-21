@@ -29,8 +29,8 @@ root:{
   fontFamily: 'Ubuntu',
   // backgroundImage: 'linear-gradient(45deg, rgba(63,81,181,1), rgba(63,81,181,.7), rgba(63,81,181,0))',
   position:'relative',
-  boxShadow: '0px 0px 20px 10px #00000059',
-  background: 'linear-gradient(6deg, #3f51b5 30%, #FF8E53 90%)',
+  // boxShadow: '0px 0px 20px 10px #00000059',
+  background: 'linear-gradient(6deg, #3f51b5 30%, #476bec 90%)',
   height: '6rem',
   width:'-webkit-fill-available'
 }, 

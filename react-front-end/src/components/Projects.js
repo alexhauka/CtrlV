@@ -61,22 +61,22 @@ const useStyles = makeStyles(() => ({
   },
   divider1:{
     margin: '10px',
-    height: 25,
-    width:25,
+    height: 10,
+    width:10,
     borderRadius: 100,
     background: '#3f51b5'
   },
   divider2:{
     margin: '10px',
-    height: 25,
-    width:25,
+    height: 10,
+    width:10,
     borderRadius: 100,
     background: '#7e6599'
   },
   divider3:{
     margin: '10px',
-    height: 25,
-    width:25,
+    height: 10,
+    width:10,
     borderRadius: 100,
     background: '#FF8E53'
   },
@@ -127,11 +127,11 @@ export default function Projects(props) {
     <form onSubmit={handleSave} noValidate autoComplete="off">
     <div className={classes.project}>
     <div className={classes.dividers}>
-      <Divider orientation='vertical' className={classes.dividerLeft}/>
-      <Divider className={classes.divider1}/>
-      <Divider className={classes.divider2}/>
+      <Divider orientation='vertical' className={classes.dividerRight}/>
       <Divider className={classes.divider3}/>
-      <Divider className={classes.dividerRight}/>
+      <Divider className={classes.divider2}/>
+      <Divider className={classes.divider1}/>
+      <Divider className={classes.dividerLeft}/>
       </div>
       <div className={classes.fields}>
         <TextField  name="title" label="Project Title" defaultValue={title} onChange={handleChange} />

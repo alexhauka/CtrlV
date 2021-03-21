@@ -26,20 +26,29 @@ const useStyles = makeStyles(() => ({
     flexShrink: 1,
     
   },
+  inside:{
+    // width:'92%',
+    // background: 'white',
+    // margin:'auto',
+    // marginTop:0,
+    // height:'99%',
+    // borderRadius:10,
+    // boxShadow:'0px 0px 20px 7px #00000059 inset'
+  },
   info: {
     height: 200,
-    border: "solid grey 1px",
+    border: "solid #3f51b5 1px",
     borderRadius: 20,
     marginBottom: 10,
-    backgroundColor: '#e8e8e8'
+    backgroundColor: 'white'
   },
 
   projects: {
-    height: 450,
+    height: 400,
     border: "solid grey 1px",
     borderRadius: 20,
     marginBottom: 10,
-    backgroundColor: '#e8e8e8',
+    // backgroundColor: 'white',
 
   },
   singleProject: {
@@ -62,14 +71,14 @@ const useStyles = makeStyles(() => ({
     border: "solid grey 1px",
     borderRadius: 20,
     marginBottom: 10,
-    backgroundColor: '#e8e8e8'
+    backgroundColor: 'white'
   },
   skills: {
     height: 250,
-    border: "solid grey 1px",
+    border: "solid #3f51b5 1px",
     borderRadius: 20,
     marginBottom: 10,
-    backgroundColor: '#e8e8e8',
+    // backgroundColor: '#e8e8e8',
     position: "relative"
   },
 
@@ -211,6 +220,7 @@ export default function RightSection(props) {
 
   return (
     <div className={classes.root}>
+      {/* <div className={classes.inside}> */}
       <div>
         <section className={classes.info}>
         <h1>Basic Info</h1>
@@ -273,6 +283,7 @@ export default function RightSection(props) {
 
         >Save and Confirm</Button>
       {/* <Button component={() => <Link  />}>How about this one?</Button> */}
+      {/* </div> */}
     </div>
   );
 }

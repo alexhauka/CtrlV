@@ -9,10 +9,10 @@ import Fade from '@material-ui/core/Fade';
 const useStyles = makeStyles(() => ({
   work: {
     height: 450,
-    border: "solid grey 1px",
+    border: "solid #3f51b5 1px",
     borderRadius: 20,
     marginBottom: 10,
-    backgroundColor: '#e8e8e8'
+    // backgroundColor: '#e8e8e8'
   },
   workButton: {
     marginBottom: 10

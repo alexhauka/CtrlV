@@ -7,7 +7,7 @@ import RightSection from "./Right-Section"
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '100vh',
-    backgroundColor: 'white',
+    background: 'linear-gradient(124deg, #3f51b5 30%, #476bec 90%)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
   },
@@ -15,8 +15,13 @@ const useStyles = makeStyles((theme) => ({
     width: "35%"
   },
   right: {
-   width: "65%",
-   boxShadow:'19px 20px 20px 0px #00000059 inset'
+   width: "63%",
+   boxShadow:'13px 10px 20px 0px #00000059 inset',
+   margin:'auto',
+  //  marginBottom:15,
+  //  marginRight: 10,
+   backgroundColor: 'white',
+   borderRadius: 10
   }
 }))  
 

@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     zIndex: 1,
     // bottom: 0,
-    boxShadow: '1px 20px 10px 20px #00000059',
+    // boxShadow: '1px 20px 10px 20px #00000059',
     
     width: '100%',
     opacity: '1'
@@ -39,7 +39,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'flex-start',
     padding: theme.spacing(3, 2),
     marginTop: 'auto',
-    background: 'linear-gradient(45deg, #7bc8f6 35%, #FF8E53 90%)',
+    // backgroundColor: "#476bec"
+    background: 'linear-gradient(45deg, #476bec 15%, #3f51b5 65%, #476bec 85%)',
   },
 }));
 
