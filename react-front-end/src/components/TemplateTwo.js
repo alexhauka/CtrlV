@@ -9,6 +9,7 @@ const useStyles = makeStyles(() => ({
     maxHeight: '11in',
     minHeight:'11in',
     padding: 0,
+    lineHeight: .4,
     marginTop:"5%",
     // paddingTop: "5%",
     fontSize: "100%",
@@ -33,9 +34,10 @@ const useStyles = makeStyles(() => ({
   },
   contact_true: {
     display:'flex',
+    lineHeight:'normal',
     textAlign:'right',
     marginRight: '10px',
-    marginTop: '50px',
+    marginTop: '30px',
     justifyContent:'space-between',
   },
   contact_false: {
@@ -49,9 +51,9 @@ const useStyles = makeStyles(() => ({
   name_true: {
     flexGrow: 2,
     textAlign: 'left',
-    marginLeft: '15px',
+    marginLeft: '20px',
     marginBottom: "5px",
-    marginTop: '20px',
+    marginTop: '15px',
     textDecorationLine: 'underline',
   },
   name_false: {
@@ -117,7 +119,8 @@ const useStyles = makeStyles(() => ({
 
   liveURL_true: {
     display: 'flex',
-    marginLeft: '30px',
+    // marginLeft: '30px',
+    marginBottom:5,
     textDecoration: 'none',
     textAlign: 'center',
     color: "black",
@@ -206,7 +209,7 @@ const useStyles = makeStyles(() => ({
   divider: {
     color: 'grey',
     // marginTop: 5,
-    margin: 15,
+    margin: 10,
     // marginBottom: 5
   },
   border_true: {
@@ -216,13 +219,21 @@ const useStyles = makeStyles(() => ({
   border_false: {
 
     // padding: 5
+  },
+  about_true: {
+    marginBottom:5,
+    width:'95%',
+    margin:'auto'
+  },
+  about_false:{
+
   }
 
 }));
 
 
 
-export default function TemplateOne(props) {
+export default function TemplateTwo(props) {
 
   const { basicInfo, projects, skills, work_experience } = props.data
   // console.log("This is templateONe props", props)
@@ -376,7 +387,18 @@ export default function TemplateOne(props) {
           </div>
         </div>
         <br />
-
+        <div className={ active? classes.about_true : classes.about_false }>
+        <TextField
+          autoFocus
+          id="outlined-multiline-static"
+          label="About me"
+          multiline
+          rows={4}
+          rowsMax={4}
+          placeholder='Tell us about yourself...'
+          fullWidth
+        />
+      </div>
         <Divider className={classes.divider} style={{background: props.borderColor}}/>
       </div>
 

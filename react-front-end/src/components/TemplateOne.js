@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Grid, Typography, Container, Divider}
+import { makeStyles, TextField, Typography, Container, Divider, InputAdornment}
  from '@material-ui/core'
  import { Link } from 'react-router-dom';
 
@@ -9,7 +9,8 @@ const useStyles = makeStyles(() => ({
     maxHeight: '11in',
     minHeight:'11in',
     padding: 10,
-    paddingTop: "5%",
+    lineHeight: .3,
+    
     fontSize: "100%",
   },
   root_false:{
@@ -32,6 +33,8 @@ const useStyles = makeStyles(() => ({
   contact_true: {
     display:'flex',
     direction:'column',
+    lineHeight:'normal',
+    textAlign:'right',
     justifyContent:'space-between',
     // backgroundColor:'red'
   },
@@ -80,6 +83,7 @@ const useStyles = makeStyles(() => ({
 
   liveURL_true: {
     // textDecoration: 'none',
+    marginBottom: 15,
     color: "blue",
     fontSize: '1.2em',
   },
@@ -149,6 +153,22 @@ const useStyles = makeStyles(() => ({
     border: "solid 1px",
     borderRadius: 20,
     padding: 5
+  },
+  profession_true: {
+    fontSize: 25,
+    width: "50%",
+    marginLeft: '10px'
+  },
+  profession_false: {
+    fontSize: ".2rem",
+    width: "%50",
+    marginLeft: '10px'
+  },
+  about_true: {
+    marginBottom:5
+  },
+  about_false:{
+
   }
 
 }));
@@ -284,6 +304,15 @@ export default function TemplateOne(props) {
           >
             {props.data.basicInfo.userName}
           </Typography>
+          <TextField
+              className={active ? classes.profession_true : classes.profession_false}
+              width="auto"
+              InputProps={{
+                disableUnderline: true,
+                style: {fontFamily: props.font}
+              }}
+              defaultValue='Full-Stack Web Developer'
+            />
         </div>
         <div className={ active? classes.contact_true : classes.contact_false }
           style={{fontFamily: props.bodyFont}}>
@@ -297,8 +326,18 @@ export default function TemplateOne(props) {
         </div>
       </div>
       <br />
-      {/* <Divider className={classes.divider} /> */}
-
+      <div className={ active? classes.about_true : classes.about_false }>
+        <TextField
+          autoFocus
+          id="outlined-multiline-static"
+          label="About me"
+          multiline
+          rows={4}
+          rowsMax={4}
+          placeholder='Tell us about yourself...'
+          fullWidth
+        />
+      </div>
       <section name="skills"
        className={ active? classes.border_true : classes.border_false }
        style={{borderColor: props.borderColor}} >
