@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField, Button} from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
+import { TextField, Button, Snackbar} from '@material-ui/core';
 
 
 const useStyles = makeStyles(() => ({
@@ -32,7 +33,9 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props}/>;
+}
 
 export default function Jobs(props) {
   const {title, description, id, start_date, end_date, company_name} = props
@@ -44,21 +47,67 @@ export default function Jobs(props) {
     job_start_date: start_date,
     job_end_date: end_date
   })
+  const [openError, setOpenError] = useState(false);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState({
+    job_tite: false,
+    company_name: false,
+    job_description: false,
+    job_start_date: false,
+    job_end_date: false
+  })
 
 
   function save(event){
     event.preventDefault();
-    props.updateWork(jobInfo);
+    if (validate()) {
+      setMessage("Please fill out the missing forms")
+      setOpenError(true);
+    }
+    console.log(jobInfo);
+    // props.updateWork(jobInfo);
   }
 
   function onDelete(event) {
     event.preventDefault();
     props.deleteWork(jobInfo);
   }
+
+  function validate() {
+    let bool = false
+    if (jobInfo.job_title === "") {
+      setError(prev => ({...prev, job_title: true}));
+      bool = true; 
+    } 
+    if (jobInfo.company_name === "") {
+      setError(prev => ({...prev, company_name: true}));
+      bool = true; 
+    } 
+    if (jobInfo.job_description === "") {
+      setError(prev => ({...prev, job_description: true}));
+      bool = true; 
+    } 
+    if (jobInfo.job_start_date === "") {
+      setError(prev => ({...prev, job_start_date: true}));
+      bool = true; 
+    } 
+    if (jobInfo.job_end_date === "") {
+      setError(prev => ({...prev, job_end_date: true}));
+      bool = true; 
+    } 
+    return bool;
+  }
   
   function handleChange(event) {
     setJobInfo({...jobInfo, [event.target.name]: event.target.value})
   }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenError(false); 
+  };
 
   
   const classes = useStyles(); 
@@ -68,22 +117,31 @@ export default function Jobs(props) {
         <div className={classes.job}>
         <div className={classes.fields}>
         <TextField  
+          error={error.job_title}
+          required={true}
           name='job_title' 
           label="Job Title"
           onChange={handleChange}
+          onFocus={() => setError(prev => ({...prev, job_title: false }))}
           value={jobInfo.job_title} 
         />
         <TextField 
+          error={error.company_name}
+          required={true}
           name='company_name' 
           label="Company Name" 
           onChange={handleChange}
+          onFocus={() => setError(prev => ({...prev, company_name: false }))}
           value={jobInfo.company_name}
         />
         <TextField
+          error={error.job_start_date}
+          required={true}
           label="Start Date"
           name="job_start_date"
           type="date"
           value={jobInfo.job_start_date}
+          onFocus={() => setError(prev => ({...prev, job_start_date: false }))}
           onChange={handleChange}
           // className={classes.textField}
           InputLabelProps={{
@@ -91,10 +149,13 @@ export default function Jobs(props) {
           }}
         />
         <TextField
+          required={true}
+          error={error.job_end_date}
           label="End Date"
           name="job_end_date"
           type="date"
           value={jobInfo.job_end_date}
+          onFocus={() => setError(prev => ({...prev, job_end_date: false }))}
           onChange={handleChange}
           // className={classes.textField}
           InputLabelProps={{
@@ -104,17 +165,30 @@ export default function Jobs(props) {
         </div>
         <div className={classes.description}>
           <TextField
+            required={true}
+            error={error.job_description}
             label="Job Description"
             name='job_description'
             multiline
             rows={6}
             value={jobInfo.job_description}
+            onFocus={() => setError(prev => ({...prev, job_description: false }))}
             onChange={handleChange}
             placeholder="Tell us about this position..."
             fullWidth={true}
             variant="outlined"
           />
         </div>
+        <Snackbar 
+          open={openError}
+          autoHideDuration={1000}
+          onClose={handleClose}
+          anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+        >
+        <Alert onClose={handleClose} severity="error">
+          <h1>{message}</h1>
+        </Alert>
+      </Snackbar>
       {!Object.values(jobInfo).includes(null) && <Button 
       className={classes.submit}
       onClick={save}
