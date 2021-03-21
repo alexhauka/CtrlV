@@ -1,9 +1,24 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles(() => ({
+  button: {
+    // marginTop: '1.2em',
+    marginBottom:'1.2em',
+    width:'8.5in',
+    color: "white",
+    size: "large",
+    background: '#3f51b5',
+    // marginLeft: '8%',
+    // '&:hover':{
+    //   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    // }
+  }
+}));
 
 export default function GetGithub(props){  
-  
+  const classes = useStyles();
   
   const uploadProjects = async (username) => {
     const macroURL = `https://api.github.com/search/repositories?q=user:${username}`
@@ -75,6 +90,7 @@ export default function GetGithub(props){
 
   return (
     <Button
+    className={classes.button}
     variant="contained"
     color="primary"
     onClick={() => uploadProjects(props.username)}

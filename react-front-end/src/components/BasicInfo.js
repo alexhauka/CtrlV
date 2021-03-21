@@ -7,23 +7,32 @@ import { Typography, TextField, Button} from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   root: {
-    marginTop: "5em",
+    paddingTop: "5em",
     backgroundColor: "white",
     minHeight: "100vh",
     textAlign:"center"
   },
+  title:{
+    marginBottom:'revert'
+  },
   fields: {
     display:"flex",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
     margin: "auto",
     marginBottom: 20,
-    width: "60%",
+    width: "90%",
     height: "auto"
   },
   submit: {
+    marginBottom:'1.2em',
+    width:'8.5in',
     color: "white",
     size: "large",
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
+    background: 'linear-gradient(45deg, transparent 20%,#FF8E53 40%, #FE6B8B 60%, transparent 80%)',
+    // marginLeft: '8%',
+    '&:hover':{
+      background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    }
   }
 }))
 
@@ -56,7 +65,7 @@ export default function BasicInfo(props) {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h3">My Basic Info</Typography>
+      <Typography className={classes.title} variant="h3">My Basic Info</Typography>
       <div>
         <form noValidate autoComplete="off">
           <div className={classes.fields}>
@@ -64,6 +73,7 @@ export default function BasicInfo(props) {
               id="first_name" 
               label="First Name" 
               name="first_name"
+              variant='outlined'
               value={userInfo.first_name}
               onChange={handleChange}
                />
@@ -71,6 +81,7 @@ export default function BasicInfo(props) {
               id="last_name" 
               label="Last Name" 
               name="last_name"
+              variant='outlined'
               value={userInfo.last_name} 
               onChange={handleChange}
               />
@@ -78,6 +89,7 @@ export default function BasicInfo(props) {
               id="email" 
               label="Email" 
               name="email"
+              variant='outlined'
               value={userInfo.email}
               onChange={handleChange}
               />
@@ -85,6 +97,7 @@ export default function BasicInfo(props) {
               id="linkedin" 
               label="Linkedin" 
               name="linkedin"
+              variant='outlined'
               value={userInfo.linkedin}
               onChange={handleChange}
               />
@@ -92,6 +105,7 @@ export default function BasicInfo(props) {
               id="address" 
               label="Address" 
               name="address"
+              variant='outlined'
               value={userInfo.address}
               onChange={handleChange}
               />
@@ -99,6 +113,7 @@ export default function BasicInfo(props) {
               id="phone_number" 
               label="Phone" 
               name="phone_number"
+              variant='outlined'
               value={userInfo.phone_number}
               onChange={handleChange}
               /> 

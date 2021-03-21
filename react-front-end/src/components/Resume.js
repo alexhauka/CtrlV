@@ -88,13 +88,25 @@ const useStyles = makeStyles(() => ({
     // padding: 10,
     // paddingTop: "5%",
     backgroundColor: {},
-    marginBottom: "10%",
+    marginBottom: "5%",
     // marginTop: "15%",
     marginLeft: "10%",
     marginTop: 70,
     flexShrink: 1,
     boxShadow: '0px 0px 20px 10px #00000059',
     borderBottom: "solid 1px black"
+  },
+  button: {
+    // marginTop: '1.2em',
+    marginBottom:'1.2em',
+    width:'8.5in',
+    color: "white",
+    size: "large",
+    background: 'linear-gradient(45deg, transparent 20%,#FF8E53 40%, #FE6B8B 60%, transparent 80%)',
+    marginLeft: '8%',
+    '&:hover':{
+      background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    }
   }
 
 
@@ -552,7 +564,7 @@ const resume = {
             <TemplateTwo active={true} data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} />
           } 
           </div>
-          <Button onClick={saveResume}>Save and Confirm</Button>
+          <Button fullWidth className={classes.button} onClick={saveResume}>Save and Confirm</Button>
         </div>
       </Grid>
     </div>

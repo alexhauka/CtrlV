@@ -94,6 +94,19 @@ const useStyles = makeStyles(() => ({
 
   projectButton: {
     marginBottom: 10
+  },
+
+  button: {
+    // marginTop: '1.2em',
+    marginBottom:'1.2em',
+    width:'8.5in',
+    color: "white",
+    size: "large",
+    background: 'linear-gradient(45deg, transparent 20%,#FF8E53 40%, #FE6B8B 60%, transparent 80%)',
+    // marginLeft: '8%',
+    '&:hover':{
+      background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    }
   }
 
 
@@ -247,15 +260,18 @@ export default function RightSection(props) {
       </div>
       <ProjectMenu userProjects={userProjects} liftProjects={liftProjects}/>
       <WorkMenu userWorkExperience={userWorkExperience} liftJobs={liftJobs}/>
-      <Button onClick={() => {
+      {/* <Button onClick={() => {
         console.log(output)
-      }} />
-      <Link to={{
-        pathname: '/resume',
-        state: {
-          output
-        },
-      }}>Save and Confirm</Link>
+      }} /> */}
+      <Button 
+        className={classes.button}
+        component={Link}
+        to={{
+          pathname: '/resume',
+          state: {output}
+          }}
+
+        >Save and Confirm</Button>
       {/* <Button component={() => <Link  />}>How about this one?</Button> */}
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import MuiAlert from '@material-ui/lab/Alert';
-import { Typography, TextField, Button, Snackbar } from '@material-ui/core';
+import { Typography, TextField, Button, Snackbar, Divider } from '@material-ui/core';
 import Projects from "./Projects"; 
 
 import GetGithub from './GetGithub';
@@ -10,7 +10,7 @@ import GetGithub from './GetGithub';
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: "white",
-    minHeight: "100vh",
+    // minHeight: "100vh",
     textAlign:"center"
   },
 
@@ -34,7 +34,7 @@ const useStyles = makeStyles(() => ({
   },
   add: {
     textAlign: "center",
-    paddingTop: 50
+    // paddingTop: 50
   },
   top: {
     bottomBorder: "10px",
@@ -45,11 +45,21 @@ const useStyles = makeStyles(() => ({
   divide:{
     marginBottom: 20,
   },
+  divider:{
+    margin: '50px auto',
+    
+    height: 8,
+    width:"80%",
+    background: 'linear-gradient(6deg, #3f51b5 30%, #FF8E53 90%)'
+  },
   percent: {
     width: "30%"
   },
   lang: {
     width: "15%"
+  },
+  button:{
+    margin: 10
   }
 }))
 
@@ -175,6 +185,7 @@ export default function Github(props) {
           updateGithub={props.updateGithub}
           addProject={generateProject}
         />
+        {/* <Divider className={classes.divider}/> */}
         {numOfProjects}
         {Array(count).fill(moreProjects)}
       </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, Divider } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -17,6 +17,7 @@ const useStyles = makeStyles(() => ({
     display:"flex",
     justifyContent: "space-evenly",
     margin: "auto",
+    paddingTop: 20, 
     marginBottom: 20,
     width: "60%",
     height: "auto"
@@ -25,7 +26,7 @@ const useStyles = makeStyles(() => ({
     marginTop: 20,
     width: '60%',
     margin: "auto",
-    paddingBottom: 30
+    // paddingBottom: 30
   },
   add: {
     textAlign: "center",
@@ -45,6 +46,47 @@ const useStyles = makeStyles(() => ({
   },
   lang: {
     width: "15%"
+  },
+  dividerLeft:{
+    margin: '10px',
+    height: 5,
+    width: '30%',
+    background: '#3f51b5'
+  },
+  dividerRight:{
+    margin: '10px',
+    height: 5,
+    width: '30%',
+    background: '#FF8E53'
+  },
+  divider1:{
+    margin: '10px',
+    height: 25,
+    width:25,
+    borderRadius: 100,
+    background: '#3f51b5'
+  },
+  divider2:{
+    margin: '10px',
+    height: 25,
+    width:25,
+    borderRadius: 100,
+    background: '#7e6599'
+  },
+  divider3:{
+    margin: '10px',
+    height: 25,
+    width:25,
+    borderRadius: 100,
+    background: '#FF8E53'
+  },
+  dividers:{
+    display:'flex',
+    justifyContent:'center',
+    alignItems: 'center'
+  },
+  submit:{
+    margin:10
   }
 }))
 
@@ -84,6 +126,13 @@ export default function Projects(props) {
   return (
     <form onSubmit={handleSave} noValidate autoComplete="off">
     <div className={classes.project}>
+    <div className={classes.dividers}>
+      <Divider orientation='vertical' className={classes.dividerLeft}/>
+      <Divider className={classes.divider1}/>
+      <Divider className={classes.divider2}/>
+      <Divider className={classes.divider3}/>
+      <Divider className={classes.dividerRight}/>
+      </div>
       <div className={classes.fields}>
         <TextField  name="title" label="Project Title" defaultValue={title} onChange={handleChange} />
         <div>
@@ -125,11 +174,15 @@ export default function Projects(props) {
       </div>
       <Button 
       type='submit'
+      color='primary'
+      variant='outlined'
       className={classes.submit}
       >
         Save
       </Button>
       {props.title && <Button
+      variant='outlined'
+      color='primary'
       className={classes.submit}
       onClick={handleDelete}>
         Delete
