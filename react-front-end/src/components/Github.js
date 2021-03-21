@@ -34,7 +34,13 @@ const useStyles = makeStyles(() => ({
   },
   add: {
     textAlign: "center",
-    // paddingTop: 50
+    padding:'2.5%'
+  },
+  submit: {
+    marginTop: 10,
+    color: "white",
+    size: "large",
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
   },
   top: {
     bottomBorder: "10px",
@@ -60,6 +66,9 @@ const useStyles = makeStyles(() => ({
   },
   button:{
     margin: 10
+  },
+  manual:{
+    padding:10
   }
 }))
 
@@ -189,16 +198,16 @@ export default function Github(props) {
         {numOfProjects}
         {Array(count).fill(moreProjects)}
       </div>
-      <div className={classes.root}>
+      
       <div className={classes.add}>
-      <div>
+      
       {/* <Typography className={classes.divide} variant="h4">OR</Typography>  */}
-      <Button variant="contained" color="primary" onClick={() => setCount(count + 1)}>
+      <Button className={classes.submit} variant="contained" color="primary" onClick={() => setCount(count + 1)}>
           Add Projects Manually
       </Button>
-      </div>
+      
         </div>
-      </div>
+
     </div>
   )
 }

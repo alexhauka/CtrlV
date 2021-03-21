@@ -1,20 +1,46 @@
 import React from 'react';
-import { Button } from '@material-ui/core';
+import { Button, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   button: {
     // marginTop: '1.2em',
     marginBottom:'1.2em',
-    width:'8.5in',
+    width:'50%',
     color: "white",
     size: "large",
-    background: '#3f51b5',
+    background: 'linear-gradient(45deg, transparent 20%,#FE6B8B 40%, #FF8E53 60%, transparent 80%)',
     // marginLeft: '8%',
-    // '&:hover':{
-    //   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    // }
-  }
+    '&:hover':{
+      background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    }
+  },
+  divider:{
+    margin: '10px',
+    height: 5,
+    width: '30%',
+    background: '#3f51b5'
+  },
+  divider1:{
+    margin: '10px',
+    height: 10,
+    width:10,
+    borderRadius: 100,
+    background: '#3f51b5'
+  },  
+  divider2:{
+    margin: '10px',
+    height: 15,
+    width:15,
+    borderRadius: 100,
+    background: '#3f51b5'
+  },
+  dividers:{
+    display:'flex',
+    justifyContent:'center',
+    alignItems: 'center',
+    paddingBottom:'2.5%'
+  },
 }));
 
 export default function GetGithub(props){  
@@ -89,14 +115,23 @@ export default function GetGithub(props){
 
 
   return (
+    <div>
     <Button
     className={classes.button}
-    variant="contained"
+    // variant="contained"
     color="primary"
     onClick={() => uploadProjects(props.username)}
     >
       Autogenerate Projects
     </Button>
+    <div className={classes.dividers}>
+    <Divider className={classes.divider}/>
+    <Divider className={classes.divider1}/>
+    <Divider className={classes.divider2}/>
+    <Divider className={classes.divider1}/>
+    <Divider className={classes.divider}/>
+    </div>
+    </div>
   )
 }
 

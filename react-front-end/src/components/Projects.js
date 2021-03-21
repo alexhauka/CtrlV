@@ -11,7 +11,14 @@ const useStyles = makeStyles(() => ({
 
   project: {
     textAlign: "center",
+    border:'1px #3f51b5 solid',
+    width: '70%',
+    borderRadius: 10,
+    margin:'auto'
     //  height: 250
+  },
+  form:{
+    paddingBottom:'2.5%'
   },
   fields: {
     display:"flex",
@@ -19,12 +26,12 @@ const useStyles = makeStyles(() => ({
     margin: "auto",
     paddingTop: 20, 
     marginBottom: 20,
-    width: "60%",
+    width: "90%",
     height: "auto"
   },
   description: {
     marginTop: 20,
-    width: '60%',
+    width: '90%',
     margin: "auto",
     // paddingBottom: 30
   },
@@ -57,7 +64,7 @@ const useStyles = makeStyles(() => ({
     margin: '10px',
     height: 5,
     width: '30%',
-    background: '#FF8E53'
+    background: '#3f51b5'
   },
   divider1:{
     margin: '10px',
@@ -68,17 +75,17 @@ const useStyles = makeStyles(() => ({
   },
   divider2:{
     margin: '10px',
-    height: 10,
-    width:10,
+    height: 15,
+    width:15,
     borderRadius: 100,
-    background: '#7e6599'
+    background: '#3f51b5'
   },
   divider3:{
     margin: '10px',
     height: 10,
     width:10,
     borderRadius: 100,
-    background: '#FF8E53'
+    background: '#3f51b5'
   },
   dividers:{
     display:'flex',
@@ -87,6 +94,22 @@ const useStyles = makeStyles(() => ({
   },
   submit:{
     margin:10
+  },
+  save:{
+    margin:10,
+    color:'white',
+    background:'#6ccc6c',
+    '&:hover':{
+      background:'#228b22'
+    }
+  },
+  delete:{
+    margin:10,
+    color:'white',
+    background:'#ce6767',
+    '&:hover':{
+      background:'#dd3636'
+    }
   }
 }))
 
@@ -124,15 +147,15 @@ export default function Projects(props) {
   
   const classes = useStyles(); 
   return (
-    <form onSubmit={handleSave} noValidate autoComplete="off">
+    <form className={classes.form} onSubmit={handleSave} noValidate autoComplete="off">
     <div className={classes.project}>
-    <div className={classes.dividers}>
-      <Divider orientation='vertical' className={classes.dividerRight}/>
+    {/* <div className={classes.dividers}>
+      <Divider className={classes.dividerRight}/>
       <Divider className={classes.divider3}/>
       <Divider className={classes.divider2}/>
       <Divider className={classes.divider1}/>
       <Divider className={classes.dividerLeft}/>
-      </div>
+      </div> */}
       <div className={classes.fields}>
         <TextField  name="title" label="Project Title" defaultValue={title} onChange={handleChange} />
         <div>
@@ -175,15 +198,15 @@ export default function Projects(props) {
       <Button 
       type='submit'
       color='primary'
-      variant='outlined'
-      className={classes.submit}
+      variant='contained'
+      className={classes.save}
       >
         Save
       </Button>
       {props.title && <Button
-      variant='outlined'
+      variant='contained'
       color='primary'
-      className={classes.submit}
+      className={classes.delete}
       onClick={handleDelete}>
         Delete
       </Button>}

@@ -59,6 +59,7 @@ const useStyles = makeStyles(() => ({
   ResumeButtons: {
     display: 'flex',
     flexDirection: 'column',
+    paddingTop: '10%',
     justifyContent: 'center',
     justify: "space-between",
     // width: "80%",
