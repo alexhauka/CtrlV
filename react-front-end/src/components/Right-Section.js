@@ -108,7 +108,7 @@ const useStyles = makeStyles(() => ({
   button: {
     // marginTop: '1.2em',
     marginBottom:'1.2em',
-    width:'8.5in',
+    width:'80%',
     color: "white",
     size: "large",
     background: 'linear-gradient(45deg, transparent 20%,#FF8E53 40%, #FE6B8B 60%, transparent 80%)',

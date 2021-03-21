@@ -32,24 +32,36 @@ import TemplateTwo from './TemplateTwo';
 
 const useStyles = makeStyles(() => ({
   root: {
-    textAlign: 'center'
+    // border:'1px black solid'
+    textAlign: 'center',
+    background: 'linear-gradient(129deg, #3f51b5 30%, #476bec 90%)'
+  },
+  sections:{
+    border:'1px #3f51b5 solid',
+    margin:'5%',
+    padding: '5%',
+    borderRadius: 10
   },
   rootLeft: {
     display: 'flex',
     flexDirection: 'column',
     height: "100%",
-    background: 'linear-gradient(190deg, #3f51b5 30%, #7bc8f6 90%)'
+    width:'92%',
+    margin:'auto',
+    borderRadius:10,
+    background: 'white',
+    boxShadow:'0px 0px 20px 7px #00000059 inset'
   },
   left: {
     width: "35%",
+    background: 'linear-gradient(233deg, #3f51b5 30%, #476bec 90%)'
   },
   ResumeButtons: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     justify: "space-between",
-    width: "80%",
-    marginTop: "5em",
+    // width: "80%",
     margin: "auto"
   },
   FontButton: {
@@ -58,26 +70,39 @@ const useStyles = makeStyles(() => ({
   },
   FontRows: {
     display:'flex',
+    margin:'5px',
     justifyItems:'space-between',
     width: '100%',
   },
   Font: {
     width: "33.3%",
       "&:hover": {
-        backgroundColor: "white",
-        color: "blue"
+        backgroundColor: "#303f9f",
+        color: "white"
       }
   },
-  selected: {},
+  headings:{
+    margin: 15,
+    textAlign:'left',
+    marginLeft: 0
+  },
+
   right: {
-    width: "65%",
-    boxShadow: '19px 20px 20px 0px #00000059 inset'
+    width: "63%",
+    boxShadow:'0px 0px 20px 7px #00000059 inset',
+    background: 'white',
+    margin:'auto',
+    marginTop:'inherit',
+    marginBottom: 'inherit',
+    borderRadius:10
   },
   HeadingFont : {
-    paddingBottom: 10
+    paddingBottom: 10,
+    textAlign:'left'
   },
   BodyFont : {
-    paddingBottom: 10
+    paddingBottom: 10,
+    textAlign:'left'
   },
   rightRoot: {
     maxWidth: '8.5in',
@@ -90,7 +115,9 @@ const useStyles = makeStyles(() => ({
     backgroundColor: {},
     marginBottom: "5%",
     // marginTop: "15%",
-    marginLeft: "10%",
+    margin:'auto',
+    // marginTop:'unset',
+    // marginLeft: "10%",
     marginTop: 70,
     flexShrink: 1,
     boxShadow: '0px 0px 20px 10px #00000059',
@@ -99,11 +126,11 @@ const useStyles = makeStyles(() => ({
   button: {
     // marginTop: '1.2em',
     marginBottom:'1.2em',
-    width:'8.5in',
+    width:'80%',
     color: "white",
     size: "large",
     background: 'linear-gradient(45deg, transparent 20%,#FF8E53 40%, #FE6B8B 60%, transparent 80%)',
-    marginLeft: '8%',
+    // marginLeft: '8%',
     '&:hover':{
       background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     }
@@ -169,390 +196,394 @@ const resume = {
       >
         <div className={classes.left}>
         <div className={classes.rootLeft}>
-        <div className={classes.ResumeButtons}>
-          <h1>choose your template:</h1>
-          <div className={classes.root}>
-        <ButtonGroup
-          color="primary"
-          aria-label="vertical contained primary button group"
-          variant="contained"
-        >
-          <Button className={classes.Font} onClick={() => setTemplate(1)} >Organized</Button>
-          <Button className={classes.Font} onClick={() => setTemplate(2)}>Understated</Button>
-          <Button className={classes.Font} >Template Three</Button>
-        </ButtonGroup>
-        <ButtonGroup
-          orientation="vertical"
-          color="primary"
-          aria-label="vertical contained primary button group"
-          variant="text"
-        >
-        </ButtonGroup>
-        </div>
-          <h1>choose your font:</h1>
-          <div className={classes.FontButtons}>
-            <div className={classes.HeadingFont}>
-              <Typography
-                variant="h5"
-              >
-                Heading Font: 
-              </Typography>
+          <div className={classes.ResumeButtons}>
+            <div className={classes.sections}>
+              <Typography variant="h5" className={classes.headings}>
+                  Choose Your Template:
+                </Typography>
               <ButtonGroup
-                // orientation="vertical"
-                className={classes.FontRows}
                 color="primary"
-                aria-label="vertical outlined primary button group"
-                variant="contained"
+                aria-label="vertical contained primary button group"
+                // variant="contained"
               >
-                <Button 
-                  className={classes.Font}
-                  style={{fontFamily: 'Fascinate'}}
-                  onClick={() => {
-                    setFont('Fascinate')
-                }}>
-                  Fascinate
-                </Button>
-                <Button
-                  style={{fontFamily: 'Redressed'}}
-                  className={classes.Font}
-                  onClick={() => {
-                    setFont('Redressed')
-                  }}
-                >
-                  Redressed
-                </Button>
-                <Button
-                  className={classes.Font}
-                  style={{fontFamily: 'Shippori Mincho B1'}}
-                  onClick={() => {
-                    setFont('Shippori Mincho B1')
-                  }}
-                >Shippori Mincho B1 </Button>
-              </ButtonGroup>
-              <ButtonGroup
-                // orientation="vertical"
-                className={classes.FontRows}
-                color="primary"
-                aria-label="vertical outlined primary button group"
-                variant="contained"
-              >
-                <Button
-                  style={{fontFamily: 'Comfortaa'}} 
-                  className={classes.Font}
-                  onClick={() => {
-                    setFont('Comfortaa')
-                }}>
-                  Comfortaa
-                </Button>
-                <Button
-                  style={{fontFamily: 'Cormorant Garamond'}}
-                  className={classes.Font}  
-                  onClick={() => {
-                    setFont('Cormorant Garamond')
-                  }}
-                >
-                  Cormorant Garamond
-                </Button>
-                <Button
-                  style={{fontFamily: 'Dancing Script'}}
-                  className={classes.Font}
-                  onClick={() => {
-                    setFont('Dancing Script')
-                  }}
-                >Dancing Script </Button>
-              </ButtonGroup>
-              <ButtonGroup
-                // orientation="vertical"
-                className={classes.FontRows}
-                color="primary"
-                aria-label="vertical outlined primary button group"
-                variant="contained"
-              >
-                <Button 
-                  style={{fontFamily: 'Holtwood One SC'}}
-                  className={classes.Font}
-                  onClick={() => {
-                    setFont('Holtwood One SC')
-                }}>
-                  Holtwood One SC
-                </Button>
-                <Button
-                  style={{fontFamily: 'Josefin Slab'}}
-                  className={classes.Font}
-                  onClick={() => {
-                    setFont('Josefin Slab')
-                  }}
-                >
-                  Josefin Slab
-                </Button>
-                <Button
-                  className={classes.Font}
-                  style={{fontFamily: 'Lato'}}
-                  onClick={() => {
-                    setFont('Lato')
-                  }}
-                >Lato </Button>
-              </ButtonGroup>
-              <ButtonGroup
-                // orientation="vertical"
-                className={classes.FontRows}
-                color="primary"
-                aria-label="vertical outlined primary button group"
-                variant="contained"
-              >
-                <Button 
-                  style={{fontFamily: 'League Script'}}
-                  className={classes.Font}
-                  onClick={() => {
-                    setFont('League Script')
-                }}>
-                  League Script
-                </Button>
-                <Button
-                  style={{fontFamily: 'Monoton'}}
-                  className={classes.Font}
-                  onClick={() => {
-                    setFont('Monoton')
-                  }}
-                >
-                  Monoton
-                </Button>
-                <Button
-                  style={{fontFamily: 'Montserrat'}}
-                  className={classes.Font}
-                  onClick={() => {
-                    setFont('Montserrat')
-                  }}
-                >Montserrat </Button>
-              </ButtonGroup>
-              <ButtonGroup
-                // orientation="vertical"
-                className={classes.FontRows}
-                color="primary"
-                aria-label="vertical outlined primary button group"
-                variant="contained"
-              >
-                <Button
-                  style={{fontFamily: 'Nanum Pen Script'}} 
-                  className={classes.Font}
-                  onClick={() => {
-                    setFont('Nanum Pen Script')
-                }}>
-                  Nanum Pen Script
-                </Button>
-                <Button
-                  className={classes.Font}
-                  style={{fontFamily: 'Open Sans'}} 
-                  onClick={() => {
-                    setFont('Open Sans')
-                  }}
-                >
-                 Open Sans
-                </Button>
-                <Button
-                  style={{fontFamily: 'Yeseva One'}}
-                  className={classes.Font}
-                  onClick={() => {
-                    setFont('Yeseva One')
-                  }}
-                >Yeseva One </Button>
+                <Button className={classes.Font} onClick={() => setTemplate(1)} >Organized</Button>
+                <Button className={classes.Font} onClick={() => setTemplate(2)}>Understated</Button>
+                <Button className={classes.Font} >Template Three</Button>
               </ButtonGroup>
             </div>
-          <div className={classes.BodyFont}>
-          <Typography
-                variant="h5"
-              >
-                Body Font: 
-              </Typography>
-              <ButtonGroup
-                // orientation="vertical"
-                className={classes.FontRows}
-                color="primary"
-                aria-label="vertical outlined primary button group"
-                variant="contained"
-              >
-                <Button
-                  style={{fontFamily: 'Fascinate'}} 
-                  className={classes.Font}
-                  onClick={() => {
-                    setBodyFont('Fascinate')
-                }}>
-                  Fascinate
-                </Button>
-                <Button
-                  style={{fontFamily: 'Redressed'}}
-                  className={classes.Font}
-                  onClick={() => {
-                    setBodyFont('Redressed')
-                  }}
-                >
-                  Redressed
-                </Button>
-                <Button
-                  style={{fontFamily: 'Shippori Mincho B1'}}
-                  className={classes.Font}
-                  onClick={() => {
-                    setBodyFont('Shippori Mincho B1')
-                  }}
-                >Shippori Mincho B1 </Button>
-              </ButtonGroup>
-              <ButtonGroup
-                // orientation="vertical"
-                className={classes.FontRows}
-                color="primary"
-                aria-label="vertical outlined primary button group"
-                variant="contained"
-              >
-                <Button 
-                  style={{fontFamily: 'Comfortaa'}}
-                  className={classes.Font}
-                  onClick={() => {
-                    setBodyFont('Comfortaa')
-                }}>
-                  Comfortaa
-                </Button>
-                <Button
-                  style={{fontFamily: 'Cormorant Garamond'}}
-                  className={classes.Font}  
-                  onClick={() => {
-                    setBodyFont('Cormorant Garamond')
-                  }}
-                >
-                  Cormorant Garamond
-                </Button>
-                <Button
-                  style={{fontFamily: 'Dancing Script'}}
-                  className={classes.Font}
-                  onClick={() => {
-                    setBodyFont('Dancing Script')
-                  }}
-                >Dancing Script </Button>
-              </ButtonGroup>
-              <ButtonGroup
-                // orientation="vertical"
-                className={classes.FontRows}
-                color="primary"
-                aria-label="vertical outlined primary button group"
-                variant="contained"
-              >
-                <Button 
-                  style={{fontFamily: 'Holtwood One SC'}}
-                  className={classes.Font}
-                  onClick={() => {
-                    setBodyFont('Holtwood One SC')
-                }}>
-                  Holtwood One SC
-                </Button>
-                <Button
-                  style={{fontFamily: 'Josefin Slab'}}
-                  className={classes.Font}
-                  onClick={() => {
-                    setBodyFont('Josefin Slab')
-                  }}
-                >
-                  Josefin Slab
-                </Button>
-                <Button
-                  style={{fontFamily: 'Lato'}}
-                  className={classes.Font}
-                  onClick={() => {
-                    setBodyFont('Lato')
-                  }}
-                >Lato </Button>
-              </ButtonGroup>
-              <ButtonGroup
-                // orientation="vertical"
-                className={classes.FontRows}
-                color="primary"
-                aria-label="vertical outlined primary button group"
-                variant="contained"
-              >
-                <Button
-                  style={{fontFamily: 'League Script'}} 
-                  className={classes.Font}
-                  onClick={() => {
-                    setBodyFont('League Script')
-                }}>
-                  League Script
-                </Button>
-                <Button
-                  style={{fontFamily: 'Monoton'}} 
-                  className={classes.Font}
-                  onClick={() => {
-                    setBodyFont('Monoton')
-                  }}
-                >
-                  Monoton
-                </Button>
-                <Button
-                  style={{fontFamily: 'Montserrat'}}
-                  className={classes.Font}
-                  onClick={() => {
-                    setBodyFont('Montserrat')
-                  }}
-                >Montserrat </Button>
-              </ButtonGroup>
-              <ButtonGroup
-                // orientation="vertical"
-                className={classes.FontRows}
-                color="primary"
-                aria-label="vertical outlined primary button group"
-                variant="contained"
-              >
-                <Button
-                  style={{fontFamily: 'Nanum Pen Script'}} 
-                  className={classes.Font}
-                  onClick={() => {
-                    setBodyFont('Nanum Pen Script')
-                }}>
-                  Nanum Pen Script
-                </Button>
-                <Button
-                  style={{fontFamily: 'Open Sans'}}
-                  className={classes.Font}
-                  onClick={() => {
-                    setBodyFont('Open Sans')
-                  }}
-                >
-                 Open Sans
-                </Button>
-                <Button
-                  style={{fontFamily: 'Yeseva One'}}
-                  className={classes.Font}
-                  onClick={() => {
-                    setBodyFont('Yeseva One')
-                  }}
-                >Yeseva One </Button>
-              </ButtonGroup>
-        </div>
-
-      </div>
-          <h1>choose your colors:</h1>
-            <div>
-              <Typography
-              variant="subtitle1"
-              >
-                Background Color
-              </Typography>
-                <ColorPicker name="color" defaultValue={"#fff"} value={color} onChange={(event) => {
-                  console.log(event.css.backgroundColor)
-                  setColor(event.css.backgroundColor);
-                }} />
-              </div>
-              <div>
+            <div className={classes.sections}>
+            <Typography variant="h5" className={classes.headings}>
+              Choose Your Font:
+            </Typography>
+            <div className={classes.FontButtons}>
+              <div className={classes.HeadingFont}>
                 <Typography
                   variant="subtitle1"
                 >
-                  Border Color
-              </Typography>
-                <ColorPicker name="color" defaultValue={"#fff"} value={borderColor} onChange={(event) => {
-                  console.log(event.css.backgroundColor)
-                  setBorderColor(event.css.backgroundColor);
-                }} />
+                  Heading Font: 
+                </Typography>
+                <ButtonGroup
+                  // orientation="vertical"
+                  className={classes.FontRows}
+                  color="primary"
+                  aria-label="vertical outlined primary button group"
+                  // variant="contained"
+                >
+                  <Button 
+                    className={classes.Font}
+                    style={{fontFamily: 'Fascinate'}}
+                    onClick={() => {
+                      setFont('Fascinate')
+                  }}>
+                    Fascinate
+                  </Button>
+                  <Button
+                    style={{fontFamily: 'Redressed'}}
+                    className={classes.Font}
+                    onClick={() => {
+                      setFont('Redressed')
+                    }}
+                  >
+                    Redressed
+                  </Button>
+                  <Button
+                    className={classes.Font}
+                    style={{fontFamily: 'Shippori Mincho B1'}}
+                    onClick={() => {
+                      setFont('Shippori Mincho B1')
+                    }}
+                  >Shippori Mincho B1 </Button>
+                </ButtonGroup>
+                <ButtonGroup
+                  // orientation="vertical"
+                  className={classes.FontRows}
+                  color="primary"
+                  aria-label="vertical outlined primary button group"
+                  // variant="contained"
+                >
+                  <Button
+                    style={{fontFamily: 'Comfortaa'}} 
+                    className={classes.Font}
+                    onClick={() => {
+                      setFont('Comfortaa')
+                  }}>
+                    Comfortaa
+                  </Button>
+                  <Button
+                    style={{fontFamily: 'Cormorant Garamond'}}
+                    className={classes.Font}  
+                    onClick={() => {
+                      setFont('Cormorant Garamond')
+                    }}
+                  >
+                    Cormorant Garamond
+                  </Button>
+                  <Button
+                    style={{fontFamily: 'Dancing Script'}}
+                    className={classes.Font}
+                    onClick={() => {
+                      setFont('Dancing Script')
+                    }}
+                  >Dancing Script </Button>
+                </ButtonGroup>
+                <ButtonGroup
+                  // orientation="vertical"
+                  className={classes.FontRows}
+                  color="primary"
+                  aria-label="vertical outlined primary button group"
+                  // variant="contained"
+                >
+                  <Button 
+                    style={{fontFamily: 'Holtwood One SC'}}
+                    className={classes.Font}
+                    onClick={() => {
+                      setFont('Holtwood One SC')
+                  }}>
+                    Holtwood One SC
+                  </Button>
+                  <Button
+                    style={{fontFamily: 'Josefin Slab'}}
+                    className={classes.Font}
+                    onClick={() => {
+                      setFont('Josefin Slab')
+                    }}
+                  >
+                    Josefin Slab
+                  </Button>
+                  <Button
+                    className={classes.Font}
+                    style={{fontFamily: 'Lato'}}
+                    onClick={() => {
+                      setFont('Lato')
+                    }}
+                  >Lato </Button>
+                </ButtonGroup>
+                <ButtonGroup
+                  // orientation="vertical"
+                  className={classes.FontRows}
+                  color="primary"
+                  aria-label="vertical outlined primary button group"
+                  // variant="contained"
+                >
+                  <Button 
+                    style={{fontFamily: 'League Script'}}
+                    className={classes.Font}
+                    onClick={() => {
+                      setFont('League Script')
+                  }}>
+                    League Script
+                  </Button>
+                  <Button
+                    style={{fontFamily: 'Monoton'}}
+                    className={classes.Font}
+                    onClick={() => {
+                      setFont('Monoton')
+                    }}
+                  >
+                    Monoton
+                  </Button>
+                  <Button
+                    style={{fontFamily: 'Montserrat'}}
+                    className={classes.Font}
+                    onClick={() => {
+                      setFont('Montserrat')
+                    }}
+                  >Montserrat </Button>
+                </ButtonGroup>
+                <ButtonGroup
+                  // orientation="vertical"
+                  className={classes.FontRows}
+                  color="primary"
+                  aria-label="vertical outlined primary button group"
+                  // variant="contained"
+                >
+                  <Button
+                    style={{fontFamily: 'Nanum Pen Script'}} 
+                    className={classes.Font}
+                    onClick={() => {
+                      setFont('Nanum Pen Script')
+                  }}>
+                    Nanum Pen Script
+                  </Button>
+                  <Button
+                    className={classes.Font}
+                    style={{fontFamily: 'Open Sans'}} 
+                    onClick={() => {
+                      setFont('Open Sans')
+                    }}
+                  >
+                  Open Sans
+                  </Button>
+                  <Button
+                    style={{fontFamily: 'Yeseva One'}}
+                    className={classes.Font}
+                    onClick={() => {
+                      setFont('Yeseva One')
+                    }}
+                  >Yeseva One </Button>
+                </ButtonGroup>
               </div>
-            </div>
-            <div>
-            </div>
+            <div className={classes.BodyFont}>
+            <Typography
+                  variant="subtitle1"
+                >
+                  Body Font: 
+                </Typography>
+                <ButtonGroup
+                  // orientation="vertical"
+                  className={classes.FontRows}
+                  color="primary"
+                  aria-label="vertical outlined primary button group"
+                  // variant="contained"
+                >
+                  <Button
+                    style={{fontFamily: 'Fascinate'}} 
+                    className={classes.Font}
+                    onClick={() => {
+                      setBodyFont('Fascinate')
+                  }}>
+                    Fascinate
+                  </Button>
+                  <Button
+                    style={{fontFamily: 'Redressed'}}
+                    className={classes.Font}
+                    onClick={() => {
+                      setBodyFont('Redressed')
+                    }}
+                  >
+                    Redressed
+                  </Button>
+                  <Button
+                    style={{fontFamily: 'Shippori Mincho B1'}}
+                    className={classes.Font}
+                    onClick={() => {
+                      setBodyFont('Shippori Mincho B1')
+                    }}
+                  >Shippori Mincho B1 </Button>
+                </ButtonGroup>
+                <ButtonGroup
+                  // orientation="vertical"
+                  className={classes.FontRows}
+                  color="primary"
+                  aria-label="vertical outlined primary button group"
+                  // variant="contained"
+                >
+                  <Button 
+                    style={{fontFamily: 'Comfortaa'}}
+                    className={classes.Font}
+                    onClick={() => {
+                      setBodyFont('Comfortaa')
+                  }}>
+                    Comfortaa
+                  </Button>
+                  <Button
+                    style={{fontFamily: 'Cormorant Garamond'}}
+                    className={classes.Font}  
+                    onClick={() => {
+                      setBodyFont('Cormorant Garamond')
+                    }}
+                  >
+                    Cormorant Garamond
+                  </Button>
+                  <Button
+                    style={{fontFamily: 'Dancing Script'}}
+                    className={classes.Font}
+                    onClick={() => {
+                      setBodyFont('Dancing Script')
+                    }}
+                  >Dancing Script </Button>
+                </ButtonGroup>
+                <ButtonGroup
+                  // orientation="vertical"
+                  className={classes.FontRows}
+                  color="primary"
+                  aria-label="vertical outlined primary button group"
+                  // variant="contained"
+                >
+                  <Button 
+                    style={{fontFamily: 'Holtwood One SC'}}
+                    className={classes.Font}
+                    onClick={() => {
+                      setBodyFont('Holtwood One SC')
+                  }}>
+                    Holtwood One SC
+                  </Button>
+                  <Button
+                    style={{fontFamily: 'Josefin Slab'}}
+                    className={classes.Font}
+                    onClick={() => {
+                      setBodyFont('Josefin Slab')
+                    }}
+                  >
+                    Josefin Slab
+                  </Button>
+                  <Button
+                    style={{fontFamily: 'Lato'}}
+                    className={classes.Font}
+                    onClick={() => {
+                      setBodyFont('Lato')
+                    }}
+                  >Lato </Button>
+                </ButtonGroup>
+                <ButtonGroup
+                  // orientation="vertical"
+                  className={classes.FontRows}
+                  color="primary"
+                  aria-label="vertical outlined primary button group"
+                  // variant="contained"
+                >
+                  <Button
+                    style={{fontFamily: 'League Script'}} 
+                    className={classes.Font}
+                    onClick={() => {
+                      setBodyFont('League Script')
+                  }}>
+                    League Script
+                  </Button>
+                  <Button
+                    style={{fontFamily: 'Monoton'}} 
+                    className={classes.Font}
+                    onClick={() => {
+                      setBodyFont('Monoton')
+                    }}
+                  >
+                    Monoton
+                  </Button>
+                  <Button
+                    style={{fontFamily: 'Montserrat'}}
+                    className={classes.Font}
+                    onClick={() => {
+                      setBodyFont('Montserrat')
+                    }}
+                  >Montserrat </Button>
+                </ButtonGroup>
+                <ButtonGroup
+                  // orientation="vertical"
+                  className={classes.FontRows}
+                  color="primary"
+                  aria-label="vertical outlined primary button group"
+                  // variant="contained"
+                >
+                  <Button
+                    style={{fontFamily: 'Nanum Pen Script'}} 
+                    className={classes.Font}
+                    onClick={() => {
+                      setBodyFont('Nanum Pen Script')
+                  }}>
+                    Nanum Pen Script
+                  </Button>
+                  <Button
+                    style={{fontFamily: 'Open Sans'}}
+                    className={classes.Font}
+                    onClick={() => {
+                      setBodyFont('Open Sans')
+                    }}
+                  >
+                  Open Sans
+                  </Button>
+                  <Button
+                    style={{fontFamily: 'Yeseva One'}}
+                    className={classes.Font}
+                    onClick={() => {
+                      setBodyFont('Yeseva One')
+                    }}
+                  >Yeseva One </Button>
+                </ButtonGroup>
+          </div>
+          </div>        
+        </div>
+        <div className={classes.sections}>
+        <Typography variant="h5" className={classes.headings}>
+              Choose Your Colors:
+            </Typography>
+              <div>
+                <Typography
+                variant="subtitle1"
+                className={classes.HeadingFont}
+                >
+                  Background Color
+                </Typography>
+                  <ColorPicker name="color" defaultValue={"#fff"} value={color} onChange={(event) => {
+                    console.log(event.css.backgroundColor)
+                    setColor(event.css.backgroundColor);
+                  }} />
+                </div>
+                <div>
+                  <Typography
+                    className={classes.HeadingFont}
+                    variant="subtitle1"
+                  >
+                    Border Color
+                </Typography>
+                  <ColorPicker name="color" defaultValue={"#fff"} value={borderColor} onChange={(event) => {
+                    console.log(event.css.backgroundColor)
+                    setBorderColor(event.css.backgroundColor);
+                  }} />
+                </div>
+                </div>
+              </div>
+              <div>
+              </div>
           </div>
         </div>
 
