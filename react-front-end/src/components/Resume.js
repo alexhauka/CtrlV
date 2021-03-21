@@ -194,12 +194,14 @@ const resume = {
               >
                 <Button 
                   className={classes.Font}
+                  style={{fontFamily: 'Fascinate'}}
                   onClick={() => {
                     setFont('Fascinate')
                 }}>
                   Fascinate
                 </Button>
                 <Button
+                  style={{fontFamily: 'Redressed'}}
                   className={classes.Font}
                   onClick={() => {
                     setFont('Redressed')
@@ -209,6 +211,7 @@ const resume = {
                 </Button>
                 <Button
                   className={classes.Font}
+                  style={{fontFamily: 'Shippori Mincho B1'}}
                   onClick={() => {
                     setFont('Shippori Mincho B1')
                   }}
@@ -221,7 +224,8 @@ const resume = {
                 aria-label="vertical outlined primary button group"
                 variant="contained"
               >
-                <Button 
+                <Button
+                  style={{fontFamily: 'Comfortaa'}} 
                   className={classes.Font}
                   onClick={() => {
                     setFont('Comfortaa')
@@ -229,6 +233,7 @@ const resume = {
                   Comfortaa
                 </Button>
                 <Button
+                  style={{fontFamily: 'Cormorant Garamond'}}
                   className={classes.Font}  
                   onClick={() => {
                     setFont('Cormorant Garamond')
@@ -237,6 +242,7 @@ const resume = {
                   Cormorant Garamond
                 </Button>
                 <Button
+                  style={{fontFamily: 'Dancing Script'}}
                   className={classes.Font}
                   onClick={() => {
                     setFont('Dancing Script')
@@ -251,6 +257,7 @@ const resume = {
                 variant="contained"
               >
                 <Button 
+                  style={{fontFamily: 'Holtwood One SC'}}
                   className={classes.Font}
                   onClick={() => {
                     setFont('Holtwood One SC')
@@ -258,6 +265,7 @@ const resume = {
                   Holtwood One SC
                 </Button>
                 <Button
+                  style={{fontFamily: 'Josefin Slab'}}
                   className={classes.Font}
                   onClick={() => {
                     setFont('Josefin Slab')
@@ -267,6 +275,7 @@ const resume = {
                 </Button>
                 <Button
                   className={classes.Font}
+                  style={{fontFamily: 'Lato'}}
                   onClick={() => {
                     setFont('Lato')
                   }}
@@ -280,6 +289,7 @@ const resume = {
                 variant="contained"
               >
                 <Button 
+                  style={{fontFamily: 'League Script'}}
                   className={classes.Font}
                   onClick={() => {
                     setFont('League Script')
@@ -287,6 +297,7 @@ const resume = {
                   League Script
                 </Button>
                 <Button
+                  style={{fontFamily: 'Monoton'}}
                   className={classes.Font}
                   onClick={() => {
                     setFont('Monoton')
@@ -295,6 +306,7 @@ const resume = {
                   Monoton
                 </Button>
                 <Button
+                  style={{fontFamily: 'Montserrat'}}
                   className={classes.Font}
                   onClick={() => {
                     setFont('Montserrat')
@@ -308,7 +320,8 @@ const resume = {
                 aria-label="vertical outlined primary button group"
                 variant="contained"
               >
-                <Button 
+                <Button
+                  style={{fontFamily: 'Nanum Pen Script'}} 
                   className={classes.Font}
                   onClick={() => {
                     setFont('Nanum Pen Script')
@@ -317,6 +330,7 @@ const resume = {
                 </Button>
                 <Button
                   className={classes.Font}
+                  style={{fontFamily: 'Open Sans'}} 
                   onClick={() => {
                     setFont('Open Sans')
                   }}
@@ -324,6 +338,7 @@ const resume = {
                  Open Sans
                 </Button>
                 <Button
+                  style={{fontFamily: 'Yeseva One'}}
                   className={classes.Font}
                   onClick={() => {
                     setFont('Yeseva One')
@@ -344,7 +359,8 @@ const resume = {
                 aria-label="vertical outlined primary button group"
                 variant="contained"
               >
-                <Button 
+                <Button
+                  style={{fontFamily: 'Fascinate'}} 
                   className={classes.Font}
                   onClick={() => {
                     setBodyFont('Fascinate')
@@ -352,6 +368,7 @@ const resume = {
                   Fascinate
                 </Button>
                 <Button
+                  style={{fontFamily: 'Redressed'}}
                   className={classes.Font}
                   onClick={() => {
                     setBodyFont('Redressed')
@@ -360,6 +377,7 @@ const resume = {
                   Redressed
                 </Button>
                 <Button
+                  style={{fontFamily: 'Shippori Mincho B1'}}
                   className={classes.Font}
                   onClick={() => {
                     setBodyFont('Shippori Mincho B1')
@@ -374,6 +392,7 @@ const resume = {
                 variant="contained"
               >
                 <Button 
+                  style={{fontFamily: 'Comfortaa'}}
                   className={classes.Font}
                   onClick={() => {
                     setBodyFont('Comfortaa')
@@ -381,6 +400,7 @@ const resume = {
                   Comfortaa
                 </Button>
                 <Button
+                  style={{fontFamily: 'Cormorant Garamond'}}
                   className={classes.Font}  
                   onClick={() => {
                     setBodyFont('Cormorant Garamond')
@@ -389,6 +409,7 @@ const resume = {
                   Cormorant Garamond
                 </Button>
                 <Button
+                  style={{fontFamily: 'Dancing Script'}}
                   className={classes.Font}
                   onClick={() => {
                     setBodyFont('Dancing Script')
@@ -403,6 +424,7 @@ const resume = {
                 variant="contained"
               >
                 <Button 
+                  style={{fontFamily: 'Holtwood One SC'}}
                   className={classes.Font}
                   onClick={() => {
                     setBodyFont('Holtwood One SC')
@@ -410,6 +432,7 @@ const resume = {
                   Holtwood One SC
                 </Button>
                 <Button
+                  style={{fontFamily: 'Josefin Slab'}}
                   className={classes.Font}
                   onClick={() => {
                     setBodyFont('Josefin Slab')
@@ -418,6 +441,7 @@ const resume = {
                   Josefin Slab
                 </Button>
                 <Button
+                  style={{fontFamily: 'Lato'}}
                   className={classes.Font}
                   onClick={() => {
                     setBodyFont('Lato')
@@ -431,7 +455,8 @@ const resume = {
                 aria-label="vertical outlined primary button group"
                 variant="contained"
               >
-                <Button 
+                <Button
+                  style={{fontFamily: 'League Script'}} 
                   className={classes.Font}
                   onClick={() => {
                     setBodyFont('League Script')
@@ -439,6 +464,7 @@ const resume = {
                   League Script
                 </Button>
                 <Button
+                  style={{fontFamily: 'Monoton'}} 
                   className={classes.Font}
                   onClick={() => {
                     setBodyFont('Monoton')
@@ -447,6 +473,7 @@ const resume = {
                   Monoton
                 </Button>
                 <Button
+                  style={{fontFamily: 'Montserrat'}}
                   className={classes.Font}
                   onClick={() => {
                     setBodyFont('Montserrat')
@@ -460,7 +487,8 @@ const resume = {
                 aria-label="vertical outlined primary button group"
                 variant="contained"
               >
-                <Button 
+                <Button
+                  style={{fontFamily: 'Nanum Pen Script'}} 
                   className={classes.Font}
                   onClick={() => {
                     setBodyFont('Nanum Pen Script')
@@ -468,6 +496,7 @@ const resume = {
                   Nanum Pen Script
                 </Button>
                 <Button
+                  style={{fontFamily: 'Open Sans'}}
                   className={classes.Font}
                   onClick={() => {
                     setBodyFont('Open Sans')
@@ -476,6 +505,7 @@ const resume = {
                  Open Sans
                 </Button>
                 <Button
+                  style={{fontFamily: 'Yeseva One'}}
                   className={classes.Font}
                   onClick={() => {
                     setBodyFont('Yeseva One')
