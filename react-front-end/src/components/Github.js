@@ -82,7 +82,7 @@ function Alert(props) {
 export default function Github(props) {
   const DESCRIPTION_LIMIT = 225;
   const [count, setCount] = useState(0);
-  console.log("IN GITHUB", props)
+  // console.log("IN GITHUB", props)
   // // default state is my github for testing:
   const [username, setUsername] = useState('');
   const [message, setMessage] = useState("");
@@ -129,7 +129,7 @@ export default function Github(props) {
 
   const data = props.projects
   const numOfProjects = data.map(i => {
-    console.log("IN FOR LOOP:", i)
+    // console.log("IN FOR LOOP:", i)
     const last_updated = i.last_updated.slice(0,10);
     return (
       <Projects 
@@ -184,12 +184,12 @@ export default function Github(props) {
         <Typography className={classes.heading} variant="h3">Enter your Github username</Typography>
         <br />
         <TextField
-        className={classes.divide}
-        variant="filled"
-        id="standard-basic"
-        label="Github Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+          className={classes.divide}
+          variant="filled"
+          id="standard-basic"
+          label="Github Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
         <br />
         <GetGithub 
