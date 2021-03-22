@@ -88,9 +88,9 @@ export default function Jobs(props) {
     if (validate()) {
       setMessage("Please fill out the missing forms")
       setOpenError(true);
-    }
-    console.log(jobInfo);
-    // props.updateWork(jobInfo);
+      return;
+    } 
+    return props.updateWork(jobInfo);
   }
 
   function onDelete(event) {

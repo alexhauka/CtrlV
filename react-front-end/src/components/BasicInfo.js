@@ -109,8 +109,6 @@ export default function BasicInfo(props) {
   function save() {
 
     if (validate()) {
-      // console.log(userInfo);
-      // console.log(error);
       setMessage("Please fill out the missing information"); 
       setOpen(true);
     } else {

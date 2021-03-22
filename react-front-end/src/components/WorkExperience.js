@@ -83,7 +83,7 @@ function Alert(props) {
 
 export default function WorkExperience(props) {
   const data = props.workExperience;
-  console.log("In work experience", data)
+  // console.log("In work experience", data)
   const [count, setCount] = useState(0); 
   const [message, setMessage] = useState("");
   const [open, setOpen] = useState(false);
@@ -120,7 +120,7 @@ export default function WorkExperience(props) {
       // this line will fail if the input date is null 
       const start_date = data[key].job_start_date.slice(0,10);
       const end_date = data[key].job_end_date.slice(0,10);
-      console.log("Start Date", start_date)
+      // console.log("Start Date", start_date)
       return (
         <Jobs
         key={data[key].id}
