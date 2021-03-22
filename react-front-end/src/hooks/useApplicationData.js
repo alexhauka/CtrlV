@@ -86,7 +86,7 @@ export function useApplicationData() {
       console.log("application data", error);
       dispatch({
         type: SET_USER,
-        isLoggingIn: true,
+        isLoggingIn: false,
         user: null
       })
       throw error;
