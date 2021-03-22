@@ -1,5 +1,6 @@
-import React from 'react';
-import { Button, Divider } from '@material-ui/core';
+import React, { useState } from 'react';
+import MuiAlert from '@material-ui/lab/Alert';
+import { Button, Divider, Snackbar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
@@ -43,10 +44,24 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props}/>;
+}
+
 export default function GetGithub(props){  
+  const [message, setMessage] = useState("");
+  const [openError, setOpenError] = useState(false);
+
   const classes = useStyles();
   
   const uploadProjects = async (username) => {
+    
+    if (username === "") {
+      setMessage("Please enter a valid Github name");
+      setOpenError(true);
+      return;
+    }
+
     const macroURL = `https://api.github.com/search/repositories?q=user:${username}`
     
     // macro being the top level info for projects
@@ -113,9 +128,25 @@ export default function GetGithub(props){
   
   }
 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenError(false); 
+  };
 
   return (
     <div>
+      <Snackbar 
+          open={openError}
+          autoHideDuration={1000}
+          onClose={handleClose}
+          anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+        >
+        <Alert onClose={handleClose} severity="error">
+          <h1>{message}</h1>
+        </Alert>
+      </Snackbar>
     <Button
     className={classes.button}
     // variant="contained"

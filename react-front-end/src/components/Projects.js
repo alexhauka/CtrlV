@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField, Button, Divider } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
+import { TextField, Button, Divider, Snackbar } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -113,6 +114,9 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props}/>;
+}
 
 export default function Projects(props) {
   const {title, primary_language, primary_language_percent, secondary_language,secondary_language_percent, description, last_updated, id, url } = props
@@ -128,11 +132,75 @@ export default function Projects(props) {
     description,
     last_updated
   })
+  const [openError, setOpenError] = useState(false);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState({
+    title: false,
+    url: false,
+    primary_language: false,
+    primary_language_percent: false,
+    secondary_language: false,
+    secondary_language_percent: false,
+    description: false,
+    last_updated: false
+  })
 
   function handleSave(event){
     event.preventDefault();
-    // console.log(projectInfo);
-    props.updateProject(projectInfo)
+    if (validate()) {
+      setMessage("Please fill out the missing forms")
+      setOpenError(true);
+      return
+    } else if (isNaN(Number(projectInfo.primary_language_percent))) {
+      setError(prev => ({...prev, primary_language_percent: true}));
+      setMessage("Please fill in the percentages with a number");
+      setOpenError(true);
+      return
+    } else if (isNaN(Number(projectInfo.secondary_language_percent))) {
+      setError(prev => ({...prev, secondary_language_percent: true}));
+      setMessage("Please fill in the percentages with a number");
+      setOpenError(true);
+      return
+    } 
+      // console.log(projectInfo);
+    return props.updateProject(projectInfo)
+  }
+
+  function validate() {
+    let bool = false
+    if (projectInfo.title === "") {
+      setError(prev => ({...prev, title: true}));
+      bool = true; 
+    } 
+    if (projectInfo.url === undefined) {
+      setError(prev => ({...prev, url: true}));
+      bool = true; 
+    } 
+    if (projectInfo.description === "") {
+      setError(prev => ({...prev, description: true}));
+      bool = true; 
+    } 
+    if (projectInfo.last_updated === undefined) {
+      setError(prev => ({...prev, last_updated: true}));
+      bool = true; 
+    } 
+    if (projectInfo.primary_language === "") {
+      setError(prev => ({...prev, primary_language: true}));
+      bool = true; 
+    } 
+    if (projectInfo.primary_language_percent === "") {
+      setError(prev => ({...prev, primary_language_percent: true}));
+      bool = true; 
+    } 
+    if (projectInfo.secondary_language === "") {
+      setError(prev => ({...prev, secondary_language: true}));
+      bool = true; 
+    } 
+    if (projectInfo.secondary_language_percent === "") {
+      setError(prev => ({...prev, secondary_language_percent: true}));
+      bool = true; 
+    } 
+    return bool;
   }
 
   function handleDelete(event) {
@@ -144,6 +212,14 @@ export default function Projects(props) {
   function handleChange(event) {  
     setProjectInfo({...projectInfo, [event.target.name]: event.target.value});
   }
+
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenError(false); 
+  };
   
   const classes = useStyles(); 
   return (
@@ -157,44 +233,112 @@ export default function Projects(props) {
       <Divider className={classes.dividerLeft}/>
       </div> */}
       <div className={classes.fields}>
-        <TextField  name="title" label="Project Title" defaultValue={title} onChange={handleChange} />
+        <TextField  
+          name="title" 
+          required={true}
+          error={error.title}
+          required={true}
+          label="Project Title" 
+          defaultValue={title} 
+          onChange={handleChange}
+          onFocus={() => setError(prev => ({...prev, title: false }))} 
+          />
+          
         <div>
         <TextField
-        name='last_updated'
-        label="Last Modified"
-        type="date"
-        defaultValue={last_updated}
-        onChange={handleChange}
+          name='last_updated'
+          required={true}
+          error={error.last_updated}
+          label="Last Modified"
+          type="date"
+          defaultValue={last_updated}
+          onChange={handleChange}
+          onFocus={() => setError(prev => ({...prev, last_updated: false }))} 
         // className={classes.textField}
-        InputLabelProps={{
+          InputLabelProps={{
           shrink: true,
-        }}
+          }}
         />
         <br/>
-        <TextField name="url" label="Project URL" defaultValue={url} onChange={handleChange} />
+        <TextField 
+          name="url" 
+          required={true}
+          error={error.url}
+          label="Project URL" 
+          defaultValue={url} 
+          onChange={handleChange}
+          onFocus={() => setError(prev => ({...prev, url: false }))}  
+          />
         </div>
         < div className={classes.lang}>
-          <TextField name="primary_language" label="Primary" defaultValue={primary_language} onChange={handleChange} />
-          <TextField  className={classes.percent} name="primary_language_percent" label="%" defaultValue={primary_language_percent} onChange={handleChange} />
+          <TextField 
+            name="primary_language"
+            required={true} 
+            error={error.primary_language}
+            label="Primary" 
+            defaultValue={primary_language} 
+            onChange={handleChange} 
+            onFocus={() => setError(prev => ({...prev, primary_language: false }))} 
+            />
+          <TextField  
+            className={classes.percent} 
+            name="primary_language_percent"
+            required={true}
+            error={error.primary_language_percent} 
+            label="%" 
+            defaultValue={primary_language_percent} 
+            onChange={handleChange} 
+            onFocus={() => setError(prev => ({...prev, primary_language_percent: false }))} 
+            />
         </div>
         < div className={classes.lang}>
-          <TextField label="Secondary" name="secondary_language" defaultValue={secondary_language} onChange={handleChange} />
-          <TextField className={classes.percent} name="secondary_language_percent" label="%" defaultValue={secondary_language_percent} onChange={handleChange}/>
+          <TextField
+            error={error.secondary_language} 
+            label="Secondary" 
+            name="secondary_language"
+            required={true} 
+            defaultValue={secondary_language} 
+            onChange={handleChange} 
+            onFocus={() => setError(prev => ({...prev, secondary_language: false }))} 
+            />
+          <TextField 
+            className={classes.percent} 
+            name="secondary_language_percent" 
+            required={true}
+            error={error.secondary_language_percent}
+            label="%" 
+            defaultValue={secondary_language_percent} 
+            onChange={handleChange}
+            onFocus={() => setError(prev => ({...prev, secondary_language_percent: false }))} 
+            />
         </div>
       </div>
       <div className={classes.description}>
         <TextField
           name="description"
+          required={true}
+          error={error.description}
           label="Project description"
           multiline
           rows={6}
           defaultValue={description}
           onChange={handleChange}
+          onFocus={() => setError(prev => ({...prev, description: false }))} 
           placeholder="Tell us about this position..."
           fullWidth="true"
           variant="outlined"
         />
       </div>
+      <Snackbar 
+          open={openError}
+          autoHideDuration={1000}
+          onClose={handleClose}
+          anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+        >
+        <Alert onClose={handleClose} severity="error">
+          <h1>{message}</h1>
+        </Alert>
+      </Snackbar>
       <Button 
       type='submit'
       color='primary'
