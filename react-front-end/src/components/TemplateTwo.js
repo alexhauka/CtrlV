@@ -36,11 +36,18 @@ const useStyles = makeStyles(() => ({
   },
   contact_true: {
     display:'flex',
+    flexDirection: 'column',
     lineHeight:'normal',
     textAlign:'right',
     marginRight: '10px',
     marginTop: '30px',
+    marginBottom: '30px',
     justifyContent:'space-between',
+  },
+  contactLink: {
+    textDecoration: 'none',
+    color: 'black',
+    fontWeight: 'bold'
   },
   contact_false: {
     display:'flex',
@@ -264,11 +271,11 @@ const useStyles = makeStyles(() => ({
     // padding: 5
   },
   about_true: {
-    width:'95%',
+    width:'97%',
     // margin:'auto',
     marginLeft:10,
     lineHeight:'normal',
-    marginBottom:5
+    paddingBottom: '5px'
   },
   about_false:{
     width:'95%',
@@ -296,7 +303,7 @@ export default function TemplateTwo(props) {
   const { liftAboutMe, liftProfession } = props;
 
   const { basicInfo, projects, skills, work_experience } = props.data
-  // console.log("This is templateONe props", props)
+  // console.log(basicInfo)
   const classes = useStyles();
   const [active, setActive] = React.useState(props.active)
   const [building, setBuilding] = React.useState(props.building)
@@ -474,13 +481,25 @@ export default function TemplateTwo(props) {
           </div>
           <div className={ active? classes.contact_true : classes.contact_false }
             style={{fontFamily: props.bodyFont}}>
-            Address: {basicInfo.userAddress}
-            <br />
-            Email: {basicInfo.userEmail}
-            <br />
-            Github: {basicInfo.userGithub}
-            <br />
-            Phone: {basicInfo.userPhone}
+              <div>
+                {basicInfo.userAddress}
+                <br />
+              </div>
+              <div>
+                <a className={classes.contactLink} href={`mailto:${basicInfo.userEmail}`}>
+                  {basicInfo.userEmail}
+                </a>
+                <br />
+              </div>
+              <div>
+                <a className={classes.contactLink} href={`${basicInfo.userEmail}`}>
+                  Github
+                </a>
+                <br />
+              </div>
+              <div>
+                {basicInfo.userPhone}
+              </div>
           </div>
         </div>
         {/* <br /> */}
