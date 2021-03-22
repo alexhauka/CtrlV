@@ -119,7 +119,7 @@ export function useApplicationData() {
     .then((response) => {
       dispatch({
         type: RESET_APPLICATION_DATA,
-        isLoggingIn: true,
+        isLoggingIn: false,
         hardskills: [],
         userHardSkills: [],
         user: null,
