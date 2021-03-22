@@ -94,11 +94,13 @@ const useStyles = makeStyles(() => ({
   skills: {
     display:'flex',
     direction: 'row',
-    justifyContent:'space-around'
+    justifyContent:'space-around',
+    marginBottom: '10px'
   },
 
   skillSet: {
-    textAlign:'center'
+    textAlign:'center',
+    width: '30%'
   },
 
   liveURL_true: {
@@ -134,6 +136,7 @@ const useStyles = makeStyles(() => ({
     display:'flex',
     direction: 'row',
     justifyContent:'space-evenly',
+    marginBottom: '10px'
   },
 
   project: {
@@ -147,7 +150,8 @@ const useStyles = makeStyles(() => ({
     display:'flex',
     direction: 'row',
     justifyContent:'space-evenly',
-    maxHeight: "33%"
+    maxHeight: "33%",
+    marginBottom: '10px'
   },
 
   job: {
@@ -243,51 +247,78 @@ export default function TemplateOne(props) {
     values.profession = props.data.profession
   }
 
+
+  const hardSkills = skills
+
+
+  let langArray = []
+  let frameArray = []
+  let dbTestingArray = []
+
+
+  hardSkills.map(s => {
+    if (s.type === 'language') {
+      langArray.push(s.name)
+      // return(
+      //  <Typography>{s.name}</Typography>
+      // )
+    } else if (s.type ==='framework') {
+      frameArray.push(s.name)
+    } else {
+      dbTestingArray.push(s.name)
+    }
+
+
+    // return null;
+  })
+
+  const languagesList = langArray.join(', ')
+  const frameworksList = frameArray.join(', ')
+  const testingList = dbTestingArray.join(', ')
   
 
 
 
 
-  const hardSkills = skills
-  const languagesList = hardSkills.map(s => {
-    if (s.type === 'language') {
-      return(
-       <Typography 
-       className={ active ? classes.body_true : classes.body_false}
-       variant="body2" 
-       style={{fontFamily: props.bodyFont}}>
-       {s.name}
-       </Typography>
-      )
-    }
-    return null;
-  })
-  const frameworksList = hardSkills.map(s => {
-  if (s.type ==='framework') {
-    return (
-      <Typography
-      className={ active ? classes.body_true : classes.body_false} 
-      variant="body2" 
-      style={{fontFamily: props.bodyFont}}>
-      {s.name}
-      </Typography>
-    )
-  }
-  return null;
-})
-  const testingList = hardSkills.map(s => {
-    if (s.type === 'testing' || s.type === 'database'){
-      return ( 
-        <Typography
-        className={ active ? classes.body_true : classes.body_false} 
-        variant="body2" 
-        style={{fontFamily: props.bodyFont}}>
-        {s.name}
-        </Typography>
-      )
-    }
-    return null;
-  })
+  // const languagesList = hardSkills.map(s => {
+  //   if (s.type === 'language') {
+  //     return(
+  //      <Typography 
+  //      className={ active ? classes.body_true : classes.body_false}
+  //      variant="body2" 
+  //      style={{fontFamily: props.bodyFont}}>
+  //      {s.name}
+  //      </Typography>
+  //     )
+  //   }
+  //   return null;
+  // })
+//   const frameworksList = hardSkills.map(s => {
+//   if (s.type ==='framework') {
+//     return (
+//       <Typography
+//       className={ active ? classes.body_true : classes.body_false} 
+//       variant="body2" 
+//       style={{fontFamily: props.bodyFont}}>
+//       {s.name}
+//       </Typography>
+//     )
+//   }
+//   return null;
+// })
+  // const testingList = hardSkills.map(s => {
+  //   if (s.type === 'testing' || s.type === 'database'){
+  //     return ( 
+  //       <Typography
+  //       className={ active ? classes.body_true : classes.body_false} 
+  //       variant="body2" 
+  //       style={{fontFamily: props.bodyFont}}>
+  //       {s.name}
+  //       </Typography>
+  //     )
+  //   }
+  //   return null;
+  // })
 
   const testProject = projects[0]
   // console.log("This is test", work_experience)
@@ -454,7 +485,13 @@ export default function TemplateOne(props) {
             >
               Languages
             </Typography>
+            <Typography 
+            className={ active ? classes.body_true : classes.body_false}
+            variant="body2" 
+            style={{fontFamily: props.bodyFont}}>
             {languagesList}
+            </Typography>
+            
           </div>
           <div className={classes.skillSet}>
             <Typography
@@ -464,7 +501,13 @@ export default function TemplateOne(props) {
             >
               Testing & Databases
             </Typography>
+            <Typography
+            className={ active ? classes.body_true : classes.body_false} 
+            variant="body2" 
+            style={{fontFamily: props.bodyFont}}>
             {testingList}
+            </Typography>
+            
           </div>
           <div className={classes.skillSet}>
             <Typography
@@ -474,7 +517,13 @@ export default function TemplateOne(props) {
             >
               Frameworks
             </Typography>
+            <Typography
+            className={ active ? classes.body_true : classes.body_false} 
+            variant="body2" 
+            style={{fontFamily: props.bodyFont}}>
             {frameworksList}
+            </Typography>
+            
           </div>
         </div>
       </section>
