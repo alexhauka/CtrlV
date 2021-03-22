@@ -115,10 +115,12 @@ export default function App() {
         component={(props) => <Login loginUser={loginUser} isLoggingIn={state.isLoggingIn} user={state.user} {...props} />} 
         />
 
-        <Route path='/resumes/:id' component={ResumeLink} />
+        <Route path='/resumes/:id' component={(props) => <ResumeLink state={state}  {...props} />}
+          isLoggingIn={state.isLoggingIn}
+          user={state.user} />
 
         <ProtectedRoute 
-          path="/resume" component={(props) => <Resume addResume={addResume} {...props} />}
+          path="/resume" component={(props) => <Resume  {...props} />}
           isLoggingIn={state.isLoggingIn}
           user={state.user}
         >

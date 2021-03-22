@@ -202,7 +202,7 @@ const useStyles = makeStyles(() => ({
     width: '30%'
   },
   projectsBody_true:{
-    fontSize: '.4rem',
+    // fontSize: '1rem',
     width: "70%",
     textAlign:'left',
   },
@@ -244,7 +244,7 @@ const useStyles = makeStyles(() => ({
 
   },
   body_false: {
-    width: "70%",
+    // width: "70%",
     fontSize: "5%",
     lineHeight: 0.95
   },
@@ -483,7 +483,7 @@ export default function TemplateTwo(props) {
             Phone: {basicInfo.userPhone}
           </div>
         </div>
-        <br />
+        {/* <br /> */}
         <div className={ active? classes.about_true : classes.about_false }>
           {building &&
         <TextField
@@ -508,7 +508,14 @@ export default function TemplateTwo(props) {
         />
           }
           {!building && active &&
-            <p style={{fontFamily: props.bodyFont}} className={classes.about_true}>{props.data.aboutMe}</p>
+          <Typography
+            style={{fontFamily: props.bodyFont}}
+            className={classes.about_true}
+            variant='subtitle1'
+            >
+            {props.data.aboutMe}
+          </Typography>
+            // <p  className={classes.about_true}></p>
           }
           {!building && !active &&
             <p style={{fontFamily: props.bodyFont}} className={classes.about_false}>{props.data.aboutMe}</p>

@@ -41,6 +41,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function ResumeLink(props) {
+  console.log("resume link props state: ", props.state)
   const classes = useStyles();
   // let resumeData = props.location.state 
   // const {id, template_id, active, data, font, color, borderColor, bodyFont} = resumeData;
