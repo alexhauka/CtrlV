@@ -77,6 +77,7 @@ function Alert(props) {
 }
 
 export default function Github(props) {
+  const DESCRIPTION_LIMIT = 225;
   const [count, setCount] = useState(0);
   console.log("IN GITHUB", props)
   // // default state is my github for testing:

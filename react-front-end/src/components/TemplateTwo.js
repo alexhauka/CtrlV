@@ -110,8 +110,7 @@ const useStyles = makeStyles(() => ({
   },
 
   skillSet: {
-    maxWidth:"30%",
-    minWidth:'30%',
+    width: '30%',
     marginRight: '20px',
     marginLeft: '20px',
     overflowWrap: 'break-word',
@@ -169,7 +168,9 @@ const useStyles = makeStyles(() => ({
     justifyContent:'flex-start',
     marginLeft: '20px',
     paddingBottom: '20px',
-    marginBottom: '5px'
+    marginBottom: '5px',
+    marginTop: '5px',
+    width: '30%'
   },
   projectsBody_true:{
     textAlign:'left',
@@ -238,7 +239,7 @@ const useStyles = makeStyles(() => ({
 
 
 export default function TemplateTwo(props) {
-  const ABOUTME_LIMIT = 505;
+  const ABOUT_ME_LIMIT = 505;
   const PROFESSION_LIMIT = 25;
   const [values, setValues] = React.useState({
     about: props.aboutMe,
@@ -434,8 +435,8 @@ export default function TemplateTwo(props) {
           }}
           // ignore the warning, this is the only way to remove underline and set maxlength.
           inputProps={{
-            maxlength: ABOUTME_LIMIT,
-            style: {fontFamily: props.bodyFont, height: '150px'}
+            maxlength: ABOUT_ME_LIMIT,
+            style: {fontFamily: props.bodyFont, minHeight: '23%'}
           }}
           // autoFocus
           id="outlined-multiline-static"
@@ -449,7 +450,7 @@ export default function TemplateTwo(props) {
           fullWidth
         />
       </div>
-        <Divider className={classes.divider} style={{background: props.borderColor}}/>
+        
       </div>
 
       <div style={{background: props.color}}>

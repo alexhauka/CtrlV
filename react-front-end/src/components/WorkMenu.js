@@ -22,6 +22,7 @@ const useStyles = makeStyles(() => ({
 
 
 export default function WorkMenu(props) {
+  const DESCRIPTION_LIMIT = 235;
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -149,6 +150,9 @@ export default function WorkMenu(props) {
             rows={4}
             value={work1 ? work1.job_description : ''}
             variant="outlined"
+            inputProps={{
+              maxlength: DESCRIPTION_LIMIT,
+            }}
           />
         </Grid>
         </div>
@@ -227,6 +231,9 @@ export default function WorkMenu(props) {
             rows={4}
             value={work2 ? work2.job_description : ''}
             variant="outlined"
+            inputProps={{
+              maxlength: DESCRIPTION_LIMIT,
+            }}
           />
         </Grid>
         </div>
@@ -305,6 +312,9 @@ export default function WorkMenu(props) {
             rows={4}
             value={work3 ? work3.job_description : ''}
             variant="outlined"
+            inputProps={{
+              maxlength: DESCRIPTION_LIMIT,
+            }}
           />  
         </Grid>
         </div>

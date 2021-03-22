@@ -176,7 +176,7 @@ const useStyles = makeStyles(() => ({
 
 
 export default function TemplateOne(props) {
-  const ABOUTME_LIMIT = 505;
+  const ABOUT_ME_LIMIT = 505;
   const PROFESSION_LIMIT = 25;
   const [values, setValues] = React.useState({
     about: props.aboutMe,
@@ -375,8 +375,8 @@ export default function TemplateOne(props) {
           }}
           // ignore the warning, this is the only way to remove underline and set maxlength.
           inputProps={{
-            maxlength: ABOUTME_LIMIT,
-            style: {fontFamily: props.bodyFont, height: '150px'}
+            maxlength: ABOUT_ME_LIMIT,
+            style: {fontFamily: props.bodyFont, minHeight: '23%'}
           }}
           // autoFocus
           id="outlined-multiline-static"

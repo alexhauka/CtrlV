@@ -115,6 +115,7 @@ const useStyles = makeStyles(() => ({
 
 
 export default function Projects(props) {
+  const DESCRIPTION_LIMIT = 225;
   const {title, primary_language, primary_language_percent, secondary_language,secondary_language_percent, description, last_updated, id, url } = props
 
   const [projectInfo, setProjectInfo] = useState({
@@ -193,6 +194,9 @@ export default function Projects(props) {
           placeholder="Tell us about this position..."
           fullWidth="true"
           variant="outlined"
+          inputProps={{
+            maxlength: DESCRIPTION_LIMIT,
+          }}
         />
       </div>
       <Button 

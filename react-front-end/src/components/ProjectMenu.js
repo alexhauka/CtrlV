@@ -23,6 +23,7 @@ const useStyles = makeStyles(() => ({
 
 
 export default function ProjectMenu(props) {
+  const DESCRIPTION_LIMIT = 225;
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -136,6 +137,9 @@ export default function ProjectMenu(props) {
             rows={4}
             value={project1 ? project1.description: ''}
             variant="outlined"
+            inputProps={{
+              maxlength: DESCRIPTION_LIMIT,
+            }}
           />
         </Grid>
         </div>
@@ -194,6 +198,9 @@ export default function ProjectMenu(props) {
             rows={4}
             value={project2 ? project2.description: ''}
             variant="outlined"
+            inputProps={{
+              maxlength: DESCRIPTION_LIMIT,
+            }}
           />
         </Grid>
         </div>
@@ -252,6 +259,9 @@ export default function ProjectMenu(props) {
             rows={4}
             value={project3 ? project3.description: ''}
             variant="outlined"
+            inputProps={{
+              maxlength: DESCRIPTION_LIMIT,
+            }}
           />  
         </Grid>
       </div>

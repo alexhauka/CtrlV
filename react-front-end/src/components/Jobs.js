@@ -38,6 +38,7 @@ function Alert(props) {
 }
 
 export default function Jobs(props) {
+  const DESCRIPTION_LIMIT = 235;
   const {title, description, id, start_date, end_date, company_name} = props
   const [jobInfo, setJobInfo] = useState({
     job_title: title,
@@ -123,7 +124,8 @@ export default function Jobs(props) {
           label="Job Title"
           onChange={handleChange}
           onFocus={() => setError(prev => ({...prev, job_title: false }))}
-          value={jobInfo.job_title} 
+          value={jobInfo.job_title}
+          
         />
         <TextField 
           error={error.company_name}
@@ -177,6 +179,9 @@ export default function Jobs(props) {
             placeholder="Tell us about this position..."
             fullWidth={true}
             variant="outlined"
+            inputProps={{
+              maxlength: DESCRIPTION_LIMIT,
+            }}
           />
         </div>
         <Snackbar 

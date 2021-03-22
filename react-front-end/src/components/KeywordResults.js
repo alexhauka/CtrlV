@@ -15,6 +15,10 @@ const useStyles = makeStyles((theme) => ({
   },
   stats: {
     fontFamily: 'Ubuntu'
+  },
+  missingSkills: {
+    fontFamily: 'Ubuntu',
+    color: 'red'
   }
 }));
 
@@ -53,7 +57,7 @@ export default function KeywordResults(props) {
 
 
   const displayMissingSkills = missingSkills.map(skill => (
-    <Typography className={classes.stats} variant="h5">
+    <Typography className={classes.missingSkills} variant="h5">
       {skill}
     </Typography>
   ))
