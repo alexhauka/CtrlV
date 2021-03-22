@@ -96,6 +96,7 @@ const useStyles = makeStyles(() => ({
     margin:10
   },
   save:{
+    fontFamily: 'Ubuntu',
     margin:10,
     color:'white',
     background:'#6ccc6c',
@@ -104,6 +105,7 @@ const useStyles = makeStyles(() => ({
     }
   },
   delete:{
+    fontFamily: 'Ubuntu',
     margin:10,
     color:'white',
     background:'#ce6767',

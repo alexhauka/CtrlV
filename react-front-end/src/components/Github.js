@@ -37,10 +37,14 @@ const useStyles = makeStyles(() => ({
     padding:'2.5%'
   },
   submit: {
+    fontFamily: 'Ubuntu',
     marginTop: 10,
     color: "white",
     size: "large",
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
+  },
+  heading:{
+    fontFamily: 'Ubuntu',
   },
   top: {
     bottomBorder: "10px",
@@ -53,7 +57,6 @@ const useStyles = makeStyles(() => ({
   },
   divider:{
     margin: '50px auto',
-    
     height: 8,
     width:"80%",
     background: 'linear-gradient(6deg, #3f51b5 30%, #FF8E53 90%)'
@@ -178,7 +181,7 @@ export default function Github(props) {
         </Alert>
       </Snackbar>
       <div className={classes.top}>
-        <Typography variant="h3">Enter your Github username</Typography>
+        <Typography className={classes.heading} variant="h3">Enter your Github username</Typography>
         <br />
         <TextField
         className={classes.divide}
