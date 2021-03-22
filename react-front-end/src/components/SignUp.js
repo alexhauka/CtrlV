@@ -14,6 +14,10 @@ import Container from '@material-ui/core/Container';
 import MuiAlert from '@material-ui/lab/Alert';
 import { Snackbar } from '@material-ui/core';
 
+
+const bcrypt = require('bcryptjs');
+const salt = bcrypt.genSaltSync(10);
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -74,20 +78,21 @@ export default function SignUp(props) {
   }
 
   function save(event) {
-    // take out event handler later
     event.preventDefault();
-    console.log("hello world");
+
+    const hash1 = bcrypt.hashSync(password, salt)
+
     const registerInfo = {
       firstName,
       lastName,
       email,
-      password,
-      passwordConfirmation
+      password: hash1,
+      passwordConfirmation: hash1
     }
     if (validate()) {
       setMessage("Please fill out the missing information"); 
       setOpen(true);
-    } else if (registerInfo.password !== registerInfo.passwordConfirmation) {
+    } else if (password !== passwordConfirmation) {
       setMessage("Passwords do not match, please try again"); 
       setError(prev => ({...prev, password: true}));
       setError(prev => ({...prev, passwordConfirmation: true}));
