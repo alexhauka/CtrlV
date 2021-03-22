@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent:'space-evenly'
   },
   resume: {
-    height: "5.75in",
+    height: "6in",
     width: "4in",
     boxShadow: '0px 0px 20px 10px #00000059',
     margin: '5%',
@@ -125,7 +125,7 @@ export default function MyResumes(props) {
               bodyFont: i.body_font
             }
           }}> */}
-            <TemplateOne active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} value={i.id} /> 
+            <TemplateOne building={false} active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} value={i.id} /> 
             <Button className={classes.button} href={`/resumes/${i.id}`}>Show</Button>
             <Button onClick={() => onDelete(i)} className={classes.button}>Delete</Button>
           {/* </Link> */}
@@ -135,7 +135,7 @@ export default function MyResumes(props) {
     } else if (i.template_id === 2) {
       return (
         <div name='showcase' className={classes.resume} key={i.id}>
-          <TemplateTwo active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
+          <TemplateTwo building={false} active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
           <Button className={classes.button} href={`/resumes/${i.id}`}>Show</Button>
           <Button onClick={() => onDelete(i)} className={classes.button}>Delete</Button>
 

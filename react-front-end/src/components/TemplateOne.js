@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
     minHeight: '100%',
     paddingTop: "2.5%",
     fontSize: "100%",
-    lineHeight: .5,
+    lineHeight: .4,
   },
   alignment_true:{
     width:'7.5%'
@@ -47,6 +47,7 @@ const useStyles = makeStyles(() => ({
   contact_false: {
     display:'flex',
     direction:'column',
+    textAlign:'right',
     justifyContent:'space-evenly',
     marginBottom:'1em',
     lineHeight: 1,
@@ -174,22 +175,24 @@ const useStyles = makeStyles(() => ({
     padding: 5
   },
   profession_true: {
-    fontSize: 25,
-    width: "50%",
+    fontSize: '2em',
+    width: "70%",
     // marginLeft: '10px'
   },
   profession_false: {
-    fontSize: ".2rem",
+    fontSize: ".4rem",
     width: "-webkit-fill-available",
     // marginLeft: '10px'
   },
   about_true: {
-    width:'85%',
+    width:'92%',
     margin:'auto',
+    lineHeight:'normal',
     marginBottom:5
   },
   about_false:{
-
+    lineHeight:'.9',
+    fontSize: ".2rem",
   }
 
 }));
@@ -204,14 +207,17 @@ export default function TemplateOne(props) {
     profession: props.profession
   })
 
+  
+
   const { liftAboutMe, liftProfession } = props;
 
-  console.log("Template one props: ", props)
+  console.log("Template one props: ", props.data)
 
   const { basicInfo, projects, skills, work_experience } = props.data
   // console.log("This is templateONe props", props)
   const classes = useStyles();
   const [active, setActive] = React.useState(props.active)
+  const [building, setBuilding] = React.useState(props.building)
   // style={{backgroundColor: props.color}}
   // style={{borderColor: props.borderColor}}
 
@@ -363,6 +369,7 @@ export default function TemplateOne(props) {
           >
             {props.data.basicInfo.userName}
           </Typography>
+          {building &&
           <TextField
               className={active ? classes.profession_true : classes.profession_false}
               width="auto"
@@ -377,6 +384,13 @@ export default function TemplateOne(props) {
               placeholder="Enter your job title here"
               onChange={handleProfessionChange("profession")}
             />
+          }
+          {!building && active &&
+            <p style={{fontFamily: props.bodyFont}} className={classes.profession_true}>{props.data.profession}</p>
+          }
+          {!building && !active &&
+            <p style={{fontFamily: props.bodyFont}} className={classes.profession_false}>{props.data.profession}</p>
+          }
         </div>
         <div className={ active? classes.contact_true : classes.contact_false }
           style={{fontFamily: props.bodyFont}}>
@@ -391,7 +405,9 @@ export default function TemplateOne(props) {
       </div>
       <br />
       <div className={ active? classes.about_true : classes.about_false }>
+        {building &&
         <TextField
+          className={ active? classes.about_true : classes.about_false }
           InputProps={{ 
             disableUnderline: true
           }}
@@ -411,6 +427,13 @@ export default function TemplateOne(props) {
           onChange={handleAboutMeChange("about")}
           fullWidth
         />
+        }
+        {!building && active &&
+          <p style={{fontFamily: props.bodyFont}} className={classes.about_true}>{props.data.aboutMe}</p>
+        }
+        {!building && !active &&
+          <p style={{fontFamily: props.bodyFont}} className={classes.about_false}>{props.data.aboutMe}</p>
+        }
       </div>
       <section name="skills"
        className={ active? classes.border_true : classes.border_false }

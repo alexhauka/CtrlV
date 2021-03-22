@@ -611,9 +611,9 @@ const resume = {
         <div className={classes.right}>
         <div className={classes.rightRoot}>
           {template === 1 &&
-            <TemplateOne active={true} profession={profession} aboutMe={aboutMe} data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} liftAboutMe={liftAboutMe} liftProfession={liftProfession}/>
+            <TemplateOne building={true} active={true} profession={profession} aboutMe={aboutMe} data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} liftAboutMe={liftAboutMe} liftProfession={liftProfession}/>
           }{template === 2 &&
-            <TemplateTwo active={true} profession={profession} aboutMe={aboutMe} data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} liftAboutMe={liftAboutMe} liftProfession={liftProfession}/>
+            <TemplateTwo building={true} active={true} profession={profession} aboutMe={aboutMe} data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} liftAboutMe={liftAboutMe} liftProfession={liftProfession}/>
           } 
           </div>
           <Button fullWidth className={classes.button} onClick={saveResume}>Save and Confirm</Button>
