@@ -182,7 +182,7 @@ const useStyles = makeStyles(() => ({
     marginTop: '10px',
     marginBottom: '5px'
   },
-
+  
   project: {
     textAlign:'left',
     justifyContent:'flex-start',

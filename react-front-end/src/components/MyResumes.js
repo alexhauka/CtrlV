@@ -136,7 +136,7 @@ export default function MyResumes(props) {
           <TemplateTwo building={false} active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
           <Button component={() => <Link className={classes.button} to={`/resumes/${i.id}`}>Show</Link>}
           />
-          <Button onClick={() => onDelete(i)} className={classes.button}>Delete</Button>
+          <Button  className={classes.button} onClick={() => onDelete(i)}>Delete</Button>
         </div>
       )
     }
