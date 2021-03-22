@@ -68,7 +68,8 @@ export default function GetGithub(props){
     // macro being the top level info for projects
     const macroResponse = await fetch(macroURL)
     const macroResults = await macroResponse.json()
-  
+    
+    
     let projectData = {};
 
     // update users github 
@@ -77,17 +78,16 @@ export default function GetGithub(props){
           
     // loops through repos (ordered by star count desc.)
     for (const project in macroResults.items) {
-      
+      console.log("myProjects", macroResults.items[project])
       // grabs the individual repo's top level info via deconstruction
       let { name, updated_at, description, stargazers_count } = macroResults.items[project]
   
       // filters by stars
       if (stargazers_count > 0) {
         // console.log(macroResults.items[project])
-        
         // fetch the languages for a given repo
         const languages = await fetch(`https://api.github.com/repos/${username}/${name}/languages`)
-  
+        
         const languageResults = await languages.json()
   
         let sum = 0;

@@ -131,7 +131,7 @@ export default function Github(props) {
   const numOfProjects = data.map(i => {
     // console.log("IN FOR LOOP:", i)
     console.log("last updated", i.last_updated)
-    // const last_updated = i.last_updated.slice(0,10);
+    const last_updated = i.last_updated.slice(0,10);
     return (
       <Projects 
         key={i.id}
@@ -141,7 +141,7 @@ export default function Github(props) {
         primary_language_percent={i.primary_language_percent}
         secondary_language={i.secondary_language}
         secondary_language_percent={i.secondary_language_percent}
-        // last_updated={last_updated}
+        last_updated={last_updated}
         description={i.description}
         url={i.url}
         updateProject={saveProject}

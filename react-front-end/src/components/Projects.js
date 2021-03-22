@@ -121,7 +121,7 @@ function Alert(props) {
 }
 
 export default function Projects(props) {
-  const DESCRIPTION_LIMIT = 225;
+  const DESCRIPTION_LIMIT = 235;
   const {title, primary_language, primary_language_percent, secondary_language,secondary_language_percent, description, last_updated, id, url } = props
 
   const [projectInfo, setProjectInfo] = useState({
