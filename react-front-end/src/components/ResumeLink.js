@@ -94,7 +94,7 @@ export default function ResumeLink(props) {
   useEffect(() => {
     const loadData = async () => {
       const Resumedata = await getInfo().then((response) => {
-        console.log(response)
+        console.log("response: ",response)
         setProjects(response.projects)
         setWorkExperience(response.workExperience)
         setSkills(response.skills)
@@ -117,6 +117,8 @@ export default function ResumeLink(props) {
   const resume_work_2_index = workExperience.findIndex(w => w.id === resume.work_2);
   const resume_work_3_index = workExperience.findIndex(w => w.id === resume.work_3);
 
+  
+
   const basicInfo = {
       userName: `${user.first_name} ${user.last_name}`,
       userAddress: user.address,
@@ -127,6 +129,8 @@ export default function ResumeLink(props) {
 
   const data = {
     basicInfo: basicInfo,
+    aboutMe: resume.about_me,
+    profession: resume.profession,
     projects: [projects[resume_project_1_index], projects[resume_project_2_index], projects[resume_project_3_index]],
     skills: skills, 
     work_experience: [workExperience[resume_work_1_index], workExperience[resume_work_2_index], workExperience[resume_work_3_index]]

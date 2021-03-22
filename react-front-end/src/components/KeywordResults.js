@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
   chart: {
     opactiy: 0.2,
     marginTop: "10%",
+  },
+  stats: {
+    fontFamily: 'Ubuntu'
   }
 }));
 
@@ -50,7 +53,7 @@ export default function KeywordResults(props) {
 
 
   const displayMissingSkills = missingSkills.map(skill => (
-    <Typography variant="h5">
+    <Typography className={classes.stats} variant="h5">
       {skill}
     </Typography>
   ))
@@ -65,6 +68,7 @@ export default function KeywordResults(props) {
   // console.log(keywords)
   const jobKeywordList = Object.keys(keywords).map(keyword => (
     <KeywordResultsItem
+      className={classes.stats}
       keyword={keyword}
       score={keywords[keyword]}
     />
@@ -72,6 +76,7 @@ export default function KeywordResults(props) {
 
   const skillMatchList = presentSkills.map(skill => (
     <KeywordSkillsItem
+      className={classes.stats}
       skill={skill}
     />
   ))
@@ -85,20 +90,20 @@ export default function KeywordResults(props) {
 
 
   return (
-    <div>
+    <div >
       <br />
-      <Typography variant="h3">Your skills have a {matchPercent}% match!</Typography>
+      <Typography className={classes.stats} variant="h3">Your skills have a {matchPercent}% match!</Typography>
       <br />
-      <Typography variant="h4">Job Keywords:</Typography>
+      <Typography className={classes.stats} variant="h4">Job Keywords:</Typography>
       <br />
       {jobKeywordList}
       <div className={classes.chart}>
-        <PieChart keywords={keywords}></PieChart>
-      <Typography variant="h4">Your Matching Skills:</Typography>
+        <PieChart className={classes.stats} keywords={keywords}></PieChart>
+      <Typography className={classes.stats} variant="h4">Your Matching Skills:</Typography>
       <br />
       {skillMatchList}
       <br />
-      <Typography variant="h4">Missing Skills:</Typography>
+      <Typography className={classes.stats} variant="h4">Missing Skills:</Typography>
       <br />
       {missingSkills.length > 0 ? displayMissingSkills : null}
       <br />
