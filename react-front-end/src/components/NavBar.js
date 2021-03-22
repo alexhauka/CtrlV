@@ -1,5 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Dialog from '@material-ui/core/Dialog';
+// import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -68,6 +73,8 @@ navItem: {
   color: '#fff',
   textDecoration: 'none',
   fontSize: '1.3rem',
+  fontFamily: 'Ubuntu',
+  textTransform: "none",
   alignSelf:'center',
   padding: 5,
   '&:hover': {
@@ -79,6 +86,7 @@ logout:{
   margin: 15,
   color: '#fff',
   textDecoration: 'none',
+  textTransform: "none",
   fontSize: '1.3rem',
   fontFamily: 'Ubuntu',
   alignSelf:'center',
@@ -118,6 +126,17 @@ export default function NavBar(props) {
   const name = function(event){
     console.log("My target", active)
   }
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+
+  };
 
   const classes = useStyles();
   return (
@@ -172,6 +191,46 @@ export default function NavBar(props) {
               name();
             }} to='/myresumes'>My Resumes</Link>}
             />
+            
+            <Button className={active ==='tutorial'? classes.activeNav :classes.navItem} name='tutorial' onClick={(event)=> {
+              setActive(event.target.name);
+              name();
+              handleClickOpen();
+            }}
+            >
+              Tutorial
+            </Button>
+            <Dialog open={open} onClose={handleClose}
+            aria-labelledby="form-dialog-title"
+            >
+            <DialogTitle id="form-dialog-title">Welcome to C(trl)V!</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Before you get started, you'll need an Indeed account if you don't have one already. 
+                <br />
+                <br />
+                On Indeed's site, save any job postings you're interested in by clicking 'Save Job' on that job post. This will allow you to navigate to your saved jobs, and click on a saved job posting to generate a functioning URL. 
+                <br />
+                <br />
+                Afterwards, continue to fill out our profile and resume material in C(trl)V. Once you've done that, you can enter the URL into the our control panel on the left to see how your skills match up to the given job posting!
+                <br />
+                <br />
+                Once you're feeling confident about getting that job, confirm your resume material and let us plug it in to a resume for you. You can of course style it and tweak to your heart's content. 
+                <br />
+                <br />
+                Once you're happy with that resume, click the save button and you'll see it added to your My Resumes list. 
+                <br />
+                <br />
+                Each of your resumes have their own unique id and url attached to them, allowing you to maintain multiple resumes tailored for as many different job postings as you like!
+                <br />
+                <br />
+                We hope you find C(trl)V helpful. Like you, we've dealt with the toil and trouble of building a resume, and we built C.V. to try and help others acheive their goals faster. Happy job hunting!
+              </DialogContentText>
+            </DialogContent>
+            <Button onClick={handleClose} color="primary">
+              Get Started!
+            </Button>
+            </Dialog>
           <Divider className={classes.divider} orientation="vertical"/>
         </div>
         }
