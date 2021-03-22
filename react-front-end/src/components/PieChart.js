@@ -35,6 +35,9 @@ const useStyles = makeStyles(() => ({
   },
   pie: {
 
+  },
+  stats: {
+    fontFamily: 'Ubuntu'
   }
 }))
 

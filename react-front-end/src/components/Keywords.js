@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
     size: "large",
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
   },
+  urlMessage: {
+    fontFamily: 'Ubuntu'
+  },
   form: {
     width: "80%",
     marginRight: "auto",
@@ -69,21 +72,15 @@ export default function Keywords(props) {
       setShowKeywords(true)
     }
     
-    // toggleKeywords()
-    
+
+    setShowKeywords(true)
     
     
   };
 
-  // const toggleKeywords = () => {
-  //   console.log("filter results", filterResults)
-  //   if (showKeywords === true){
-  //     setShowKeywords(false)
-  //   } else {
-  //     setShowKeywords(true)
-  //   }
+  const urlMessage = 'Please Enter a Job Post URL Above'
 
-  // }
+
 
   return (
     <div>
@@ -100,8 +97,9 @@ export default function Keywords(props) {
       <br/>
       <Button className={classes.submit} variant="outlined" color="default" size="large" onClick={onClick}>Submit</Button>
       </form>
-      {url === '' ? 'Please Enter a Job Post URL Above' : null}
-      {/* <Button className={classes.submit} variant="outlined" color="default" size="large" onClick={toggleKeywords}>Toggle Keywords</Button> */}
+      <div className={classes.urlMessage}>
+      {url === '' ? urlMessage : null}
+      </div>
       {showKeywords ? <KeywordResults state={props.state} filterResults={filterResults} /> : null }
     </div >
   )
