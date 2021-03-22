@@ -3,7 +3,7 @@ const router  = express.Router();
 
 const { getResume, addUserResume } = require('../lib/resume-queries')
 
-// get api/resumes
+// get api/resumes/:id (live link page)
 router.get('/:id', (req, res) => {
  getResume(req.params.id)
  .then((data) => {
