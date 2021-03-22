@@ -118,6 +118,13 @@ activeNav: {
   fontSize: '1.3rem',
   alignSelf:'center',
   padding: 5,
+},
+tutHead: {
+  fontFamily: 'Ubuntu',
+  fontSize: 20
+},
+tutBody: {
+  fontFamily: 'Ubuntu'
 }
 }));
 
@@ -189,7 +196,7 @@ export default function NavBar(props) {
             component={() => <Link className={active ==='resumes'? classes.activeNav :classes.navItem} name='resumes' onClick={(event)=> {
               setActive(event.target.name);
               name();
-            }} to='/myresumes'>My Resumes</Link>}
+            }} to='/myresumes'>My Resum&eacute;s</Link>}
             />
             
             <Button className={active ==='tutorial'? classes.activeNav :classes.navItem} name='tutorial' onClick={(event)=> {
@@ -202,29 +209,63 @@ export default function NavBar(props) {
             </Button>
             <Dialog open={open} onClose={handleClose}
             aria-labelledby="form-dialog-title"
+            style={{fontFamily: 'Ubuntu'}}
             >
-            <DialogTitle id="form-dialog-title">Welcome to C(trl)V!</DialogTitle>
+            <DialogTitle
+            id="form-dialog-title"
+            disableTypography
+            className={classes.tutHead}
+            >Welcome to C(trl)V!</DialogTitle >
             <DialogContent>
-              <DialogContentText>
-                Before you get started, you'll need an Indeed account if you don't have one already. 
+              <DialogContentText className={classes.tutBody}>
+                Before you get started, you'll need to sign up for <a href='https://ca.indeed.com/'>Indeed</a> if you haven't already. 
+                <ul>
+                  <li>
+                  On Indeed's site, save any job postings you're interested in by clicking the heart icon on that job post.
+                  </li>
+                </ul>
+                Next, continue to fill out your profile and resum&eacute; material in C(trl)V. 
+                <ul>
+                  <li>
+                    Go through the navigation bar and fill out all the fields for each section. Don't worry, you'll only have to do this once!
+                  </li>
+                  <br />
+                  <li>
+                    When you get to the Github tab, enter your Github username: any of your starred repositories will be automatically added to your resum&eacute; material! If you don't see any show up automatically, go to your <a href='https://github.com/'>Github</a> profile and star the repositories you want to show up. Alternatively, you can fill out any information manually.
+                  </li>
+                  <br />
+                  <li>
+                    If you have more than three projects or work experience entries, you may choose which ones to highlight on each of your resum&eacute;s.
+                  </li>
+                </ul>
+                Once you're profile and resum&eacute; material are complete, it's time to plug in a job post!
+                <br />
+                <ul>
+                  <li>
+                    Back on Indeed, hover over your profile icon in the top right and select 'My Jobs'.
+                  </li>
+                  <br />
+                  <li>
+                    Click on the job you wish to build a resum&eacute; for, and copy the url from it's page.
+                  </li>
+                  <br />
+                  <li>
+                    Paste that URL into C(trl)V's control panel (left side of the home page).
+                  </li>
+                </ul>
+                Check out how your skills match up to the job posting!
                 <br />
                 <br />
-                On Indeed's site, save any job postings you're interested in by clicking 'Save Job' on that job post. This will allow you to navigate to your saved jobs, and click on a saved job posting to generate a functioning URL. 
+                If you're feeling confident about that job, save and confirm your resum&eacute; material and let us plug it in to a layout for you. You can of course style and tweak it as you see fit.
                 <br />
                 <br />
-                Afterwards, continue to fill out our profile and resume material in C(trl)V. Once you've done that, you can enter the URL into the our control panel on the left to see how your skills match up to the given job posting!
+                Once you're happy with that resum&eacute;, click the save button and you'll see it added to your My Resum&eacute;s list. 
                 <br />
                 <br />
-                Once you're feeling confident about getting that job, confirm your resume material and let us plug it in to a resume for you. You can of course style it and tweak to your heart's content. 
+                Each of your resum&eacute;s have their own unique id and url attached to them, allowing you to maintain multiple resum&eacute;s tailored for as many different job postings as you like!
                 <br />
                 <br />
-                Once you're happy with that resume, click the save button and you'll see it added to your My Resumes list. 
-                <br />
-                <br />
-                Each of your resumes have their own unique id and url attached to them, allowing you to maintain multiple resumes tailored for as many different job postings as you like!
-                <br />
-                <br />
-                We hope you find C(trl)V helpful. Like you, we've dealt with the toil and trouble of building a resume, and we built C.V. to try and help others acheive their goals faster. Happy job hunting!
+                We hope you find C(trl)V helpful. Like you, we've dealt with the toil and trouble of building a resum&eacute;, and we built C.V. to try and help others acheive their goals faster. Happy job hunting!
               </DialogContentText>
             </DialogContent>
             <Button onClick={handleClose} color="primary">

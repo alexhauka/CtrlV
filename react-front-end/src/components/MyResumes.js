@@ -30,6 +30,18 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     size: "large",
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
+  },
+  showButton: {
+    marginTop: '1.2em',
+    marginRight: '20px',
+    color: "white",
+    size: "large",
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    borderRadius: '5px 5px',
+    textDecoration: 'none',
+    padding: '10px',
+    position: 'relative',
+    top: '10px'
   }
 }))
 
@@ -106,7 +118,7 @@ export default function MyResumes(props) {
       return (
         <div name='showcase' className={classes.resume} key={i.id} >
             <TemplateOne active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} value={i.id} /> 
-            <Button component={() => <Link className={classes.button} to={`/resumes/${i.id}`}>Show</Link>}
+            <Button component={() => <Link className={classes.showButton} to={`/resumes/${i.id}`}>SHOW</Link>}
             />
             <Button onClick={() => onDelete(i)} className={classes.button}>Delete</Button>
         </div>
@@ -115,7 +127,7 @@ export default function MyResumes(props) {
       return (
         <div name='showcase' className={classes.resume} key={i.id}>
           <TemplateTwo active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
-          <Button component={() => <Link className={classes.button} to={`/resumes/${i.id}`}>Show</Link>}
+          <Button component={() => <Link className={classes.showButton} to={`/resumes/${i.id}`}>SHOW</Link>}
           />
           <Button onClick={() => onDelete(i)} className={classes.button}>Delete</Button>
         </div>
