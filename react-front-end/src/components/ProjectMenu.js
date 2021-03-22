@@ -78,7 +78,7 @@ export default function ProjectMenu(props) {
 
     <div>
       <section className={classes.projects}>
-        <h1>Projects</h1>
+        <h1 style={{fontFamily: 'Ubuntu'}}>Projects</h1>
         <Grid container
         direction="row"
         justify="space-around">
@@ -91,6 +91,7 @@ export default function ProjectMenu(props) {
         > 
         <Button
         id="btn1"
+        style={{fontFamily: 'Ubuntu'}}
         className={classes.projectButton}
         variant="contained"
         color="primary"
@@ -155,6 +156,7 @@ export default function ProjectMenu(props) {
           className={classes.projectButton}
           variant="contained"
           color="primary"
+          style={{fontFamily: 'Ubuntu'}}
           aria-controls="fade-menu2"
           aria-haspopup="true"
           onClick={handleClick}
@@ -216,6 +218,7 @@ export default function ProjectMenu(props) {
           className={classes.projectButton}
           variant="contained"
           color="primary"
+          style={{fontFamily: 'Ubuntu'}}
           aria-controls="fade-menu3"
           aria-haspopup="true"
           onClick={handleClick}

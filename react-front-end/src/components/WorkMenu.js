@@ -73,7 +73,7 @@ export default function WorkMenu(props) {
   return (
     <div>
       <section className={classes.work}>
-        <h1>Work Experience</h1>
+        <h1 style={{fontFamily: 'Ubuntu'}}>Work Experience</h1>
         <Grid container
         direction="row"
         justify="space-around">
@@ -86,6 +86,7 @@ export default function WorkMenu(props) {
       <Button
       id='btn1'
       className={classes.workButton}
+      style={{fontFamily: 'Ubuntu'}}
       variant="contained"
       color="primary"
       aria-controls="fade-menu1"
@@ -166,6 +167,7 @@ export default function WorkMenu(props) {
         <Button
           id='btn2'
           className={classes.workButton}
+          style={{fontFamily: 'Ubuntu'}}
           variant="contained"
           color="primary"
           aria-controls="fade-menu2"
@@ -247,6 +249,7 @@ export default function WorkMenu(props) {
         <Button
           id='btn3'
           className={classes.workButton}
+          style={{fontFamily: 'Ubuntu'}}
           variant="contained"
           color="primary"
           aria-controls="fade-menu3"

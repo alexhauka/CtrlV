@@ -93,6 +93,7 @@ const useStyles = makeStyles(() => ({
   },
 
   skillRow: {
+    fontFamily: 'Ubuntu',
     marginBottom: "15px",
     textDecoration: 'underline'
   },
@@ -194,7 +195,7 @@ export default function RightSection(props) {
   const languagesList = hardSkills.map(s => {
     if (s.type === 'language') {
       return(
-       <Typography>{s.name}</Typography>
+       <Typography style={{fontFamily: 'Ubuntu'}}>{s.name}</Typography>
       )
     }
     return null;
@@ -203,7 +204,7 @@ export default function RightSection(props) {
   const frameworksList = hardSkills.map(s => {
   if (s.type ==='framework') {
     return (
-      <Typography>{s.name}</Typography>
+      <Typography style={{fontFamily: 'Ubuntu'}}>{s.name}</Typography>
     )
   }
   return null;
@@ -211,7 +212,7 @@ export default function RightSection(props) {
  const testingList = hardSkills.map(s => {
     if (s.type === 'testing' || s.type === 'database'){
       return ( 
-        <Typography>{s.name}</Typography>
+        <Typography style={{fontFamily: 'Ubuntu'}}>{s.name}</Typography>
       )
     }
     return null;
@@ -223,7 +224,7 @@ export default function RightSection(props) {
       {/* <div className={classes.inside}> */}
       <div>
         <section className={classes.info}>
-        <h1>Basic Info</h1>
+        <h1 style={{fontFamily: 'Ubuntu'}}>Basic Info</h1>
           <Grid
             container
             direction="row"
@@ -247,7 +248,7 @@ export default function RightSection(props) {
       </div>
       <div>
         <section className={classes.skills}>
-        <h1>Skills</h1>
+        <h1 style={{fontFamily: 'Ubuntu'}}>Skills</h1>
         <Grid
           container
           justify="space-evenly"
@@ -275,6 +276,7 @@ export default function RightSection(props) {
       }} /> */}
       <Button 
         className={classes.button}
+        style={{fontFamily: 'Ubuntu'}}
         component={Link}
         to={{
           pathname: '/resume',

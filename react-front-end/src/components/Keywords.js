@@ -10,6 +10,7 @@ const axios = require('axios').default
 
 const useStyles = makeStyles((theme) => ({
   submit: {
+    fontFamily: 'Ubuntu',
     marginTop: 10,
     color: "white",
     size: "large",
