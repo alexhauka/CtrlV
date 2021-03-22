@@ -11,7 +11,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-// import { Input } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
+import { Snackbar } from '@material-ui/core';
 
 function Copyright() {
   return (
@@ -47,6 +48,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props}/>;
+}
+
 export default function SignUp(props) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -76,13 +81,69 @@ export default function SignUp(props) {
       password,
       passwordConfirmation
     }
-    console.log(registerInfo);
-    props.registerUser(registerInfo)
-    .then(() => {
-      reset();
-      history.push("/");
-    });
+    if (validate()) {
+      setMessage("Please fill out the missing information"); 
+      setOpen(true);
+    } else if (registerInfo.password !== registerInfo.passwordConfirmation) {
+      setMessage("Passwords do not match, please try again"); 
+      setError(prev => ({...prev, password: true}));
+      setError(prev => ({...prev, passwordConfirmation: true}));
+      setOpen(true);
+
+    } else {
+      props.registerUser(registerInfo)
+      .then(() => {
+        reset();
+        history.push("/");
+      });
+    }
   }
+
+  const [error, setError] = useState({
+    firstName: false,
+    lastName: false,
+    email: false,
+    password: false,
+    passwordConfirmation: false
+  })
+
+  const [message, setMessage] = useState("");
+  const [open, setOpen] = useState(false); 
+
+  
+
+  function validate() {
+    let bool = false
+    if (firstName === "") {
+      setError(prev => ({...prev, firstName: true}));
+      bool = true; 
+    } 
+    if (lastName === "") {
+      setError(prev => ({...prev, lastName: true}));
+      bool = true;
+    } 
+    if (email === "") {
+      setError(prev => ({...prev, email: true}));
+      bool = true;
+    } 
+    if (password === "") {
+      setError(prev => ({...prev, password: true}));
+      bool = true;
+    } 
+    if (passwordConfirmation === "") {
+      setError(prev => ({...prev, passwordConfirmation: true}));
+      bool = true;
+    } 
+    return bool;
+  }
+
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false); 
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -97,23 +158,36 @@ export default function SignUp(props) {
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
+            <Snackbar 
+        open={open}
+        autoHideDuration={1000}
+        onClose={handleClose}
+        anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+      >
+        <Alert onClose={handleClose} severity="error">
+          <h1>{message}</h1>
+        </Alert>
+      </Snackbar>
               <TextField
                 autoComplete="fname"
                 name="firstName"
                 variant="outlined"
-                required
+                required={true}
+                error={error.firstName}
                 fullWidth
                 id="firstName"
                 label="First Name"
                 autoFocus
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
+                onFocus={() => setError(prev => ({...prev, firstName: false }))}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
-                required
+                required={true}
+                error={error.lastName}
                 fullWidth
                 id="lastName"
                 label="Last Name"
@@ -121,12 +195,14 @@ export default function SignUp(props) {
                 autoComplete="lname"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
+                onFocus={() => setError(prev => ({...prev, lastName: false }))}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
-                required
+                required={true}
+                error={error.email}
                 fullWidth
                 id="email"
                 label="Email Address"
@@ -134,12 +210,14 @@ export default function SignUp(props) {
                 autoComplete="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                onFocus={() => setError(prev => ({...prev, email: false }))}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
-                required
+                required={true}
+                error={error.password}
                 fullWidth
                 name="password"
                 label="Password"
@@ -148,12 +226,14 @@ export default function SignUp(props) {
                 autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                onFocus={() => setError(prev => ({...prev, password: false }))}
               />
             </Grid>
             <Grid item xs={12}>
             <TextField
                 variant="outlined"
-                required
+                required={true}
+                error={error.passwordConfirmation}
                 fullWidth
                 name="password_confirmation"
                 label="Confirm Password"
@@ -162,6 +242,7 @@ export default function SignUp(props) {
                 autoComplete="current-password"
                 value={passwordConfirmation}
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
+                onFocus={() => setError(prev => ({...prev, passwordConfirmation: false }))}
               />
             </Grid>
           </Grid>
