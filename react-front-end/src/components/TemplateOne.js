@@ -21,6 +21,12 @@ const useStyles = makeStyles(() => ({
     fontSize: "100%",
     lineHeight: .5,
   },
+  alignment_true:{
+    width:'7.5%'
+  },
+  alignment_false:{
+
+  },
   head_true: {
     display:'flex',
     direction: 'row',
@@ -58,6 +64,19 @@ const useStyles = makeStyles(() => ({
     fontSize: ".2rem",
     // backgroundColor:'blue',
     textAlign:'center',
+    marginBottom: "5px"
+  },
+  writer_name_true:{
+    flexGrow: 2,
+    // backgroundColor:'blue',
+    textAlign:'left',
+    marginBottom: "5px"
+  },
+  writer_name_false:{
+    flexGrow: 2,
+    fontSize: ".2rem",
+    // backgroundColor:'blue',
+    textAlign:'left',
     marginBottom: "5px"
   },
   title_true: {
@@ -157,14 +176,16 @@ const useStyles = makeStyles(() => ({
   profession_true: {
     fontSize: 25,
     width: "50%",
-    marginLeft: '10px'
+    // marginLeft: '10px'
   },
   profession_false: {
     fontSize: ".2rem",
     width: "-webkit-fill-available",
-    marginLeft: '10px'
+    // marginLeft: '10px'
   },
   about_true: {
+    width:'85%',
+    margin:'auto',
     marginBottom:5
   },
   about_false:{
@@ -333,9 +354,10 @@ export default function TemplateOne(props) {
       style={{backgroundColor: props.color}} 
       className={ active? classes.root_true : classes.root_false }>
       <div className={ active? classes.head_true : classes.head_false }>
-        <div className={ active? classes.name_true : classes.name_false }>
+        <div className={ active? classes.alignment_true : classes.alignment_false }></div>
+        <div className={ active? classes.writer_name_true : classes.writer_name_false }>
           <Typography
-            className={ active? classes.name_true : classes.myName }
+            className={ active? classes.writer_name_true : classes.myName }
               variant="h2"
               style={{fontFamily: props.font}}
           >
