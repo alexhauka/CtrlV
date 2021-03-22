@@ -86,7 +86,7 @@ export function useApplicationData() {
       console.log("application data", error);
       dispatch({
         type: SET_USER,
-        isLoggingIn: false,
+        isLoggingIn: true,
         user: null
       })
       throw error;
@@ -119,7 +119,7 @@ export function useApplicationData() {
     .then((response) => {
       dispatch({
         type: RESET_APPLICATION_DATA,
-        isLoggingIn: false,
+        isLoggingIn: true,
         hardskills: [],
         userHardSkills: [],
         user: null,
