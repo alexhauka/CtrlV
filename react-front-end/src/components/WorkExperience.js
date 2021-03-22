@@ -7,7 +7,7 @@ import Jobs from "./Jobs"
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "white",
-    paddingTop: 30,
+    paddingTop: "5em",
     minHeight: "100vh"
   },
 
@@ -31,10 +31,11 @@ const useStyles = makeStyles((theme) => ({
   },
   heading:{
     fontFamily: 'Ubuntu',
+    marginBottom:'.9em',
   },
   top: {
     margin: "auto",
-    paddingTop: 50,
+    // paddingTop: 50,
     textAlign:'center',
     paddingBottom: 20
   },
@@ -71,7 +72,6 @@ const useStyles = makeStyles((theme) => ({
     display:'flex',
     justifyContent:'center',
     alignItems: 'center',
-    paddingTop: '2.5%',
     paddingBottom:'2.5%'
   },
 }))

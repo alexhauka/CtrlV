@@ -16,13 +16,14 @@ const useStyles = makeStyles(() => ({
     fontSize: "100%",
   },
   root_false:{
+    overflow:'hidden',
     // maxHeight: '11in',
     // padding: 10,
     height: '100%',
     padding: "0%",
     // marginTop: "10px",
     fontSize: "100%",
-    lineHeight: .5,
+    lineHeight: .4,
   },
   head_true: {
     display:'flex',
@@ -47,7 +48,8 @@ const useStyles = makeStyles(() => ({
     marginRight: '10px',
     marginTop: '15px',
     justifyContent:'space-between',
-    fontSize: ".1rem"
+    fontSize: ".1rem",
+    lineHeight:'1'
   },
   name_true: {
     flexGrow: 2,
@@ -62,7 +64,7 @@ const useStyles = makeStyles(() => ({
     textAlign: 'left',
     marginLeft: '15px',
     marginBottom: "5px",
-    marginTop: '20px',
+    marginTop: '5px',
     textDecorationLine: 'underline',
     fontSize: ".2rem",
   },
@@ -74,19 +76,20 @@ const useStyles = makeStyles(() => ({
   userName_false: {
     flexGrow: 2,
     textAlign:'start',
-    marginBottom: "5px",
-    marginLeft: '5px',
+    // marginBottom: "5px",
+    // marginLeft: '5px',
+    margin:5, 
     fontSize: "1.5rem",
   },
   profession_true: {
-    fontSize: 25,
-    width: "-webkit-fill-available",
+    fontSize: '2em',
+    width: "70%",
     marginLeft: '10px'
   },
   profession_false: {
-    fontSize: ".2rem",
+    fontSize: ".4rem",
     width: "-webkit-fill-available",
-    marginLeft: '10px'
+    marginLeft: '5px'
   },
   title_true: {
     
@@ -97,6 +100,7 @@ const useStyles = makeStyles(() => ({
   },
   title_false: {
     // backgroundColor:'red',
+    width:'max-content',
     fontSize: ".2rem"
   },
   skills: {
@@ -108,11 +112,27 @@ const useStyles = makeStyles(() => ({
     marginRight: '50px',
     marginBottom: '20px'
   },
+  skills_false:{
+    display:'flex',
+    // direction: 'row',
+    justifyContent:'flex-start',
+    // alignItems:'baseline',
+    // marginLeft: '20px',
+    // marginRight: '50px',
+    marginBottom: '20px'
+  },
 
   skillSet: {
     width: '30%',
     marginRight: '20px',
     marginLeft: '20px',
+    overflowWrap: 'break-word',
+    textAlign: 'left'
+  },
+  skillSet_false:{
+    width: '30%',
+    marginRight: '20px',
+    marginLeft: '15px',
     overflowWrap: 'break-word',
     textAlign: 'left'
   },
@@ -129,7 +149,7 @@ const useStyles = makeStyles(() => ({
   },
   liveURL_false: {
     display: 'flex',
-    marginLeft: '30px',
+    // marginLeft: '30px',
     textDecoration: 'none',
     textAlign: 'center',
     color: "black",
@@ -150,7 +170,7 @@ const useStyles = makeStyles(() => ({
   skillsBody_false: {
     display: 'list-item',
     listStylePosition: 'inside',
-    marginLeft: '25px',
+    marginLeft: '15px',
     fontSize: "5%",
     lineHeight: 0.95
   },
@@ -162,7 +182,7 @@ const useStyles = makeStyles(() => ({
     marginTop: '10px',
     marginBottom: '5px'
   },
-
+  
   project: {
     textAlign:'left',
     justifyContent:'flex-start',
@@ -172,13 +192,26 @@ const useStyles = makeStyles(() => ({
     marginTop: '5px',
     width: '30%'
   },
+  project_false:{
+    textAlign:'left',
+    justifyContent:'flex-start',
+    marginLeft: '15px',
+    // paddingBottom: '20px',
+    // marginBottom: '5px',
+    marginTop: '5px',
+    width: '30%'
+  },
   projectsBody_true:{
+    // fontSize: '1rem',
+    width: "70%",
     textAlign:'left',
   },
   projectsBody_false: {
-    textAlign:'left',
-    fontSize: "5%",
-    lineHeight: 0.95
+    fontSize: ".4rem",
+    width: "-webkit-fill-available",
+    // textAlign:'left',
+    // fontSize: "5%",
+    // lineHeight: 0.95
   },
   jobs: {
     display:'flex',
@@ -196,6 +229,14 @@ const useStyles = makeStyles(() => ({
     overflowWrap: 'break-word',
     textAlign: 'left'
   },
+  job_false:{
+    maxWidth:"30%",
+    minWidth:'30%',
+    // marginRight: '20px',
+    marginLeft: '15px',
+    overflowWrap: 'break-word',
+    textAlign: 'left'
+  },
   jobTitle: {
     fontSize: '1.2em',
   },
@@ -203,7 +244,7 @@ const useStyles = makeStyles(() => ({
 
   },
   body_false: {
-    width: "70%",
+    // width: "70%",
     fontSize: "5%",
     lineHeight: 0.95
   },
@@ -223,12 +264,18 @@ const useStyles = makeStyles(() => ({
     // padding: 5
   },
   about_true: {
-    marginBottom:5,
     width:'95%',
-    margin:'auto'
+    // margin:'auto',
+    marginLeft:10,
+    lineHeight:'normal',
+    marginBottom:5
   },
   about_false:{
-
+    width:'95%',
+    textAlign:'left',
+    marginLeft:5,
+    lineHeight:'.9',
+    fontSize: ".2rem",
   },
   TextField: {
     disableUnderline: true,
@@ -252,6 +299,7 @@ export default function TemplateTwo(props) {
   // console.log("This is templateONe props", props)
   const classes = useStyles();
   const [active, setActive] = React.useState(props.active)
+  const [building, setBuilding] = React.useState(props.building)
   // style={{backgroundColor: props.color}}
   // style={{borderColor: props.borderColor}}
   
@@ -323,7 +371,7 @@ export default function TemplateTwo(props) {
   // console.log("This is test", work_experience)
   const myProjects = projects.map(i => {
     return (
-      <div className={classes.project} >
+      <div className={ active ? classes.project : classes.project_false }>
         <div>
         <a className={ active ? classes.liveURL_true : classes.liveURL_false }
          style={{fontFamily: props.font}} 
@@ -357,7 +405,7 @@ export default function TemplateTwo(props) {
     const endMonth = i.job_start_date.slice(5,7)  
     
     return (
-      <div className={classes.job} >
+      <div className={ active? classes.job : classes.job_false } >
         <Typography variant="subtitle1"
           className={ active? classes.title_true : classes.title_false }
           style={{fontFamily: props.font, fontWeight: 'bold'}}>
@@ -401,6 +449,7 @@ export default function TemplateTwo(props) {
             >
               {props.data.basicInfo.userName}
             </Typography>
+            {building &&
             <TextField
               className={active ? classes.profession_true : classes.profession_false}
               width="auto"
@@ -415,6 +464,13 @@ export default function TemplateTwo(props) {
               placeholder="Enter your job title here"
               onChange={handleProfessionChange("profession")}
             />
+            }
+            {!building && active &&
+            <p style={{fontFamily: props.bodyFont}} className={classes.profession_true}>{props.data.profession}</p>
+            }
+            {!building && !active &&
+            <p style={{fontFamily: props.bodyFont}} className={classes.profession_false}>{props.data.profession}</p>
+            }
           </div>
           <div className={ active? classes.contact_true : classes.contact_false }
             style={{fontFamily: props.bodyFont}}>
@@ -427,8 +483,9 @@ export default function TemplateTwo(props) {
             Phone: {basicInfo.userPhone}
           </div>
         </div>
-        <br />
+        {/* <br /> */}
         <div className={ active? classes.about_true : classes.about_false }>
+          {building &&
         <TextField
           InputProps={{ 
             disableUnderline: true
@@ -449,6 +506,20 @@ export default function TemplateTwo(props) {
           onChange={handleAboutMeChange("about")}
           fullWidth
         />
+          }
+          {!building && active &&
+          <Typography
+            style={{fontFamily: props.bodyFont}}
+            className={classes.about_true}
+            variant='subtitle1'
+            >
+            {props.data.aboutMe}
+          </Typography>
+            // <p  className={classes.about_true}></p>
+          }
+          {!building && !active &&
+            <p style={{fontFamily: props.bodyFont}} className={classes.about_false}>{props.data.aboutMe}</p>
+          }
       </div>
         
       </div>
@@ -466,8 +537,8 @@ export default function TemplateTwo(props) {
           >
             My Skills
           </Typography>
-          <div className={classes.skills}>
-            <div className={classes.skillSet}>
+          <div className={ active? classes.skills : classes.skills_false }>
+            <div className={ active? classes.skillSet : classes.skillSet_false }>
               <Typography
               className={ active? classes.title_true : classes.title_false }
                 variant="subtitle1"
@@ -477,7 +548,7 @@ export default function TemplateTwo(props) {
               </Typography>
               {languagesList}
             </div>
-            <div className={classes.skillSet}>
+            <div className={ active? classes.skillSet : classes.skillSet_false }>
               <Typography
                 className={ active? classes.title_true : classes.title_false }
                 variant="subtitle1"
@@ -487,7 +558,7 @@ export default function TemplateTwo(props) {
               </Typography>
               {testingList}
             </div>
-            <div className={classes.skillSet}>
+            <div className={ active? classes.skillSet : classes.skillSet_false }>
               <Typography
                 className={ active? classes.title_true : classes.title_false }
                 variant="subtitle1"

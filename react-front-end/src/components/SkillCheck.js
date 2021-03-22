@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import MuiAlert from '@material-ui/lab/Alert';
-import { Typography, Button, Snackbar, Checkbox, FormControlLabel, FormLabel } from '@material-ui/core';
+import { Typography, Button, Snackbar, Checkbox, FormControlLabel, FormLabel, Divider } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "white",
-    paddingTop: 30,
+    paddingTop: "5em",
     height: "100%"
     // justify: 'space-around'
   },
@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     direction:"row",
     justifyContent: 'center',
-
     // width: '80%',
     
   },
@@ -27,13 +26,16 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     margin: "2%",
     padding: "2%",
-    border: "solid green 1px",
+    border: "solid #3f51b5 1px",
     borderRadius: 20
   },
 
   heading: {
+    fontFamily: 'Ubuntu',
+    marginBottom:'.9em',
+  },
+  header:{
     textAlign: 'center',
-    textDecoration: 'underline',
   },
 
   submit: {
@@ -43,7 +45,44 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     textAlign: "center"
-  }
+  },
+  divider:{
+    margin: '10px',
+    height: 5,
+    width: '30%',
+    background: '#3f51b5'
+  },
+  divider1:{
+    margin: '10px',
+    height: 10,
+    width:10,
+    borderRadius: 100,
+    background: '#3f51b5'
+  },  
+  divider2:{
+    margin: '10px',
+    height: 15,
+    width:15,
+    borderRadius: 100,
+    background: '#3f51b5'
+  },
+  dividers:{
+    display:'flex',
+    justifyContent:'center',
+    alignItems: 'center',
+    paddingBottom:'2.5%'
+  },
+  submit: {
+    marginBottom:'1.2em',
+    width:'8.5in',
+    color: "white",
+    size: "large",
+    background: 'linear-gradient(45deg, transparent 20%,#FE6B8B 40%, #FF8E53 60%, transparent 80%)',
+    // marginLeft: '8%',
+    '&:hover':{
+      background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    }
+  },
 }));
 
 function Alert(props) {
@@ -196,8 +235,15 @@ export default function SkillCheck(props) {
 
   return (
     <div className={classes.root}>
-      <div className={classes.heading}>
-        <Typography variant="h3">My Skills</Typography>
+      <div className={classes.header}>
+        <Typography className={classes.heading} variant="h3">My Skills</Typography>
+      </div>
+      <div className={classes.dividers}>
+        <Divider className={classes.divider}/>
+        <Divider className={classes.divider1}/>
+        <Divider className={classes.divider2}/>
+        <Divider className={classes.divider1}/>
+        <Divider className={classes.divider}/>
       </div>
       <Snackbar 
         open={open}
@@ -225,12 +271,10 @@ export default function SkillCheck(props) {
       </section>
       <div className={classes.button}>
       <Button 
-      className={classes.submit} 
-      variant="outlined" 
-      color="default" 
-      size="large" 
+      className={classes.submit}
       onClick={save}
-      >Save
+      >
+        Save
       </Button>
       </div>
     </div>

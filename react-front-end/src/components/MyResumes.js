@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent:'space-evenly'
   },
   resume: {
-    height: "5.75in",
+    height: "6in",
     width: "4in",
     boxShadow: '0px 0px 20px 10px #00000059',
     margin: '5%',
@@ -117,8 +117,9 @@ export default function MyResumes(props) {
     if (i.template_id === 1) {
       return (
         <div name='showcase' className={classes.resume} key={i.id} >
-            <TemplateOne active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} value={i.id} /> 
-            <Button component={() => <Link className={classes.showButton} to={`/resumes/${i.id}`}>SHOW</Link>}
+
+            <TemplateOne building={false}  active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} value={i.id} /> 
+            <Button component={() => <Link className={classes.button} to={`/resumes/${i.id}`}>Show</Link>}
             />
             <Button onClick={() => onDelete(i)} className={classes.button}>Delete</Button>
         </div>
@@ -126,10 +127,11 @@ export default function MyResumes(props) {
     } else if (i.template_id === 2) {
       return (
         <div name='showcase' className={classes.resume} key={i.id}>
-          <TemplateTwo active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
-          <Button component={() => <Link className={classes.showButton} to={`/resumes/${i.id}`}>SHOW</Link>}
+
+          <TemplateTwo building={false} active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
+          <Button component={() => <Link className={classes.button} to={`/resumes/${i.id}`}>Show</Link>}
           />
-          <Button onClick={() => onDelete(i)} className={classes.button}>Delete</Button>
+          <Button  className={classes.button} onClick={() => onDelete(i)}>Delete</Button>
         </div>
       )
     }

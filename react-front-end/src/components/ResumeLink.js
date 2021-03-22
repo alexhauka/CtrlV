@@ -155,6 +155,7 @@ export default function ResumeLink(props) {
          {/* <h1>My Resume</h1> */}
          <div className={classes.resume}>    
            <TemplateOne 
+            building={false}
             active={true}
             data={data}
             font={resume.head_font}
@@ -171,6 +172,7 @@ export default function ResumeLink(props) {
         <h1>My Resume</h1>
         <div className={classes.resume}>    
           <TemplateTwo 
+           building={false}
            active={true}
            data={data}
            font={resume.head_font}

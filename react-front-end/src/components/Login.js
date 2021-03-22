@@ -31,6 +31,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    // backgroundColor:'red'
+  },
+  root:{
+    height:'100vh',
+    // padding:'3%',
+    // backgroundColor:'yellow'
   },
   avatar: {
     margin: theme.spacing(1),
@@ -76,7 +82,8 @@ export default function SignIn(props) {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
+    <div className={classes.root}>
+    <Container  maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -146,5 +153,6 @@ export default function SignIn(props) {
         <Copyright />
       </Box>
     </Container>
+  </div>
   );
 }
