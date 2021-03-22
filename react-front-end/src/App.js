@@ -110,17 +110,23 @@ export default function App() {
         path="/signup" 
         component={() => <SignUp registerUser={registerUser} />} 
         /> 
-        <Route 
+        {/* <Route 
         path="/login"
         component={(props) => <Login loginUser={loginUser} isLoggingIn={state.isLoggingIn} user={state.user} {...props} />} 
-        />
+        /> */}
+        
+        <Route
+          path="/login"
+        >
+          <Login loginUser={loginUser} isLoggingIn={state.isLoggingIn} user={state.user} />
+        </Route>
 
         <Route path='/resumes/:id' component={(props) => <ResumeLink state={state}  {...props} />}
           isLoggingIn={state.isLoggingIn}
           user={state.user} />
 
         <ProtectedRoute 
-          path="/resume" component={(props) => <Resume  {...props} />}
+          path="/resume" component={(props) => <Resume addResume={addResume} {...props} />}
           isLoggingIn={state.isLoggingIn}
           user={state.user}
         >

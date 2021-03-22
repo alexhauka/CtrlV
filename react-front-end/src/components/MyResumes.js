@@ -127,6 +127,7 @@ export default function MyResumes(props) {
               bodyFont: i.body_font
             }
           }}> */}
+
             <TemplateOne building={false}  active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} value={i.id} /> 
             <div className={classes.buttons}>
             <div className={classes.button}>

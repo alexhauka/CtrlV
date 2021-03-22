@@ -22,11 +22,13 @@ router.post('/', (req, res) => {
           address: user.address,
           phone_number: user.phone_number
         });
+      return;
     }
+    return res.status(403).send();
   })
   .catch(e => {
     console.error(e); 
-    res.send(e);
+    return res.status(403).send();
   });
   
 
