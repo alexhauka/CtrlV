@@ -14,12 +14,23 @@ const useStyles = makeStyles(() => ({
     textAlign:"center"
   },
   title:{
-    marginBottom:'revert'
+    marginBottom:'revert',
+    fontFamily: 'Ubuntu',
+  },
+  info:{
+    textAlign: "center",
+    border:'1px #3f51b5 solid',
+    width: '70%',
+    borderRadius: 10,
+    margin:'auto'
+    //  height: 250
   },
   fields: {
-    display:"flex",
-    justifyContent: "space-between",
+    display:'flex',
+    // direction:'column',
+    justifyContent: "space-around",
     margin: "auto",
+    paddingTop: 20, 
     marginBottom: 20,
     width: "90%",
     height: "auto"
@@ -29,11 +40,15 @@ const useStyles = makeStyles(() => ({
     width:'8.5in',
     color: "white",
     size: "large",
-    background: 'linear-gradient(45deg, transparent 20%,#FF8E53 40%, #FE6B8B 60%, transparent 80%)',
+    background: 'linear-gradient(45deg, transparent 20%,#FE6B8B 40%, #FF8E53 60%, transparent 80%)',
     // marginLeft: '8%',
     '&:hover':{
       background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     }
+  },
+  add:{
+    textAlign: "center",
+    padding:'2.5%'
   }
 }))
 
@@ -136,9 +151,10 @@ export default function BasicInfo(props) {
           <h1>{message}</h1>
         </Alert>
       </Snackbar>
-      <div>
+      <div className={classes.info}>
         <form noValidate autoComplete="off">
-          <div className={classes.fields}>
+          <div >
+            <div className={classes.fields}>
             <TextField 
               required={true}
               error={error.first_name}
@@ -172,6 +188,8 @@ export default function BasicInfo(props) {
               onChange={handleChange}
               onFocus={() => setError(prev => ({...prev, email: false }))}
               />
+            </div>
+            <div className={classes.fields}>
             <TextField 
               required={true}
               error={error.linkedin}
@@ -205,15 +223,18 @@ export default function BasicInfo(props) {
               onChange={handleChange}
               onFocus={() => setError(prev => ({...prev, phone_number: false }))}
               /> 
+            </div>
           </div>
-      </form>
+        </form>
       </div>
+      <div className={classes.add}>
       <Button 
       className={classes.submit}
       onClick={save}
       >
         Save
       </Button>
+      </div>
     </div>
   )
 }
