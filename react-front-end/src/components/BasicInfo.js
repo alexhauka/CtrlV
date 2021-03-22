@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import MuiAlert from '@material-ui/lab/Alert';
-import { Typography, TextField, Button, Snackbar} from '@material-ui/core';
+import { Typography, TextField, Button, Snackbar, Divider} from '@material-ui/core';
 
 // import { SelectionState } from '@devexpress/dx-react-chart';
 
@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
     textAlign:"center"
   },
   title:{
-    marginBottom:'revert',
+    marginBottom:'.9em',
     fontFamily: 'Ubuntu',
   },
   info:{
@@ -49,7 +49,33 @@ const useStyles = makeStyles(() => ({
   add:{
     textAlign: "center",
     padding:'2.5%'
-  }
+  },
+  divider:{
+    margin: '10px',
+    height: 5,
+    width: '30%',
+    background: '#3f51b5'
+  },
+  divider1:{
+    margin: '10px',
+    height: 10,
+    width:10,
+    borderRadius: 100,
+    background: '#3f51b5'
+  },  
+  divider2:{
+    margin: '10px',
+    height: 15,
+    width:15,
+    borderRadius: 100,
+    background: '#3f51b5'
+  },
+  dividers:{
+    display:'flex',
+    justifyContent:'center',
+    alignItems: 'center',
+    paddingBottom:'2.5%'
+  },
 }))
 
 function Alert(props) {
@@ -141,6 +167,13 @@ export default function BasicInfo(props) {
   return (
     <div className={classes.root}>
       <Typography className={classes.title} variant="h3">My Basic Info</Typography>
+      <div className={classes.dividers}>
+        <Divider className={classes.divider}/>
+        <Divider className={classes.divider1}/>
+        <Divider className={classes.divider2}/>
+        <Divider className={classes.divider1}/>
+        <Divider className={classes.divider}/>
+      </div>
       <Snackbar 
         open={open}
         autoHideDuration={1000}
