@@ -10,7 +10,7 @@ import GetGithub from './GetGithub';
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: "white",
-    // minHeight: "100vh",
+    paddingTop: "5em",
     textAlign:"center"
   },
 
@@ -49,7 +49,7 @@ const useStyles = makeStyles(() => ({
   top: {
     bottomBorder: "10px",
     margin: "auto",
-    paddingTop: 80,
+    
     paddingBottom: 20
   },
   divide:{

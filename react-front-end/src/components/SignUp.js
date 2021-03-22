@@ -45,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  root:{
+    height:'100vh'
+  }
 }));
 
 export default function SignUp(props) {
@@ -85,6 +88,7 @@ export default function SignUp(props) {
   }
 
   return (
+    <div className={classes.root}>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -188,5 +192,6 @@ export default function SignUp(props) {
         <Copyright />
       </Box>
     </Container>
+  </div>
   );
 }
