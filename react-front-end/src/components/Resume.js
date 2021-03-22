@@ -118,7 +118,7 @@ export default function Resume(props) {
   console.log('this is resume data',data)
   const { basicInfo, projects, skills, work_experience } = data
 
-  const [template, setTemplate] = useState(2)
+  const [template, setTemplate] = useState(1)
 
 
   const [color, setColor] = useState('#fff')
@@ -144,9 +144,24 @@ function saveResume() {
 
 }
 
+
+const [aboutMe, setAboutMe] = useState('')
+
+const liftAboutMe = (aboutMeString) => {
+  setAboutMe(aboutMeString)
+}
+
+const [profession, setProfession] = useState('')
+
+const liftProfession = (professionString) => {
+  setProfession(professionString)
+}
+
 const resume = {
   template_id: template,
-  user_id: projects[0].user_id, 
+  user_id: projects[0].user_id,
+  profession: profession,
+  about_me: aboutMe,
   background_color: color,
   border_color: borderColor,
   head_font: font,
@@ -559,9 +574,9 @@ const resume = {
         <div className={classes.right}>
         <div className={classes.rightRoot}>
           {template === 1 &&
-            <TemplateOne active={true} data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} />
+            <TemplateOne active={true} profession={profession} aboutMe={aboutMe} data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} liftAboutMe={liftAboutMe} liftProfession={liftProfession}/>
           }{template === 2 &&
-            <TemplateTwo active={true} data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} />
+            <TemplateTwo active={true} profession={profession} aboutMe={aboutMe} data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} liftAboutMe={liftAboutMe} liftProfession={liftProfession}/>
           } 
           </div>
           <Button fullWidth className={classes.button} onClick={saveResume}>Save and Confirm</Button>
@@ -581,6 +596,7 @@ const resume = {
 /*
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   template_id INTEGER REFERENCES  templates(id) ON DELETE CASCADE,
+  about_me VARCHAR(600) NOT NULL DEFAULT '',
   background_color VARCHAR(255) NOT NULL DEFAULT 'white',
   border_color VARCHAR(255) NOT NULL DEFAULT 'black',
   head_font VARCHAR(255),

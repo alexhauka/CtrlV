@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles, TextField, Typography, Container, Divider, InputAdornment}
  from '@material-ui/core'
  import { Link } from 'react-router-dom';
@@ -161,7 +161,7 @@ const useStyles = makeStyles(() => ({
   },
   profession_false: {
     fontSize: ".2rem",
-    width: "%50",
+    width: "-webkit-fill-available",
     marginLeft: '10px'
   },
   about_true: {
@@ -176,6 +176,16 @@ const useStyles = makeStyles(() => ({
 
 
 export default function TemplateOne(props) {
+  const ABOUTME_LIMIT = 505;
+  const PROFESSION_LIMIT = 25;
+  const [values, setValues] = React.useState({
+    about: props.aboutMe,
+    profession: props.profession
+  })
+
+  const { liftAboutMe, liftProfession } = props;
+
+  console.log("Template one props: ", props)
 
   const { basicInfo, projects, skills, work_experience } = props.data
   // console.log("This is templateONe props", props)
@@ -183,6 +193,33 @@ export default function TemplateOne(props) {
   const [active, setActive] = React.useState(props.active)
   // style={{backgroundColor: props.color}}
   // style={{borderColor: props.borderColor}}
+
+  const handleAboutMeChange = about => event => {
+    setValues({ ...values, [about]: event.target.value });
+  };
+
+  const handleProfessionChange = profession => event => {
+    setValues({ ...values, [profession]: event.target.value })
+  }
+
+
+  if (liftAboutMe) {
+
+    useEffect(() => {
+  
+      liftAboutMe(values.about)
+      liftProfession(values.profession)
+    })
+
+  } else {
+    values.about = props.data.aboutMe
+    values.profession = props.data.profession
+  }
+
+  
+
+
+
 
   const hardSkills = skills
   const languagesList = hardSkills.map(s => {
@@ -311,7 +348,12 @@ export default function TemplateOne(props) {
                 disableUnderline: true,
                 style: {fontFamily: props.font}
               }}
-              defaultValue='Full-Stack Web Developer'
+              inputProps={{
+                maxlength: PROFESSION_LIMIT,
+              }}
+              value={values.profession}
+              placeholder="Enter your job title here"
+              onChange={handleProfessionChange("profession")}
             />
         </div>
         <div className={ active? classes.contact_true : classes.contact_false }
@@ -328,13 +370,23 @@ export default function TemplateOne(props) {
       <br />
       <div className={ active? classes.about_true : classes.about_false }>
         <TextField
-          autoFocus
+          InputProps={{ 
+            disableUnderline: true
+          }}
+          // ignore the warning, this is the only way to remove underline and set maxlength.
+          inputProps={{
+            maxlength: ABOUTME_LIMIT,
+            style: {fontFamily: props.bodyFont, height: '150px'}
+          }}
+          // autoFocus
           id="outlined-multiline-static"
-          label="About me"
+          // label="About me"
           multiline
           rows={4}
           rowsMax={4}
-          placeholder='Tell us about yourself...'
+          value={values.about}
+          placeholder="Tell them about yourself..."
+          onChange={handleAboutMeChange("about")}
           fullWidth
         />
       </div>

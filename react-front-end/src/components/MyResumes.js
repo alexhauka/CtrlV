@@ -38,7 +38,7 @@ function Alert(props) {
 }
 
 export default function MyResumes(props) {
-  // console.log("My Resumes: ", props.state)
+  console.log("search for about me: ", props.state)
   const [message, setMessage] = useState("");
   const [open, setOpen] = useState(false); 
   const classes = useStyles();
@@ -58,6 +58,7 @@ export default function MyResumes(props) {
   // console.log(basicInfo);
 
   const resumeInfo = props.state.userResumes
+  
 
   // console.log("resumeInfo[0] id", resumeInfo[0].id);
 
@@ -77,6 +78,8 @@ export default function MyResumes(props) {
     setOpen(false); 
   };
 
+
+
   
   const resumes = resumeInfo.map(i => {
 
@@ -90,7 +93,8 @@ export default function MyResumes(props) {
 
     const data = {
       basicInfo: basicInfo,
-
+      aboutMe: i.about_me,
+      profession: i.profession,
       skills: userHardSkills, 
 
       projects: [userProjects[resume_project_1_index], userProjects [resume_project_2_index], userProjects[resume_project_3_index]],
