@@ -7,7 +7,7 @@ import RightSection from "./Right-Section"
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '100vh',
-    background: 'linear-gradient(124deg, #3f51b5 30%, #476bec 90%)',
+    background: 'linear-gradient(180deg, #3f51b5 30%, #476bec 90%)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
   },

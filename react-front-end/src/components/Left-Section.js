@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#3f51b5",
     height: "100%",
     // borderRadius:10,
-    background: 'linear-gradient(239deg, #3f51b5 30%, #476bec 90%)'
+    background: 'linear-gradient(180deg, #3f51b5 30%, #476bec 90%)'
   },
   inside:{
     width:'92%',

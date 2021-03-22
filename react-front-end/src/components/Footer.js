@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3, 2),
     marginTop: 'auto',
     // backgroundColor: "#476bec"
-    background: 'linear-gradient(45deg, #476bec 15%, #3f51b5 65%, #476bec 85%)',
+    background: '#476bec',
   },
 }));
 

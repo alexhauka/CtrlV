@@ -230,8 +230,8 @@ const useStyles = makeStyles(() => ({
     textAlign: 'left'
   },
   job_false:{
-    maxWidth:"30%",
-    minWidth:'30%',
+    maxWidth:"29%",
+    minWidth:'29%',
     // marginRight: '20px',
     marginLeft: '15px',
     overflowWrap: 'break-word',

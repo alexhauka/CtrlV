@@ -8,7 +8,8 @@ import MuiAlert from '@material-ui/lab/Alert';
 const useStyles = makeStyles((theme) => ({
   root: { 
     marginTop: 30,
-    textAlign: 'center'
+    textAlign: 'center',
+    minHeight:'100vh'
   },
   resumes: {
     display: 'flex',
@@ -22,14 +23,22 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: '0px 0px 20px 10px #00000059',
     margin: '5%',
     '&:hover': {
-      boxShadow: '0px 0px 20px 10px #823fb5'
+      boxShadow: '0px 0px 20px 10px #3f51b5'
     }
   },
   button: {
     marginTop: '1.2em',
     color: "white",
-    size: "large",
+    margin:'auto',
+    // size: "large",
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
+  },
+  buttons:{
+    display:'flex'
+  },
+  submit:{
+    color:'white',
+    width:'30%'
   }
 }))
 
@@ -118,25 +127,33 @@ export default function MyResumes(props) {
               bodyFont: i.body_font
             }
           }}> */}
-            {/* <TemplateOne building={false} active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} value={i.id} /> 
-            <Button className={classes.button} href={`/resumes/${i.id}`}>Show</Button> */}
-
             <TemplateOne building={false}  active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} value={i.id} /> 
-            <Button component={() => <Link className={classes.button} to={`/resumes/${i.id}`}>Show</Link>}
-            />
+            <div className={classes.buttons}>
+            <div className={classes.button}>
+            <Button className={classes.submit} 
+             component={Link}
+             to={{
+               pathname: `/resumes/${i.id}`
+             }}>Show</Button>
+            </div>
             <Button onClick={() => onDelete(i)} className={classes.button}>Delete</Button>
+            </div>
         </div>
       )
     } else if (i.template_id === 2) {
       return (
         <div name='showcase' className={classes.resume} key={i.id}>
-          {/* <TemplateTwo building={false} active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
-          <Button className={classes.button} href={`/resumes/${i.id}`}>Show</Button> */}
-
-          <TemplateTwo building={false} active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} /> 
-          <Button component={() => <Link className={classes.button} to={`/resumes/${i.id}`}>Show</Link>}
-          />
+          <TemplateTwo building={false} active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} />
+          <div className={classes.buttons}>
+          <div className={classes.button}>
+             <Button className={classes.submit} 
+             component={Link}
+             to={{
+               pathname: `/resumes/${i.id}`
+             }}>Show</Button>
+          </div>
           <Button  className={classes.button} onClick={() => onDelete(i)}>Delete</Button>
+          </div> 
         </div>
       )
     }
