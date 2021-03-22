@@ -71,7 +71,7 @@ navItem: {
   alignSelf:'center',
   padding: 5,
   '&:hover': {
-    color:'#ffad61',
+    color:'#fff',
     textShadow: '0px 0px 20px #fff, 0 0 0px #fff, 1px 0px 15px #0ff'
     }
 },
@@ -80,12 +80,14 @@ logout:{
   color: '#fff',
   textDecoration: 'none',
   fontSize: '1.3rem',
+  fontFamily: 'Ubuntu',
   alignSelf:'center',
   padding: 5,
-  '&:hover':{
-    color:'black',
-    textDecoration:'underline'
-  }
+  '&:hover': {
+    color:'white',
+    textDecoration: 'none',
+    textShadow: '0px 0px 20px #fff, 0 0 0px #fff, 1px 0px 10px #f00'
+    }
 },
 divider: {
   color: 'black',
@@ -102,7 +104,7 @@ login: {
 },
 activeNav: {
   margin: 15,
-  color: '#00ffff5c',
+  color: '#fff',
   textShadow: '0 0 5px #fff, 0 0 0px #fff, 0 0 20px #fff, 0 0 0px #0ff, 0 0 0px #0ff, 0 0 0px #0ff, 0 0 20px #0ff, 0 0 0px #0ff',
   textDecoration: 'none',
   fontSize: '1.3rem',
@@ -175,7 +177,7 @@ export default function NavBar(props) {
         }
         {props.user && 
         <div>
-        <Button className={classes.logout} onClick={props.logout}>
+        <Button  className={classes.logout} onClick={props.logout}>
           logout
         </Button>
       </div>
