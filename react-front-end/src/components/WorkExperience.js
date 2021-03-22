@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import MuiAlert from '@material-ui/lab/Alert';
-import { Button, Snackbar } from '@material-ui/core';
+import { Button, Snackbar, Typography } from '@material-ui/core';
 import Jobs from "./Jobs"
 
 const useStyles = makeStyles((theme) => ({
@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     marginBottom: 20,
     width: "60%"
+  },
+  heading:{
+    fontFamily: 'Ubuntu',
   },
   description: {
     marginTop: 20,
@@ -123,6 +126,9 @@ export default function WorkExperience(props) {
           <h1>{message}</h1>
         </Alert>
       </Snackbar>
+      <Typography className={classes.heading} variant="h3">
+        Add Work Experience
+      </Typography>
       {numOfJobs}
       {/* This line is going to need to be looked at when we start uploading to the DB */}
       {Array(count).fill(moreJobs)} 
