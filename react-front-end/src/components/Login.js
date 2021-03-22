@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +13,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import MuiAlert from '@material-ui/lab/Alert';
+import { Snackbar } from '@material-ui/core';
 
 function Copyright() {
   return (
@@ -53,9 +55,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props}/>;
+}
+
 export default function SignIn(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState({
+    email: false,
+    password: false
+  })
+
+  const [message, setMessage] = useState("");
+  const [open, setOpen] = useState(false); 
+  const history = useHistory();
 
   const classes = useStyles();
 
@@ -70,12 +84,43 @@ export default function SignIn(props) {
       email,
       password
     }
-    props.loginUser(userInfo)
-    .then(() => {
-      reset();
-      props.history.push("/"); 
-    });
+    if (validate()) {
+      setMessage("Please fill out the missing information"); 
+      setOpen(true);
+    } else {
+      props.loginUser(userInfo)
+      .then(() => {
+        reset();
+        history.push("/"); 
+      })
+      .catch(() => {
+        setMessage("Invalid email or password"); 
+        setError(prev => ({...prev, email: true }))
+        setError(prev => ({...prev, password: true }))
+        setOpen(true);
+      });
+    }
   }
+
+  function validate() {
+    let bool = false
+    if (email === "") {
+      setError(prev => ({...prev, email: true}));
+      bool = true;
+    } 
+    if (password === "") {
+      setError(prev => ({...prev, password: true}));
+      bool = true;
+    } 
+    return bool;
+  }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false); 
+  };
 
   if (props.isLoggingIn === false && props.user) {
     return <Redirect to="/"/>
@@ -96,7 +141,8 @@ export default function SignIn(props) {
           <TextField
             variant="outlined"
             margin="normal"
-            required
+            required={true}
+            error={error.email}
             fullWidth
             id="email"
             label="Email Address"
@@ -105,11 +151,13 @@ export default function SignIn(props) {
             autoFocus
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            onFocus={() => setError(prev => ({...prev, email: false }))}
           />
           <TextField
             variant="outlined"
             margin="normal"
-            required
+            required={true}
+            error={error.password}
             fullWidth
             name="password"
             label="Password"
@@ -118,13 +166,24 @@ export default function SignIn(props) {
             autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            onFocus={() => setError(prev => ({...prev, password: false }))}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
 
-          
+          <Snackbar 
+            open={open}
+            autoHideDuration={1000}
+            onClose={handleClose}
+            anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+          >
+            <Alert onClose={handleClose} severity="error">
+              <h1>{message}</h1>
+            </Alert>
+          </Snackbar>
+
           <Button
             // component={Link}
             // to="/github"

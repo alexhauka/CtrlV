@@ -87,11 +87,21 @@ export function useApplicationData() {
         isLoggingIn: false
       })
     })
+    .catch((error) => {
+      console.log("application data", error);
+      dispatch({
+        type: SET_USER,
+        isLoggingIn: true,
+        user: null
+      })
+      throw error;
+    })
   };
 
   function checkUser() {
     return axios.get('/api/authcheck')
     .then((response) => {
+      console.log("confirmed user");
       dispatch({
         type: SET_USER,
         user: response.data,
@@ -99,6 +109,7 @@ export function useApplicationData() {
       })
     })
     .catch((error) => {
+      console.log("cookies deleted");
       dispatch({
         type: SET_USER,
         isLoggingIn: false,
