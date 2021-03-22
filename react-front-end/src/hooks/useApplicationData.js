@@ -74,13 +74,8 @@ export function useApplicationData() {
   };
 
   function loginUser(userInfo) {
-    // console.log("hey there");
-    // console.log(userInfo);
     return axios.post(`/api/login`, { userInfo })
     .then((response) => {
-      // console.log(data);
-      // console.log(data.data);
-      // console.log('logged in successfully!!')
       dispatch({
         type: SET_USER,
         user: response.data,
