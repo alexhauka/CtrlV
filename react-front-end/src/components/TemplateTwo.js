@@ -482,10 +482,6 @@ export default function TemplateTwo(props) {
           <div className={ active? classes.contact_true : classes.contact_false }
             style={{fontFamily: props.bodyFont}}>
               <div>
-                {basicInfo.userAddress}
-                <br />
-              </div>
-              <div>
                 <a className={classes.contactLink} href={`mailto:${basicInfo.userEmail}`}>
                   {basicInfo.userEmail}
                 </a>
@@ -495,6 +491,10 @@ export default function TemplateTwo(props) {
                 <a className={classes.contactLink} href={`${basicInfo.userEmail}`}>
                   Github
                 </a>
+                <br />
+              </div>
+              <div>
+                {basicInfo.userAddress}
                 <br />
               </div>
               <div>
