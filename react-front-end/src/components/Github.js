@@ -47,7 +47,6 @@ const useStyles = makeStyles(() => ({
     fontFamily: 'Ubuntu',
   },
   top: {
-    fontFamily: 'Ubuntu',
     bottomBorder: "10px",
     margin: "auto",
     paddingTop: 80,
@@ -58,7 +57,6 @@ const useStyles = makeStyles(() => ({
   },
   divider:{
     margin: '50px auto',
-    
     height: 8,
     width:"80%",
     background: 'linear-gradient(6deg, #3f51b5 30%, #FF8E53 90%)'

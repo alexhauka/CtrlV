@@ -13,23 +13,48 @@ const useStyles = makeStyles(() => ({
 
   job: {
     textAlign: "center",
-    height: 250
+    border: '1px solid #3f51b5',
+    width: '70%',
+    borderRadius: 10,
+    margin: 'auto'
   },
   fields: {
     display:"flex",
     justifyContent: "space-evenly",
     margin: "auto",
     marginBottom: 20,
-    width: "60%"
+    paddingTop: 20,
+    width: "90%"
+  },
+  form:{
+    paddingBottom:'2.5%'
   },
   description: {
     marginTop: 20,
-    width: '60%',
+    width: '90%',
     margin: "auto"
   },
   add: {
     textAlign: "center",
     paddingTop: 50
+  },
+  save:{
+    fontFamily: 'Ubuntu',
+    margin:10,
+    color:'white',
+    background:'#6ccc6c',
+    '&:hover':{
+      background:'#228b22'
+    }
+  },
+  delete:{
+    fontFamily: 'Ubuntu',
+    margin:10,
+    color:'white',
+    background:'#ce6767',
+    '&:hover':{
+      background:'#dd3636'
+    }
   }
 }))
 
@@ -112,7 +137,7 @@ export default function Jobs(props) {
   
   const classes = useStyles(); 
     return (
-      <form key={jobInfo.id} noValidate autoComplete="off">
+      <form key={jobInfo.id} className={classes.form} noValidate autoComplete="off">
         
         <div className={classes.job}>
         <div className={classes.fields}>
@@ -190,13 +215,17 @@ export default function Jobs(props) {
         </Alert>
       </Snackbar>
       {!Object.values(jobInfo).includes(null) && <Button 
-      className={classes.submit}
+      className={classes.save}
+      variant='contained'
+      
       onClick={save}
       >
         Save
       </Button>}
       {props.title && props.description && <Button
-      className={classes.submit}
+      className={classes.delete}
+      variant='contained'
+      
       onClick={onDelete}>
         Delete
       </Button>}
