@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(() => ({
   button: {
     // marginTop: '1.2em',
+    fontFamily: 'Ubuntu',
     marginBottom:'1.2em',
     width:'50%',
     color: "white",

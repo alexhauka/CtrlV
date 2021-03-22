@@ -83,6 +83,7 @@ const useStyles = makeStyles(() => ({
       }
   },
   headings:{
+    fontFamily: 'Ubuntu',
     margin: 15,
     textAlign:'left',
     marginLeft: 0
@@ -98,10 +99,12 @@ const useStyles = makeStyles(() => ({
     borderRadius:10
   },
   HeadingFont : {
+    fontFamily: 'Ubuntu',
     paddingBottom: 10,
     textAlign:'left'
   },
   BodyFont : {
+    fontFamily: 'Ubuntu',
     paddingBottom: 10,
     textAlign:'left'
   },
@@ -130,7 +133,7 @@ const useStyles = makeStyles(() => ({
     width:'80%',
     color: "white",
     size: "large",
-    background: 'linear-gradient(45deg, transparent 20%,#FF8E53 40%, #FE6B8B 60%, transparent 80%)',
+    background: 'linear-gradient(45deg, transparent 20%,#FE6B8B 40%, #FF8E53 60%, transparent 80%)',
     // marginLeft: '8%',
     '&:hover':{
       background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -219,6 +222,7 @@ const resume = {
             <div className={classes.FontButtons}>
               <div className={classes.HeadingFont}>
                 <Typography
+                  className={classes.HeadingFont}
                   variant="subtitle1"
                 >
                   Heading Font: 
@@ -386,7 +390,8 @@ const resume = {
               </div>
             <div className={classes.BodyFont}>
             <Typography
-                  variant="subtitle1"
+                className={classes.HeadingFont}
+                variant="subtitle1"
                 >
                   Body Font: 
                 </Typography>
