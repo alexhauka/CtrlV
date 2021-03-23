@@ -137,7 +137,14 @@ const useStyles = makeStyles(() => ({
     // marginLeft: '8%',
     '&:hover':{
       background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    }
+    },
+    // selectedButton: {
+    //   // width: "33.3%",
+    //   background: 'linear-gradient(160deg, #3f51b5 30%, #476bec 90%',
+    //   color: 'white',
+    //   border: 'inset',
+    //   borderColor: '#3f51b5'
+    // }
   }
 
 
@@ -152,11 +159,17 @@ export default function Resume(props) {
   const [template, setTemplate] = useState(1)
 
 
+
   const [color, setColor] = useState('#fff')
   const [borderColor, setBorderColor] = useState('#000000')
 
   const [font, setFont] = useState('Shippori Mincho B1')
   const [bodyFont, setBodyFont] = useState('Shippori Mincho B1')
+
+  const [ selectTemplate, setSelectTemplate ] = useState(template)
+  const [ selectHeadFont, setSelectHeadFont ] = useState(font)
+  const [ selectBodyFont, setSelectBodyFont ] = useState(bodyFont)
+
   function handleChangeColor(event) {
     setColor({ color: event.hex })
   }
@@ -206,6 +219,23 @@ const resume = {
 }
   
   const classes = useStyles();
+
+  function handleTemplateChange(template) {
+    setTemplate(template)
+    setSelectTemplate(template)
+  }
+
+  function handleHeadFontChange(font) {
+    setFont(font)
+    setSelectHeadFont(font)
+  }
+
+  function handleBodyFontChange(font) {
+    setBodyFont(font)
+    setSelectBodyFont(font)
+  }
+
+
   return (
     <div className={classes.root}>
       <Grid
@@ -225,9 +255,9 @@ const resume = {
                 aria-label="vertical contained primary button group"
                 // variant="contained"
               >
-                <Button className={classes.Font} onClick={() => setTemplate(1)} >Organized</Button>
-                <Button className={classes.Font} onClick={() => setTemplate(2)}>Understated</Button>
-                <Button className={classes.Font} >Template Three</Button>
+                <Button variant={selectTemplate === 1 ? "contained" : "outlined"} onClick={() => handleTemplateChange(1)} >Organized</Button>
+                <Button variant={selectTemplate === 2 ? "contained" : "outlined"} onClick={() => handleTemplateChange(2)}>Understated</Button>
+                <Button variant={selectTemplate === 3 ? "contained" : "outlined"} onClick={() => handleTemplateChange(3)} >UNDER CONSTRUCTION</Button>
               </ButtonGroup>
             </div>
             <div className={classes.sections}>
@@ -250,27 +280,30 @@ const resume = {
                   // variant="contained"
                 >
                   <Button 
-                    className={classes.Font}
+                    variant={selectHeadFont === 'Fascinate' ? "contained" : "outlined"}
                     style={{fontFamily: 'Fascinate'}}
+                    className={classes.Font}
                     onClick={() => {
-                      setFont('Fascinate')
+                      handleHeadFontChange('Fascinate')
                   }}>
                     Fascinate
                   </Button>
                   <Button
+                    variant={selectHeadFont === 'Redressed' ? "contained" : "outlined"}
                     style={{fontFamily: 'Redressed'}}
                     className={classes.Font}
                     onClick={() => {
-                      setFont('Redressed')
+                      handleHeadFontChange('Redressed')
                     }}
                   >
                     Redressed
                   </Button>
                   <Button
+                    variant={selectHeadFont === 'Shippori Mincho B1' ? "contained" : "outlined"}
                     className={classes.Font}
                     style={{fontFamily: 'Shippori Mincho B1'}}
                     onClick={() => {
-                      setFont('Shippori Mincho B1')
+                      handleHeadFontChange('Shippori Mincho B1')
                     }}
                   >Shippori Mincho B1 </Button>
                 </ButtonGroup>
@@ -282,27 +315,30 @@ const resume = {
                   // variant="contained"
                 >
                   <Button
+                    variant={selectHeadFont === 'Comfortaa' ? "contained" : "outlined"}
                     style={{fontFamily: 'Comfortaa'}} 
                     className={classes.Font}
                     onClick={() => {
-                      setFont('Comfortaa')
+                      handleHeadFontChange('Comfortaa')
                   }}>
                     Comfortaa
                   </Button>
                   <Button
+                    variant={selectHeadFont === 'Cormorant Garamond' ? "contained" : "outlined"}
                     style={{fontFamily: 'Cormorant Garamond'}}
                     className={classes.Font}  
                     onClick={() => {
-                      setFont('Cormorant Garamond')
+                      handleHeadFontChange('Cormorant Garamond')
                     }}
                   >
                     Cormorant Garamond
                   </Button>
                   <Button
+                    variant={selectHeadFont === 'Dancing Script' ? "contained" : "outlined"}
                     style={{fontFamily: 'Dancing Script'}}
                     className={classes.Font}
                     onClick={() => {
-                      setFont('Dancing Script')
+                      handleHeadFontChange('Dancing Script')
                     }}
                   >Dancing Script </Button>
                 </ButtonGroup>
@@ -314,27 +350,30 @@ const resume = {
                   // variant="contained"
                 >
                   <Button 
+                    variant={selectHeadFont === 'Holtwood One SC' ? "contained" : "outlined"}
                     style={{fontFamily: 'Holtwood One SC'}}
                     className={classes.Font}
                     onClick={() => {
-                      setFont('Holtwood One SC')
+                      handleHeadFontChange('Holtwood One SC')
                   }}>
                     Holtwood One SC
                   </Button>
                   <Button
+                    variant={selectHeadFont === 'Josefin Slab' ? "contained" : "outlined"}
                     style={{fontFamily: 'Josefin Slab'}}
                     className={classes.Font}
                     onClick={() => {
-                      setFont('Josefin Slab')
+                      handleHeadFontChange('Josefin Slab')
                     }}
                   >
                     Josefin Slab
                   </Button>
                   <Button
+                    variant={selectHeadFont === 'Lato' ? "contained" : "outlined"}
                     className={classes.Font}
                     style={{fontFamily: 'Lato'}}
                     onClick={() => {
-                      setFont('Lato')
+                      handleHeadFontChange('Lato')
                     }}
                   >Lato </Button>
                 </ButtonGroup>
@@ -346,27 +385,30 @@ const resume = {
                   // variant="contained"
                 >
                   <Button 
+                    variant={selectHeadFont === 'League Script' ? "contained" : "outlined"}
                     style={{fontFamily: 'League Script'}}
                     className={classes.Font}
                     onClick={() => {
-                      setFont('League Script')
+                      handleHeadFontChange('League Script')
                   }}>
                     League Script
                   </Button>
                   <Button
+                    variant={selectHeadFont === 'Monoton' ? "contained" : "outlined"}
                     style={{fontFamily: 'Monoton'}}
                     className={classes.Font}
                     onClick={() => {
-                      setFont('Monoton')
+                      handleHeadFontChange('Monoton')
                     }}
                   >
                     Monoton
                   </Button>
                   <Button
+                    variant={selectHeadFont === 'Montserrat' ? "contained" : "outlined"}
                     style={{fontFamily: 'Montserrat'}}
                     className={classes.Font}
                     onClick={() => {
-                      setFont('Montserrat')
+                      handleHeadFontChange('Montserrat')
                     }}
                   >Montserrat </Button>
                 </ButtonGroup>
@@ -378,27 +420,30 @@ const resume = {
                   // variant="contained"
                 >
                   <Button
+                    variant={selectHeadFont === 'Nanum Pen Script' ? "contained" : "outlined"}
                     style={{fontFamily: 'Nanum Pen Script'}} 
                     className={classes.Font}
                     onClick={() => {
-                      setFont('Nanum Pen Script')
+                      handleHeadFontChange('Nanum Pen Script')
                   }}>
                     Nanum Pen Script
                   </Button>
                   <Button
+                    variant={selectHeadFont === 'Open Sans' ? "contained" : "outlined"}
                     className={classes.Font}
                     style={{fontFamily: 'Open Sans'}} 
                     onClick={() => {
-                      setFont('Open Sans')
+                      handleHeadFontChange('Open Sans')
                     }}
                   >
                   Open Sans
                   </Button>
                   <Button
+                    variant={selectHeadFont === 'Yeseva One' ? "contained" : "outlined"}
                     style={{fontFamily: 'Yeseva One'}}
                     className={classes.Font}
                     onClick={() => {
-                      setFont('Yeseva One')
+                      handleHeadFontChange('Yeseva One')
                     }}
                   >Yeseva One </Button>
                 </ButtonGroup>
@@ -418,27 +463,30 @@ const resume = {
                   // variant="contained"
                 >
                   <Button
+                    variant={selectBodyFont === 'Fascinate' ? "contained" : "outlined"}
                     style={{fontFamily: 'Fascinate'}} 
                     className={classes.Font}
                     onClick={() => {
-                      setBodyFont('Fascinate')
+                      handleBodyFontChange('Fascinate')
                   }}>
                     Fascinate
                   </Button>
                   <Button
+                    variant={selectBodyFont === 'Redressed' ? "contained" : "outlined"}
                     style={{fontFamily: 'Redressed'}}
                     className={classes.Font}
                     onClick={() => {
-                      setBodyFont('Redressed')
+                      handleBodyFontChange('Redressed')
                     }}
                   >
                     Redressed
                   </Button>
                   <Button
+                    variant={selectBodyFont === 'Shippori Mincho B1' ? "contained" : "outlined"}
                     style={{fontFamily: 'Shippori Mincho B1'}}
                     className={classes.Font}
                     onClick={() => {
-                      setBodyFont('Shippori Mincho B1')
+                      handleBodyFontChange('Shippori Mincho B1')
                     }}
                   >Shippori Mincho B1 </Button>
                 </ButtonGroup>
@@ -450,27 +498,30 @@ const resume = {
                   // variant="contained"
                 >
                   <Button 
+                    variant={selectBodyFont === 'Comfortaa' ? "contained" : "outlined"}
                     style={{fontFamily: 'Comfortaa'}}
                     className={classes.Font}
                     onClick={() => {
-                      setBodyFont('Comfortaa')
+                      handleBodyFontChange('Comfortaa')
                   }}>
                     Comfortaa
                   </Button>
                   <Button
+                    variant={selectBodyFont === 'Cormorant Garamond' ? "contained" : "outlined"}
                     style={{fontFamily: 'Cormorant Garamond'}}
                     className={classes.Font}  
                     onClick={() => {
-                      setBodyFont('Cormorant Garamond')
+                      handleBodyFontChange('Cormorant Garamond')
                     }}
                   >
                     Cormorant Garamond
                   </Button>
                   <Button
+                    variant={selectBodyFont === 'Dancing Script' ? "contained" : "outlined"}
                     style={{fontFamily: 'Dancing Script'}}
                     className={classes.Font}
                     onClick={() => {
-                      setBodyFont('Dancing Script')
+                      handleBodyFontChange('Dancing Script')
                     }}
                   >Dancing Script </Button>
                 </ButtonGroup>
@@ -482,27 +533,30 @@ const resume = {
                   // variant="contained"
                 >
                   <Button 
+                    variant={selectBodyFont === 'Holtwood One SC' ? "contained" : "outlined"}
                     style={{fontFamily: 'Holtwood One SC'}}
                     className={classes.Font}
                     onClick={() => {
-                      setBodyFont('Holtwood One SC')
+                      handleBodyFontChange('Holtwood One SC')
                   }}>
                     Holtwood One SC
                   </Button>
                   <Button
+                    variant={selectBodyFont === 'Josefin Slab' ? "contained" : "outlined"}
                     style={{fontFamily: 'Josefin Slab'}}
                     className={classes.Font}
                     onClick={() => {
-                      setBodyFont('Josefin Slab')
+                      handleBodyFontChange('Josefin Slab')
                     }}
                   >
                     Josefin Slab
                   </Button>
                   <Button
+                    variant={selectBodyFont === 'Lato' ? "contained" : "outlined"}
                     style={{fontFamily: 'Lato'}}
                     className={classes.Font}
                     onClick={() => {
-                      setBodyFont('Lato')
+                      handleBodyFontChange('Lato')
                     }}
                   >Lato </Button>
                 </ButtonGroup>
@@ -514,27 +568,30 @@ const resume = {
                   // variant="contained"
                 >
                   <Button
+                    variant={selectBodyFont === 'League Script' ? "contained" : "outlined"}
                     style={{fontFamily: 'League Script'}} 
                     className={classes.Font}
                     onClick={() => {
-                      setBodyFont('League Script')
+                      handleBodyFontChange('League Script')
                   }}>
                     League Script
                   </Button>
                   <Button
+                    variant={selectBodyFont === 'Monoton' ? "contained" : "outlined"}
                     style={{fontFamily: 'Monoton'}} 
                     className={classes.Font}
                     onClick={() => {
-                      setBodyFont('Monoton')
+                      handleBodyFontChange('Monoton')
                     }}
                   >
                     Monoton
                   </Button>
                   <Button
+                    variant={selectBodyFont === 'Montserrat' ? "contained" : "outlined"}
                     style={{fontFamily: 'Montserrat'}}
                     className={classes.Font}
                     onClick={() => {
-                      setBodyFont('Montserrat')
+                      handleBodyFontChange('Montserrat')
                     }}
                   >Montserrat </Button>
                 </ButtonGroup>
@@ -546,27 +603,30 @@ const resume = {
                   // variant="contained"
                 >
                   <Button
+                    variant={selectBodyFont === 'Nanum Pen Script' ? "contained" : "outlined"}
                     style={{fontFamily: 'Nanum Pen Script'}} 
                     className={classes.Font}
                     onClick={() => {
-                      setBodyFont('Nanum Pen Script')
+                      handleBodyFontChange('Nanum Pen Script')
                   }}>
                     Nanum Pen Script
                   </Button>
                   <Button
+                    variant={selectBodyFont === 'Open Sans' ? "contained" : "outlined"}
                     style={{fontFamily: 'Open Sans'}}
                     className={classes.Font}
                     onClick={() => {
-                      setBodyFont('Open Sans')
+                      handleBodyFontChange('Open Sans')
                     }}
                   >
                   Open Sans
                   </Button>
                   <Button
+                    variant={selectBodyFont === 'Yeseva One' ? "contained" : "outlined"}
                     style={{fontFamily: 'Yeseva One'}}
                     className={classes.Font}
                     onClick={() => {
-                      setBodyFont('Yeseva One')
+                      handleBodyFontChange('Yeseva One')
                     }}
                   >Yeseva One </Button>
                 </ButtonGroup>
@@ -585,7 +645,7 @@ const resume = {
                   Background Color
                 </Typography>
                   <ColorPicker name="color" defaultValue={"#fff"} value={color} onChange={(event) => {
-                    console.log(event.css.backgroundColor)
+                    // console.log(event.css.backgroundColor)
                     setColor(event.css.backgroundColor);
                   }} />
                 </div>
@@ -597,7 +657,7 @@ const resume = {
                     Border Color
                 </Typography>
                   <ColorPicker name="color" defaultValue={"#fff"} value={borderColor} onChange={(event) => {
-                    console.log(event.css.backgroundColor)
+                    // console.log(event.css.backgroundColor)
                     setBorderColor(event.css.backgroundColor);
                   }} />
                 </div>
