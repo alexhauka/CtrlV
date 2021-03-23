@@ -188,7 +188,7 @@ const useStyles = makeStyles(() => ({
   skillsBody_false: {
     // display: 'list-item',
     // listStylePosition: 'inside',
-    marginLeft: '15px',
+    // marginLeft: '15px',
     fontSize: "5%",
     lineHeight: 0.95
   },
