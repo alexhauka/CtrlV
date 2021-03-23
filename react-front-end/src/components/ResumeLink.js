@@ -17,6 +17,7 @@ const useStyles = makeStyles(() => ({
   root:{
     display: 'flex',
     direction:'column',
+    minHeight: '100vh',
     justifyContent: 'center',
   },
   page: {

@@ -39,13 +39,14 @@ const useStyles = makeStyles(() => ({
   sections:{
     border:'1px #3f51b5 solid',
     margin:'5%',
+    marginTop: '0',
     padding: '5%',
     borderRadius: 10
   },
   rootLeft: {
-    display: 'flex',
+    // display: 'flex',
     flexDirection: 'column',
-    height: "100%",
+    minHeight: "100vh",
     width:'92%',
     margin:'auto',
     borderRadius:10,
@@ -91,6 +92,7 @@ const useStyles = makeStyles(() => ({
 
   right: {
     width: "63%",
+    minHeight: "100vh",
     boxShadow:'0px 0px 20px 7px #00000059 inset',
     background: 'white',
     margin:'auto',

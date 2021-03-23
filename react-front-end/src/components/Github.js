@@ -11,7 +11,8 @@ const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: "white",
     paddingTop: "5em",
-    textAlign:"center"
+    textAlign:"center",
+    minHeight: '100vh'
   },
 
   project: {
