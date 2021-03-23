@@ -12,7 +12,6 @@ const useStyles = makeStyles(() => ({
     border: "solid #3f51b5 1px",
     borderRadius: 20,
     marginBottom: 10,
-    // backgroundColor: '#e8e8e8'
   },
   workButton: {
     marginBottom: 10
@@ -37,15 +36,12 @@ export default function WorkMenu(props) {
 
   const handleClose = (work) => {
     if (anchorEl.id === 'btn1'){
-      // console.log("in 1")
       setwork1(work)
     } 
     else if (anchorEl.id === 'btn2'){
-      // console.log("in 2")
       setwork2(work)
     }
     else if (anchorEl.id === 'btn3'){
-      // console.log("in 3")
       setwork3(work)
     }
     setAnchorEl(null);
@@ -120,7 +116,6 @@ export default function WorkMenu(props) {
             label="Start Date"
             name="job_start_date"
             type="date"
-            // onChange={handleChangeWork1}
             value={work1 ? work1.job_start_date.slice(0,10) : ''}
             className={classes.textField}
             InputLabelProps={{
@@ -133,7 +128,6 @@ export default function WorkMenu(props) {
             label="End Date"
             name="job_end_date"
             type="date"
-            // onChange={handleChangeWork1}
             value={work1 ? work1.job_end_date.slice(0,10) : ''}
             className={classes.textField}
             InputLabelProps={{
@@ -145,7 +139,6 @@ export default function WorkMenu(props) {
             id="w1D"
             label="Description"
             name="job_description"
-            // onChange={handleChangeWork1}
             multiline
             rows={4}
             value={work1 ? work1.job_description : ''}
@@ -188,7 +181,6 @@ export default function WorkMenu(props) {
             id="w2T"
             label="Title"
             name="job_title"
-            // onChange={handleChangeWork2}
             value={work2 ? work2.job_title : ''}
             InputProps={{
               readOnly: true,
@@ -201,7 +193,6 @@ export default function WorkMenu(props) {
             label="Start Date"
             name="job_start_date"
             type="date"
-            // onChange={handleChangeWork2}
             value={work2 ? work2.job_start_date.slice(0,10) : ''}
             className={classes.textField}
             InputLabelProps={{
@@ -214,7 +205,6 @@ export default function WorkMenu(props) {
             label="End Date"
             name='job_end_date'
             type="date"
-            // onChange={handleChangeWork2}
             value={work2 ? work2.job_end_date.slice(0,10) : ''}
             className={classes.textField}
             InputLabelProps={{
@@ -226,7 +216,6 @@ export default function WorkMenu(props) {
             id="w2D"
             label="Description"
             name='job_description'
-            // onChange={handleChangeWork2}
             multiline
             rows={4}
             value={work2 ? work2.job_description : ''}
@@ -269,7 +258,6 @@ export default function WorkMenu(props) {
             id="w3T"
             label="Title"
             name='job_title'
-            // onChange={handleChangeWork3}
             value={work3 ? work3.job_title : ''}
             InputProps={{
               readOnly: true,
@@ -282,7 +270,6 @@ export default function WorkMenu(props) {
             label="Start Date"
             name="job_start_date"
             type="date"
-            // onChange={handleChangeWork3}
             value={work3 ? work3.job_start_date.slice(0,10) : ''}
             className={classes.textField}
             InputLabelProps={{
@@ -295,7 +282,6 @@ export default function WorkMenu(props) {
             label="End Date"
             name="job_end_date"
             type="date"
-            // onChange={handleChangeWork3}
             value={work3 ? work3.job_end_date.slice(0,10) : ''}
             className={classes.textField}
             InputLabelProps={{
@@ -307,7 +293,6 @@ export default function WorkMenu(props) {
             id="w3D"
             label="Description"
             name="job_description"
-            // onChange={handleChangeWork3}
             multiline
             rows={4}
             value={work3 ? work3.job_description : ''}
@@ -327,25 +312,3 @@ export default function WorkMenu(props) {
 
 
 
-
-      // <Button
-      // id='btn1'
-      // className={classes.workButton}
-      // variant="contained"
-      // color="primary"
-      // aria-controls="fade-menu1"
-      // aria-haspopup="true"
-      // onClick={handleClick}
-      // >
-      //   Change Work
-      // </Button>
-      // <Menu
-      //   id="work-menu"
-      //   anchorEl={anchorEl}
-      //   keepMounted
-      //   open={Boolean(anchorEl)}
-      //   onClose={handleClose}
-      //   TransitionComponent={Fade}
-      // >
-      //   {workMenu}
-      // </Menu>

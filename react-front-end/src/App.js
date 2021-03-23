@@ -20,27 +20,6 @@ import BasicInfo from './components/BasicInfo';
 import MyResumes from './components/MyResumes';
 import NavBar from './components/NavBar'
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     minHeight: '50vh',
-//     backgroundColor: '#f8f8ff',
-//     padding: '10%'
-//   },
-//   content: {
-//     // Container,
-//     flexDirection: 'row',
-//     justifyContent: 'center',
-//     alignItems: 'flex-start',
-//     alignContent: 'center'
-//   },
-//   controlpanel: {
-    
-//   },
-//   resume: {
-//     justify: 'center'
-//   }
-// }));
-
 // const ProtectedRoute = (props) => {
 //   if (props.isLoggingIn) {
 //     return null 
@@ -196,18 +175,3 @@ export default function App() {
     </>
   );
 }
-
-// example for getting api routes:
-
-// fetchData = () => {
-//   axios.get('/api/data') // You can simply make your requests to "/api/whatever you want"
-//   .then((response) => {
-//     // handle success
-//     console.log(response.data) // The entire response from the Rails API
-
-//     console.log(response.data.message) // Just the message
-//     this.setState({
-//       message: response.data.message
-//     });
-//   }) 
-// }

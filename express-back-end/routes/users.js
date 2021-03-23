@@ -46,7 +46,6 @@ router.put('/', (req, res) => {
     res.send(user);
   })
   .catch(e => {
-    console.error(e); 
     res.send(e);
   });
 });
@@ -55,7 +54,6 @@ router.put('/', (req, res) => {
 router.get('/:id', (req, res) => {
   getUserByID(req.params.id)
   .then((response) => {
-    console.log("axios request",response);
     const user = {
       id: response.id,
       first_name: response.first_name,
@@ -66,7 +64,6 @@ router.get('/:id', (req, res) => {
       address: response.address,
       phone_number: response.phone_number
     }
-    console.log("new json user", user)
     res.json(user)
   })
 });
@@ -80,7 +77,6 @@ router.put('/:id', (req, res) => {
       res.send(user)
     })
     .catch(e => {
-      console.error(e);
       res.send(e);
     })
   }
@@ -89,7 +85,6 @@ router.put('/:id', (req, res) => {
     res.send(user)
   })
   .catch(e => {
-    console.error(e);
     res.send(e);
   });
 });
@@ -109,7 +104,6 @@ router.put('/:id/hard_skills', (req, res) => {
     res.send(data);
   })
   .catch(e => {
-    console.error(e);
     res.send(e);
   })
 });
@@ -121,7 +115,6 @@ router.delete('/:id/hard_skills', (req, res) => {
     res.send(data);
   })
   .catch(e => {
-    console.error(e);
     res.send(e);
   })
 });
@@ -152,27 +145,21 @@ router.get('/:id/projects', (req, res) => {
 });
 
 router.post('/:id/projects', (req, res) => {
-  console.log("I'm in my Routes!", req.body.projectInfo)
   updateUserProject(req.params.id ,req.body.projectInfo)
   .then((data) => {
-    console.log("data", data)
     res.send(data);
   })
   .catch(e => {
-    console.error(e);
     res.send(e);
   })
 }); 
 
 router.delete('/:id/projects', (req, res) => {
-  console.log("here in axios call", req.body.projectInfo)
   deleteUserProject(req.params.id, req.body.projectInfo)
   .then((data) => {
-    console.log("data", data)
     res.send(data);
   })
   .catch(e => {
-    console.error(e);
     res.send(e);
   });
 })
@@ -188,24 +175,19 @@ router.get('/:id/work_experience', (req, res) => {
 router.post('/:id/work_experience', (req, res) => {
   addUserWorkExperience(req.params.id, req.body.workInfo)
   .then((data) => {
-    console.log("data", data)
     res.send(data);
   })
   .catch(e => {
-    console.error(e);
     res.send(e);
   })
 })
 
 router.delete('/:id/work_experience', (req, res) => {
-  console.log('here in axios call', req.body.workInfo)
   deleteUserWorkExperience(req.params.id, req.body.workInfo)
   .then((data) => {
-    console.log("data", data)
     res.send(data);
   })
   .catch(e => {
-    console.error(e);
     res.send(e);
   });
 })
@@ -221,14 +203,11 @@ router.get('/:id/resumes', (req, res) => {
 
 // get users/id/resumes/resumeid
 router.get('/:id/resumes/:resumeid', (req, res) => {
-  console.log("here in axios call", req.body.projectInfo)
   deleteUserProject(req.params.id, req.body.projectInfo)
   .then((data) => {
-    console.log("data", data)
     res.send(data);
   })
   .catch(e => {
-    console.error(e);
     res.send(e);
   });
     
@@ -250,14 +229,11 @@ router.get('/:id/resumes/:resumeid', (req, res) => {
 
 // delete users/id/resumes/resumeid
 router.delete('/:id/resumes', (req, res) => {
-  console.log("here in axios call", req.body.resumeObject)
   deleteUserResume(req.params.id, req.body.resumeObject)
   .then((data) => {
-    console.log("data", data)
     res.send(data);
   })
   .catch(e => {
-    console.error(e);
     res.send(e);
   });
 }); 

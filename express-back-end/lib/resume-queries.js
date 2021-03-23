@@ -26,7 +26,6 @@ const addUserResume = function(resume) {
     resume.about_me,
     resume.profession])
   .then((response) => {
-    console.log("response after insert", response.rows[0])
     return response.rows[0];
   })
   .catch((e) => {
@@ -41,7 +40,6 @@ const deleteUserResume = function(userID, resume) {
   RETURNING *;
   `, [userID, resume.id])
   .then((response) => {
-    console.log("response after delete", response.rows[0]); 
     return response.rows[0];
   })
 }
@@ -67,7 +65,6 @@ const updateUserResume = function(resume) {
     resume.about_me,
       resume.profession])
   .then((response) => {
-    console.log(response)
     return response; 
   })
 }
@@ -78,7 +75,6 @@ const getUserResumes = function(userID) {
     WHERE user_id = $1;
   `, [userID])
   .then((response) => {
-    console.log(response.rows)
     return response.rows;
   })
   .catch((e) => {
@@ -92,7 +88,6 @@ const getResume = function(resumeID) {
   WHERE id = $1;
   `, [resumeID])
   .then((response) => {
-    console.log(response.rows[0])
     return response.rows[0];
   })
   .catch((e) => {
@@ -100,28 +95,6 @@ const getResume = function(resumeID) {
   })
 
 }
-
-
-/*
-
-  reference for database
-
-  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  template_id INTEGER REFERENCES  templates(id) ON DELETE CASCADE,
-  background_color VARCHAR(255) NOT NULL DEFAULT 'white',
-  border_color VARCHAR(255) NOT NULL DEFAULT 'black',
-  head_font VARCHAR(255),
-  body_font VARCHAR(255),
-  date_uploaded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  project_1 INTEGER REFERENCES projects(id),
-  project_2 INTEGER REFERENCES projects(id),
-  project_3 INTEGER REFERENCES projects(id),
-  work_1 INTEGER REFERENCES work_experiences(id),
-  work_2 INTEGER REFERENCES work_experiences(id),
-  work_3 INTEGER REFERENCES work_experiences(id)
-
-*/
-
 
 
 module.exports = { addUserResume, updateUserResume, getUserResumes, getResume, deleteUserResume };

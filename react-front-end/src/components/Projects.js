@@ -16,7 +16,6 @@ const useStyles = makeStyles(() => ({
     width: '70%',
     borderRadius: 10,
     margin:'auto'
-    //  height: 250
   },
   form:{
     paddingBottom:'2.5%'
@@ -34,7 +33,6 @@ const useStyles = makeStyles(() => ({
     marginTop: 20,
     width: '90%',
     margin: "auto",
-    // paddingBottom: 30
   },
   add: {
     textAlign: "center",
@@ -165,7 +163,6 @@ export default function Projects(props) {
       setOpenError(true);
       return
     } 
-      // console.log(projectInfo);
     return props.updateProject(projectInfo)
   }
 
@@ -208,7 +205,6 @@ export default function Projects(props) {
 
   function handleDelete(event) {
     event.preventDefault();
-    // console.log("handleDelete", projectInfo);
     props.deleteProject(projectInfo)
   }
 
@@ -228,13 +224,6 @@ export default function Projects(props) {
   return (
     <form className={classes.form} onSubmit={handleSave} noValidate autoComplete="off">
     <div className={classes.project}>
-    {/* <div className={classes.dividers}>
-      <Divider className={classes.dividerRight}/>
-      <Divider className={classes.divider3}/>
-      <Divider className={classes.divider2}/>
-      <Divider className={classes.divider1}/>
-      <Divider className={classes.dividerLeft}/>
-      </div> */}
       <div className={classes.fields}>
         <TextField  
           name="title" 
@@ -257,7 +246,6 @@ export default function Projects(props) {
           defaultValue={last_updated}
           onChange={handleChange}
           onFocus={() => setError(prev => ({...prev, last_updated: false }))} 
-        // className={classes.textField}
           InputLabelProps={{
           shrink: true,
           }}

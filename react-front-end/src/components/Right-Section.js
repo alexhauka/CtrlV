@@ -11,11 +11,6 @@ import { data } from 'retext';
 import ProjectMenu from './ProjectMenu';
 import WorkMenu from './WorkMenu'
 
-
-// function SubmitButton(props) {
-//   return 
-// }
-
 const useStyles = makeStyles(() => ({
   root: {
     maxWidth: '85%',
@@ -25,15 +20,6 @@ const useStyles = makeStyles(() => ({
     marginLeft: "10%",
     flexShrink: 1,
     
-  },
-  inside:{
-    // width:'92%',
-    // background: 'white',
-    // margin:'auto',
-    // marginTop:0,
-    // height:'99%',
-    // borderRadius:10,
-    // boxShadow:'0px 0px 20px 7px #00000059 inset'
   },
   info: {
     height: 200,
@@ -48,8 +34,6 @@ const useStyles = makeStyles(() => ({
     border: "solid grey 1px",
     borderRadius: 20,
     marginBottom: 10,
-    // backgroundColor: 'white',
-
   },
   singleProject: {
     border: "solid grey 1px",
@@ -78,7 +62,6 @@ const useStyles = makeStyles(() => ({
     border: "solid #3f51b5 1px",
     borderRadius: 20,
     marginBottom: 10,
-    // backgroundColor: '#e8e8e8',
     position: "relative"
   },
 
@@ -106,13 +89,11 @@ const useStyles = makeStyles(() => ({
   },
 
   button: {
-    // marginTop: '1.2em',
     marginBottom:'1.2em',
     width:'80%',
     color: "white",
     size: "large",
     background: 'linear-gradient(45deg, transparent 20%,#FE6B8B 40%, #FF8E53 60%, transparent 80%)',
-    // marginLeft: '8%',
     '&:hover':{
       background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     }
@@ -122,13 +103,8 @@ const useStyles = makeStyles(() => ({
 }))
 
 export default function RightSection(props) {
-  // console.log("In right", props)
   const { user, userHardSkills, userProjects, userWorkExperience } = props.props
   const classes = useStyles()
-  //For edit menu
-  // const [anchorEl, setAnchorEl] = React.useState(null);
-  
-  // const open = Boolean(anchorEl);
   
   let userName = `${user.first_name} ${user.last_name}`;
   let userAddress = user.address;
@@ -144,24 +120,13 @@ export default function RightSection(props) {
     userPhone,
     userLinkedin
   })
-  // console.log("user basic info: ", basicInfo)
-
   
-
   function handleBasicInfoChange(event) {
     setBasicInfo({
       ...basicInfo,
       [event.target.name]: event.target.value
     })
   }
-
-
-  // const [project1, setProject1] = React.useState(userProjects[0])
-  // const [project2, setProject2] = React.useState(userProjects[1])
-  // const [project3, setProject3] = React.useState(userProjects[2])
-  // const [work1, setwork1] = React.useState(userWorkExperience[0])
-  // const [work2, setwork2] = React.useState(userWorkExperience[1])
-  // const [work3, setwork3] = React.useState(userWorkExperience[2])
 
   const [ projects, setProjects ] = React.useState([userProjects[0], userProjects[1], userProjects[2]])
 
@@ -176,17 +141,12 @@ export default function RightSection(props) {
     setWork_Experience(jobArray)
   }
   
-
-
-
   let output = {
     basicInfo: basicInfo,
     projects: projects,
     work_experience: work_experience,
     skills: userHardSkills
   }
-
-
 
   const hardSkills = userHardSkills
   
@@ -220,7 +180,6 @@ export default function RightSection(props) {
 
   return (
     <div className={classes.root}>
-      {/* <div className={classes.inside}> */}
       <div>
         <section className={classes.info}>
         <h1>Basic Info</h1>
@@ -270,9 +229,6 @@ export default function RightSection(props) {
       </div>
       <ProjectMenu userProjects={userProjects} liftProjects={liftProjects}/>
       <WorkMenu userWorkExperience={userWorkExperience} liftJobs={liftJobs}/>
-      {/* <Button onClick={() => {
-        console.log(output)
-      }} /> */}
       <Button 
         className={classes.button}
         component={Link}
@@ -282,8 +238,6 @@ export default function RightSection(props) {
           }}
 
         >Save and Confirm</Button>
-      {/* <Button component={() => <Link  />}>How about this one?</Button> */}
-      {/* </div> */}
     </div>
   );
 }

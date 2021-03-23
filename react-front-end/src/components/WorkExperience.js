@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
   },
   top: {
     margin: "auto",
-    // paddingTop: 50,
     textAlign:'center',
     paddingBottom: 20
   },
@@ -83,7 +82,6 @@ function Alert(props) {
 
 export default function WorkExperience(props) {
   const data = props.workExperience;
-  // console.log("In work experience", data)
   const [count, setCount] = useState(0); 
   const [message, setMessage] = useState("");
   const [open, setOpen] = useState(false);
@@ -117,10 +115,8 @@ export default function WorkExperience(props) {
 
 
   const numOfJobs = Object.keys(data).map(key => {
-      // this line will fail if the input date is null 
       const start_date = data[key].job_start_date.slice(0,10);
       const end_date = data[key].job_end_date.slice(0,10);
-      // console.log("Start Date", start_date)
       return (
         <Jobs
         key={data[key].id}
@@ -152,7 +148,6 @@ export default function WorkExperience(props) {
       }
     }
     const moreJobs = addJobs(count)
-  // const [count, setCount] = React.useState('')
   const classes = useStyles(); 
   return (
     <div className={classes.root}>
@@ -179,7 +174,6 @@ export default function WorkExperience(props) {
         </div>
       </div >
       {numOfJobs}
-      {/* This line is going to need to be looked at when we start uploading to the DB */}
       {Array(count).fill(moreJobs)} 
     <div className={classes.add}>
     <Button className={classes.submit} variant="contained" color="primary" onClick={() => {

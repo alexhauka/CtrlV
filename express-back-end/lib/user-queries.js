@@ -41,7 +41,6 @@ const addUser = (userInfo) => {
 }
 
 const updateUserInfo = (id, userInfo) => {
-  console.log(userInfo);
   const {first_name, last_name, email, linkedin, address, phone_number } = userInfo; 
   return client.query(`
   UPDATE users
@@ -73,7 +72,6 @@ const updateUserProject = (id, projectInfo) => {
     RETURNING *;
     `, [projectInfo.title, projectInfo.primary_language, projectInfo.primary_language_percent, projectInfo.secondary_language, projectInfo.secondary_language_percent, projectInfo.description, projectInfo.last_updated, projectInfo.url, projectInfo.id])
     .then((response) => {
-      console.log("response after update", response.rows[0])
       return response.rows[0];
     })
     
@@ -84,27 +82,23 @@ const updateUserProject = (id, projectInfo) => {
     RETURNING *;
     `, [id, projectInfo.title, projectInfo.primary_language, projectInfo.description, projectInfo.last_updated, projectInfo.primary_language_percent, projectInfo.secondary_language, projectInfo.secondary_language_percent, projectInfo.url])
     .then((response) => {
-      console.log("response after insert", response.rows[0])
       return response.rows[0];
     })
   }
 }
 
 const deleteUserProject = (id, projectInfo) => {
-  console.log("In query", projectInfo)
   return client.query(`
   DELETE FROM projects
   WHERE user_id = $1 AND id = $2
   RETURNING *;
   `, [id, projectInfo.id])
   .then((response) => {
-    console.log("response after delete", response.rows[0]);
     return response.rows[0];
   })
 }
 
 const addUserWorkExperience = (id, workInfo) => {
-  console.log("In my query", workInfo); 
   if (workInfo.id !== undefined){
     return client.query(`
     UPDATE work_experiences
@@ -113,7 +107,6 @@ const addUserWorkExperience = (id, workInfo) => {
     RETURNING *; 
     `, [workInfo.job_title, workInfo.job_description, workInfo.job_start_date, workInfo.job_end_date, workInfo.company_name, workInfo.id])
     .then((response) => {
-      console.log("response after UPDATE", response.rows[0]); 
       return response.rows[0];
     });
   } else {
@@ -123,21 +116,18 @@ const addUserWorkExperience = (id, workInfo) => {
     RETURNING *;
     `, [id, workInfo.job_title, workInfo.job_description, workInfo.job_start_date, workInfo.job_end_date, workInfo.company_name])
     .then((response) => {
-      console.log("response after insert", response.rows[0]);
       return response.rows[0];
     })
   }
 }
 
 const deleteUserWorkExperience = (id, workInfo) => {
-  console.log("In query", workInfo);
   return client.query(`
   DELETE FROM work_experiences 
   WHERE user_id = $1 AND id = $2
   RETURNING *;
   `, [id, workInfo.id])
   .then((response) => {
-    console.log("response after delete", response.rows[0]);
     return response.rows[0];
   })
 }

@@ -82,8 +82,6 @@ function Alert(props) {
 export default function Github(props) {
   const DESCRIPTION_LIMIT = 225;
   const [count, setCount] = useState(0);
-  // console.log("IN GITHUB", props)
-  // // default state is my github for testing:
   const [username, setUsername] = useState('');
   const [message, setMessage] = useState("");
   const [open, setOpen] = useState(false);
@@ -93,7 +91,6 @@ export default function Github(props) {
   function saveProject(projectInfo) {
     props.updateProject(projectInfo)
     .then(() => {
-      console.log("added successfully"); 
       setMessage("Saved Successfully"); 
       setCount(0);
       setOpen(true);
@@ -103,7 +100,6 @@ export default function Github(props) {
   function deleteProject(projectInfo) {
     props.deleteProject(projectInfo)
     .then(() => {
-      console.log("deleted successfully");
       setMessage("Deleted Sucessfully");
       setOpen(true);
     });
@@ -112,7 +108,6 @@ export default function Github(props) {
   function generateProject(projectData, userID) {
     props.addProject(projectData, userID)
     .then(() => {
-      console.log("generate successfully");
       setCount(0);
       setMessage("Added Successfully");
       setOpen(true);
@@ -129,7 +124,6 @@ export default function Github(props) {
 
   const data = props.projects
   const numOfProjects = data.map(i => {
-    // console.log("IN FOR LOOP:", i)
     const last_updated = i.last_updated.slice(0,10);
     return (
       <Projects 

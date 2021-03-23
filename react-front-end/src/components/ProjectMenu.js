@@ -12,8 +12,6 @@ const useStyles = makeStyles(() => ({
     border: "solid #3f51b5 1px",
     borderRadius: 20,
     marginBottom: 10,
-    // backgroundColor: '#e8e8e8',
-
   },
   projectButton: {
     marginBottom: 10
@@ -38,15 +36,12 @@ export default function ProjectMenu(props) {
 
   const handleClose = (project) => {
         if (anchorEl.id === 'btn1'){
-      // console.log("in 1", project)
       setProject1(project)
     } 
     else if (anchorEl.id === 'btn2'){
-      // console.log("in 2")
       setProject2(project)
     }
     else if (anchorEl.id === 'btn3'){
-      // console.log("in 3")
       setProject3(project)
     }
     setAnchorEl(null);

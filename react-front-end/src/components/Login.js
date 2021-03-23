@@ -33,12 +33,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    // backgroundColor:'red'
   },
   root:{
     height:'100vh',
-    // padding:'3%',
-    // backgroundColor:'yellow'
   },
   avatar: {
     margin: theme.spacing(1),
@@ -51,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
     textDecoration: 'none',
-    // fontSize: '30px'
   },
 }));
 
@@ -185,8 +181,6 @@ export default function SignIn(props) {
           </Snackbar>
 
           <Button
-            // component={Link}
-            // to="/github"
             type="submit"
             fullWidth
             variant="contained"
