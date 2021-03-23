@@ -81,7 +81,7 @@ export default function Keywords(props) {
       <form className={classes.form} noValidate autoComplete="off">
       <TextField
       className={classes.title}
-      variant="filled"
+      variant="outlined"
       value={url}
       onChange={(e) => setUrl(e.target.value)}
       id="standard-basic"

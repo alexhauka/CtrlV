@@ -12,13 +12,41 @@ const useStyles = makeStyles((theme) => ({
   chart: {
     opactiy: 0.2,
     marginTop: "10%",
+    width:'80%',
+    margin:'auto'
   },
   stats: {
-    fontFamily: 'Ubuntu'
+    fontFamily: 'Ubuntu',
+    // marginBottom: 30
   },
   missingSkills: {
     fontFamily: 'Ubuntu',
     color: 'red'
+  },
+  keywords:{
+    border:'1px solid #3f51b5',
+    width:'80%',
+    margin:'auto',
+    marginTop:30,
+    padding:'2.5%',
+    borderRadius:20
+  },
+  matching:{
+    border:'1px solid #3f51b5',
+    // width:'80%',
+    margin:'auto',
+    // marginTop:30,
+    padding:'2.5%',
+    borderRadius:20
+  },
+  missing:{
+    border:'1px solid #ff00009c',
+    // width:'80%',
+    margin:'auto',
+    marginTop:30,
+    marginBottom:20,
+    padding:'2.5%',
+    borderRadius:20
   }
 }));
 
@@ -90,21 +118,29 @@ export default function KeywordResults(props) {
   return (
     <div >
       <br />
-      <Typography className={classes.stats} variant="h3">Your skills have a {matchPercent}% match!</Typography>
+      <Typography className={classes.stats} variant="h4">Your skills have a {matchPercent}% match!</Typography>
       <br />
+      <div className={classes.keywords}>
       <Typography className={classes.stats} variant="h4">Job Keywords:</Typography>
       <br />
       {jobKeywordList}
+      </div>
       <div className={classes.chart}>
         <PieChart className={classes.stats} keywords={keywords}></PieChart>
+      <div className={classes.matching}>
       <Typography className={classes.stats} variant="h4">Your Matching Skills:</Typography>
       <br />
       {skillMatchList}
       <br />
-      <Typography className={classes.stats} variant="h4">Missing Skills:</Typography>
+      </div>
+      {missingSkills.length > 0 &&  
+      <div className={classes.missing}>
+      <Typography className={classes.stats} variant="h5">Missing Skills:</Typography>
       <br />
-      {missingSkills.length > 0 ? displayMissingSkills : null}
+      {displayMissingSkills}
       <br />
+      </div>
+      }
       </div>
     </div>
   )
