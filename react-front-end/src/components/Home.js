@@ -12,10 +12,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover'
   },
   left: {
-    width: "35%"
+    width: "35%",
+    minHeight: '100vh'
   },
   right: {
    width: "63%",
+   minHeight: '100vh',
    boxShadow:'0px 0px 20px 7px #00000059 inset',
    margin:'auto',
   //  marginBottom:15,
