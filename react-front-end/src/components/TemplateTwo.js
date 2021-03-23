@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { makeStyles, TextField, Typography, Container, Divider}
  from '@material-ui/core'
- import { Link } from 'react-router-dom';
+//  import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles(() => ({
@@ -36,11 +36,34 @@ const useStyles = makeStyles(() => ({
   },
   contact_true: {
     display:'flex',
+    flexDirection: 'column',
     lineHeight:'normal',
     textAlign:'right',
-    marginRight: '10px',
+    marginRight: '4%',
     marginTop: '30px',
+    marginBottom: '30px',
     justifyContent:'space-between',
+  },
+  contactLink: {
+    display:'flex',
+    textAlign:'right',
+    marginRight: '10px',
+    marginTop: '15px',
+    justifyContent:'space-between',
+    fontSize: ".1rem",
+    lineHeight:'1'
+    // textDecoration: 'none',
+    // color: 'black',
+    // fontWeight: 'bold'
+  },
+  contactLink_false:{
+    display:'flex',
+    textAlign:'right',
+    marginRight: '10px',
+    marginTop: '15px',
+    justifyContent:'space-between',
+    fontSize: ".1rem",
+    lineHeight:'1'
   },
   contact_false: {
     display:'flex',
@@ -163,13 +186,13 @@ const useStyles = makeStyles(() => ({
     fontSize: ".2rem"
   },
   skillsBody_true:{
-    display: 'list-item',
-    listStylePosition: 'inside',
-    marginLeft: '25px'
+    // display: 'list-item',
+    // listStylePosition: 'inside',
+    // marginLeft: '25px'
   },
   skillsBody_false: {
-    display: 'list-item',
-    listStylePosition: 'inside',
+    // display: 'list-item',
+    // listStylePosition: 'inside',
     marginLeft: '15px',
     fontSize: "5%",
     lineHeight: 0.95
@@ -203,7 +226,7 @@ const useStyles = makeStyles(() => ({
   },
   projectsBody_true:{
     // fontSize: '1rem',
-    width: "70%",
+    width: "90%",
     textAlign:'left',
   },
   projectsBody_false: {
@@ -264,11 +287,11 @@ const useStyles = makeStyles(() => ({
     // padding: 5
   },
   about_true: {
-    width:'95%',
+    width:'97%',
     // margin:'auto',
     marginLeft:10,
     lineHeight:'normal',
-    marginBottom:5
+    paddingBottom: '5px'
   },
   about_false:{
     width:'95%',
@@ -296,7 +319,7 @@ export default function TemplateTwo(props) {
   const { liftAboutMe, liftProfession } = props;
 
   const { basicInfo, projects, skills, work_experience } = props.data
-  // console.log("This is templateONe props", props)
+  // console.log(basicInfo)
   const classes = useStyles();
   const [active, setActive] = React.useState(props.active)
   const [building, setBuilding] = React.useState(props.building)
@@ -327,45 +350,75 @@ export default function TemplateTwo(props) {
 
 
   const hardSkills = skills
-  const languagesList = hardSkills.map(s => {
+
+
+  let langArray = []
+  let frameArray = []
+  let dbTestingArray = []
+
+
+  hardSkills.map(s => {
     if (s.type === 'language') {
-      return(
-       <Typography 
-       className={ active ? classes.skillsBody_true : classes.skillsBody_false}
-       variant="body2" 
-       style={{fontFamily: props.bodyFont}}>
-       {s.name}
-       </Typography>
-      )
+      langArray.push(s.name)
+      // return(
+      //  <Typography>{s.name}</Typography>
+      // )
+    } else if (s.type ==='framework') {
+      frameArray.push(s.name)
+    } else {
+      dbTestingArray.push(s.name)
     }
-    return null;
+
+
+    // return null;
   })
-  const frameworksList = hardSkills.map(s => {
-  if (s.type ==='framework') {
-    return (
-      <Typography
-      className={ active ? classes.skillsBody_true : classes.skillsBody_false} 
-      variant="body2" 
-      style={{fontFamily: props.bodyFont}}>
-      {s.name}
-      </Typography>
-    )
-  }
-  return null;
-})
-  const testingList = hardSkills.map(s => {
-    if (s.type === 'testing' || s.type === 'database'){
-      return ( 
-        <Typography
-        className={ active ? classes.skillsBody_true : classes.skillsBody_false} 
-        variant="body2" 
-        style={{fontFamily: props.bodyFont}}>
-        {s.name}
-        </Typography>
-      )
-    }
-    return null;
-  })
+
+  const languagesList = langArray.join(', ')
+  const frameworksList = frameArray.join(', ')
+  const testingList = dbTestingArray.join(', ')
+
+
+
+
+//   const languagesList = hardSkills.map(s => {
+//     if (s.type === 'language') {
+//       return(
+      //  <Typography 
+      //  className={ active ? classes.skillsBody_true : classes.skillsBody_false}
+      //  variant="body2" 
+      //  style={{fontFamily: props.bodyFont}}>
+      //  {s.name}
+      //  </Typography>
+//       )
+//     }
+//     return null;
+//   })
+//   const frameworksList = hardSkills.map(s => {
+//   if (s.type ==='framework') {
+//     return (
+      // <Typography
+      // className={ active ? classes.skillsBody_true : classes.skillsBody_false} 
+      // variant="body2" 
+      // style={{fontFamily: props.bodyFont}}>
+      // {s.name}
+      // </Typography>
+//     )
+//   }
+//   return null;
+// })
+//   const testingList = hardSkills.map(s => {
+//     if (s.type === 'testing' || s.type === 'database'){
+//       return ( 
+        // <Typography
+        // className={ active ? classes.skillsBody_true : classes.skillsBody_false} 
+        // variant="body2" 
+        // style={{fontFamily: props.bodyFont}}>
+        // {s.name}
+        // </Typography>
+//       )
+//     }
+//     return null;
+//   })
 
   const testProject = projects[0]
   // console.log("This is test", work_experience)
@@ -375,7 +428,7 @@ export default function TemplateTwo(props) {
         <div>
         <a className={ active ? classes.liveURL_true : classes.liveURL_false }
          style={{fontFamily: props.font}} 
-         href={`https://${i.url}`} 
+         href={`${i.url}`} 
          target="__blank">
            {i.title}
         </a>
@@ -474,16 +527,45 @@ export default function TemplateTwo(props) {
           </div>
           <div className={ active? classes.contact_true : classes.contact_false }
             style={{fontFamily: props.bodyFont}}>
-            Address: {basicInfo.userAddress}
-            <br />
-            Email: {basicInfo.userEmail}
-            <br />
-            Github: {basicInfo.userGithub}
-            <br />
-            Phone: {basicInfo.userPhone}
+              {!active &&
+                <div>
+                  <p className={classes.contactLink} style={{fontFamily: props.bodyFont}}>{basicInfo.userEmail}</p>
+                </div>
+              }{active &&
+                <div className={classes.contactLink}>
+                <a  href={`mailto:${basicInfo.userEmail}`} target="__blank">
+                  {basicInfo.userEmail}
+                </a>
+              </div>
+              }
+              {/* <div className={ active? classes.contactLink : classes.contactLink_false }>
+                <a  href={`mailto:${basicInfo.userEmail}`} target="__blank">
+                  {basicInfo.userEmail}
+                </a>
+                <br />
+              </div> */}
+              {!active &&
+                <div className={classes.contactLink}>
+                  <Typography  style={{fontFamily: props.bodyFont}}>{basicInfo.github}</Typography>
+                </div>
+              }
+              {active &&
+                <div className={classes.contactLink}>
+                  <a href={`${basicInfo.github}`} target="__blank">
+                    Github
+                  </a>
+                </div>
+              }
+              <div>
+                {basicInfo.userAddress}
+                <br />
+              </div>
+              <div>
+                {basicInfo.userPhone}
+              </div>
           </div>
         </div>
-        {/* <br /> */}
+        <br />
         <div className={ active? classes.about_true : classes.about_false }>
           {building &&
         <TextField
@@ -546,7 +628,13 @@ export default function TemplateTwo(props) {
               >
                 Languages
               </Typography>
+              <Typography 
+              className={ active ? classes.skillsBody_true : classes.skillsBody_false}
+              variant="body2" 
+              style={{fontFamily: props.bodyFont}}>
               {languagesList}
+              </Typography>
+              
             </div>
             <div className={ active? classes.skillSet : classes.skillSet_false }>
               <Typography
@@ -556,7 +644,13 @@ export default function TemplateTwo(props) {
               >
                 Testing & Databases
               </Typography>
+              <Typography
+              className={ active ? classes.skillsBody_true : classes.skillsBody_false} 
+              variant="body2" 
+              style={{fontFamily: props.bodyFont}}>
               {testingList}
+              </Typography>
+              
             </div>
             <div className={ active? classes.skillSet : classes.skillSet_false }>
               <Typography
@@ -566,7 +660,13 @@ export default function TemplateTwo(props) {
               >
                 Frameworks
               </Typography>
+              <Typography
+              className={ active ? classes.skillsBody_true : classes.skillsBody_false} 
+              variant="body2" 
+              style={{fontFamily: props.bodyFont}}>
               {frameworksList}
+              </Typography>
+              
             </div>
           </div>
         </section>

@@ -1,5 +1,6 @@
 const express = require('express');
 const router  = express.Router();
+const bcrypt = require('bcryptjs');
 
 
 const { getUserByEmail } = require('../lib/user-queries');
@@ -8,9 +9,8 @@ const { getUserByEmail } = require('../lib/user-queries');
 router.post('/', (req, res) => {
   const { email, password } = req.body.userInfo;
   getUserByEmail(email)
-  .then((user) => {
-    console.log(user);
-    if (user.password === password) {
+  .then((user) => {    
+    if (bcrypt.compareSync(password, user.password)) {
         req.session.user_id = user.id
         res.send({
           id: user.id,
