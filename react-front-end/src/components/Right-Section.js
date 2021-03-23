@@ -64,7 +64,9 @@ const useStyles = makeStyles(() => ({
     marginBottom: 10,
     position: "relative"
   },
-
+  skillChunk: {
+    width: '30%'
+  },
   skillSet: {
     maxWidth: "40%",
     maxHeight: 300,
@@ -150,32 +152,47 @@ export default function RightSection(props) {
 
   const hardSkills = userHardSkills
   
+  let langArray = []
+  let frameArray = []
+  let dbTestingArray = []
 
-  const languagesList = hardSkills.map(s => {
+
+  hardSkills.map(s => {
     if (s.type === 'language') {
-      return(
-       <Typography>{s.name}</Typography>
-      )
+      langArray.push(s.name)
+      // return(
+      //  <Typography>{s.name}</Typography>
+      // )
+    } else if (s.type ==='framework') {
+      frameArray.push(s.name)
+    } else {
+      dbTestingArray.push(s.name)
     }
-    return null;
+
+
+    // return null;
   })
 
-  const frameworksList = hardSkills.map(s => {
-  if (s.type ==='framework') {
-    return (
-      <Typography>{s.name}</Typography>
-    )
-  }
-  return null;
-})
- const testingList = hardSkills.map(s => {
-    if (s.type === 'testing' || s.type === 'database'){
-      return ( 
-        <Typography>{s.name}</Typography>
-      )
-    }
-    return null;
-  })
+  const languagesList = langArray.join(', ')
+  const frameworksList = frameArray.join(', ')
+  const testingList = dbTestingArray.join(', ')
+
+//   const frameworksList = hardSkills.map(s => {
+//   if (s.type ==='framework') {
+//     return (
+//       <Typography>{s.name}</Typography>
+//     )
+//   }
+//   return null;
+// })
+//  const testingList = hardSkills.map(s => {
+//     if (s.type === 'testing' || s.type === 'database'){
+//       return ( 
+//         <Typography>{s.name}</Typography>
+//       )
+//     }
+//     return null;
+//   })
 
 
   return (
@@ -212,15 +229,15 @@ export default function RightSection(props) {
           justify="space-evenly"
           direction="row"
         >
-          <div >
+          <div className={classes.skillChunk}>
           <Typography className={classes.skillRow} variant="h5">Languages</Typography>
            {languagesList} 
           </div>
-          <div>
+          <div className={classes.skillChunk}>
           <Typography className={classes.skillRow} variant="h5">Testing and Databases</Typography>
            {testingList} 
           </div>
-          <div>
+          <div className={classes.skillChunk}>
           <Typography className={classes.skillRow} variant="h5">Frameworks</Typography>
            {frameworksList} 
           </div>
