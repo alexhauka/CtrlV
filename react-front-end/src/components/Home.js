@@ -27,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
 
  
 export default function Home(props) {
-  console.log("inHome", props)
   const classes = useStyles(); 
   return (
     <div className={classes.root}>

@@ -84,7 +84,7 @@ export default function GetGithub(props){
   
       // filters by stars
       if (stargazers_count > 0) {
-        // console.log(macroResults.items[project])
+        
         // fetch the languages for a given repo
         const languages = await fetch(`https://api.github.com/repos/${username}/${name}/languages`)
         
@@ -99,14 +99,8 @@ export default function GetGithub(props){
         const firstLang = Object.keys(languageResults)[0]
         const secondLang = Object.keys(languageResults)[1]
 
-        
-        // to generate language percentages:
-        // console.log(languageResults[firstLang], languageResults[secondLang])
   
         // for entry into database:
-  
-        // STILL NEED TO HOOK UP USER_ID DYNAMICALLY,
-        // CURRENTLY HARD SET TO '2' IN QUERY
         projectData = {
           title: name,
           url: `https://github.com/${username}/${name}`,
@@ -117,11 +111,8 @@ export default function GetGithub(props){
           description,
           last_updated: updated_at
         }
-        // console.log(projectData)
-  
-        // UNCOMMENT TO ALLOW DATABASE ENTRY OF PROJECTS:
+        
         props.addProject(projectData, props.user.id)
-        // axios.post('/api/projects', { projectData, id: props.user.id })
         
       }
       

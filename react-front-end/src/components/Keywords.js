@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import KeywordResults from './KeywordResults';
 import { Button, TextField} from '@material-ui/core';
@@ -43,15 +43,9 @@ export default function Keywords(props) {
     const response = await axios.post('/api/scraper', {
       url: url
     })
-    console.log(response.data);
     return response.data;
   }
  
-  // useEffect(() => {
-
-    
-
-  // }, [])
   
   const onClick = async () => {
     console.log('clicked submit url')
@@ -62,7 +56,6 @@ export default function Keywords(props) {
       .split(' ');
     const results = keywordFilter(dataForFilter)
     console.log("filter results", results)
-    // console.log(results)
     setFilterResults({
       ...results
     })

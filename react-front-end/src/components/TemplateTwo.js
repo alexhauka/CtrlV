@@ -45,16 +45,9 @@ const useStyles = makeStyles(() => ({
     justifyContent:'space-between',
   },
   contactLink: {
-    display:'flex',
-    textAlign:'right',
-    marginRight: '10px',
-    marginTop: '15px',
-    justifyContent:'space-between',
-    fontSize: ".1rem",
-    lineHeight:'1'
-    // textDecoration: 'none',
-    // color: 'black',
-    // fontWeight: 'bold'
+    textDecoration: 'none',
+    color: 'black',
+    fontWeight: 'bold'
   },
   contactLink_false:{
     display:'flex',
@@ -527,35 +520,18 @@ export default function TemplateTwo(props) {
           </div>
           <div className={ active? classes.contact_true : classes.contact_false }
             style={{fontFamily: props.bodyFont}}>
-              {!active &&
-                <div>
-                  <p className={classes.contactLink} style={{fontFamily: props.bodyFont}}>{basicInfo.userEmail}</p>
-                </div>
-              }{active &&
-                <div className={classes.contactLink}>
-                <a  href={`mailto:${basicInfo.userEmail}`} target="__blank">
-                  {basicInfo.userEmail}
-                </a>
-              </div>
-              }
-              {/* <div className={ active? classes.contactLink : classes.contactLink_false }>
+              <div className={ active? classes.contactLink : classes.contactLink_false }>
                 <a  href={`mailto:${basicInfo.userEmail}`} target="__blank">
                   {basicInfo.userEmail}
                 </a>
                 <br />
-              </div> */}
-              {!active &&
-                <div className={classes.contactLink}>
-                  <Typography  style={{fontFamily: props.bodyFont}}>{basicInfo.github}</Typography>
-                </div>
-              }
-              {active &&
-                <div className={classes.contactLink}>
-                  <a href={`${basicInfo.github}`} target="__blank">
-                    Github
-                  </a>
-                </div>
-              }
+              </div>
+              <div className={ active? classes.contactLink : classes.contactLink_false }>
+                <a  href={`${basicInfo.userGithub}`} target="__blank">
+                  Github
+                </a>
+                <br />
+              </div>
               <div>
                 {basicInfo.userAddress}
                 <br />
@@ -565,7 +541,7 @@ export default function TemplateTwo(props) {
               </div>
           </div>
         </div>
-        <br />
+        {/* <br /> */}
         <div className={ active? classes.about_true : classes.about_false }>
           {building &&
         <TextField

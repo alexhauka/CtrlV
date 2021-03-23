@@ -33,7 +33,6 @@ export default function KeywordResults(props) {
   Object.keys(userHardSkills).map(skillObj => {
     userSkillArray.push(userHardSkills[skillObj].name)
   })
-  console.log("user skill array: ", userSkillArray)
 
   let jobPostSkillArray = [];
 
@@ -41,7 +40,6 @@ export default function KeywordResults(props) {
   Object.keys(keywords).map(keyword => {
     jobPostSkillArray.push([keyword][0])
   })
-  console.log("job post skills wanted: ", jobPostSkillArray)
 
   let missingSkills = [];
   let presentSkills = [];
@@ -61,10 +59,6 @@ export default function KeywordResults(props) {
       {skill}
     </Typography>
   ))
-
-
-  // console.log("missing skills array: ", missingSkills)
-  // console.log("present skills array: ", presentSkills)
 
   // algorithm for calculating skill match percentage:
   const matchPercent = Math.round(100 - ((missingSkills.length / jobPostSkillArray.length) * 100))

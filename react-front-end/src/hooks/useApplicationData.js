@@ -60,11 +60,8 @@ export function useApplicationData() {
   }, [user_id])
     
   function registerUser(registerInfo) {
-    console.log("here")
-    console.log(registerInfo);
     return axios.put(`/api/users`, { registerInfo })
     .then((response) => {
-      console.log("registered successfully"); 
       dispatch({
         type: SET_USER,
         user: response.data,
@@ -83,7 +80,6 @@ export function useApplicationData() {
       })
     })
     .catch((error) => {
-      console.log("application data", error);
       dispatch({
         type: SET_USER,
         isLoggingIn: true,
@@ -96,7 +92,6 @@ export function useApplicationData() {
   function checkUser() {
     return axios.get('/api/authcheck')
     .then((response) => {
-      console.log("confirmed user");
       dispatch({
         type: SET_USER,
         user: response.data,
@@ -104,7 +99,6 @@ export function useApplicationData() {
       })
     })
     .catch((error) => {
-      console.log("cookies deleted");
       dispatch({
         type: SET_USER,
         isLoggingIn: false,
@@ -131,10 +125,8 @@ export function useApplicationData() {
   }
 
   function updateUser(userInfo) {
-    // console.log("update user here", userInfo);
     return axios.put(`/api/users/${user_id}`, {userInfo})
     .then(() => {
-      // console.log('updated successful');
       dispatch({
         type: SET_UPDATED_USER,
         userInfo
@@ -155,7 +147,6 @@ export function useApplicationData() {
   function addGithubProjects(project, id) {
     return axios.post(`/api/projects`, { project, id })
     .then((response) => {
-      console.log("response", response.data)
       dispatch({
         type: SET_PROJECTS,
         projectInfo: response.data
@@ -166,7 +157,6 @@ export function useApplicationData() {
   function updateProject(projectInfo){
     return axios.post(`/api/users/${user_id}/projects`, {projectInfo})
     .then((response) => {
-      console.log("response", response.data)
       if (projectInfo.id) {
         dispatch ({
           type: SET_UPDATED_PROJECT,
@@ -183,13 +173,11 @@ export function useApplicationData() {
   }
 
   function deleteProject(projectInfo) {
-    console.log("useApplicationData", projectInfo); 
     return axios.delete(`/api/users/${user_id}/projects`, 
     { data: {
       projectInfo
     }})
     .then((response) => {
-      console.log("response", response.data)
       dispatch({
         type: DELETE_PROJECT,
         projectInfo: response.data
@@ -198,10 +186,8 @@ export function useApplicationData() {
   }
 
   function updateWork(workInfo) {
-    console.log("In UAD:", workInfo)
     return axios.post(`/api/users/${user_id}/work_experience`, { workInfo })
     .then((response) => {
-      // console.log('response', response.data)
       if (workInfo.id) {
         dispatch({
           type: SET_UPDATED_WORK,
@@ -218,7 +204,6 @@ export function useApplicationData() {
   }
 
   function deleteWork(workInfo) {
-    console.log("useApplicationData", workInfo);
     return axios.delete(`/api/users/${user_id}/work_experience`, 
     { data: {
       workInfo
@@ -234,7 +219,6 @@ export function useApplicationData() {
   function addUserHardSkill(skill) {
     return axios.put(`/api/users/${user_id}/hard_skills`, { skill })
     .then(() => {
-      console.log("add successful"); 
       dispatch({
         type: SET_SKILL, 
         skill 
@@ -249,7 +233,6 @@ export function useApplicationData() {
       skill
     }})
     .then(() => {
-      console.log("delete successful");
       dispatch({
         type: DELETE_SKILL,
         skill 
@@ -260,7 +243,6 @@ export function useApplicationData() {
   function addResume(resumeObject) {
     return axios.post(`/api/resumes`, { resumeObject })
     .then((response) => {
-      console.log("add successful"); 
       dispatch({
         type: SET_RESUME,
         resume: response.data
@@ -274,7 +256,6 @@ export function useApplicationData() {
       resumeObject
     }})
     .then((response) => {
-      console.log("delete successful");
       dispatch({
         type: DELETE_RESUME,
         resume: response.data

@@ -23,13 +23,6 @@ const useStyles = makeStyles(() => ({
     width: "80%",
     marginTop: "5em",
     margin: "auto"
-  },
-
-  FontButtons: {
-    // display: 'flex',
-    // '& > *': {
-    //   margin: theme.spacing(1),
-    // },
   }
 }))
 

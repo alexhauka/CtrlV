@@ -33,7 +33,6 @@ function ListItemLink(props) {
                             color: 'black',
                             lineHeight: 1.43,
                           }} to={props.href}>{props.children}</Link>} {...props} />;
-  // return <ListItem button component="a" to={props.href} {...props}/>;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -46,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
     height: '7.5em',
     justifyContent: 'center',
     background: 'linear-gradient(45deg, #3f51b5 30%, #FF8E53 90%)',
-    // boxShadow: 'none',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -79,66 +77,12 @@ const useStyles = makeStyles((theme) => ({
     display:'flex',
     direction: 'column'
   }
-  // hide: {
-  //   display: 'none',
-  //   // transform: 'scale(1.8)'
-  // },
-  // drawer: {
-  //   width: drawerWidth,
-  //   flexShrink: 0,
-  // },
-  // drawerPaper: {
-  //   width: drawerWidth,
-  // },
-  // drawerHeader: {
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   padding: theme.spacing(0, 1),
-  //   // necessary for content to be below app bar
-  //   ...theme.mixins.toolbar,
-  //   justifyContent: 'flex-start',
-  // },
-  // content: {
-  //   flexGrow: 1,
-  //   // padding: theme.spacing(3),
-  //   transition: theme.transitions.create('margin', {
-  //     easing: theme.transitions.easing.sharp,
-  //     duration: theme.transitions.duration.leavingScreen,
-  //   }),
-  //   marginRight: -drawerWidth,
-  // },
-  // contentShift: {
-  //   transition: theme.transitions.create('margin', {
-  //     easing: theme.transitions.easing.easeOut,
-  //     duration: theme.transitions.duration.enteringScreen,
-  //   }),
-  //   marginRight: 0,
-  // }, 
-  // sideTitle: {
-  //   textAlign: "center",
-  //   textDecoration: "underline"
-  // },
-  // sideListItem: {
-  //   display: 'flex',
-  //   // height: '40px',
-  // },
-  // sideListText: {
-  //   marginLeft: "5px"
-  // }
 }));
 
 export default function Sidebar(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
-  // const handleDrawerOpen = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleDrawerClose = () => {
-  //   setOpen(false);
-  // };
 
   return (
     <div className={classes.root}>
@@ -202,78 +146,9 @@ export default function Sidebar(props) {
           }
           </Grid>
           </div>
-        
-          {/* <div>
-          {props.user && 
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="end"
-            // fontSize='large'
-            // onClick={handleDrawerOpen}
-            // className={clsx(open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>}
-          </div> */}
           </Grid>
         </Toolbar>
       </AppBar>
-      {/* <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      > */}
-        {/* <div className={classes.drawerHeader} />
-      </main> */}
-      {/* <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="right"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-        <Typography className={classes.sideTitle}>My Profile</Typography>
-        <List>
-          <ListItemLink className={classes.sideListItem} href="/skills">
-            <ListItemIcon style={{paddingLeft: '5px'}}><InboxIcon/></ListItemIcon>
-            <ListItemText className={classes.sideListText} primary="My Skills" />
-          </ListItemLink>
-          <ListItemLink href="/work">
-            <ListItemIcon style={{paddingLeft: '5px'}}><InboxIcon/></ListItemIcon>
-            <ListItemText className={classes.sideListText} primary="Work Experience" />
-          </ListItemLink>
-          <ListItemLink href="/github">
-            <ListItemIcon style={{paddingLeft: '5px'}}><InboxIcon/></ListItemIcon>
-            <ListItemText className={classes.sideListText} primary="Github" />
-          </ListItemLink>
-          <ListItemLink href="/basicInfo">
-            <ListItemIcon style={{paddingLeft: '5px'}}><InboxIcon/></ListItemIcon>
-            <ListItemText className={classes.sideListText} primary="Basic Info" />
-          </ListItemLink>
-        </List>
-        <Divider />
-        <ListItemLink href="/myresumes">
-            <ListItemIcon style={{paddingLeft: '5px'}}><InboxIcon/></ListItemIcon>
-            <ListItemText className={classes.sideListText} primary="My Resumes" />
-          </ListItemLink>
-        <List>
-          {['Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer> */}
     </div>
   );
 }

@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
     res.json(project)
   })
   .catch(e => {
-    console.error(e); 
     res.send(e);
   });
 }); 
@@ -19,11 +18,9 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   addProject(req.body.project, req.body.id)
   .then((project) => {
-    console.log("data", project);
     res.send(project)
   })
   .catch(e => {
-    console.error(e); 
     res.send(e);
   });
 }); 

@@ -25,8 +25,7 @@ function scraper(indeedJobURL) {
   
       //select the specific DOM elements of Indeed's job postings
       const scrapedata = $('.jobsearch-jobDescriptionText').text()
-      // console.log("Scrapedata", scrapedata)
-  
+        
       const dataForFilter = scrapedata.replace(/[(/:!?),]/g, ' ').toLowerCase().split(' ')
   
   

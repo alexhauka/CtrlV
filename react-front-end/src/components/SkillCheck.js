@@ -124,21 +124,16 @@ export default function SkillCheck(props) {
   }
 
   function addSkill(id, name, type) {
-    console.log({id: Number(id), name: name, type: type});
-    console.log("length of skill state", markedUserSkills)
     props.addUserHardSkill({ id: Number(id), name: name, type: type })
     .then(() => {
-      console.log("added message"); 
       setMessage("Added Successfully!");
       setOpen(true); 
     }); 
   }
 
   function removeSkill(id, name, type) {
-    console.log({id: Number(id), name: name, type: type});
     props.removeUserHardSkill({ id: Number(id), name: name, type: type })
     .then(() => {
-      console.log("deleted message");
       setMessage("Deleted Successfully!");
       setOpen(true);
     });

@@ -8,7 +8,6 @@ const addProject = (project, id) => {
     RETURNING *;
   `, [id, project.title, project.url, project.primary_language, project.primary_language_percent, project.secondary_language, project.secondary_language_percent, project.description, project.last_updated])
   .then((response) => {
-    console.log("query response after insert", response.rows[0]);
     return response.rows[0];
   })
 }
