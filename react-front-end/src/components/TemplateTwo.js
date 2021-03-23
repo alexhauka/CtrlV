@@ -449,8 +449,8 @@ export default function TemplateTwo(props) {
   const myJobs = work_experience.map(i => {
     const startYear = i.job_start_date.slice(0,4)
     const startMonth = i.job_start_date.slice(5,7)
-    const endYear = i.job_start_date.slice(0,4)
-    const endMonth = i.job_start_date.slice(5,7)  
+    const endYear = i.job_end_date.slice(0,4)
+    const endMonth = i.job_end_date.slice(5,7)  
     
     return (
       <div className={ active? classes.job : classes.job_false } >
