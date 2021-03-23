@@ -291,7 +291,7 @@ const useStyles = makeStyles(() => ({
   about_false:{
     width:'95%',
     textAlign:'left',
-    marginLeft:5,
+    marginLeft: 7,
     lineHeight:'.9',
     fontSize: ".2rem",
   },
