@@ -13,6 +13,8 @@
     "bcryptjs": "^2.4.3",
     "cheerio": "^1.0.0-rc.5",
     "clsx": "^1.1.1",
+    "devextreme": "20.2.6",
+    "devextreme-react": "20.2.6",
     "material-ui-color": "^0.4.11",
     "nlcst-to-string": "^2.0.4",
     "react": "^16.8.6",

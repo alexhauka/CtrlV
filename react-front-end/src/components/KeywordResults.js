@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   stats: {
     fontFamily: 'Ubuntu',
-    // marginBottom: 30
+    // marginBottom: '30px'
   },
   missingSkills: {
     fontFamily: 'Ubuntu',
