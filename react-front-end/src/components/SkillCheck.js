@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "white",
     paddingTop: "5em",
-    minheight:'100vh'
+    minHeight:'100vh'
     // height: "100vh"
     // justify: 'space-around'
   },
