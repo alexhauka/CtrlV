@@ -169,7 +169,6 @@ export default function ResumeLink(props) {
       else if (resume.template_id === 2) {
         return(
         <div>
-        <h1>My Resume</h1>
         <div className={classes.resume}>    
           <TemplateTwo 
            building={false}

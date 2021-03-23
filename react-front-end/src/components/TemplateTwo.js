@@ -51,15 +51,17 @@ const useStyles = makeStyles(() => ({
   },
   contactLink_false:{
     display:'flex',
-    textAlign:'right',
-    marginRight: '10px',
-    marginTop: '15px',
+    textDecoration: 'none',
+    color: 'black',
+    fontWeight: 'bold',
     justifyContent:'space-between',
+    alignSelf: 'flex-end',
     fontSize: ".1rem",
     lineHeight:'1'
   },
   contact_false: {
     display:'flex',
+    flexDirection: 'column',
     textAlign:'right',
     marginRight: '10px',
     marginTop: '15px',
@@ -284,7 +286,7 @@ const useStyles = makeStyles(() => ({
     // margin:'auto',
     marginLeft:10,
     lineHeight:'normal',
-    paddingBottom: '5px'
+    paddingBottom: '10px'
   },
   about_false:{
     width:'95%',
@@ -521,13 +523,13 @@ export default function TemplateTwo(props) {
           <div className={ active? classes.contact_true : classes.contact_false }
             style={{fontFamily: props.bodyFont}}>
               <div className={ active? classes.contactLink : classes.contactLink_false }>
-                <a  href={`mailto:${basicInfo.userEmail}`} target="__blank">
+                <a  href={`mailto:${basicInfo.userEmail}`} target="__blank" style={{textDecoration: 'none', color: 'black',}}>
                   {basicInfo.userEmail}
                 </a>
                 <br />
               </div>
               <div className={ active? classes.contactLink : classes.contactLink_false }>
-                <a  href={`${basicInfo.userGithub}`} target="__blank">
+                <a  href={`${basicInfo.userGithub}`} target="__blank" style={{textDecoration: 'none', color: 'black',}}>
                   Github
                 </a>
                 <br />

@@ -184,7 +184,7 @@ export default function NavBar(props) {
             component={() => <Link className={active ==='github'? classes.activeNav :classes.navItem} name='github' onClick={(event)=> {
               setActive(event.target.name);
               name();
-            }} to='/github'>Gitub</Link>}
+            }} to='/github'>Github</Link>}
           />
           <Typography
             component={() => <Link className={active ==='info'? classes.activeNav :classes.navItem} name='info' onClick={(event)=> {

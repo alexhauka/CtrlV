@@ -59,8 +59,9 @@ export default function MyResumes(props) {
   const basicInfo = {
     userName: `${user.first_name} ${user.last_name}`,
     userEmail: user.email,
-    github: user.github,
-    userPhone: user.phone_number
+    userGithub: user.github,
+    userPhone: user.phone_number,
+    userAddress: user.address
   }
 
   // console.log(basicInfo);
