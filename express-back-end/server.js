@@ -39,7 +39,6 @@ App.use('/api/resumes', resumesRoutes)
 
 // checks the user 
 App.use('/api/authcheck',(req, res) => {
-  console.log("req.session.user_id", req.session.user_id);
   if (req.session.user_id) {
     getUserByID(req.session.user_id)
     .then((user) => {

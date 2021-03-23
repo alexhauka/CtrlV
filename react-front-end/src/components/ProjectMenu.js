@@ -35,13 +35,13 @@ export default function ProjectMenu(props) {
   };
 
   const handleClose = (project) => {
-        if (anchorEl.id === 'btn1'){
+    if (project.id && anchorEl.id === 'btn1'){
       setProject1(project)
     } 
-    else if (anchorEl.id === 'btn2'){
+    else if (project.id && anchorEl.id === 'btn2'){
       setProject2(project)
     }
-    else if (anchorEl.id === 'btn3'){
+    else if (project.id && anchorEl.id === 'btn3'){
       setProject3(project)
     }
     setAnchorEl(null);
