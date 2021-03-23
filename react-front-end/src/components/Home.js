@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   right: {
    width: "63%",
-   boxShadow:'13px 10px 20px 0px #00000059 inset',
+   boxShadow:'0px 0px 20px 7px #00000059 inset',
    margin:'auto',
   //  marginBottom:15,
   //  marginRight: 10,
