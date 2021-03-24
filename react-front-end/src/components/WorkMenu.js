@@ -35,15 +35,15 @@ export default function WorkMenu(props) {
   };
 
   const handleClose = (work) => {
-    if (anchorEl.id === 'btn1'){
+    if (work.id && anchorEl.id === 'btn1'){
       setwork1(work)
     } 
-    else if (anchorEl.id === 'btn2'){
+    else if (work.id && anchorEl.id === 'btn2'){
       setwork2(work)
     }
-    else if (anchorEl.id === 'btn3'){
+    else if (work.id && anchorEl.id === 'btn3'){
       setwork3(work)
-    }
+    } 
     setAnchorEl(null);
   };
 
