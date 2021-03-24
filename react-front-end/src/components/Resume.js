@@ -9,7 +9,7 @@ import { ColorPicker } from 'material-ui-color';
 import LeftResume from './LeftResume';
 import TemplateOne from './TemplateOne';
 import TemplateTwo from './TemplateTwo';
-
+import TemplateThree from './TemplateThree'; 
 //*******  FONT STYLES  *******
 // font-family: 'Fascinate', cursive;
 // font-family: 'Redressed', cursive;
@@ -158,7 +158,7 @@ export default function Resume(props) {
   console.log('this is resume data',data)
   const { basicInfo, projects, skills, work_experience } = data
 
-  const [template, setTemplate] = useState(1)
+  const [template, setTemplate] = useState(3)
 
 
 
@@ -259,7 +259,7 @@ const resume = {
               >
                 <Button variant={selectTemplate === 1 ? "contained" : "outlined"} onClick={() => handleTemplateChange(1)} >Organized</Button>
                 <Button variant={selectTemplate === 2 ? "contained" : "outlined"} onClick={() => handleTemplateChange(2)}>Understated</Button>
-                <Button variant={selectTemplate === 3 ? "contained" : "outlined"} onClick={() => handleTemplateChange(3)} >UNDER CONSTRUCTION</Button>
+                <Button variant={selectTemplate === 3 ? "contained" : "outlined"} onClick={() => handleTemplateChange(3)} >Standout</Button>
               </ButtonGroup>
             </div>
             <div className={classes.sections}>
@@ -676,7 +676,9 @@ const resume = {
             <TemplateOne building={true} active={true} profession={profession} aboutMe={aboutMe} data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} liftAboutMe={liftAboutMe} liftProfession={liftProfession}/>
           }{template === 2 &&
             <TemplateTwo building={true} active={true} profession={profession} aboutMe={aboutMe} data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} liftAboutMe={liftAboutMe} liftProfession={liftProfession}/>
-          } 
+          }{ template === 3 && 
+            <TemplateThree building={true} active={true} profession={profession} aboutMe={aboutMe} data={data} font={font} color={color} borderColor={borderColor} bodyFont={bodyFont} liftAboutMe={liftAboutMe} liftProfession={liftProfession}/>
+          }
           </div>
           <Button fullWidth className={classes.button} onClick={saveResume}>Save and Confirm</Button>
         </div>

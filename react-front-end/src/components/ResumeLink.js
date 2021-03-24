@@ -5,6 +5,7 @@ import { CssBaseline } from '@material-ui/core';
 import axios from 'axios';
 import TemplateOne from './TemplateOne';
 import TemplateTwo from './TemplateTwo';
+import TemplateThree from './TemplateThree';
 import { Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -183,6 +184,22 @@ export default function ResumeLink(props) {
       </div>
       </div>
       )}
+      else if (resume.template_id === 3){
+        return(
+          <div>
+          <div className={classes.resume}>    
+            <TemplateThree 
+             building={false}
+             active={true}
+             data={data}
+             font={resume.head_font}
+             color={resume.background_color}
+             borderColor={resume.border_color}
+             bodyFont={resume.body_font}
+             />
+        </div>
+        </div>
+        )}
     }
     const renderResume = myResume()
     return (
