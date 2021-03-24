@@ -73,8 +73,9 @@ const useStyles = makeStyles(() => ({
   FontRows: {
     display:'flex',
     margin:'5px',
+    marginLeft: '5%',
     justifyItems:'space-between',
-    width: '100%',
+    width: '85%',
   },
   Font: {
     width: "33.3%",
@@ -103,6 +104,7 @@ const useStyles = makeStyles(() => ({
   HeadingFont : {
     fontFamily: 'Ubuntu',
     paddingBottom: 10,
+    marginLeft: '10px',
     textAlign:'left'
   },
   BodyFont : {

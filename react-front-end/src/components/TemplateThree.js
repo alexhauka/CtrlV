@@ -178,12 +178,14 @@ const useStyles = makeStyles(() => ({
   //   borderRadius: 20,
   //   padding: 5
   // },
-  // profession_true: {
-  //   fontSize: '2em',
-  //   width: "70%",
-  //   textAlign: 'center'
-    // marginLeft: '10px'
-  // },
+  profession_true: {
+    display: 'flex',
+    alignItems: 'center',
+    fontSize: '2em',
+    width: "-webkit-fill-available",
+    textAlign: 'center',
+    marginLeft: '65px'
+  },
   // profession_false: {
   //   fontSize: ".4rem",
   //   width: "-webkit-fill-available",
