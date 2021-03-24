@@ -181,7 +181,8 @@ const useStyles = makeStyles(() => ({
   // profession_true: {
   //   fontSize: '2em',
   //   width: "70%",
-  //   // marginLeft: '10px'
+  //   textAlign: 'center'
+    // marginLeft: '10px'
   // },
   // profession_false: {
   //   fontSize: ".4rem",
@@ -214,14 +215,14 @@ const useStyles = makeStyles(() => ({
     lineHeight: .4,
   },
   topThird:{
-    minHeight:'25vh',
+    minHeight:'25%',
   },
   topThird_false:{
 
   },
   topInfo:{
-    paddingTop:'1vh',
-    minHeight:'3vh',
+    paddingTop:'1%',
+    minHeight:'3%',
     display:'flex',
     justifyContent:'space-around',
     margin:5
@@ -239,7 +240,7 @@ const useStyles = makeStyles(() => ({
   },
 
   title:{
-    minHeight:'10vh',
+    minHeight:'10%',
     paddingTop:"2%",
     textAlign:'center'
   },
@@ -268,7 +269,7 @@ const useStyles = makeStyles(() => ({
   midThird:{
     display:'flex',
     flexDirection:'column',
-    minHeight:'15vh',
+    minHeight:'15%',
     filter: 'hue-rotate(180deg)',
     border:'1px solid',
   },
@@ -307,7 +308,7 @@ const useStyles = makeStyles(() => ({
     textAlign:'left'
   },
   work:{
-    minHeight:'20vh',
+    minHeight:'20%',
     minWidth:'60%',
     textAlign:'left',
     border: '1px solid black',

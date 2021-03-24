@@ -257,9 +257,9 @@ const resume = {
                 aria-label="vertical contained primary button group"
                 // variant="contained"
               >
-                <Button variant={selectTemplate === 1 ? "contained" : "outlined"} onClick={() => handleTemplateChange(1)} >Organized</Button>
-                <Button variant={selectTemplate === 2 ? "contained" : "outlined"} onClick={() => handleTemplateChange(2)}>Understated</Button>
-                <Button variant={selectTemplate === 3 ? "contained" : "outlined"} onClick={() => handleTemplateChange(3)} >Standout</Button>
+                <Button className={classes.font} variant={selectTemplate === 1 ? "contained" : "outlined"} onClick={() => handleTemplateChange(1)} >Organized</Button>
+                <Button className={classes.font} variant={selectTemplate === 2 ? "contained" : "outlined"} onClick={() => handleTemplateChange(2)}>Understated</Button>
+                <Button className={classes.font} variant={selectTemplate === 3 ? "contained" : "outlined"} onClick={() => handleTemplateChange(3)} >Standout</Button>
               </ButtonGroup>
             </div>
             <div className={classes.sections}>
