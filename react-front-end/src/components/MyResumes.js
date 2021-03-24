@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button, Snackbar } from '@material-ui/core';
 import TemplateOne from './TemplateOne';
 import TemplateTwo from './TemplateTwo';
+import TemplateThree from './TemplateThree';
 import MuiAlert from '@material-ui/lab/Alert';
 const useStyles = makeStyles((theme) => ({
   root: { 
@@ -156,6 +157,22 @@ export default function MyResumes(props) {
           <Button  className={classes.button} onClick={() => onDelete(i)}>Delete</Button>
           </div> 
         </div>
+      )
+    } else if (i.template_id === 3){
+      return (
+        <div name='showcase' className={classes.resume} key={i.id}>
+        <TemplateThree building={false} active={false} data={data} font={i.head_font} color={i.background_color} borderColor={i.border_color} bodyFont={i.body_font} />
+        <div className={classes.buttons}>
+        <div className={classes.button}>
+           <Button className={classes.submit} 
+           component={Link}
+           to={{
+             pathname: `/resumes/${i.id}`
+           }}>Show</Button>
+        </div>
+        <Button  className={classes.button} onClick={() => onDelete(i)}>Delete</Button>
+        </div> 
+      </div>
       )
     }
   })
