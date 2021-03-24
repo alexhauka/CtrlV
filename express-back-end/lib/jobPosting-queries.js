@@ -1,6 +1,5 @@
 const { response } = require('express')
 const client = require('../elephantsql')
-// const {scraper} = require('../scrapers/scraper')
 
 const addJobPosting = (url, description) => {
 

@@ -2,9 +2,6 @@ const pg = require('pg');
 
 const dotenv = require('dotenv');
 dotenv.config();
-//or native libpq bindings
-//var pg = require('pg').native
-
 
 //Can be found in the Details page
 const conString = process.env.DB_URL;

@@ -15,7 +15,6 @@ router.post('/', async (req, res) => {
 
   await scraper(`${urlString}`)
   .then((jobDesc) => {
-    // database insertion turned off for testing, uncomment to re-enable
   // addJobPosting(urlString, jobDesc)
   res.send(jobDesc)
   })

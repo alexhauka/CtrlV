@@ -213,19 +213,6 @@ router.get('/:id/resumes/:resumeid', (req, res) => {
     
 }); 
 
-// post users/id/resumes/resumeid
-// router.post('/:id/resumes', (req, res) => {
-//   console.log("in axios call", req.body.resumeObject);
-//   addUserResume(req.body.resumeObject)
-//   .then((data) => {
-//     console.log("data", response); 
-//     res.send(data);
-//   })
-//   .catch(e => {
-//     console.error(e);
-//     res.send(e);
-//   })
-// }); 
 
 // delete users/id/resumes/resumeid
 router.delete('/:id/resumes', (req, res) => {
