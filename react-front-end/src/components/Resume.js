@@ -227,7 +227,7 @@ const resume = {
               >
                 <Button className={classes.Font} onClick={() => setTemplate(1)} >Organized</Button>
                 <Button className={classes.Font} onClick={() => setTemplate(2)}>Understated</Button>
-                <Button className={classes.Font} onClick={() => setTemplate(3)} >Under Contruction</Button>
+                <Button className={classes.Font} onClick={() => setTemplate(3)} >Standout</Button>
               </ButtonGroup>
             </div>
             <div className={classes.sections}>
