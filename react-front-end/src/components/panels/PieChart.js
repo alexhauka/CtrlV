@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Paper from '@material-ui/core/Paper';
 import PieChart, {
   Legend,
   Series,
@@ -42,8 +41,6 @@ export default function PieChartResults(props){
   function customizeText({ argument, value }) {
     return `${argument}: ${value}`;
   }
-
-
 
   return (
     <PieChart

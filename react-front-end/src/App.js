@@ -1,10 +1,6 @@
 import React, { useEffect } from 'react';
-// import { makeStyles } from '@material-ui/core'
 import {Switch, Route, useHistory} from 'react-router-dom'
-// import './App.css';
-
 import { useApplicationData } from './hooks/useApplicationData'; 
-
 import ProtectedRoute from './components/ProtectedRoute'
 import Resume from './components/resume/Resume';
 import ResumeLink from './components/resume/ResumeLink';
@@ -42,10 +38,6 @@ export default function App() {
   const history = useHistory()
 
   useEffect(() => {
-    // checkUser()
-    // .then((success) => {
-    //   // history.push("/")
-    // })
     checkUser()
     .catch((error) => {
       history.push("/login")
@@ -78,11 +70,6 @@ export default function App() {
         path="/signup" 
         component={() => <SignUp registerUser={registerUser} />} 
         /> 
-        {/* <Route 
-        path="/login"
-        component={(props) => <Login loginUser={loginUser} isLoggingIn={state.isLoggingIn} user={state.user} {...props} />} 
-        /> */}
-        
         <Route
           path="/login"
         >
@@ -99,7 +86,6 @@ export default function App() {
           user={state.user}
         >
         </ProtectedRoute> 
-        {/* <ProtectedRoute path="/resume" component={Resume} /> */}
         <ProtectedRoute 
           path="/skills" 
           isLoggingIn={state.isLoggingIn}

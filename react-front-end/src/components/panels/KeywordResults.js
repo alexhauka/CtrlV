@@ -1,10 +1,7 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
-
-
 import { makeStyles } from '@material-ui/core/styles'; 
 import PieChart from './PieChart';
-
 import KeywordResultsItem from './KeywordResultsItem'
 import KeywordSkillsItem from './KeywordSkillsItem';
 
@@ -17,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
   },
   stats: {
     fontFamily: 'Ubuntu',
-    // marginBottom: '30px'
   },
   missingSkills: {
     fontFamily: 'Ubuntu',
@@ -33,15 +29,12 @@ const useStyles = makeStyles((theme) => ({
   },
   matching:{
     border:'1px solid #3f51b5',
-    // width:'80%',
     margin:'auto',
-    // marginTop:30,
     padding:'2.5%',
     borderRadius:20
   },
   missing:{
     border:'1px solid #ff00009c',
-    // width:'80%',
     margin:'auto',
     marginTop:30,
     marginBottom:20,
@@ -91,7 +84,6 @@ export default function KeywordResults(props) {
   // algorithm for calculating skill match percentage:
   const matchPercent = Math.round(100 - ((missingSkills.length / jobPostSkillArray.length) * 100))
 
-  // console.log(keywords)
   const jobKeywordList = Object.keys(keywords).map(keyword => (
     <KeywordResultsItem
       className={classes.stats}

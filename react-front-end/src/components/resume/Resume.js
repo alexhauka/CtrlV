@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { makeStyles, Grid, Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import RightResume from './RightResume';
 import { ColorPicker } from 'material-ui-color';
-import LeftResume from './LeftResume';
 import TemplateOne from '../templates/TemplateOne';
 import TemplateTwo from '../templates/TemplateTwo';
 import TemplateThree from '../templates/TemplateThree'; 
@@ -32,7 +28,6 @@ import TemplateThree from '../templates/TemplateThree';
 
 const useStyles = makeStyles(() => ({
   root: {
-    // border:'1px black solid'
     textAlign: 'center',
     background: 'linear-gradient(129deg, #3f51b5 30%, #476bec 90%)'
   },
@@ -44,7 +39,6 @@ const useStyles = makeStyles(() => ({
     borderRadius: 10
   },
   rootLeft: {
-    // display: 'flex',
     flexDirection: 'column',
     minHeight: "100vh",
     width:'92%',
@@ -62,8 +56,6 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     paddingTop: '10%',
     justifyContent: 'center',
-    justify: "space-between",
-    // width: "80%",
     margin: "auto"
   },
   FontButton: {
@@ -74,7 +66,6 @@ const useStyles = makeStyles(() => ({
     display:'flex',
     margin:'5px',
     marginLeft: '5%',
-    justifyItems:'space-between',
     width: '85%',
   },
   Font: {
@@ -104,7 +95,6 @@ const useStyles = makeStyles(() => ({
   HeadingFont : {
     fontFamily: 'Ubuntu',
     paddingBottom: 10,
-    marginLeft: '10px',
     textAlign:'left'
   },
   BodyFont : {
@@ -117,38 +107,21 @@ const useStyles = makeStyles(() => ({
     minWidth: '8.5in',
     maxHeight: '11in',
     minHeight: '11in',
-    //For text 
-    // padding: 10,
-    // paddingTop: "5%",
-    backgroundColor: {},
     marginBottom: "5%",
-    // marginTop: "15%",
     margin:'auto',
-    // marginTop:'unset',
-    // marginLeft: "10%",
     marginTop: 70,
     flexShrink: 1,
     boxShadow: '0px 0px 20px 10px #00000059',
     borderBottom: "solid 1px black"
   },
   button: {
-    // marginTop: '1.2em',
     marginBottom:'1.2em',
     width:'80%',
     color: "white",
-    size: "large",
     background: 'linear-gradient(45deg, transparent 20%,#FE6B8B 40%, #FF8E53 60%, transparent 80%)',
-    // marginLeft: '8%',
     '&:hover':{
       background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     },
-    // selectedButton: {
-    //   // width: "33.3%",
-    //   background: 'linear-gradient(160deg, #3f51b5 30%, #476bec 90%',
-    //   color: 'white',
-    //   border: 'inset',
-    //   borderColor: '#3f51b5'
-    // }
   }
 
 
@@ -182,8 +155,6 @@ export default function Resume(props) {
 function saveResume() {
   console.log("resume", resume);
 
-  // console.log('user id: ', projects[0].user_id)
-  // axios.post('/api/resumes', { resumeObject })
   props.addResume(resume)
   .then(() => {
     console.log("here after addResume");
@@ -649,7 +620,6 @@ const resume = {
                   Background Color
                 </Typography>
                   <ColorPicker name="color" defaultValue={"#fff"} value={color} onChange={(event) => {
-                    // console.log(event.css.backgroundColor)
                     setColor(event.css.backgroundColor);
                   }} />
                 </div>
@@ -660,8 +630,7 @@ const resume = {
                   >
                     Border Color
                 </Typography>
-                  <ColorPicker name="color" defaultValue={"#fff"} value={borderColor} onChange={(event) => {
-                    // console.log(event.css.backgroundColor)
+                  <ColorPicker name="color" defaultValue={"#fff"} value={borderColor} onChange={(event) => {                    
                     setBorderColor(event.css.backgroundColor);
                   }} />
                 </div>
@@ -688,28 +657,3 @@ const resume = {
     </div>
   );
 }
-
-
-
-
-
-// POST ROUTE: users/:id/resumes/:resumeid
-
-// resumes table:
-/*
-  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  template_id INTEGER REFERENCES  templates(id) ON DELETE CASCADE,
-  about_me VARCHAR(600) NOT NULL DEFAULT '',
-  background_color VARCHAR(255) NOT NULL DEFAULT 'white',
-  border_color VARCHAR(255) NOT NULL DEFAULT 'black',
-  head_font VARCHAR(255),
-  body_font VARCHAR(255),
-  date_uploaded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  project_1 INTEGER REFERENCES projects(id),
-  project_2 INTEGER REFERENCES projects(id),
-  project_3 INTEGER REFERENCES projects(id),
-  work_1 INTEGER REFERENCES work_experiences(id),
-  work_2 INTEGER REFERENCES work_experiences(id),
-  work_3 INTEGER REFERENCES work_experiences(id)
-
-*/

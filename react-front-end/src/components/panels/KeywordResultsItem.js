@@ -11,8 +11,6 @@ const useStyles = makeStyles((theme) => ({
 export default function KeywordResultsItem(props) {
   const classes = useStyles();
   
-
-
     return(
       <div>
         <Typography className={classes.stats} variant="h5">
@@ -20,9 +18,5 @@ export default function KeywordResultsItem(props) {
         </Typography>
       </div>
     )
-
-
-
-
 
 }

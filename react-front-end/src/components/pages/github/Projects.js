@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import MuiAlert from '@material-ui/lab/Alert';
-import { TextField, Button, Divider, Snackbar } from '@material-ui/core';
+import { TextField, Button, Snackbar } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -39,7 +39,6 @@ const useStyles = makeStyles(() => ({
     paddingTop: 50
   },
   top: {
-    bottomBorder: "10px",
     margin: "auto",
     paddingTop: 80,
     paddingBottom: 20

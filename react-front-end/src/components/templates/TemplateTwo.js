@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { makeStyles, TextField, Typography, Container, Divider}
  from '@material-ui/core'
-//  import { Link } from 'react-router-dom';
+
 
 
 const useStyles = makeStyles(() => ({
@@ -12,16 +12,12 @@ const useStyles = makeStyles(() => ({
     lineHeight: .4,
     marginTop:"5%",
     overflow:'hidden',
-    // paddingTop: "5%",
     fontSize: "100%",
   },
   root_false:{
     overflow:'hidden',
-    // maxHeight: '11in',
-    // padding: 10,
     height: '100%',
     padding: "0%",
-    // marginTop: "10px",
     fontSize: "100%",
     lineHeight: .4,
   },
@@ -32,7 +28,6 @@ const useStyles = makeStyles(() => ({
   head_false: {
     display:'flex',
     direction: 'row',
-    // backgroundColor: 'brown',
   },
   contact_true: {
     display:'flex',
@@ -94,8 +89,6 @@ const useStyles = makeStyles(() => ({
   userName_false: {
     flexGrow: 2,
     textAlign:'start',
-    // marginBottom: "5px",
-    // marginLeft: '5px',
     margin:5, 
     fontSize: "1.5rem",
   },
@@ -113,33 +106,23 @@ const useStyles = makeStyles(() => ({
     
   },
   myName: {
-    // backgroundColor:'blue',
     fontSize: "1.5rem"
   },
   title_false: {
-    // backgroundColor:'red',
     width:'max-content',
     fontSize: ".2rem"
   },
   skills: {
     display:'flex',
-    // direction: 'row',
     justifyContent:'flex-start',
-    // alignItems:'baseline',
-    // marginLeft: '20px',
     marginRight: '50px',
     marginBottom: '20px'
   },
   skills_false:{
     display:'flex',
-    // direction: 'row',
     justifyContent:'flex-start',
-    // alignItems:'baseline',
-    // marginLeft: '20px',
-    // marginRight: '50px',
     marginBottom: '20px'
   },
-
   skillSet: {
     width: '30%',
     marginRight: '20px',
@@ -157,7 +140,6 @@ const useStyles = makeStyles(() => ({
 
   liveURL_true: {
     display: 'flex',
-    // marginLeft: '30px',
     marginBottom:5,
     textDecoration: 'none',
     textAlign: 'center',
@@ -167,7 +149,6 @@ const useStyles = makeStyles(() => ({
   },
   liveURL_false: {
     display: 'flex',
-    // marginLeft: '30px',
     textDecoration: 'none',
     textAlign: 'center',
     color: "black",
@@ -181,14 +162,8 @@ const useStyles = makeStyles(() => ({
     fontSize: ".2rem"
   },
   skillsBody_true:{
-    // display: 'list-item',
-    // listStylePosition: 'inside',
-    // marginLeft: '25px'
   },
   skillsBody_false: {
-    // display: 'list-item',
-    // listStylePosition: 'inside',
-    // marginLeft: '15px',
     fontSize: "5%",
     lineHeight: 0.95
   },
@@ -214,22 +189,16 @@ const useStyles = makeStyles(() => ({
     textAlign:'left',
     justifyContent:'flex-start',
     marginLeft: '15px',
-    // paddingBottom: '20px',
-    // marginBottom: '5px',
     marginTop: '5px',
     width: '30%'
   },
   projectsBody_true:{
-    // fontSize: '1rem',
     width: "90%",
     textAlign:'left',
   },
   projectsBody_false: {
     fontSize: ".4rem",
     width: "-webkit-fill-available",
-    // textAlign:'left',
-    // fontSize: "5%",
-    // lineHeight: 0.95
   },
   jobs: {
     display:'flex',
@@ -242,7 +211,6 @@ const useStyles = makeStyles(() => ({
   job: {
     maxWidth:"30%",
     minWidth:'30%',
-    // marginRight: '20px',
     marginLeft: '20px',
     overflowWrap: 'break-word',
     textAlign: 'left'
@@ -250,7 +218,6 @@ const useStyles = makeStyles(() => ({
   job_false:{
     maxWidth:"29%",
     minWidth:'29%',
-    // marginRight: '20px',
     marginLeft: '15px',
     overflowWrap: 'break-word',
     textAlign: 'left'
@@ -262,28 +229,20 @@ const useStyles = makeStyles(() => ({
 
   },
   body_false: {
-    // width: "70%",
     fontSize: "5%",
     lineHeight: 0.95
   },
 
   divider: {
     color: 'grey',
-    // marginTop: 5,
     margin: 10,
-    // marginBottom: 5
   },
   border_true: {
-
-    // padding: 5
   },
   border_false: {
-
-    // padding: 5
   },
   about_true: {
     width:'97%',
-    // margin:'auto',
     marginLeft:10,
     lineHeight:'normal',
     paddingBottom: '10px'
@@ -314,12 +273,9 @@ export default function TemplateTwo(props) {
   const { liftAboutMe, liftProfession } = props;
 
   const { basicInfo, projects, skills, work_experience } = props.data
-  // console.log(basicInfo)
   const classes = useStyles();
   const [active, setActive] = React.useState(props.active)
   const [building, setBuilding] = React.useState(props.building)
-  // style={{backgroundColor: props.color}}
-  // style={{borderColor: props.borderColor}}
   
   const handleAboutMeChange = about => event => {
     setValues({ ...values, [about]: event.target.value });
@@ -355,68 +311,17 @@ export default function TemplateTwo(props) {
   hardSkills.map(s => {
     if (s.type === 'language') {
       langArray.push(s.name)
-      // return(
-      //  <Typography>{s.name}</Typography>
-      // )
     } else if (s.type ==='framework') {
       frameArray.push(s.name)
     } else {
       dbTestingArray.push(s.name)
     }
-
-
-    // return null;
   })
 
   const languagesList = langArray.join(', ')
   const frameworksList = frameArray.join(', ')
   const testingList = dbTestingArray.join(', ')
 
-
-
-
-//   const languagesList = hardSkills.map(s => {
-//     if (s.type === 'language') {
-//       return(
-      //  <Typography 
-      //  className={ active ? classes.skillsBody_true : classes.skillsBody_false}
-      //  variant="body2" 
-      //  style={{fontFamily: props.bodyFont}}>
-      //  {s.name}
-      //  </Typography>
-//       )
-//     }
-//     return null;
-//   })
-//   const frameworksList = hardSkills.map(s => {
-//   if (s.type ==='framework') {
-//     return (
-      // <Typography
-      // className={ active ? classes.skillsBody_true : classes.skillsBody_false} 
-      // variant="body2" 
-      // style={{fontFamily: props.bodyFont}}>
-      // {s.name}
-      // </Typography>
-//     )
-//   }
-//   return null;
-// })
-//   const testingList = hardSkills.map(s => {
-//     if (s.type === 'testing' || s.type === 'database'){
-//       return ( 
-        // <Typography
-        // className={ active ? classes.skillsBody_true : classes.skillsBody_false} 
-        // variant="body2" 
-        // style={{fontFamily: props.bodyFont}}>
-        // {s.name}
-        // </Typography>
-//       )
-//     }
-//     return null;
-//   })
-
-  const testProject = projects[0]
-  // console.log("This is test", work_experience)
   const myProjects = projects.map(i => {
     return (
       <div className={ active ? classes.project : classes.project_false }>
@@ -543,7 +448,6 @@ export default function TemplateTwo(props) {
               </div>
           </div>
         </div>
-        {/* <br /> */}
         <div className={ active? classes.about_true : classes.about_false }>
           {building &&
         <TextField
@@ -557,7 +461,6 @@ export default function TemplateTwo(props) {
           }}
           // autoFocus
           id="outlined-multiline-static"
-          // label="About me"
           multiline
           rows={4}
           rowsMax={4}
@@ -575,7 +478,6 @@ export default function TemplateTwo(props) {
             >
             {props.data.aboutMe}
           </Typography>
-            // <p  className={classes.about_true}></p>
           }
           {!building && !active &&
             <p style={{fontFamily: props.bodyFont}} className={classes.about_false}>{props.data.aboutMe}</p>

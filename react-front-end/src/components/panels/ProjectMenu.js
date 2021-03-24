@@ -80,7 +80,6 @@ export default function ProjectMenu(props) {
         <div className={classes.singleProject}>
         <Grid 
         container
-        // id='1'
         direction="column"
         justify="space-around"
         > 

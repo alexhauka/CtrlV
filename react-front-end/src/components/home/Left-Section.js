@@ -1,8 +1,6 @@
 import React, { useState } from 'react'; 
-
 import Keywords from '../panels/Keywords';
 import FontStyles from './FontStyles';
-
 import { makeStyles } from '@material-ui/core/styles'; 
 
 
@@ -14,11 +12,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    justify: "center",
     textAlign: "center",
     backgroundColor: "#3f51b5",
     height: "100%",
-    // borderRadius:10,
     background: 'linear-gradient(180deg, #3f51b5 30%, #476bec 90%)'
   },
   inside:{

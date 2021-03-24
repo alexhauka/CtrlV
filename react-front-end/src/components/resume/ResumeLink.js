@@ -1,8 +1,6 @@
-import React, { useEffect, useState, Suspense } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'; 
 import { makeStyles } from '@material-ui/core/styles';
-import { CssBaseline } from '@material-ui/core';
-import axios from 'axios';
 import TemplateOne from '../templates/TemplateOne';
 import TemplateTwo from '../templates/TemplateTwo';
 import TemplateThree from '../templates/TemplateThree';
@@ -45,15 +43,12 @@ const useStyles = makeStyles(() => ({
 export default function ResumeLink(props) {
   console.log("resume link props state: ", props.state)
   const classes = useStyles();
-  // let resumeData = props.location.state 
-  // const {id, template_id, active, data, font, color, borderColor, bodyFont} = resumeData;
   let { id } = useParams();
   const [resume, setResume] = useState({});
   const [user, setUser] = useState({})
   const [skills, setSkills] = useState([])
   const [workExperience, setWorkExperience] = useState([])
   const [projects, setProjects] = useState([]);
-  // const [data, setData] = useState({});
   const [loaded, setLoaded] = useState(false); 
   const [clicked, setClicked] = useState(false); 
   const [open, setOpen] = React.useState(false);
@@ -69,11 +64,6 @@ export default function ResumeLink(props) {
     console.log("Subject", subject)
     console.log("body", body)
   };
-
-  const contactMe = function(){
-    setClicked(true)
-  }
-
   const getInfo = async () => {
     const firstFetch = await fetch(`/api/resumes/${id}`)
     const resumeData = await firstFetch.json();
@@ -138,23 +128,12 @@ export default function ResumeLink(props) {
     skills: skills, 
     work_experience: [workExperience[resume_work_1_index], workExperience[resume_work_2_index], workExperience[resume_work_3_index]]
   }
-
-
-  // console.log(resume);
-  // console.log("User ID", resume.user_id);
-  // console.log("user", user);
-  // console.log("skills", skills);
-  // console.log("work experience", workExperience); 
-  // console.log("projects", projects);
-
-  // const tempID = resume.template_id;
   
   const myResume = function() {  
     console.log("template Id:", resume.template_id)
     if (resume.template_id === 1){
       return (
         <div>
-         {/* <h1>My Resume</h1> */}
          <div className={classes.resume}>    
            <TemplateOne 
             building={false}
@@ -205,8 +184,6 @@ export default function ResumeLink(props) {
     return (
       
         <div className={classes.root} >
-          {/* <h1>Hello</h1> */}
-
           {loaded &&
           <div className={classes.page}>
             <div >

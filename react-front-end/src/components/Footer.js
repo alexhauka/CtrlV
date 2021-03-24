@@ -24,9 +24,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     position: 'absolute',
     zIndex: 1,
-    // bottom: 0,
-    // boxShadow: '1px 20px 10px 20px #00000059',
-    
     width: '100%',
     opacity: '1'
   },
@@ -39,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'flex-start',
     padding: theme.spacing(3, 2),
     marginTop: 'auto',
-    // backgroundColor: "#476bec"
     background: '#476bec',
   },
 }));

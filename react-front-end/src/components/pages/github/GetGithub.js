@@ -5,14 +5,11 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   button: {
-    // marginTop: '1.2em',
     fontFamily: 'Ubuntu',
     marginBottom:'1.2em',
     width:'50%',
     color: "white",
-    size: "large",
     background: 'linear-gradient(45deg, transparent 20%,#FE6B8B 40%, #FF8E53 60%, transparent 80%)',
-    // marginLeft: '8%',
     '&:hover':{
       background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     }
@@ -141,7 +138,6 @@ export default function GetGithub(props){
       </Snackbar>
     <Button
     className={classes.button}
-    // variant="contained"
     color="primary"
     onClick={() => uploadProjects(props.username)}
     >

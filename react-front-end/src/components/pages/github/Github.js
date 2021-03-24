@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import MuiAlert from '@material-ui/lab/Alert';
-import { Typography, TextField, Button, Snackbar, Divider } from '@material-ui/core';
+import { Typography, TextField, Button, Snackbar } from '@material-ui/core';
 import Projects from "./Projects"; 
 
 import GetGithub from './GetGithub';
@@ -17,7 +17,6 @@ const useStyles = makeStyles(() => ({
 
   project: {
     textAlign: "center",
-    //  height: 250
   },
   fields: {
     display:"flex",
@@ -48,7 +47,6 @@ const useStyles = makeStyles(() => ({
     fontFamily: 'Ubuntu',
   },
   top: {
-    bottomBorder: "10px",
     margin: "auto",
     
     paddingBottom: 20
@@ -193,20 +191,14 @@ export default function Github(props) {
           updateGithub={props.updateGithub}
           addProject={generateProject}
         />
-        {/* <Divider className={classes.divider}/> */}
         {numOfProjects}
         {Array(count).fill(moreProjects)}
       </div>
-      
       <div className={classes.add}>
-      
-      {/* <Typography className={classes.divide} variant="h4">OR</Typography>  */}
-      <Button className={classes.submit} variant="contained" color="primary" onClick={() => setCount(count + 1)}>
-          Add Projects Manually
-      </Button>
-      
-        </div>
-
+        <Button className={classes.submit} variant="contained" color="primary" onClick={() => setCount(count + 1)}>
+            Add Projects Manually
+        </Button>
+      </div>
     </div>
   )
 }

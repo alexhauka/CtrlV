@@ -75,7 +75,6 @@ const useStyles = makeStyles(() => ({
   },
 
   skillRow: {
-    fontFamily: 'Ubuntu',
     marginBottom: "15px",
     textDecoration: 'underline'
   },
@@ -92,7 +91,6 @@ const useStyles = makeStyles(() => ({
     marginBottom:'1.2em',
     width:'80%',
     color: "white",
-    size: "large",
     background: 'linear-gradient(45deg, transparent 20%,#FE6B8B 40%, #FF8E53 60%, transparent 80%)',
     '&:hover':{
       background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -157,13 +155,7 @@ export default function RightSection(props) {
 
   hardSkills.map(s => {
     if (s.type === 'language') {
-      // return(
-      //  <Typography style={{fontFamily: 'Ubuntu'}}>{s.name}</Typography>
-      // )
       langArray.push(s.name)
-      // return(
-      //  <Typography>{s.name}</Typography>
-      // )
     } else if (s.type ==='framework') {
       frameArray.push(s.name)
     } else {
@@ -177,24 +169,6 @@ export default function RightSection(props) {
   const languagesList = langArray.join(', ')
   const frameworksList = frameArray.join(', ')
   const testingList = dbTestingArray.join(', ')
-
-//   const frameworksList = hardSkills.map(s => {
-//   if (s.type ==='framework') {
-//     return (
-//       <Typography>{s.name}</Typography>
-//     )
-//   }
-//   return null;
-// })
-//  const testingList = hardSkills.map(s => {
-//     if (s.type === 'testing' || s.type === 'database'){
-//       return ( 
-//         <Typography>{s.name}</Typography>
-//       )
-//     }
-//     return null;
-//   })
-
 
   return (
     <div className={classes.root}>

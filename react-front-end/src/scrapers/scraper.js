@@ -30,20 +30,10 @@ function scraper(indeedJobURL) {
   
   
       resolve(scrapedata);
-      
-  
     })
-
-
   })
-
-
-  // .catch( error => {
-  //   console.log(error);
-  // }); 
 }
 
-// const jobText = scraper(indeedJobURL)
 
 const keywordFilter = (jobText) => {
 

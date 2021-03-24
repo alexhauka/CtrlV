@@ -20,8 +20,6 @@ const useStyles = makeStyles((theme) => ({
    minHeight: '100vh',
    boxShadow:'0px 0px 20px 7px #00000059 inset',
    margin:'auto',
-  //  marginBottom:15,
-  //  marginRight: 10,
    backgroundColor: 'white',
    borderRadius: 10
   }

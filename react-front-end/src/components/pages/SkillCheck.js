@@ -10,15 +10,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     paddingTop: "5em",
     minHeight:'100vh'
-    // height: "100vh"
-    // justify: 'space-around'
   },
   skills: {
     display: 'flex',
-    direction:"row",
     justifyContent: 'center',
-    // width: '80%',
-    
   },
   formControl: {
     margin: theme.spacing(3),
@@ -30,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
     border: "solid #3f51b5 1px",
     borderRadius: 20
   },
-
   heading: {
     fontFamily: 'Ubuntu',
     marginBottom:'.9em',
@@ -38,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
   header:{
     textAlign: 'center',
   },
-
   submit: {
     color: "white",
     size: "large",
@@ -79,7 +72,6 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     size: "large",
     background: 'linear-gradient(45deg, transparent 20%,#FE6B8B 40%, #FF8E53 60%, transparent 80%)',
-    // marginLeft: '8%',
     '&:hover':{
       background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     }

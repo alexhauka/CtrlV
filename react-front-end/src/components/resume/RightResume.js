@@ -7,10 +7,8 @@ const useStyles = makeStyles(() => ({
     maxWidth: '75%',
     minHeight: "100vw",
     textAlign: "center",
-    //For text 
     padding: 10,
     paddingTop: "5%",
-    // for div
     marginLeft: "10%",
     marginTop: 50,
     flexShrink: 1,

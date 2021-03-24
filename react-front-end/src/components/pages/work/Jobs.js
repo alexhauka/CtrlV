@@ -170,7 +170,6 @@ export default function Jobs(props) {
           value={jobInfo.job_start_date}
           onFocus={() => setError(prev => ({...prev, job_start_date: false }))}
           onChange={handleChange}
-          // className={classes.textField}
           InputLabelProps={{
             shrink: true,
           }}
@@ -184,7 +183,6 @@ export default function Jobs(props) {
           value={jobInfo.job_end_date}
           onFocus={() => setError(prev => ({...prev, job_end_date: false }))}
           onChange={handleChange}
-          // className={classes.textField}
           InputLabelProps={{
             shrink: true,
           }}
