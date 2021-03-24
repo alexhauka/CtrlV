@@ -3,13 +3,10 @@ import { Grid, TextField, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles'; 
 import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Fade from '@material-ui/core/Fade';
-import { data } from 'retext';
 
-import ProjectMenu from './ProjectMenu';
-import WorkMenu from './WorkMenu'
+
+import ProjectMenu from '../panels/ProjectMenu';
+import WorkMenu from '../panels/WorkMenu'
 
 const useStyles = makeStyles(() => ({
   root: {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; 
 
-import Keywords from './Keywords';
+import Keywords from '../panels/Keywords';
 import FontStyles from './FontStyles';
 
 import { makeStyles } from '@material-ui/core/styles'; 

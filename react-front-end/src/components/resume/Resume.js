@@ -7,9 +7,9 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import RightResume from './RightResume';
 import { ColorPicker } from 'material-ui-color';
 import LeftResume from './LeftResume';
-import TemplateOne from './TemplateOne';
-import TemplateTwo from './TemplateTwo';
-import TemplateThree from './TemplateThree'; 
+import TemplateOne from '../templates/TemplateOne';
+import TemplateTwo from '../templates/TemplateTwo';
+import TemplateThree from '../templates/TemplateThree'; 
 //*******  FONT STYLES  *******
 // font-family: 'Fascinate', cursive;
 // font-family: 'Redressed', cursive;

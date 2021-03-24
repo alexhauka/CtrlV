@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Snackbar } from '@material-ui/core';
-import TemplateOne from './TemplateOne';
-import TemplateTwo from './TemplateTwo';
-import TemplateThree from './TemplateThree';
+import TemplateOne from '../templates/TemplateOne';
+import TemplateTwo from '../templates/TemplateTwo';
+import TemplateThree from '../templates/TemplateThree';
 import MuiAlert from '@material-ui/lab/Alert';
 const useStyles = makeStyles((theme) => ({
   root: { 

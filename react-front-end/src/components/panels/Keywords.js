@@ -4,7 +4,7 @@ import KeywordResults from './KeywordResults';
 import { Button, TextField} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'; 
 
-const { keywordFilter } = require('../scrapers/scraper')
+const { keywordFilter } = require('../../scrapers/scraper')
 
 const axios = require('axios').default
 

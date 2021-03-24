@@ -1,34 +1,23 @@
 import React, { useEffect } from 'react';
 // import { makeStyles } from '@material-ui/core'
-import {Switch, Route, Redirect, useHistory} from 'react-router-dom'
+import {Switch, Route, useHistory} from 'react-router-dom'
 // import './App.css';
 
 import { useApplicationData } from './hooks/useApplicationData'; 
 
 import ProtectedRoute from './components/ProtectedRoute'
-import Resume from './components/Resume';
-import ResumeLink from './components/ResumeLink';
-import Sidebar from './components/Sidebar'
-import SignUp from './components/SignUp';
-import Login from './components/Login';
-import Home from "./components/Home"
-import SkillCheck from './components/SkillCheck';
-import WorkExperience from './components/WorkExperience';
-import Github from './components/Github';
+import Resume from './components/resume/Resume';
+import ResumeLink from './components/resume/ResumeLink';
+import SignUp from './components/pages/SignUp';
+import Login from './components/pages/Login';
+import Home from "./components/home/Home"
+import SkillCheck from './components/pages/SkillCheck';
+import WorkExperience from './components/pages/work/WorkExperience';
+import Github from './components/pages/github/Github';
 import Footer from './components/Footer';
-import BasicInfo from './components/BasicInfo';
-import MyResumes from './components/MyResumes';
+import BasicInfo from './components/pages/BasicInfo';
+import MyResumes from './components/resume/MyResumes';
 import NavBar from './components/NavBar'
-
-// const ProtectedRoute = (props) => {
-//   if (props.isLoggingIn) {
-//     return null 
-//   } 
-//   if (props.user) {
-//     return <Route {...props}>{props.children}</Route> 
-//   }
-//   return <Redirect to="/login" /> 
-// }
 
 
 export default function App() {
