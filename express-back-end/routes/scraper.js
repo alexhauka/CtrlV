@@ -3,7 +3,7 @@ const router  = require("express-promise-router")();
 
 const { scraper } = require('../scrapers/scraper')
 
-const { addJobPosting } = require('../lib/jobPosting-queries')
+// const { addJobPosting } = require('../lib/jobPosting-queries')
 
 
 router.get('/', (req, res) => {
@@ -15,7 +15,6 @@ router.post('/', async (req, res) => {
 
   await scraper(`${urlString}`)
   .then((jobDesc) => {
-  // addJobPosting(urlString, jobDesc)
   res.send(jobDesc)
   })
 })
