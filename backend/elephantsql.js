@@ -9,6 +9,11 @@ const conString = process.env.DB_URL;
 const client = new pg.Client(conString);
 
 
+// const client = new pg.Client({
+//   connectionString: process.env.DATABASE_URL || "",
+//   ssl:{rejectUnauthorized: false}
+// });
+
 
 
 
