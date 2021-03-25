@@ -2,6 +2,7 @@ const cookieSession = require('cookie-session');
 const Express = require('express');
 const App = Express();
 const BodyParser = require('body-parser');
+const path = require('path');
 const PORT = 8080;
 
 // Express Configuration
@@ -12,6 +13,9 @@ App.use(cookieSession({
   name: 'session',
   keys: ['key1', 'key2']
 }))
+
+
+App.use(express.static(path.join(__dirname, '../react-front-end/build')))
 
 const { getUserByID } = require('./lib/user-queries');
 
@@ -55,9 +59,13 @@ App.use('/api/authcheck',(req, res) => {
 })
 
 // Sample GET route
-App.get('/api/data', (req, res) => res.json({
-  message: "Seems to work!",
-}));
+// App.get('/api/data', (req, res) => res.json({
+//   message: "Seems to work!",
+// }));
+
+App.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/../frontend/build/index.html'))
+})
 
 App.listen(PORT, () => { 
   // eslint-disable-next-line no-console

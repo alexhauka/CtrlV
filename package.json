@@ -1,0 +1,22 @@
+{
+  "name": "ctrlv",
+  "version": "1.0.0",
+  "description": "A smart resume builder that generates a resume based off the material you feed it, with pre-defined templates and multiple styling options.",
+  "main": "index.js",
+  "scripts": {
+    "frontend": "cd frontend && npm start",
+    "api": "cd backend && nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run backend\" \"npm run frontend\"",
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexhauka/CtrlV.git"
+  },
+  "author": "Jacob Hein, Ian Lam, Alex Hauka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexhauka/CtrlV/issues"
+  },
+  "homepage": "https://github.com/alexhauka/CtrlV#readme"
+}
