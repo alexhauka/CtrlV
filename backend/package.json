@@ -18,9 +18,6 @@
     "express": "^4.16.4",
     "express-promise-router": "^4.0.1",
     "nodemon": "^1.18.7",
-    "pg": "^8.5.1",
-    "retext": "^7.0.1",
-    "retext-keywords": "^6.0.0",
-    "retext-pos": "^3.0.0"
+    "pg": "^8.5.1"
   }
 }
