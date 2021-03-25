@@ -20,21 +20,21 @@ Back: Express, Axios, PSQL
 ## Screenshots
 
 *The Home Page auto-populated by a user's given resume material ready for review*![Home Page](https://github.com/alexhauka/CtrlV/blob/master/docs/home.png?raw=true)
-
+\
 *Check as many skills that apply to you for populating your resume*![Skills](https://github.com/alexhauka/CtrlV/blob/master/docs/skills.png?raw=true)
-
+\
 *Enter your github username and watch C(trl)V instantly pull in your starred repos*![Projects](https://github.com/alexhauka/CtrlV/blob/master/docs/github.png?raw=true)
-
-*Fill out your work experience once*![Work](https://github.com/alexhauka/CtrlV/blob/master/docs/work%20experience.png?raw=true)
-
+\
+![Work](https://github.com/alexhauka/CtrlV/blob/master/docs/work%20experience.png?raw=true)
+\
 *One of the three templates available at launch*![Template Example](https://github.com/alexhauka/CtrlV/blob/master/docs/template%201.png?raw=true)
-
-*Give C(trl)V an Indeed job posting and it returns you a score*![Keyword Filter](https://github.com/alexhauka/CtrlV/blob/master/docs/keywords.png?raw=true)
-
-*Multipe Fonts available for body and headers*![styling 1](https://github.com/alexhauka/CtrlV/blob/master/docs/styling.png?raw=true)
-
+\
+![Keyword Filter](https://github.com/alexhauka/CtrlV/blob/master/docs/keywords.png?raw=true)
+\
+![styling 1](https://github.com/alexhauka/CtrlV/blob/master/docs/styling.png?raw=true)
+\
 *The 'My Resumes' tab contains all your resumes for reference*![My Resumes](https://github.com/alexhauka/CtrlV/blob/master/docs/My%20Resumes.png?raw=true)
-
+\
 *The live link with a contact button that creates an email to send you*![Live Link](https://github.com/alexhauka/CtrlV/blob/master/docs/live%20link.png?raw=true)
 
 
