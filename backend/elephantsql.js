@@ -4,15 +4,15 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 //Can be found in the Details page
-const conString = process.env.DB_URL;
+// const conString = process.env.DB_URL;
 
-const client = new pg.Client(conString);
+// const client = new pg.Client(conString);
 
 
-// const client = new pg.Client({
-//   connectionString: process.env.DATABASE_URL || "",
-//   ssl:{rejectUnauthorized: false}
-// });
+const client = new pg.Client({
+  connectionString: process.env.DB_URL || "",
+  ssl:{rejectUnauthorized: false}
+});
 
 
 
