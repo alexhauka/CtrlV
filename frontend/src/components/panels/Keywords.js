@@ -41,6 +41,7 @@ export default function Keywords(props) {
     const response = await axios.post('/api/scraper', {
       url: url
     })
+    console.log("1) front end response from axios post to scraper: ", response.data)
     return response.data;
   }
  
@@ -48,12 +49,13 @@ export default function Keywords(props) {
   const onClick = async () => {
     console.log('clicked submit url')
     const scrapeResults = await fetchJob()
+    console.log("2) front end scraped results after awaiting fetch", )
     const dataForFilter = scrapeResults
       .replace(/[(/:!?),]/g, ' ')
       .toLowerCase()
       .split(' ');
     const results = keywordFilter(dataForFilter)
-    console.log("filter results", results)
+    console.log("3) filter results", results)
     setFilterResults({
       ...results
     })
