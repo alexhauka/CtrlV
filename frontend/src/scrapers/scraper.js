@@ -1,9 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-const retext = require('retext') // installed seperately
-const pos = require('retext-pos') // installed eperately 
-const keywords = require('retext-keywords') //installed seperately
-const toString = require('nlcst-to-string')
+
 
 
 
