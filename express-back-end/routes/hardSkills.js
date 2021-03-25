@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 });
 
 router.put('/', (req, res) => {
-  
+  // addUserHardSkills(req.body.userSkills)
 })
 
 module.exports = router
