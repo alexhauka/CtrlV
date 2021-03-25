@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
   root_false:{
     overflow:'hidden',
     height: '100%',
-    marginTop: "5px",
+    paddingTop: "5px",
     marginBottom: "5px",
     fontSize: "100%",
     lineHeight: .4,
