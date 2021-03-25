@@ -19,7 +19,7 @@ const {
   deleteUserProject
 } = require('../lib/user-queries');
 
-const { getUserResumes, deleteUserResume } = require("../lib/resume-queries")
+const { addUserResume, updateUserResume, getUserResumes, deleteUserResume } = require("../lib/resume-queries")
 
 // get /users
 router.get('/', (req, res) => {
