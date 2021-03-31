@@ -16,7 +16,8 @@ const {
   deleteUserWorkExperience, 
   getUserProjects, 
   updateUserProject,
-  deleteUserProject
+  deleteUserProject,
+  getUserEducation
 } = require('../lib/user-queries');
 
 const { addUserResume, updateUserResume, getUserResumes, deleteUserResume } = require("../lib/resume-queries")
@@ -224,6 +225,14 @@ router.delete('/:id/resumes', (req, res) => {
     res.send(e);
   });
 }); 
+
+router.get('/:id/education', (req, res) => {
+  console.log("params", req.params.id)
+  getUserEducation(req.params.id)
+  .then((users) => {
+    res.json(users)
+  })
+});
 
 
 module.exports = router;

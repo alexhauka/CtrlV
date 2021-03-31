@@ -201,6 +201,17 @@ const getUserSoftSkills = (id) => {
     })
   }
 
+  const getUserEducation = (id) => {
+    return client.query(`
+    SELECT education.* FROM education
+    WHERE user_id = $1;
+    `, [id])
+    .then((response) => {
+      return response.rows
+    })
+
+  }
+
 
 
 module.exports = {
@@ -219,5 +230,6 @@ module.exports = {
     deleteUserWorkExperience,
     getUserProjects,
     updateUserProject,
-    deleteUserProject
+    deleteUserProject,
+    getUserEducation
 }
