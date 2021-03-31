@@ -11,6 +11,7 @@ import SkillCheck from './components/pages/SkillCheck';
 import WorkExperience from './components/pages/work/WorkExperience';
 import Github from './components/pages/github/Github';
 import Footer from './components/Footer';
+import Education from './components/pages/education/Education'; 
 import BasicInfo from './components/pages/BasicInfo';
 import MyResumes from './components/resume/MyResumes';
 import NavBar from './components/NavBar'
@@ -125,7 +126,16 @@ export default function App() {
             deleteProject={deleteProject}
           /> 
         </ProtectedRoute>
-
+        <ProtectedRoute
+          isLoggingIn={state.isLoggingIn}
+          user={state.user}
+          path="/education"
+        >
+          <Education
+            user={state.user}
+            education={state.userEducation}
+          />
+        </ProtectedRoute>
         <ProtectedRoute 
           isLoggingIn={state.isLoggingIn}
           user={state.user}

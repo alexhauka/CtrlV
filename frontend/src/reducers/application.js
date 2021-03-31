@@ -14,10 +14,10 @@ export const SET_RESUME = "SET_RESUME";
 export const DELETE_RESUME = "DELETE_RESUME"; 
 
 export function reducer(state, action) {
-  const {isLoggingIn, hardskills, userHardSkills, skill, user, userInfo, userWorkExperience, workInfo, userProjects, projectInfo, userResumes, resume } = action;
+  const {isLoggingIn, hardskills, userHardSkills, skill, user, userInfo, userWorkExperience, workInfo, userProjects, projectInfo, userResumes, resume, userEducation } = action;
   switch(action.type) {
     case SET_APPLICATION_DATA: { 
-      return { ...state, hardskills, userHardSkills, user, userWorkExperience, userProjects, userResumes };
+      return { ...state, hardskills, userHardSkills, user, userWorkExperience, userProjects, userResumes, userEducation };
     }
     case SET_UPDATED_USER: {
       const user = {
