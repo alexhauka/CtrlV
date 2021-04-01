@@ -35,7 +35,8 @@ export default function App() {
     deleteProject,
     addResume,
     deleteResume,
-    updateEducation
+    updateEducation,
+    deleteEducation
   } = useApplicationData(); 
   const history = useHistory()
 

@@ -17,7 +17,8 @@ import {
   SET_RESUME,
   DELETE_RESUME,
   SET_EDUCATION,
-  SET_UPDATED_EDUCATION
+  SET_UPDATED_EDUCATION,
+  DELETE_EDUCATION
 } from '../reducers/application'; 
 
 const axios = require('axios').default
@@ -287,6 +288,20 @@ export function useApplicationData() {
     .catch((error) => error)
   }
 
+  function deleteEducation(education) {
+    return axios.delete(`api/users/${user_id}/education`, 
+    { data: {
+      education
+    }})
+    .then((response) => {
+      dispatch({
+        type: DELETE_EDUCATION,
+        education: response.data
+      })
+    })
+    .catch((error) => error)
+  }
+
   return {
     state,
     registerUser,
@@ -304,7 +319,8 @@ export function useApplicationData() {
     deleteProject,
     addResume,
     deleteResume,
-    updateEducation
+    updateEducation,
+    deleteEducation
   }
 
 }
