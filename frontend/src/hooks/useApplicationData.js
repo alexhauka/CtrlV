@@ -15,7 +15,9 @@ import {
   SET_SKILL,
   DELETE_SKILL,
   SET_RESUME,
-  DELETE_RESUME
+  DELETE_RESUME,
+  SET_EDUCATION,
+  SET_UPDATED_EDUCATION
 } from '../reducers/application'; 
 
 const axios = require('axios').default
@@ -267,6 +269,24 @@ export function useApplicationData() {
     })
   }
 
+  function updateEducation(education){
+    return axios.post(`/api/users/${user_id}/education`, {education})
+    .then((response) => {
+      if (education.id) {
+        dispatch ({
+          type: SET_UPDATED_EDUCATION,
+          education
+        })
+      } else {
+        dispatch ({
+          type: SET_EDUCATION,
+          education: response.data
+        })
+      }
+    })
+    .catch((error) => error)
+  }
+
   return {
     state,
     registerUser,
@@ -283,7 +303,8 @@ export function useApplicationData() {
     updateProject,
     deleteProject,
     addResume,
-    deleteResume
+    deleteResume,
+    updateEducation
   }
 
 }
