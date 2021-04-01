@@ -245,6 +245,7 @@ router.post('/:id/education', (req, res) => {
   })
 })
 
+router
 
 
 module.exports = router;

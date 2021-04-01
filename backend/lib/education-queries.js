@@ -38,7 +38,7 @@ const deleteUserEducation = (id, education) => {
 }
 
 
-
 module.exports = {
-  addUserEducation
+  addUserEducation,
+  deleteUserEducation
 }
