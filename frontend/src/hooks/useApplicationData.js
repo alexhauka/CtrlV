@@ -122,7 +122,8 @@ export function useApplicationData() {
         user: null,
         userWorkExperience: [],
         userProjects: [],
-        userResumes: []
+        userResumes: [],
+        userEducation: []
       })
     })
   }

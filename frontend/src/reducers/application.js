@@ -12,9 +12,12 @@ export const DELETE_PROJECT = "DELETE_PROJECT";
 export const SET_UPDATED_PROJECT = "SET_UPDATED_PROJECT";
 export const SET_RESUME = "SET_RESUME"; 
 export const DELETE_RESUME = "DELETE_RESUME"; 
+export const SET_EDUCATION = "SET_EDUCATION"; 
+export const SET_UPDATED_EDUCATION = "SET_UPDATED_EDUCATION"; 
+export const DELETE_EDUCATION = "DELETE_EDUCATION"; 
 
 export function reducer(state, action) {
-  const {isLoggingIn, hardskills, userHardSkills, skill, user, userInfo, userWorkExperience, workInfo, userProjects, projectInfo, userResumes, resume, userEducation } = action;
+  const {isLoggingIn, hardskills, userHardSkills, skill, user, userInfo, userWorkExperience, workInfo, userProjects, projectInfo, userResumes, resume, userEducation, education } = action;
   switch(action.type) {
     case SET_APPLICATION_DATA: { 
       return { ...state, hardskills, userHardSkills, user, userWorkExperience, userProjects, userResumes, userEducation };
@@ -56,7 +59,7 @@ export function reducer(state, action) {
       return {...state, user, isLoggingIn}
     }
     case RESET_APPLICATION_DATA: {
-      return {...state, isLoggingIn, hardskills, userHardSkills, user, userWorkExperience, userProjects, userResumes }
+      return {...state, isLoggingIn, hardskills, userHardSkills, user, userWorkExperience, userProjects, userResumes, userEducation }
     }
     case SET_PROJECTS: {
       const userProjects = [
@@ -115,6 +118,32 @@ export function reducer(state, action) {
       const removeIndex = userResumes.findIndex(r => r.id === resume.id)
       userResumes.splice(removeIndex, 1)
       return {...state, userResumes}
+    }
+    case SET_EDUCATION: {
+      const userEducation = [
+        ...state.userEducation,
+        education 
+      ]
+      return {...state, userEducation}
+    }
+    case SET_UPDATED_EDUCATION: {
+      const userEducation = [
+        ...state.userEducation
+      ]
+      const index = userEducation.findIndex(e => e.id === education.id)
+      userEducation[index] = {
+        ...education
+      }
+      return {...state, userEducation}
+    }
+    case DELETE_EDUCATION: {
+      const userEducation = [
+        ...state.userProjects
+      ]
+      const removeIndex = userEducation.findIndex(e => e.id === education.id)
+      userEducation.splice(removeIndex, 1)
+
+      return {...state, userEducation}
     }
     default: throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
   }
