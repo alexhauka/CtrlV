@@ -136,6 +136,8 @@ export default function App() {
           <Education
             user={state.user}
             education={state.userEducation}
+            updateEducation={updateEducation}
+            deleteEducation={deleteEducation}
           />
         </ProtectedRoute>
         <ProtectedRoute 

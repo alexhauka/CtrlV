@@ -84,20 +84,20 @@ export default function Schools(props) {
   })
 
 
-  // function save(event){
-  //   event.preventDefault();
-  //   if (validate()) {
-  //     setMessage("Please fill out the missing forms")
-  //     setOpenError(true);
-  //     return;
-  //   } 
-  //   return props.updateWork(edInfo);
-  // }
+  function save(event){
+    event.preventDefault();
+    if (validate()) {
+      setMessage("Please fill out the missing forms")
+      setOpenError(true);
+      return;
+    } 
+    return props.updateEducation(edInfo);
+  }
 
-  // function onDelete(event) {
-  //   event.preventDefault();
-  //   props.deleteWork(edInfo);
-  // }
+  function onDelete(event) {
+    event.preventDefault();
+    props.deleteEducation(edInfo);
+  }
 
   function validate() {
     let bool = false
@@ -220,16 +220,14 @@ export default function Schools(props) {
       {!Object.values(edInfo).includes(null) && <Button 
       className={classes.save}
       variant='contained'
-      
-      // onClick={save}
+      onClick={save}
       >
         Save
       </Button>}
-      {props.title && props.description && <Button
+      {props.school_name && props.program_description && <Button
       className={classes.delete}
       variant='contained'
-      
-      // onClick={onDelete}
+      onClick={onDelete}
       >
         Delete
       </Button>}

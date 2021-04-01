@@ -88,24 +88,24 @@ export default function WorkExperience(props) {
   const [open, setOpen] = useState(false);
 
 
-  // function saveWork(jobInfo) {
-  //   props.updateWork(jobInfo)
-  //   .then(() => {
-  //     console.log("added successfully"); 
-  //     setMessage("Saved Successfully"); 
-  //     setCount(0);
-  //     setOpen(true);
-  //   });
-  // }
+  function saveEducation(EducationInfo) {
+    props.updateEducation(EducationInfo)
+    .then(() => {
+      console.log("added successfully"); 
+      setMessage("Saved Successfully"); 
+      setCount(0);
+      setOpen(true);
+    });
+  }
 
-  // function deleteWork(jobInfo) {
-  //   props.deleteWork(jobInfo)
-  //   .then(() => {
-  //     console.log("deleted successfully");
-  //     setMessage("Deleted Sucessfully");
-  //     setOpen(true);
-  //   });
-  // }
+  function deleteEducation(EducationInfo) {
+    props.deleteEducation(EducationInfo)
+    .then(() => {
+      console.log("deleted successfully");
+      setMessage("Deleted Sucessfully");
+      setOpen(true);
+    });
+  }
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -126,29 +126,30 @@ export default function WorkExperience(props) {
         program_title={data[key].program_title}
         start_date={start_date}
         end_date={end_date}
-        // updateWork={saveWork}
-        // deleteWork={deleteWork}
+        updateEducation={saveEducation}
+        deleteEducation={deleteEducation}
         program_description={data[key].program_description}
         />
         )
     });
   
 
-    // const addJobs = function(input){
-    //   for (let i = 0; i < input; i++){
-    //     return(
-    //       <Jobs 
-    //       key={''}
-    //       title=''
-    //       company_name={""}
-    //       start_date={""}
-    //       end_date={""}
-    //       updateWork={saveWork}
-    //       description=''/>
-    //     )
-    //   }
-    // }
-    // const moreJobs = addJobs(count)
+    const addEducation = function(input){
+      for (let i = 0; i < input; i++){
+        return(
+          <Schools 
+          key={''}
+          title=''
+          school_name={""}
+          program_title={""}
+          start_date={""}
+          end_date={""}
+          updateEducation={saveEducation}
+          program_description=''/>
+        )
+      }
+    }
+    const moreEducation = addEducation(count)
   const classes = useStyles(); 
   return (
     <div className={classes.root}>
@@ -175,7 +176,7 @@ export default function WorkExperience(props) {
         </div>
       </div >
       {numOfJobs}
-      {/* {Array(count).fill(moreJobs)}  */}
+      {Array(count).fill(moreEducation)} 
     <div className={classes.add}>
     <Button className={classes.submit} variant="contained" color="primary" onClick={() => {
       setCount(count + 1)
