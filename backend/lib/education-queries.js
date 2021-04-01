@@ -25,6 +25,17 @@ const addUserEducation = (id, education) => {
   }
 }
 
+// delete user education 
+const deleteUserEducation = (id, education) => {
+  return client.query(`
+  DELETE FROM education 
+  WHERE user_id = $1 AND id = $2
+  RETURNING *;
+  `, [id, education.id])
+  .then((response) => {
+    return response.rows[0];
+  })
+}
 
 
 
