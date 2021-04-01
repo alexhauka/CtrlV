@@ -20,7 +20,8 @@ const {
   getUserEducation
 } = require('../lib/user-queries');
 
-const { addUserResume, updateUserResume, getUserResumes, deleteUserResume } = require("../lib/resume-queries")
+const { addUserResume, updateUserResume, getUserResumes, deleteUserResume } = require("../lib/resume-queries");
+const { addUserEducation } = require('../lib/education-queries');
 
 // get /users
 router.get('/', (req, res) => {
@@ -233,6 +234,16 @@ router.get('/:id/education', (req, res) => {
     res.json(users)
   })
 });
+
+router.post('/:id/education', (req, res) => {
+  addUserEducation(req.params.id, req.body.education)
+  .then((data) => {
+    res.send(data);
+  })
+  .catch(error => {
+    res.send(error);
+  })
+})
 
 
 module.exports = router;
