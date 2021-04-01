@@ -19,7 +19,6 @@ const useStyles = makeStyles(() => ({
 }))
 
 
-
 export default function ProjectMenu(props) {
   const DESCRIPTION_LIMIT = 225;
   const classes = useStyles()
