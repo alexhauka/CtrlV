@@ -6,7 +6,8 @@ import Button from '@material-ui/core/Button';
 
 
 import ProjectMenu from '../panels/ProjectMenu';
-import WorkMenu from '../panels/WorkMenu'
+import WorkMenu from '../panels/WorkMenu';
+import EducationMenu from '../panels/EducationMenu';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -101,7 +102,8 @@ const useStyles = makeStyles(() => ({
 }))
 
 export default function RightSection(props) {
-  const { user, userHardSkills, userProjects, userWorkExperience } = props.props
+  console.log('at rightsection', props.props)
+  const { user, userHardSkills, userProjects, userWorkExperience, userEducation } = props.props
   const classes = useStyles()
   
   let userName = `${user.first_name} ${user.last_name}`;
@@ -130,6 +132,7 @@ export default function RightSection(props) {
 
   const [work_experience, setWork_Experience] = React.useState([userWorkExperience[0], userWorkExperience[1], userWorkExperience[2]])
 
+  const [education, setEducation] = React.useState([userEducation[0], userEducation[1], userEducation[2]])
 
   const liftProjects = (projectArray) => {
     setProjects(projectArray)
@@ -138,11 +141,16 @@ export default function RightSection(props) {
   const liftJobs = (jobArray) => {
     setWork_Experience(jobArray)
   }
+
+  const liftEducation = (educationArray) => {
+    setEducation(educationArray)
+  }
   
   let output = {
     basicInfo: basicInfo,
     projects: projects,
     work_experience: work_experience,
+    userEducation: education,
     skills: userHardSkills
   }
 
@@ -221,6 +229,7 @@ export default function RightSection(props) {
       </div>
       <ProjectMenu userProjects={userProjects} liftProjects={liftProjects}/>
       <WorkMenu userWorkExperience={userWorkExperience} liftJobs={liftJobs}/>
+      <EducationMenu userEducation={userEducation} liftEducation={liftEducation}/>
       <Button 
         className={classes.button}
         style={{fontFamily: 'Ubuntu'}}
