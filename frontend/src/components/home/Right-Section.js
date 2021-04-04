@@ -151,7 +151,7 @@ export default function RightSection(props) {
     projects: projects,
     work_experience: work_experience,
     userEducation: education,
-    skills: userHardSkills
+    skills: userHardSkills,
   }
 
   const hardSkills = userHardSkills

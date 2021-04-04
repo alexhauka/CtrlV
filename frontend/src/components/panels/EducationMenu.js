@@ -251,7 +251,7 @@ export default function EducationMenu(props) {
         </Grid>
         </div>
         
-        {/* <div className={classes.singleWork}>
+        <div className={classes.singleWork}>
         <Grid 
         container
         direction="column"
@@ -338,7 +338,7 @@ export default function EducationMenu(props) {
             }}
           />  
         </Grid>
-        </div> */}
+        </div>
         </Grid>
         </section>
       </div>
