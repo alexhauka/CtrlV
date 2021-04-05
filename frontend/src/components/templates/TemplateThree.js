@@ -16,6 +16,7 @@ const useStyles = makeStyles(() => ({
   root:{
     maxHeight: '11in',
     minHeight:'11in',
+    textAlign:'center'
   },
   root_false:{
     overflow:'hidden',
@@ -77,20 +78,38 @@ const useStyles = makeStyles(() => ({
   },
   midThird:{
     display:'flex',
-    flexDirection:'column',
-    minHeight:'15%',
-    filter: 'hue-rotate(180deg)',
-    border:'1px solid',
+    flexDirection:'row',
+    height:'15%',
+    // padding: '2%',
+    filter: 'hue-rotate(45deg)',
   },
   projects:{
+    border:'1px solid',
     display:'flex',
-    justifyContent:'space-around',
-    minWidth:'95%',
+    flexDirection:'column',
+    justifyContent:'space-between',
+    width:'75%',
     padding:'1%',
-    margin:5
+    paddingLeft:0,
+    margin:5,
+    marginLeft:0
+  },
+  midleft:{
+    display:'flex',
+    flexDirection:'row',
+    justifyContent:'center'
+    // width:'70%'
+  },
+  education:{
+    width:'25%',
+    border:'1px solid',
+    margin: 5, 
+    padding: '1%',
+    filter: 'hue-rotate(135deg)',
+    
   },
   project:{
-    maxWidth:'30%'
+    width:'30%'
   },
   subtitle_false:{
     fontSize:'.6em'
@@ -113,7 +132,8 @@ const useStyles = makeStyles(() => ({
     padding:'2%',
     paddingTop: 0,
     marginTop:5,
-    textAlign:'left'
+    textAlign:'left',
+    filter: 'hue-rotate(225deg)',
   },
   work:{
     minHeight:'20%',
@@ -122,7 +142,8 @@ const useStyles = makeStyles(() => ({
     border: '1px solid black',
     paddingLeft: 10,
     marginTop:5,
-    marginLeft:5
+    marginLeft:5,
+    filter: 'hue-rotate(315deg)',
   },
   skillSet:{
     padding:'2%',
@@ -132,7 +153,7 @@ const useStyles = makeStyles(() => ({
     padding:'1%'
   },
   body_true:{
-
+    fontSize: '0.83rem'
   }
 
 
@@ -154,7 +175,7 @@ export default function TemplateThree(props) {
 
   console.log("Template one props: ", props.data)
 
-  const { basicInfo, projects, skills, work_experience } = props.data
+  const { basicInfo, projects, skills, work_experience, userEducation } = props.data
   
   const classes = useStyles();
   const [active, setActive] = React.useState(props.active)
@@ -227,12 +248,42 @@ export default function TemplateThree(props) {
         <Typography
         className={ active ? classes.body_true : classes.bodyFont_false} 
         variant="body2" 
-        style={{fontFamily: props.bodyFont}}>
+        style={{fontFamily: props.bodyFont, }}>
         {i.description}
         </Typography>
       </div>
     )
   })
+
+  const myEducation = userEducation.map(i => {
+    const startYear = i.start_date.slice(0,4)
+    const startMonth = i.start_date.slice(5,7)
+    const endYear = i.end_date.slice(0,4)
+    const endMonth = i.end_date.slice(5,7)  
+    
+    return (
+      <div className={classes.job} >
+        <Typography variant="subtitle1"
+          className={ active? classes.title_true : classes.title_false }
+          style={{fontFamily: props.font}}>
+        <strong>{i.school_name}</strong>
+        </Typography>
+        <Typography 
+        className={ active ? classes.subtitle_true : classes.subtitle_false }
+        variant="body2" 
+        style={{fontFamily: props.bodyFont}}>
+        {startMonth}/{startYear} - {endMonth}/{endYear}
+        </Typography>
+        <Typography
+        className={ active ? classes.body_true : classes.bodyFont_false}
+        variant="body2" 
+        style={{fontFamily: props.bodyFont,fontSize: '0.83rem'}}>
+        {i.program_title}
+        </Typography>
+      </div>
+    )
+  })
+
 
   const myJobs = work_experience.map(i => {
     const startYear = i.job_start_date.slice(0,4)
@@ -257,7 +308,7 @@ export default function TemplateThree(props) {
         <Typography
         className={ active ? classes.body_true : classes.bodyFont_false}
         variant="body2" 
-        style={{fontFamily: props.bodyFont}}>
+        style={{fontFamily: props.bodyFont, fontSize: '0.83rem'}}>
         {i.job_description}
         </Typography>
       </div>
@@ -359,8 +410,9 @@ export default function TemplateThree(props) {
           }
       
       </div>
-      <div className={classes.midThird} style={{borderColor: props.borderColor, background: props.color}}>
-        <div  name='projects' >
+      <div className={classes.midThird} >
+        <div className={classes.projects} style={{borderColor: props.borderColor, background: props.color}}>
+          <div  name='projects' >
         <Typography
           className={ active? classes.name : classes.heading_false }
           variant="h6"
@@ -368,13 +420,28 @@ export default function TemplateThree(props) {
         >
           <em>My Projects</em>
         </Typography>
-          <div className={classes.projects}>
-        {myProjects}
           </div>
+          <div className={classes.midleft}>
+        {myProjects}
         </div>
+        </div>
+        
+        <div name='education' className={classes.education} style={{borderColor: props.borderColor, background: props.color}}>
+          <Typography
+            className={active? classes.name: classes.heading_false }
+            variant='h6'
+            style ={{fontFamily: props.font}}
+          >
+            <em>My Education</em>
+          </Typography>
+          <div > 
+            {myEducation}
+          </div>
+         </div>
+        
       </div>
       <div className={classes.bottomThird} name = 'bottom third'>
-        <div className={classes.skills} style={{borderColor: props.borderColor}} name='skills'>
+        <div className={classes.skills} style={{borderColor: props.borderColor, background: props.color}} name='skills'>
           <Typography
             className={ active? classes.name_true : classes.heading_false }
             variant="h6"
@@ -429,7 +496,7 @@ export default function TemplateThree(props) {
           </div>
         </div>
         <Divider orientation='vertical'/>
-        <div className={classes.work} style={{borderColor: props.borderColor}} name='work'>
+        <div className={classes.work} style={{borderColor: props.borderColor, background: props.color}} name='work'>
         <Typography
           className={ active? classes.name_true : classes.heading_false }
           variant="h6"

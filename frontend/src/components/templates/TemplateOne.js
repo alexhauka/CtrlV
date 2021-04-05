@@ -183,6 +183,7 @@ const useStyles = makeStyles(() => ({
 
 
 export default function TemplateOne(props) {
+
   const ABOUT_ME_LIMIT = 505;
   const PROFESSION_LIMIT = 25;
   const [values, setValues] = React.useState({
@@ -196,7 +197,7 @@ export default function TemplateOne(props) {
 
   console.log("Template one props: ", props.data)
 
-  const { basicInfo, projects, skills, work_experience } = props.data
+  const { basicInfo, projects, skills, work_experience, userEducation } = props.data
   const classes = useStyles();
   const [active, setActive] = React.useState(props.active)
   const [building, setBuilding] = React.useState(props.building)
