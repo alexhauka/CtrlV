@@ -5,10 +5,10 @@ const client = require('../elephantsql');
 const addUserResume = function(resume) {
   return client.query(`
     INSERT INTO resumes (
-      user_id, template_id, background_color, border_color, head_font, body_font, project_1, project_2, project_3, work_1, work_2, work_3, about_me, profession
+      user_id, template_id, background_color, border_color, head_font, body_font, project_1, project_2, project_3, work_1, work_2, work_3, about_me, profession, education_1, education_2, education_3
     )
     VALUES (
-      $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14
+      $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17
     )
     RETURNING *;
   `, [resume.user_id,
@@ -24,7 +24,11 @@ const addUserResume = function(resume) {
     resume.work_2.id,
     resume.work_3.id,
     resume.about_me,
-    resume.profession])
+    resume.profession,
+    resume.education_1,
+    resume.education_2,
+    resume.education_3
+  ])
   .then((response) => {
     return response.rows[0];
   })
@@ -47,7 +51,7 @@ const deleteUserResume = function(userID, resume) {
 const updateUserResume = function(resume) {
   return client.query(`
     UPDATE resumes
-    SET user_id = $2, template_id = $3, background_color = $4, border_color = $5, head_font = $6, body_font = $7, project_1 = $8, project_2 = $9, project_3 = $10, work_1 = $11, work_2 = $12, work_3 = $13, about_me = $14, profession = $15
+    SET user_id = $2, template_id = $3, background_color = $4, border_color = $5, head_font = $6, body_font = $7, project_1 = $8, project_2 = $9, project_3 = $10, work_1 = $11, work_2 = $12, work_3 = $13, about_me = $14, profession = $15, education_1 = $16, education_2 = $17, education_3 = $18 
     WHERE id = $1;
   `[resume.id,
     resume.user_id,
@@ -63,7 +67,11 @@ const updateUserResume = function(resume) {
     resume.work_2,
     resume.work_3,
     resume.about_me,
-      resume.profession])
+    resume.profession,
+    resume.education_1,
+    resume.education_2,
+    resume.education_3
+  ])
   .then((response) => {
     return response; 
   })
