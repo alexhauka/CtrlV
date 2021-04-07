@@ -248,6 +248,7 @@ export function useApplicationData() {
   }
 
   function addResume(resumeObject) {
+    console.log('resumeObject', resumeObject)
     return axios.post(`/api/resumes`, { resumeObject })
     .then((response) => {
       dispatch({

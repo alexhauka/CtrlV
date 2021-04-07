@@ -131,7 +131,7 @@ export default function Resume(props) {
   console.log(props);
   let data = props.location.state.output
   console.log('this is resume data',data)
-  const { basicInfo, projects, skills, work_experience, userEducation } = data
+  const { basicInfo, projects, skills, work_experience, education } = data
 
   const [template, setTemplate] = useState(3)
 
@@ -191,9 +191,9 @@ const resume = {
   work_1: work_experience[0],
   work_2: work_experience[1],
   work_3: work_experience[2],
-  education_1: userEducation[0],
-  education_2: userEducation[1],
-  education_3: userEducation[2]
+  education_1: education[0],
+  education_2: education[1],
+  education_3: education[2]
 }
   
   const classes = useStyles();

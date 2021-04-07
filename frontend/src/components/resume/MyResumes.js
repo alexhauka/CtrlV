@@ -52,7 +52,7 @@ export default function MyResumes(props) {
   const [open, setOpen] = useState(false); 
   const classes = useStyles();
   
-  const { userProjects, userWorkExperience, userHardSkills } = props.state
+  const { userProjects, userWorkExperience, userHardSkills, userEducation } = props.state
 
   
   const user = props.state.user
@@ -84,10 +84,14 @@ export default function MyResumes(props) {
   };
 
   const resumes = resumeInfo.map(i => {
-
+    console.log('resumes data', resumeInfo)
     const resume_project_1_index = userProjects.findIndex(p => p.id === i.project_1);
     const resume_project_2_index = userProjects.findIndex(p => p.id === i.project_2);
     const resume_project_3_index = userProjects.findIndex(p => p.id === i.project_3);
+
+    const resume_education_1_index = userEducation.findIndex(p => p.id === i.education_1);
+    const resume_education_2_index = userEducation.findIndex(p => p.id === i.education_2);
+    const resume_education_3_index = userEducation.findIndex(p => p.id === i.education_3);
 
     const resume_work_1_index = userWorkExperience.findIndex(w => w.id === i.work_1);
     const resume_work_2_index = userWorkExperience.findIndex(w => w.id === i.work_2);
@@ -101,7 +105,9 @@ export default function MyResumes(props) {
 
       projects: [userProjects[resume_project_1_index], userProjects [resume_project_2_index], userProjects[resume_project_3_index]],
 
-      work_experience: [userWorkExperience[resume_work_1_index], userWorkExperience[resume_work_2_index], userWorkExperience[resume_work_3_index]]
+      work_experience: [userWorkExperience[resume_work_1_index], userWorkExperience[resume_work_2_index], userWorkExperience[resume_work_3_index]],
+
+      education: [userEducation[resume_education_1_index], userEducation[resume_education_2_index], userEducation[resume_education_3_index]]
     }
 
     if (i.template_id === 1) {

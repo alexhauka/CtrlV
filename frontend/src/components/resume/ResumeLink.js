@@ -49,6 +49,7 @@ export default function ResumeLink(props) {
   const [skills, setSkills] = useState([])
   const [workExperience, setWorkExperience] = useState([])
   const [projects, setProjects] = useState([]);
+  const [education, setEducation] = useState([]); 
   const [loaded, setLoaded] = useState(false); 
   const [clicked, setClicked] = useState(false); 
   const [open, setOpen] = React.useState(false);
@@ -61,8 +62,6 @@ export default function ResumeLink(props) {
 
   const handleClose = () => {
     setOpen(false);
-    console.log("Subject", subject)
-    console.log("body", body)
   };
   const getInfo = async () => {
     const firstFetch = await fetch(`/api/resumes/${id}`)
@@ -74,12 +73,15 @@ export default function ResumeLink(props) {
     const fourthFetch = await fetch(`/api/users/${resumeData.user_id}/work_experience`)
     const workData = await fourthFetch.json(); 
     const fifthFetch = await fetch(`/api/users/${resumeData.user_id}/projects`)
-    const projectsData = await fifthFetch.json(); 
+    const projectsData = await fifthFetch.json();
+    const sixthFetch = await fetch(`/api/users/${resumeData.user_id}/education`)
+    const educationData = await sixthFetch.json(); 
     return {
      user: userData,
      skills: skillsData, 
      workExperience: workData, 
-     projects: projectsData, 
+     projects: projectsData,
+     education: educationData, 
      data: resumeData
     }
   }
@@ -90,6 +92,7 @@ export default function ResumeLink(props) {
         console.log("response: ",response)
         setProjects(response.projects)
         setWorkExperience(response.workExperience)
+        setEducation(response.education)
         setSkills(response.skills)
         setUser(response.user)
         setResume(response.data)
@@ -99,12 +102,16 @@ export default function ResumeLink(props) {
     loadData()
   }, []);
   if(loaded){
-    console.log(resume)
+    console.log('resume', resume)
   }
 
   const resume_project_1_index = projects.findIndex(p => p.id === resume.project_1);
   const resume_project_2_index = projects.findIndex(p => p.id === resume.project_2);
   const resume_project_3_index = projects.findIndex(p => p.id === resume.project_3);
+
+  const resume_education_1_index = education.findIndex(w => w.id === resume.education_1);
+  const resume_education_2_index = education.findIndex(w => w.id === resume.education_2);
+  const resume_education_3_index = education.findIndex(w => w.id === resume.education_3);
 
   const resume_work_1_index = workExperience.findIndex(w => w.id === resume.work_1);
   const resume_work_2_index = workExperience.findIndex(w => w.id === resume.work_2);
@@ -126,7 +133,8 @@ export default function ResumeLink(props) {
     profession: resume.profession,
     projects: [projects[resume_project_1_index], projects[resume_project_2_index], projects[resume_project_3_index]],
     skills: skills, 
-    work_experience: [workExperience[resume_work_1_index], workExperience[resume_work_2_index], workExperience[resume_work_3_index]]
+    work_experience: [workExperience[resume_work_1_index], workExperience[resume_work_2_index], workExperience[resume_work_3_index]],
+    education: [education[resume_education_1_index], education[resume_education_2_index], education[resume_education_3_index]]
   }
   
   const myResume = function() {  
@@ -164,6 +172,8 @@ export default function ResumeLink(props) {
       </div>
       )}
       else if (resume.template_id === 3){
+        console.log('data', data)
+        console.log('resume', resume)
         return(
           <div>
           <div className={classes.resume}>    

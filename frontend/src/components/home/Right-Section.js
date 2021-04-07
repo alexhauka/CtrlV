@@ -150,7 +150,7 @@ export default function RightSection(props) {
     basicInfo: basicInfo,
     projects: projects,
     work_experience: work_experience,
-    userEducation: education,
+    education: education,
     skills: userHardSkills,
   }
 

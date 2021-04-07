@@ -175,7 +175,7 @@ export default function TemplateThree(props) {
 
   console.log("Template one props: ", props.data)
 
-  const { basicInfo, projects, skills, work_experience, userEducation } = props.data
+  const { basicInfo, projects, skills, work_experience, education } = props.data
   
   const classes = useStyles();
   const [active, setActive] = React.useState(props.active)
@@ -255,7 +255,7 @@ export default function TemplateThree(props) {
     )
   })
 
-  const myEducation = userEducation.map(i => {
+  const myEducation = education.map(i => {
     const startYear = i.start_date.slice(0,4)
     const startMonth = i.start_date.slice(5,7)
     const endYear = i.end_date.slice(0,4)
