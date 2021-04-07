@@ -25,9 +25,9 @@ const addUserResume = function(resume) {
     resume.work_3.id,
     resume.about_me,
     resume.profession,
-    resume.education_1,
-    resume.education_2,
-    resume.education_3
+    resume.education_1.id,
+    resume.education_2.id,
+    resume.education_3.id
   ])
   .then((response) => {
     return response.rows[0];
