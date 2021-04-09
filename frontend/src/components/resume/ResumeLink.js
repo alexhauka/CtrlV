@@ -11,6 +11,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import ReactToPdf from 'react-to-pdf';
 
 const useStyles = makeStyles(() => ({
   root:{
@@ -24,8 +25,8 @@ const useStyles = makeStyles(() => ({
   },
   resume: {
     margin:'auto',
-    width: '8.5in',
-    height: '11in',
+    width: '8.27in',
+    height: '11.7in',
     boxShadow: '0px 0px 20px 10px #00000059',
   },
   buttonTop: {
@@ -137,6 +138,11 @@ export default function ResumeLink(props) {
     education: [education[resume_education_1_index], education[resume_education_2_index], education[resume_education_3_index]]
   }
   
+  const ref = React.createRef(); 
+  const options ={
+    orientation: 'portrait',
+    
+  };
   const myResume = function() {  
     console.log("template Id:", resume.template_id)
     if (resume.template_id === 1){
@@ -176,7 +182,13 @@ export default function ResumeLink(props) {
         console.log('resume', resume)
         return(
           <div>
-          <div className={classes.resume}>    
+          <ReactToPdf targetRef={ref} options={options}>
+            {({toPdf}) => (
+              <button onClick={toPdf}>Generate pdf</button>
+            )}
+          </ReactToPdf>
+          
+          <div className={classes.resume} ref={ref}>    
             <TemplateThree 
              building={false}
              active={true}
@@ -187,6 +199,8 @@ export default function ResumeLink(props) {
              bodyFont={resume.body_font}
              />
         </div>
+        
+        
         </div>
         )}
     }
@@ -196,7 +210,7 @@ export default function ResumeLink(props) {
         <div className={classes.root} >
           {loaded &&
           <div className={classes.page}>
-            <div >
+            <div>
             {renderResume}
             </div>
             { !clicked &&

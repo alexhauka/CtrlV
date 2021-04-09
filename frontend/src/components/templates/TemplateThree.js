@@ -14,8 +14,8 @@ const useStyles = makeStyles(() => ({
     marginLeft: '65px'
   },
   root:{
-    maxHeight: '11in',
-    minHeight:'11in',
+    maxHeight: '11.7in',
+    minHeight:'11.7in',
     textAlign:'center'
   },
   root_false:{
